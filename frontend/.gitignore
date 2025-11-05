@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 
-# Build outputs
+# Production build
 dist/
 build/
 
@@ -9,6 +9,9 @@ build/
 .env
 .env.local
 .env.production
+
+# Logs
+*.log
 
 # OS files
 .DS_Store
@@ -20,8 +23,5 @@ Thumbs.db
 *.swp
 *.swo
 
-# Logs
-*.log
-
-# Misc
-*.tar.gz
+# Vite
+.vite/

@@ -1,0 +1,351 @@
+📋 COMPLETE PROJECT PLAN - Business Automated AWS Migration
+
+================================================================================
+
+1. AWS ARCHITECTURE
+
+Frontend Hosting:
+- Service: AWS Amplify
+- Why:
+  - Automatic CI/CD from Git
+  - Built-in SSL certificates
+  - Custom domain support
+  - CDN included
+  - Easy rollbacks
+- Cost: ~$1-5/month
+
+Backend API:
+- Service: AWS App Runner (Express.js) OR AWS Lambda + API Gateway
+- Recommendation: Start with App Runner (easier), migrate to Lambda later
+- Why:
+  - Deploy existing Express code with minimal changes
+  - Auto-scaling
+  - Managed service
+- Cost: ~$5-25/month (App Runner) or ~$0-5/month (Lambda)
+
+Database:
+- Service: Amazon RDS PostgreSQL (or Aurora Serverless v2)
+- Recommendation: RDS PostgreSQL db.t3.micro (Free Tier eligible)
+- Storage: 20GB SSD
+- Backup: Automated daily backups
+- Cost: $15-25/month (or Free Tier for 12 months)
+
+Email Service:
+- Service: Amazon SES
+- Features:
+  - Lead notification emails to you
+  - Auto-reply to customers
+- Cost: $0.10 per 1,000 emails (basically free)
+
+Domain & SSL:
+- Service: AWS Route 53 + AWS Certificate Manager (ACM)
+- Features:
+  - DNS management
+  - Free SSL certificates
+  - Health checks
+- Cost: $0.50/month per hosted zone + $0.40 per million queries
+
+================================================================================
+
+2. DATABASE SCHEMA
+
+-- Leads Table
+CREATE TABLE leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  company VARCHAR(255),
+  service_interest VARCHAR(100), -- which AI service they're interested in
+  message TEXT,
+  source_page VARCHAR(100), -- which page they submitted from
+  created_at TIMESTAMP DEFAULT NOW(),
+  status VARCHAR(50) DEFAULT 'new', -- new, contacted, qualified, closed
+  notes TEXT -- admin notes
+);
+
+-- Admin Users Table (simple auth)
+CREATE TABLE admin_users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Indexes for performance
+CREATE INDEX idx_leads_created_at ON leads(created_at DESC);
+CREATE INDEX idx_leads_status ON leads(status);
+CREATE INDEX idx_leads_email ON leads(email);
+
+================================================================================
+
+3. ADMIN PANEL FEATURES
+
+Admin Routes:
+- /admin - Login page
+- /admin/dashboard - Main dashboard
+- /admin/leads - All leads table
+- /admin/leads/:id - Individual lead details
+
+Dashboard Features:
+1. Stats Cards:
+   - Total leads
+   - New leads (last 7 days)
+   - Leads by service type
+   - Conversion rate
+
+2. Leads Table:
+   - Sortable columns (date, name, email, service)
+   - Filter by status, date range, service
+   - Search by name/email
+   - Pagination (20 per page)
+   - Export to CSV button
+
+3. Lead Details:
+   - Full contact info
+   - Service interest
+   - Message/inquiry
+   - Add notes
+   - Change status (new → contacted → qualified → closed)
+   - Email link (mailto:)
+   - Phone link (tel:)
+
+4. Simple Auth:
+   - Login with username/password
+   - Session stored in cookie (httpOnly, secure)
+   - Auto-logout after 2 hours inactivity
+   - "Remember me" option
+
+================================================================================
+
+4. DOMAIN CONFIGURATION
+
+Steps to Connect Your Domain:
+
+Option A: Domain Already Registered Elsewhere (GoDaddy, Namecheap, etc.)
+1. Keep domain at current registrar
+2. Point nameservers to AWS Route 53
+3. Route 53 manages DNS
+4. Connect to Amplify
+
+Option B: Transfer Domain to AWS Route 53
+1. Transfer domain to AWS
+2. AWS manages everything
+3. Slightly easier but takes 5-7 days
+
+SSL Certificate:
+- AWS Certificate Manager (ACM) provides FREE SSL
+- Auto-renewal
+- Managed by AWS
+
+DNS Records:
+yourdomain.com        → AWS Amplify (A record)
+www.yourdomain.com    → AWS Amplify (CNAME)
+api.yourdomain.com    → App Runner API (CNAME) [optional]
+
+================================================================================
+
+5. EMAIL NOTIFICATION SYSTEM
+
+When Lead Submits Form:
+1. Email to You (Admin):
+   Subject: New Lead from Business Automated
+
+   Name: John Doe
+   Email: john@example.com
+   Phone: 555-1234
+   Company: Acme Corp
+   Interested in: AI Receptionist
+   Message: I'd like to learn more about your AI Receptionist service...
+
+   View in Admin Panel: https://yourdomain.com/admin/leads/12345
+
+2. Auto-Reply to Customer:
+   Subject: Thanks for your interest in Business Automated
+
+   Hi John,
+
+   Thanks for reaching out! We received your inquiry about our AI Receptionist service.
+
+   Our team will review your message and get back to you within 24 hours.
+
+   Best regards,
+   Business Automated Team
+
+SES Setup:
+- Verify your domain
+- Verify your admin email
+- Configure DKIM/SPF for deliverability
+
+================================================================================
+
+6. API ENDPOINTS NEEDED
+
+Public API:
+POST   /api/leads              - Submit contact form
+GET    /api/services           - List available services (optional)
+
+Admin API (protected):
+POST   /api/admin/login        - Admin login
+POST   /api/admin/logout       - Admin logout
+GET    /api/admin/leads        - Get all leads (paginated, filtered)
+GET    /api/admin/leads/:id    - Get single lead
+PATCH  /api/admin/leads/:id    - Update lead status/notes
+GET    /api/admin/stats        - Get dashboard stats
+GET    /api/admin/export       - Export leads to CSV
+
+================================================================================
+
+7. DEPLOYMENT STRATEGY
+
+Phase 1: Setup AWS Infrastructure (Week 1)
+- [ ] Create AWS account
+- [ ] Set up RDS PostgreSQL database
+- [ ] Set up Route 53 for domain
+- [ ] Request SSL certificate in ACM
+- [ ] Configure SES and verify domain/email
+
+Phase 2: Backend Development (Week 1-2)
+- [ ] Build contact form API endpoint
+- [ ] Build admin authentication
+- [ ] Build admin API endpoints
+- [ ] Connect to RDS database
+- [ ] Integrate SES for emails
+- [ ] Test locally
+
+Phase 3: Frontend Updates (Week 2)
+- [ ] Add contact form to Contact page
+- [ ] Build admin login page
+- [ ] Build admin dashboard
+- [ ] Build leads management UI
+- [ ] Connect to backend API
+- [ ] Test locally
+
+Phase 4: Deploy Backend (Week 2-3)
+- [ ] Deploy Express API to AWS App Runner
+- [ ] Configure environment variables
+- [ ] Test API endpoints
+- [ ] Set up monitoring/logging
+
+Phase 5: Deploy Frontend (Week 3)
+- [ ] Connect GitHub repo to AWS Amplify
+- [ ] Configure build settings
+- [ ] Deploy frontend
+- [ ] Test full application
+
+Phase 6: Domain & DNS (Week 3)
+- [ ] Point domain to AWS
+- [ ] Configure SSL certificate
+- [ ] Test HTTPS
+- [ ] Update DNS records
+
+Phase 7: Go Live (Week 3-4)
+- [ ] Final testing
+- [ ] Set up monitoring alerts
+- [ ] Document admin access
+- [ ] Launch! 🚀
+
+================================================================================
+
+8. ESTIMATED AWS COSTS
+
+Monthly Costs (After Free Tier):
++----------------------------------+----------+
+| Service                          | Cost     |
++----------------------------------+----------+
+| AWS Amplify (Frontend)           | $1-5     |
+| App Runner (Backend)             | $15-25   |
+| RDS PostgreSQL db.t3.micro       | $15-25   |
+| Route 53 (DNS)                   | $0.50-1  |
+| SES (Email)                      | $0-1     |
+| CloudWatch (Logs/Monitoring)     | $0-5     |
++----------------------------------+----------+
+| TOTAL                            | $32-62/month |
++----------------------------------+----------+
+
+With Free Tier (First 12 Months):
+- RDS: 750 hours/month free
+- App Runner: Some free usage
+- Estimated: $5-15/month
+
+Cost Optimization:
+- Use Aurora Serverless v2 (scales to zero)
+- Use Lambda instead of App Runner (pay per request)
+- Optimized: ~$10-20/month
+
+================================================================================
+
+9. TECH STACK SUMMARY
+
+Keep from Current Project:
+✓ React frontend
+✓ Tailwind CSS + Shadcn UI
+✓ Framer Motion animations
+✓ All current pages
+✓ Drizzle ORM
+
+Add New:
+✓ Contact form component
+✓ Admin panel (login, dashboard, leads table)
+✓ API endpoints for leads
+✓ Email integration (SES)
+✓ Database connection (RDS)
+✓ Environment variable management
+
+Replace:
+✗ In-memory storage → RDS PostgreSQL
+✗ Replit deployment → AWS Amplify + App Runner
+✗ No backend → Full backend API
+
+================================================================================
+
+10. DOMAIN SETUP DETAILS
+
+What's Your Domain?
+First, need to know:
+1. Do you already own a domain? (What is it?)
+2. Where is it registered? (GoDaddy, Namecheap, etc.)
+3. Or do you need to buy a new domain?
+
+DNS Configuration Process:
+Current Domain Registrar
+       ↓
+Change Nameservers to AWS Route 53
+       ↓
+Route 53 Manages DNS
+       ↓
+Points to Amplify (Frontend)
+       ↓
+SSL Certificate Auto-Applied
+       ↓
+https://yourdomain.com (LIVE!)
+
+================================================================================
+
+11. NEXT STEPS
+
+Before we start coding, please confirm:
+
+1. Do you have an AWS account? (I can help you set one up)
+2. What's your domain name? (or do you need to buy one?)
+3. Where is it registered? (if you have one)
+4. Preferred timeline? (How fast do you want this done?)
+5. Admin panel priority? (Build it now or add later?)
+
+================================================================================
+
+SUMMARY
+
+What We're Building:
+- Keep your beautiful frontend (all 16 pages)
+- New AWS backend with database
+- Contact form that saves leads
+- Email notifications
+- Admin panel to manage leads
+- Custom domain with SSL
+- Production-ready, scalable infrastructure
+
+Total Time Estimate: 2-3 weeks
+Monthly Cost: $32-62/month (or $5-15 with Free Tier)
+
+================================================================================

@@ -1,0 +1,124 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Business Automated Backend - Serverless API with Cognito
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs20.x
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        DATABASE_URL: !Ref DatabaseUrl
+        AWS_SES_FROM_EMAIL: !Ref SesFromEmail
+        AWS_SES_TO_EMAIL: !Ref SesToEmail
+
+Parameters:
+  DatabaseUrl:
+    Type: String
+    Description: PostgreSQL database connection string
+    NoEcho: true
+
+  SesFromEmail:
+    Type: String
+    Description: SES verified from email address
+    Default: businessautomatedai@gmail.com
+
+  SesToEmail:
+    Type: String
+    Description: SES notification recipient email
+    Default: businessautomatedai@gmail.com
+
+  CognitoUserPoolArn:
+    Type: String
+    Description: Cognito User Pool ARN for authorization
+
+Resources:
+  # API Gateway with Cognito Authorizer
+  BusinessAutomatedApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,PUT,DELETE,OPTIONS'"
+        AllowHeaders: "'Content-Type,Authorization'"
+        AllowOrigin: "'*'"
+      Auth:
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn: !Ref CognitoUserPoolArn
+
+  # Contact Form Lambda (Public)
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/functions/contact.handler
+      Policies:
+        - SESCrudPolicy:
+            IdentityName: !Ref SesFromEmail
+      Events:
+        ContactApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BusinessAutomatedApi
+            Path: /api/contact
+            Method: POST
+
+  # Get All Leads Lambda (Protected)
+  GetAllLeadsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/functions/leads.getAllLeads
+      Events:
+        GetAllLeadsApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BusinessAutomatedApi
+            Path: /api/leads
+            Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
+
+  # Get Lead By ID Lambda (Protected)
+  GetLeadByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/functions/leads.getLeadById
+      Events:
+        GetLeadByIdApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BusinessAutomatedApi
+            Path: /api/leads/{id}
+            Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
+
+  # Delete Lead Lambda (Protected)
+  DeleteLeadFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/functions/leads.deleteLead
+      Events:
+        DeleteLeadApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BusinessAutomatedApi
+            Path: /api/leads/{id}
+            Method: DELETE
+            Auth:
+              Authorizer: CognitoAuthorizer
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${BusinessAutomatedApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+
+  ApiId:
+    Description: API Gateway ID
+    Value: !Ref BusinessAutomatedApi
