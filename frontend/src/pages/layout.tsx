@@ -228,15 +228,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex flex-col space-y-2 text-sm text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Phone className="w-4 h-4" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>718-500-1191</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />
-                  <span>contact@businessautomated.com</span>
+                  <span>businessautomatedai@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4" />
-                  <span>San Francisco, CA</span>
+                  <span>New York, NY</span>
                 </div>
               </div>
             </div>

@@ -86,19 +86,19 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      details: "718-500-1191",
+      link: "tel:+17185001191",
     },
     {
       icon: Mail,
       title: "Email",
-      details: "contact@businessautomated.com",
-      link: "mailto:contact@businessautomated.com",
+      details: "businessautomatedai@gmail.com",
+      link: "mailto:businessautomatedai@gmail.com",
     },
     {
       icon: MapPin,
       title: "Office",
-      details: "San Francisco, CA",
+      details: "New York, NY",
       link: null,
     },
   ];
