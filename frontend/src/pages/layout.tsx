@@ -288,13 +288,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href={createPageUrl("AgentLibrary")} data-testid="link-footer-agent-library">
-                    <span className="hover:text-blue-400 transition-colors cursor-pointer">
-                      Agent Library
-                    </span>
-                  </Link>
-                </li>
-                <li>
                   <Link href={createPageUrl("Contact")} data-testid="link-footer-contact">
                     <span className="hover:text-blue-400 transition-colors cursor-pointer">
                       Contact

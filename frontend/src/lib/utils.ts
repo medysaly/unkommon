@@ -19,7 +19,6 @@ export function createPageUrl(pageName: string): string {
     'LinkedInAutomation': '/linkedin-automation',
     'SEORankTracker': '/seo-rank-tracker',
     'DHLTrackingBot': '/dhl-tracking-bot',
-    'AgentLibrary': '/agent-library',
     'About': '/about',
     'Contact': '/contact',
   };
