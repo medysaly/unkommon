@@ -1,0 +1,10 @@
+{
+  "name": "lambda-functions",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.922.0",
+    "drizzle-orm": "^0.39.1",
+    "pg": "^8.16.3"
+  }
+}

@@ -53,11 +53,15 @@ Resources:
   ContactFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
-      Handler: src/functions/contact.handler
+      CodeUri: src/functions/
+      Handler: contact.handler
       Policies:
-        - SESCrudPolicy:
-            IdentityName: !Ref SesFromEmail
+        - Statement:
+          - Effect: Allow
+            Action:
+              - ses:SendEmail
+              - ses:SendRawEmail
+            Resource: '*'
       Events:
         ContactApi:
           Type: Api
@@ -70,8 +74,8 @@ Resources:
   GetAllLeadsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
-      Handler: src/functions/leads.getAllLeads
+      CodeUri: src/functions/
+      Handler: leads.getAllLeads
       Events:
         GetAllLeadsApi:
           Type: Api
@@ -86,8 +90,8 @@ Resources:
   GetLeadByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
-      Handler: src/functions/leads.getLeadById
+      CodeUri: src/functions/
+      Handler: leads.getLeadById
       Events:
         GetLeadByIdApi:
           Type: Api
@@ -102,8 +106,8 @@ Resources:
   DeleteLeadFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
-      Handler: src/functions/leads.deleteLead
+      CodeUri: src/functions/
+      Handler: leads.deleteLead
       Events:
         DeleteLeadApi:
           Type: Api
