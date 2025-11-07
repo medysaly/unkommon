@@ -9,6 +9,7 @@ import {
 import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
+import ChatWidget from "@/components/ChatWidget";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -303,6 +304,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+
+      {/* AI Chatbot Widget - Appears on all pages */}
+      <ChatWidget />
     </div>
   );
 }
