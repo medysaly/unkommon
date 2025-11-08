@@ -12,13 +12,15 @@ const sesClient = new SESClient({ region: process.env.AWS_REGION || 'us-east-1' 
 
 // ===== CONFIGURATION =====
 const TABLE_NAME = process.env.CHATBOT_TABLE_NAME || 'chatbot_conversations';
+const APPOINTMENTS_TABLE = process.env.APPOINTMENTS_TABLE_NAME || 'chatbot_appointments';
 const MODEL_ID = process.env.BEDROCK_MODEL_ID || 'anthropic.claude-3-haiku-20240307-v1:0';
+const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'businessautomatedai@gmail.com';
 
 // ===== SYSTEM PROMPT =====
 // AWS Learning: This defines the AI's personality and knowledge
 const SYSTEM_PROMPT = `You are an AI assistant for Business Automated, a company that provides AI automation services in New York, NY.
 
-Your role is to help potential customers learn about our services and book demos. Be friendly, professional, and concise.
+Your role is to help potential customers learn about our services and book appointments. Be friendly, professional, and concise.
 
 Our Services:
 1. AI Receptionist - 24/7 phone answering, appointment booking, and intelligent call routing
@@ -31,11 +33,24 @@ Contact Information:
 - Email: businessautomatedai@gmail.com
 - Office: New York, NY
 
+APPOINTMENT BOOKING:
+When someone wants to book an appointment, consultation, or demo, collect this information in order:
+1. Full name
+2. Email address
+3. Phone number
+4. Which service they're interested in (AI Receptionist, Speed-to-Lead, AI Booking System, or Social Media Bot)
+5. Preferred date and time
+
+Once you have ALL 5 pieces of information, respond with EXACTLY this format:
+BOOKING_CONFIRMED: [name] | [email] | [phone] | [service] | [preferred_date_time]
+
+Example: BOOKING_CONFIRMED: John Smith | john@example.com | 555-1234 | AI Receptionist | Tomorrow at 2pm
+
 Guidelines:
 - Keep responses under 150 words
-- If someone wants a demo or to talk to sales, ask for their name, email, and phone number
 - Use emojis sparingly (one per message max)
 - Be enthusiastic but not pushy
+- Ask for missing information one step at a time
 - If you don't know something, be honest and offer to connect them with the team`;
 
 // ===== CORS HEADERS =====
@@ -108,12 +123,38 @@ export async function handler(event) {
       await sendLeadNotification(currentConversationId, conversationHistory, message, aiResponse);
     }
 
-    // Step 7: Return response to frontend
+    // Step 7: Check if AI confirmed a booking
+    let finalResponse = aiResponse;
+    if (detectBookingConfirmation(aiResponse)) {
+      console.log('Booking confirmation detected');
+      const bookingDetails = parseBookingDetails(aiResponse);
+
+      if (bookingDetails) {
+        console.log('Parsed booking details:', bookingDetails);
+
+        // Save appointment to database
+        const appointmentId = await saveAppointment(bookingDetails, currentConversationId);
+
+        // Send confirmation emails
+        await sendAppointmentEmails(bookingDetails, appointmentId);
+
+        // Replace the technical response with a user-friendly one
+        finalResponse = `Perfect! 🎉 Your appointment has been confirmed!
+
+I've sent a confirmation email to ${bookingDetails.email} with all the details. Our team will reach out within 24 hours to finalize the exact time.
+
+Your confirmation number is: ${appointmentId.substring(0, 8).toUpperCase()}
+
+Is there anything else you'd like to know about our ${bookingDetails.service} service?`;
+      }
+    }
+
+    // Step 8: Return response to frontend
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        response: aiResponse,
+        response: finalResponse,
         conversationId: currentConversationId,
         timestamp,
       }),
@@ -287,5 +328,156 @@ Please follow up within 24 hours.
   } catch (error) {
     console.error('Error sending lead notification:', error);
     // Don't throw - email failure shouldn't break the chatbot
+  }
+}
+
+/**
+ * Detect if AI has confirmed a booking (using special format)
+ */
+function detectBookingConfirmation(aiResponse) {
+  return aiResponse.includes('BOOKING_CONFIRMED:');
+}
+
+/**
+ * Parse booking details from AI response
+ */
+function parseBookingDetails(aiResponse) {
+  try {
+    const match = aiResponse.match(/BOOKING_CONFIRMED:\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+)/);
+    if (!match) return null;
+
+    return {
+      name: match[1].trim(),
+      email: match[2].trim(),
+      phone: match[3].trim(),
+      service: match[4].trim(),
+      preferredDateTime: match[5].trim(),
+    };
+  } catch (error) {
+    console.error('Error parsing booking details:', error);
+    return null;
+  }
+}
+
+/**
+ * Save appointment to DynamoDB
+ */
+async function saveAppointment(bookingDetails, conversationId) {
+  const appointmentId = uuidv4();
+  const now = Date.now();
+
+  const appointment = {
+    appointmentId,
+    conversationId,
+    ...bookingDetails,
+    status: 'pending',
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  const command = new PutCommand({
+    TableName: APPOINTMENTS_TABLE,
+    Item: appointment,
+  });
+
+  await dynamoClient.send(command);
+  console.log('Appointment saved:', appointmentId);
+
+  return appointmentId;
+}
+
+/**
+ * Send appointment confirmation emails to both client and company
+ */
+async function sendAppointmentEmails(bookingDetails, appointmentId) {
+  try {
+    // Email to client
+    const clientEmailBody = `Hi ${bookingDetails.name},
+
+Thank you for booking a consultation with Business Automated! We're excited to discuss how our AI automation solutions can transform your business.
+
+Appointment Details:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Service: ${bookingDetails.service}
+📅 Requested Time: ${bookingDetails.preferredDateTime}
+👤 Name: ${bookingDetails.name}
+📧 Email: ${bookingDetails.email}
+📞 Phone: ${bookingDetails.phone}
+🆔 Confirmation #: ${appointmentId.substring(0, 8).toUpperCase()}
+
+Next Steps:
+Our team will review your request and send you a calendar invite within 24 hours to confirm the exact time.
+
+Questions?
+Feel free to call us at 718-500-1191 or reply to this email.
+
+Best regards,
+Business Automated Team
+New York, NY
+businessautomatedai@gmail.com`;
+
+    const clientCommand = new SendEmailCommand({
+      Source: COMPANY_EMAIL,
+      Destination: {
+        ToAddresses: [bookingDetails.email],
+      },
+      Message: {
+        Subject: {
+          Data: `✅ Appointment Confirmed - Business Automated`,
+        },
+        Body: {
+          Text: {
+            Data: clientEmailBody,
+          },
+        },
+      },
+    });
+
+    // Email to company
+    const companyEmailBody = `🎉 NEW APPOINTMENT BOOKED VIA CHATBOT
+
+Appointment Details:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Name: ${bookingDetails.name}
+📧 Email: ${bookingDetails.email}
+📞 Phone: ${bookingDetails.phone}
+📋 Service Interest: ${bookingDetails.service}
+📅 Requested Time: ${bookingDetails.preferredDateTime}
+🆔 Appointment ID: ${appointmentId}
+
+ACTION REQUIRED:
+1. Review the requested time slot
+2. Send calendar invite to ${bookingDetails.email}
+3. Follow up within 24 hours
+
+The customer has received an automatic confirmation email.`;
+
+    const companyCommand = new SendEmailCommand({
+      Source: COMPANY_EMAIL,
+      Destination: {
+        ToAddresses: [COMPANY_EMAIL],
+      },
+      Message: {
+        Subject: {
+          Data: `🎯 New Appointment: ${bookingDetails.name} - ${bookingDetails.service}`,
+        },
+        Body: {
+          Text: {
+            Data: companyEmailBody,
+          },
+        },
+      },
+    });
+
+    // Send both emails
+    await Promise.all([
+      sesClient.send(clientCommand),
+      sesClient.send(companyCommand),
+    ]);
+
+    console.log('Appointment confirmation emails sent');
+  } catch (error) {
+    console.error('Error sending appointment emails:', error);
+    // Don't throw - email failure shouldn't break the booking
   }
 }

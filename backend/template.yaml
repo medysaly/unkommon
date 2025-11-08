@@ -143,6 +143,35 @@ Resources:
         - Key: Service
           Value: Chatbot
 
+  # DynamoDB Table for Appointments
+  AppointmentsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: chatbot_appointments
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: appointmentId
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: N
+        - AttributeName: status
+          AttributeType: S
+      KeySchema:
+        - AttributeName: appointmentId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: StatusIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Service
+          Value: Chatbot
+
   # Chatbot Lambda Function (Public)
   ChatbotFunction:
     Type: AWS::Serverless::Function
@@ -153,15 +182,20 @@ Resources:
       Environment:
         Variables:
           CHATBOT_TABLE_NAME: !Ref ChatbotConversationsTable
+          APPOINTMENTS_TABLE_NAME: !Ref AppointmentsTable
           BEDROCK_MODEL_ID: anthropic.claude-3-haiku-20240307-v1:0
+          COMPANY_EMAIL: businessautomatedai@gmail.com
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ChatbotConversationsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AppointmentsTable
         - Statement:
           - Effect: Allow
             Action:
               - bedrock:InvokeModel
-            Resource: !Sub 'arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-3-haiku-20240307-v1:0'
+              - bedrock:InvokeModelWithResponseStream
+            Resource: '*'
           - Effect: Allow
             Action:
               - aws-marketplace:ViewSubscriptions
