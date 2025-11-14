@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import { Calendar, MessageSquare, Clock, Smartphone, CheckCircle, ArrowRight } from "lucide-react";
+import { Calendar, MessageSquare, Clock, Smartphone, CheckCircle, ArrowRight, Camera, Mic, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
+import WhatsAppDemo from "@/components/WhatsAppDemo";
+import AIWhatsAppDemos from "@/components/AIWhatsAppDemos";
 
 export default function AIBookingSystem() {
   const features = [
@@ -169,6 +171,123 @@ export default function AIBookingSystem() {
                 </CardContent>
               </Card>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WhatsApp Booking Demo */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              See WhatsApp Booking In Action
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Watch how customers book appointments through WhatsApp with AI-powered automation
+            </p>
+          </motion.div>
+
+          {/* Mobile Notice */}
+          <div className="md:hidden">
+            <Card className="bg-slate-900 border-slate-700">
+              <CardContent className="p-8 text-center">
+                <MessageSquare className="w-16 h-16 mx-auto mb-4 text-green-400" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  Interactive Demo Available on Larger Screens
+                </h3>
+                <p className="text-gray-300">
+                  To experience the live WhatsApp booking demo, please view this page on a tablet, laptop, or desktop computer.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Desktop Demo */}
+          <div className="hidden md:block">
+            <WhatsAppDemo />
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced AI Capabilities */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Advanced AI Capabilities
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Beyond appointment booking, our AI handles complex scenarios that traditionally require human intervention
+            </p>
+            
+            {/* Capability Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-16">
+              <Card className="bg-slate-800 border-slate-700">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                    <Camera className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Visual Analysis</h3>
+                  <p className="text-gray-400 text-sm">
+                    AI analyzes photos of products, damage, receipts, or issues to provide instant assessment and solutions
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                    <Mic className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Voice Processing</h3>
+                  <p className="text-gray-400 text-sm">
+                    Customers send voice messages, AI transcribes and understands intent to resolve issues automatically
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                    <Globe className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Multilingual Support</h3>
+                  <p className="text-gray-400 text-sm">
+                    AI detects and responds in customer's language while your team sees everything in English
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+
+          {/* Mobile Notice */}
+          <div className="md:hidden">
+            <Card className="bg-slate-800 border-slate-700">
+              <CardContent className="p-8 text-center">
+                <MessageSquare className="w-16 h-16 mx-auto mb-4 text-green-400" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  Interactive Demos Available on Larger Screens
+                </h3>
+                <p className="text-gray-300">
+                  To experience the advanced AI capability demos, please view this page on a tablet, laptop, or desktop computer.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Desktop Demos */}
+          <div className="hidden md:block">
+            <AIWhatsAppDemos />
           </div>
         </div>
       </section>

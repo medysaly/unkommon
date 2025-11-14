@@ -1,0 +1,115 @@
+Create Avatar Videos
+This API now generates videos with our New AI Studio backend.
+
+Create personalized avatar videos with ease using the HeyGen API. This step-by-step guide will walk you through the process of selecting avatars, voices, and generating captivating videos for a wide range of applications. Whether you need videos for education, entertainment, or marketing, the HeyGen API makes it simple and efficient.
+
+1. Get List of Avatars and Voices
+To generate an avatar video, you'll need an avatar and a voice. You can fetch a list of available avatars and voices. For this we need to use List Avatars and List Voices API endpoints.
+
+List Avatars
+See detailed API reference
+Use this API to obtain a list of available avatars, including your instant avatars. This API call will provide you with a list of avatars. Choose one avatar from the list and note down its avatar_id for the next steps.
+
+Request
+Response
+
+curl --request GET \
+     --url https://api.heygen.com/v2/avatars \
+     --header 'Accept: application/json' \
+     --header 'X-Api-Key: <your-api-key>'
+List Voices
+See detailed API reference
+This API call will provide you with a list of voices. Choose one voice from the list and note down its voice_id for the next steps.
+
+Request
+Response
+
+curl --request GET \
+     --url https://api.heygen.com/v2/voices \
+     --header 'Accept: application/json' \
+     --header 'X-Api-Key: <your-api-key>'
+Assuming you've selected an avatar and a voice, let's proceed to generate your video.
+
+2. Generate Video
+See detailed API reference
+To create your avatar video, make a POST request using the following API:
+
+Request
+Response
+
+curl -X POST https://api.heygen.com/v2/video/generate \
+-H 'X-Api-Key: <your-api-key>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "Lina_Dress_Sitting_Side_public",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "text",
+        "input_text": "Welcome to the HeyGen API!",
+        "voice_id": "119caed25533477ba63822d5d1552d25",
+        "speed": 1.1
+      }
+    }
+  ],
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  }
+}'
+Text input should be less than 1500 characters. Here is the limit details.
+
+You can adjust voice attributes such as speed and pitch. Here is the references.
+
+▫️
+If you are on the free API plan, the export resolution limit is 720p. You can set the resolution with the dimension argument as follows:
+JSON
+
+  ...
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  }
+}
+You'll receive a video_id in the response. Note down this ID as you will need it to check the video's generation status.
+
+3. Check Video Generation Status
+See detailed API reference
+After creating your video, you can check its status. Wait until the video's status changes to completed.
+
+Request
+Response (Completed)
+Response (Waiting)
+Response (Processing)
+Response (Pending)
+Response (Failed)
+
+curl --request GET \
+     --url https://api.heygen.com/v1/video_status.get?video_id=<video_id> \
+     --header 'Accept: application/json' \
+     --header 'X-Api-Key: <your-api-key>'
+When the video generation is complete, the status will change to completed, and you will receive the video's URL.
+
+📘
+The video file URL you get will expire in 7 days. 📆
+You can observe this expiration in the URL parameters. Every time you call the video status endpoint, theExpires and other queries are regenerated accordingly.
+
+Download the video
+Congratulations! You've successfully generated your avatar video. Download and enjoy your creation. Once your video is ready, you can find a link in the response for you to download the video.
+
+Bash
+
+curl <video_url> --output output.mp4
+For more guides on create video endpoint, explore:
+
+Create Personalized Avatars with Photos
+Customize Video Background
+Using Audio Source as Voice
+Create Videos with Your Personal Avatar and Voice
+Conclusion
+In this step-by-step guide, you've learned how to generate avatar videos using the HeyGen API. By selecting an avatar and a voice, you can create engaging videos for various purposes. Keep experimenting and create amazing content!
+

@@ -15,8 +15,10 @@ import ContentFactory from "@/pages/content-factory";
 import LinkedInAutomation from "@/pages/linkedin-automation";
 import SEORankTracker from "@/pages/seo-rank-tracker";
 import DHLTrackingBot from "@/pages/dhl-tracking-bot";
+import AgentLibrary from "@/pages/agent-library";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
+import Sources from "@/pages/sources";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
@@ -44,8 +46,10 @@ function Router() {
               <Route path="/linkedin-automation" component={LinkedInAutomation} />
               <Route path="/seo-rank-tracker" component={SEORankTracker} />
               <Route path="/dhl-tracking-bot" component={DHLTrackingBot} />
+              <Route path="/agent-library" component={AgentLibrary} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
+              <Route path="/sources" component={Sources} />
               <Route component={NotFound} />
             </Switch>
           </Layout>

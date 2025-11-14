@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { Phone, Clock, Calendar, Users, CheckCircle, ArrowRight } from "lucide-react";
+import { Phone, Clock, Calendar, Users, CheckCircle, ArrowRight, MessageSquare, Languages, Voicemail, FileText, CalendarClock, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
-import InteractiveDemo from "@/components/InteractiveDemo";
+import LiveDemo from "@/components/LiveDemo";
+import AIReceptionistDemos from "@/components/AIReceptionistDemos";
+import receptionistImg from "@assets/openart-image_U2SOc8Ou_1762412405276_raw_1762412459397.jpg";
+import { Citation } from "@/components/Citation";
 
 export default function AIReceptionist() {
   const features = [
@@ -31,7 +34,7 @@ export default function AIReceptionist() {
   ];
 
   const benefits = [
-    "Reduce receptionist costs by up to 80%",
+    <>Reduce labor costs by 50-70%<Citation statisticId="ai-cost-savings" /></>,
     "Handle unlimited calls simultaneously",
     "Integrate with your existing phone system",
     "Custom voice and personality options",
@@ -92,20 +95,20 @@ export default function AIReceptionist() {
         </div>
       </section>
 
-      {/* Interactive Demo Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto">
+      {/* Live AI Receptionist Demo */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900 relative z-10">
+        <div className="max-w-7xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-demo-section">
-              Try the Interactive Demo
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-avatar-section">
+              Experience the Live AI Receptionist
             </h2>
             <p className="text-xl text-gray-300">
-              See our AI receptionist in action - book a fake appointment and watch the automation workflow
+              Speak with our AI avatar to book an appointment - watch the automation workflow in real-time
             </p>
           </motion.div>
 
@@ -115,13 +118,290 @@ export default function AIReceptionist() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <InteractiveDemo />
+            {/* Mobile Notice */}
+            <div className="md:hidden">
+              <Card className="bg-slate-800 border-slate-700">
+                <CardContent className="p-8 text-center">
+                  <Phone className="w-16 h-16 mx-auto mb-4 text-blue-400" />
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Interactive Demo Available on Larger Screens
+                  </h3>
+                  <p className="text-gray-300">
+                    To experience the live AI receptionist demo, please view this page on a tablet, laptop, or desktop computer.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Desktop Demo */}
+            <div className="hidden md:block">
+              <LiveDemo />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* AI Receptionist Capability Demos */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Advanced AI Capabilities
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              See how our AI receptionist handles real-world scenarios with intelligent routing, 
+              multi-language support, and 24/7 availability
+            </p>
+          </motion.div>
+
+          <AIReceptionistDemos />
+        </div>
+      </section>
+
+      {/* Additional Capabilities Grid */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Complete Office Automation Suite
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Additional capabilities to run your entire office operations
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* FAQ & Information Handling */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <HelpCircle className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    FAQ & Information
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Instantly answers common questions about hours, services, pricing, and policies from your knowledge base.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Instant accurate responses</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Reduces repetitive staff questions</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>24/7 information availability</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Appointment Changes */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <CalendarClock className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    Appointment Management
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Handles rescheduling, cancellations, and modifications automatically with calendar integration.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Verify caller identity</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Real-time availability checking</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Automated confirmation sending</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Voicemail Transcription */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <Voicemail className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    Voicemail Intelligence
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Transcribes messages, extracts key information, and categorizes by urgency for efficient follow-up.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Accurate transcription</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Searchable message records</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Priority-based organization</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* CRM Integration */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <FileText className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    CRM Integration
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Automatically logs calls, updates contact records, and syncs with your existing CRM system.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Automatic call logging</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Contact history tracking</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Real-time data synchronization</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Message Taking */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <MessageSquare className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    Intelligent Message Taking
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Captures detailed messages with caller information, reason for call, and preferred callback time.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Complete message details</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Instant email/SMS delivery</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Callback scheduling</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Multi-Language Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <Languages className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    50+ Languages
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Supports conversations in over 50 languages with automatic detection and native-level fluency.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Automatic language detection</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Natural conversation flow</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                      <span>Cultural context awareness</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-slate-800">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -199,10 +479,12 @@ export default function AIReceptionist() {
               className="relative"
             >
               <Card className="bg-slate-800 border-slate-700 overflow-hidden">
-                <CardContent className="p-8">
-                  <div className="aspect-square bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center">
-                    <Phone className="w-32 h-32 text-blue-400/50" />
-                  </div>
+                <CardContent className="p-0">
+                  <img
+                    src={receptionistImg}
+                    alt="Professional receptionist at corporate front desk"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </CardContent>
               </Card>
             </motion.div>

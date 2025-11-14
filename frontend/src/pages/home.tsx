@@ -12,8 +12,10 @@ import {
   Clock,
   DollarSign,
   TrendingUp,
+  Play,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Citation } from "@/components/Citation";
 
 export default function Home() {
   const features = [
@@ -46,9 +48,9 @@ export default function Home() {
     },
     {
       icon: MessageSquare,
-      title: "Social Media Bot",
+      title: "Social Media Automation",
       description:
-        "Automated Instagram & Facebook DM responses with instant replies and lead capture",
+        "Complete social media automation: Instant DM/comment responses and multi-platform post scheduling",
       status: "Available Now",
       color: "from-orange-500 to-red-500",
       page: "SocialMediaBot",
@@ -64,12 +66,20 @@ export default function Home() {
     {
       icon: DollarSign,
       title: "Reduce Costs",
-      description: "Cut receptionist costs by up to 80%",
+      description: (
+        <>
+          Reduce labor costs by 50-70%<Citation statisticId="ai-cost-savings" />
+        </>
+      ),
     },
     {
       icon: TrendingUp,
       title: "Increase Conversions",
-      description: "Convert more leads with instant responses",
+      description: (
+        <>
+          Convert more leads with instant responses<Citation statisticId="first-responder-wins" />
+        </>
+      ),
     },
     {
       icon: CheckCircle,
@@ -151,14 +161,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white"
-              style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.8)" }}
               data-testid="heading-hero-title"
             >
-              Transform Your Business with{" "}
-              <span
-                className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
-                style={{ textShadow: "none" }}
-              >
+              <span style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.8)" }}>Transform Your Business with </span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent" style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6))" }}>
                 Intelligent AI
               </span>
             </motion.h1>
@@ -168,7 +174,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-lg md:text-xl leading-relaxed text-white max-w-3xl"
-              style={{ textShadow: "1px 1px 6px rgba(0,0,0,0.8)" }}
+              style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6))" }}
               data-testid="text-hero-description"
             >
               We design and deploy custom AI solutions that streamline
@@ -205,6 +211,44 @@ export default function Home() {
               >
                 Schedule Consultation
               </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Partner Welcome Video Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-welcome-video">
+              Welcome to Business Automated
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mx-auto"
+            style={{ maxWidth: "800px" }}
+          >
+            <div className="relative w-full overflow-hidden rounded-lg shadow-2xl" style={{ paddingBottom: "56.25%" }} data-testid="container-welcome-video">
+              <iframe
+                src="https://app.heygen.com/embeds/2e62d380c1dd493485e27c975408bc4e"
+                allow="autoplay; fullscreen; encrypted-media"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full"
+                style={{ border: "none", height: "calc(100% + 60px)" }}
+                title="Partner Welcome Video"
+                data-testid="iframe-welcome-video"
+              ></iframe>
             </div>
           </motion.div>
         </div>

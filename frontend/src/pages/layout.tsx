@@ -9,7 +9,6 @@ import {
 import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
-import ChatWidget from "@/components/ChatWidget";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -91,7 +90,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     onClick={() => window.location.href = createPageUrl("SocialMediaBot")}
                     data-testid="dropdown-social-media"
                   >
-                    Social Media Bot
+                    Social Media Automation
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -187,7 +186,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       }}
                       data-testid="dropdown-mobile-social-media"
                     >
-                      Social Media Bot
+                      Social Media Automation
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -212,40 +211,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="pt-16">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-800 mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="bg-slate-950 border-t border-slate-800 mt-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Company Info */}
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center space-x-2 mb-2">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">BA</span>
                 </div>
                 <span className="text-xl font-bold">Business Automated</span>
               </div>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Transform your business with intelligent AI solutions. We design and deploy custom automation that streamlines operations and drives growth.
+              <p className="text-gray-400 mb-2 max-w-md text-sm">
+                Transform your business with intelligent AI solutions.
               </p>
-              <div className="flex flex-col space-y-2 text-sm text-gray-400">
+              <div className="flex flex-col space-y-1 text-sm text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Phone className="w-4 h-4" />
-                  <span>718-500-1191</span>
+                  <span>+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />
-                  <span>businessautomatedai@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>New York, NY</span>
+                  <span>contact@businessautomated.com</span>
                 </div>
               </div>
             </div>
 
             {/* Solutions */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Solutions</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <h3 className="text-white font-semibold mb-2 text-sm">Solutions</h3>
+              <ul className="space-y-1 text-sm text-gray-400">
                 <li>
                   <Link href={createPageUrl("AIReceptionist")} data-testid="link-footer-ai-receptionist">
                     <span className="hover:text-blue-400 transition-colors cursor-pointer">
@@ -270,7 +265,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <Link href={createPageUrl("SocialMediaBot")} data-testid="link-footer-social-media">
                     <span className="hover:text-blue-400 transition-colors cursor-pointer">
-                      Social Media Bot
+                      Social Media Automation
                     </span>
                   </Link>
                 </li>
@@ -279,12 +274,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <h3 className="text-white font-semibold mb-2 text-sm">Company</h3>
+              <ul className="space-y-1 text-sm text-gray-400">
                 <li>
                   <Link href={createPageUrl("About")} data-testid="link-footer-about">
                     <span className="hover:text-blue-400 transition-colors cursor-pointer">
                       About Us
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={createPageUrl("AgentLibrary")} data-testid="link-footer-agent-library">
+                    <span className="hover:text-blue-400 transition-colors cursor-pointer">
+                      Agent Library
                     </span>
                   </Link>
                 </li>
@@ -295,18 +297,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </span>
                   </Link>
                 </li>
+                <li>
+                  <Link href={createPageUrl("Sources")} data-testid="link-footer-sources">
+                    <span className="hover:text-blue-400 transition-colors cursor-pointer">
+                      Research & Sources
+                    </span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-gray-400">
+          <div className="border-t border-slate-800 mt-4 pt-4 text-center text-sm text-gray-400">
             <p>&copy; {new Date().getFullYear()} Business Automated. All rights reserved.</p>
           </div>
         </div>
       </footer>
-
-      {/* AI Chatbot Widget - Appears on all pages */}
-      <ChatWidget />
     </div>
   );
 }

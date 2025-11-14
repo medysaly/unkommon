@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
+import SpeedToLeadDemo from "@/components/SpeedToLeadDemo";
+import { Citation } from "@/components/Citation";
 
 export default function SpeedToLead() {
   const features = [
@@ -30,10 +32,25 @@ export default function SpeedToLead() {
   ];
 
   const stats = [
-    { value: "10x", label: "Faster Response Time" },
-    { value: "75%", label: "Higher Conversion Rate" },
+    { 
+      value: "21x", 
+      label: "Higher Qualification Rate",
+      citation: "lead-response-5min",
+      description: "Responding within 5 min vs 30 min"
+    },
+    { 
+      value: "78%", 
+      label: "Buy From First Responder",
+      citation: "first-responder-wins",
+      description: "Speed is critical in competitive markets"
+    },
     { value: "24/7", label: "Always Available" },
-    { value: "100%", label: "Lead Capture Rate" },
+    { 
+      value: "391%", 
+      label: "Conversion Increase",
+      citation: "lead-response-1min",
+      description: "With 1-minute response time"
+    },
   ];
 
   return (
@@ -93,11 +110,16 @@ export default function SpeedToLead() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
+                data-testid={`stat-card-${index}`}
               >
                 <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
                   {stat.value}
+                  {stat.citation && <Citation statisticId={stat.citation} />}
                 </div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
+                <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+                {stat.description && (
+                  <div className="text-gray-500 text-xs mt-1">{stat.description}</div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -138,6 +160,45 @@ export default function SpeedToLead() {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Demos */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              See Speed-to-Lead In Action
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Watch real case studies showing how AI responds instantly across different channels - before your competitors even see the inquiry
+            </p>
+          </motion.div>
+
+          {/* Mobile Notice */}
+          <div className="md:hidden">
+            <Card className="bg-slate-900 border-slate-700">
+              <CardContent className="p-8 text-center">
+                <Zap className="w-16 h-16 mx-auto mb-4 text-purple-400" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  Interactive Demos Available on Larger Screens
+                </h3>
+                <p className="text-gray-300">
+                  To experience the live case study demos, please view this page on a tablet, laptop, or desktop computer.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Desktop Demo */}
+          <div className="hidden md:block">
+            <SpeedToLeadDemo />
           </div>
         </div>
       </section>
