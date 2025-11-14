@@ -216,44 +216,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partner Welcome Video Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-welcome-video">
-              Welcome to Business Automated
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto"
-            style={{ maxWidth: "800px" }}
-          >
-            <div className="relative w-full overflow-hidden rounded-lg shadow-2xl" style={{ paddingBottom: "56.25%" }} data-testid="container-welcome-video">
-              <iframe
-                src="https://app.heygen.com/embeds/2e62d380c1dd493485e27c975408bc4e"
-                allow="autoplay; fullscreen; encrypted-media"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full"
-                style={{ border: "none", height: "calc(100% + 60px)" }}
-                title="Partner Welcome Video"
-                data-testid="iframe-welcome-video"
-              ></iframe>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Solutions Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto">

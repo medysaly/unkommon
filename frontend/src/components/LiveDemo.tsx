@@ -62,6 +62,9 @@ interface SessionData {
 }
 
 export default function LiveDemo() {
+  // API URL from environment
+  const API_URL = import.meta.env.VITE_API_URL || 'https://l243ksgsdl.execute-api.us-east-1.amazonaws.com/prod';
+
   // Avatar state
   const [isLoadingSession, setIsLoadingSession] = useState(false);
   const [stream, setStream] = useState<MediaStream>();
@@ -183,7 +186,7 @@ export default function LiveDemo() {
   // Avatar functions
   async function fetchAccessToken() {
     try {
-      const response = await fetch("/api/heygen/token", {
+      const response = await fetch(`${API_URL}/api/heygen/token`, {
         method: "POST",
       });
       
@@ -340,7 +343,7 @@ export default function LiveDemo() {
       // Clear conversation history on backend
       if (sessionToEnd) {
         try {
-          await fetch("/api/heygen/conversation/clear", {
+          await fetch(`${API_URL}/api/heygen/conversation/clear`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -384,7 +387,7 @@ export default function LiveDemo() {
       }
       
       // Send to backend
-      const response = await fetch("/api/heygen/conversation", {
+      const response = await fetch(`${API_URL}/api/heygen/conversation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
