@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Clock, Calendar, Users, CheckCircle, ArrowRight, MessageSquare, Languages, Voicemail, FileText, CalendarClock, HelpCircle } from "lucide-react";
+import { Phone, Clock, Calendar, Users, CheckCircle, ArrowRight, MessageSquare, Languages, Voicemail, FileText, CalendarClock, HelpCircle, Video, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
 import VapiDemo from "@/components/VapiDemo";
+import LiveDemo from "@/components/LiveDemo";
 import AIReceptionistDemos from "@/components/AIReceptionistDemos";
 import receptionistImg from "@assets/openart-image_U2SOc8Ou_1762412405276_raw_1762412459397.jpg";
 import { Citation } from "@/components/Citation";
@@ -133,9 +136,34 @@ export default function AIReceptionist() {
               </Card>
             </div>
 
-            {/* Desktop Demo */}
+            {/* Desktop Demo - Tabbed Interface */}
             <div className="hidden md:block">
-              <VapiDemo />
+              <Tabs defaultValue="voice" className="w-full">
+                <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-6 bg-slate-800 border border-slate-700">
+                  <TabsTrigger
+                    value="voice"
+                    className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                    data-testid="tab-voice-call"
+                  >
+                    <Mic className="w-4 h-4" />
+                    Voice Call
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="video"
+                    className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                    data-testid="tab-video-avatar"
+                  >
+                    <Video className="w-4 h-4" />
+                    Video Avatar
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="voice" className="mt-0">
+                  <VapiDemo />
+                </TabsContent>
+                <TabsContent value="video" className="mt-0">
+                  <LiveDemo />
+                </TabsContent>
+              </Tabs>
             </div>
           </motion.div>
         </div>
