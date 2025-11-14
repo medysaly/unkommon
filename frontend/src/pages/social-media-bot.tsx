@@ -553,18 +553,18 @@ export default function SocialMediaBot() {
         <div className="max-w-7xl mx-auto hidden md:block">
           <div className="relative overflow-hidden rounded-2xl bg-black">
             <div
-              className="absolute inset-0 bg-fixed bg-no-repeat cta-bg-social-icons"
+              className="absolute right-0 top-0 bottom-0 w-1/2 bg-no-repeat bg-right-top bg-contain"
               style={{
                 backgroundImage: "url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/a01fd465d_socialIcons.jpg')",
               }}
             ></div>
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
 
-            <div className="relative z-10 p-12 text-center" style={{ transform: 'translateX(-150px)' }}>
+            <div className="relative z-10 p-12 text-left max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Ready to Automate Your Social Media?
               </h2>
-              <p className="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-pink-100 mb-8">
                 Let's set up your Instagram & Facebook bot to never miss a lead.
               </p>
               <Button
