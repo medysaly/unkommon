@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
-import LiveDemo from "@/components/LiveDemo";
+import VapiDemo from "@/components/VapiDemo";
 import AIReceptionistDemos from "@/components/AIReceptionistDemos";
 import receptionistImg from "@assets/openart-image_U2SOc8Ou_1762412405276_raw_1762412459397.jpg";
 import { Citation } from "@/components/Citation";
@@ -135,7 +135,7 @@ export default function AIReceptionist() {
 
             {/* Desktop Demo */}
             <div className="hidden md:block">
-              <LiveDemo />
+              <VapiDemo />
             </div>
           </motion.div>
         </div>
