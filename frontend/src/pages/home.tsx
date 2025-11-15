@@ -125,10 +125,12 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 text-primary px-5 py-2.5 rounded-full text-sm font-medium mb-8 hover:border-primary/30 transition-all"
               data-testid="badge-hero-tag"
             >
-              <Zap className="w-4 h-4" />
+              <div className="w-5 h-5 bg-primary/20 rounded-full flex items-center justify-center">
+                <Zap className="w-3 h-3" strokeWidth={2} />
+              </div>
               AI-Powered Business Automation
             </motion.div>
 
@@ -214,11 +216,14 @@ export default function Home() {
           >
             {features.map((feature, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full hover:border-primary/50 transition-all duration-300 group" data-testid={`card-solution-${index}`}>
+                <Card className="h-full hover:border-primary/50 transition-all duration-300 group relative overflow-hidden" data-testid={`card-solution-${index}`}>
                   <CardContent className="p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <feature.icon className="w-6 h-6 text-primary" />
+                    <div className="flex items-start gap-6">
+                      <div className="relative">
+                        <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 group-hover:border-primary/30 transition-all">
+                          <feature.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                        </div>
+                        <div className="absolute inset-0 bg-primary/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-3">
@@ -280,10 +285,13 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="text-center"
+                className="text-center group"
               >
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 border border-primary/20" data-testid={`icon-benefit-${index}`}>
-                  <benefit.icon className="w-7 h-7 text-primary" />
+                <div className="relative inline-flex mb-5">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 group-hover:border-primary/30 transition-all group-hover:scale-110 duration-300" data-testid={`icon-benefit-${index}`}>
+                    <benefit.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2" data-testid={`heading-benefit-${index}`}>
                   {benefit.title}
