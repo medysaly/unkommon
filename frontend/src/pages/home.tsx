@@ -113,43 +113,19 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-between overflow-hidden">
-        {/* Background Video */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{ top: 0, left: 0, width: "100%", height: "100%" }}
-        >
-          <iframe
-            src="https://player.cloudinary.com/embed/?cloud_name=ddegrzevr&public_id=Ai-Cpu-4K-2025-10-16-08-16-19-Utc_wb9wln&profile=cld-default&autoplay=true&muted=true&controls=false&showLogo=false&bigPlayButton=false&hideContextMenu=true"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen
-            className="pointer-events-none"
-            style={{
-              border: "none",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            title="AI Background Video"
-          ></iframe>
-        </div>
-
-        {/* Top Content - Text */}
-        <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-40 pb-32 md:pt-48 md:pb-40">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-4xl mx-auto text-center"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-blue-500/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-blue-400/50"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium mb-8"
               data-testid="badge-hero-tag"
             >
               <Zap className="w-4 h-4" />
@@ -157,45 +133,39 @@ export default function Home() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
               data-testid="heading-hero-title"
             >
-              <span style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.8)" }}>Transform Your Business with </span>
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent" style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6))" }}>
+              Transform Your Business with{" "}
+              <span className="text-primary">
                 Intelligent AI
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl leading-relaxed text-white max-w-3xl"
-              style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6))" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-3xl mx-auto mb-10"
               data-testid="text-hero-description"
             >
               We design and deploy custom AI solutions that streamline
               operations, enhance customer experiences, and drive measurable
               growth for your business.
             </motion.p>
-          </motion.div>
-        </div>
 
-        {/* Bottom Content - Buttons */}
-        <div className="max-w-7xl mx-auto relative z-10 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex justify-center"
-          >
-            <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-2xl text-lg px-8"
+                className="text-base px-8"
                 data-testid="button-try-demo"
                 onClick={() => window.location.href = createPageUrl("AIReceptionist")}
               >
@@ -205,31 +175,31 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-white text-white bg-white/10 hover:bg-white hover:text-gray-900 text-lg px-8 backdrop-blur-sm"
+                className="text-base px-8"
                 data-testid="button-schedule-consultation"
                 onClick={() => window.location.href = createPageUrl("Contact")}
               >
                 Schedule Consultation
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Solutions Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900">
+      <section className="px-4 sm:px-6 lg:px-8 py-32">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               AI Solutions for Every Business Need
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Powerful automation tools designed to transform how you interact
               with customers
             </p>
@@ -244,31 +214,27 @@ export default function Home() {
           >
             {features.map((feature, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-500 group bg-slate-800 border-slate-700" data-testid={`card-solution-${index}`}>
-                  <CardContent className="p-6">
+                <Card className="h-full hover:border-primary/50 transition-all duration-300 group" data-testid={`card-solution-${index}`}>
+                  <CardContent className="p-8">
                     <div className="flex items-start gap-4">
-                      <motion.div
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
-                        className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center shadow-lg`}
-                      >
-                        <feature.icon className="w-6 h-6 text-white" />
-                      </motion.div>
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <feature.icon className="w-6 h-6 text-primary" />
+                      </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-xl font-bold text-white" data-testid={`heading-solution-${index}`}>
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="text-xl font-semibold" data-testid={`heading-solution-${index}`}>
                             {feature.title}
                           </h3>
-                          <span className="bg-green-500/20 text-green-300 text-xs px-3 py-1 rounded-full font-medium" data-testid={`badge-status-${index}`}>
+                          <span className="bg-green-500/10 text-green-400 text-xs px-3 py-1 rounded-full font-medium border border-green-500/20" data-testid={`badge-status-${index}`}>
                             {feature.status}
                           </span>
                         </div>
-                        <p className="text-gray-300 mb-4" data-testid={`text-solution-description-${index}`}>
+                        <p className="text-muted-foreground mb-4 leading-relaxed" data-testid={`text-solution-description-${index}`}>
                           {feature.description}
                         </p>
                         <Button
                           variant="ghost"
-                          className="p-0 h-auto text-blue-400 group-hover:gap-2 transition-all"
+                          className="p-0 h-auto text-primary hover:text-primary/80 group-hover:gap-2 transition-all font-medium"
                           data-testid={`link-demo-${feature.page.toLowerCase()}`}
                           onClick={() => window.location.href = createPageUrl(feature.page)}
                         >
@@ -286,19 +252,19 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-card/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Why Choose Business Automated?
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-muted-foreground">
               Real results that transform your business operations
             </p>
           </motion.div>
@@ -308,27 +274,21 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -10 }}
                 className="text-center"
               >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30"
-                  data-testid={`icon-benefit-${index}`}
-                >
-                  <benefit.icon className="w-8 h-8 text-blue-400" />
-                </motion.div>
-                <h3 className="text-lg font-bold text-white mb-2" data-testid={`heading-benefit-${index}`}>
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 border border-primary/20" data-testid={`icon-benefit-${index}`}>
+                  <benefit.icon className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2" data-testid={`heading-benefit-${index}`}>
                   {benefit.title}
                 </h3>
-                <p className="text-gray-300 text-sm" data-testid={`text-benefit-description-${index}`}>{benefit.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-benefit-description-${index}`}>{benefit.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -336,127 +296,45 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
-        {/* Fixed Background Image - Desktop/Tablet */}
-        <div
-          className="absolute inset-0 bg-cover bg-fixed bg-no-repeat cta-bg-robot-head hidden sm:block"
-          style={{
-            backgroundImage:
-              "url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/45a4dfa4a_getty-images-fMx5M3lg8oI-unsplash.jpg')",
-          }}
-        ></div>
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/60 hidden sm:block"></div>
-
-        {/* Mobile Landscape (568px-767px): Two Column Layout */}
-        <div className="max-w-7xl mx-auto relative z-10 hidden min-[568px]:flex md:hidden items-center gap-8">
-          <div className="flex-1 bg-slate-800/90 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-cta-section">
-              Ready to See AI Automation in Action?
-            </h2>
-            <p className="text-lg text-gray-200 mb-6">
-              Experience our AI Receptionist live demo and discover how it can transform your business
-            </p>
-            <div className="flex flex-col gap-3">
-              <Button
-                size="lg"
-                className="w-full bg-white text-gray-900 hover:bg-gray-100 shadow-xl"
-                data-testid="button-try-interactive-demo"
-                onClick={() => window.location.href = createPageUrl("AIReceptionist")}
-              >
-                Try Interactive Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-2 border-white text-white bg-white/10 hover:bg-white hover:text-gray-900"
-                data-testid="button-schedule-setup-call"
-                onClick={() => window.location.href = createPageUrl("Contact")}
-              >
-                Schedule Your Setup Call
-              </Button>
-            </div>
-          </div>
-          <div className="flex-1">
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/45a4dfa4a_getty-images-fMx5M3lg8oI-unsplash.jpg"
-              alt="AI Robot"
-              className="w-full h-auto object-contain max-h-96"
-            />
-          </div>
-        </div>
-
-        {/* Mobile Portrait (<568px): Single Column, No Image */}
-        <div className="max-w-full mx-auto text-center relative z-10 block min-[568px]:hidden">
-          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
-            <h2 className="text-2xl font-bold text-white mb-4" data-testid="heading-cta-section">
-              Ready to See AI Automation in Action?
-            </h2>
-            <p className="text-base text-gray-200 mb-6">
-              Experience our AI Receptionist live demo and discover how it can transform your business
-            </p>
-            <div className="flex flex-col gap-3">
-              <Button
-                size="lg"
-                className="w-full bg-white text-gray-900 hover:bg-gray-100 shadow-xl"
-                data-testid="button-try-interactive-demo"
-                onClick={() => window.location.href = createPageUrl("AIReceptionist")}
-              >
-                Try Interactive Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-2 border-white text-white bg-white/10 hover:bg-white hover:text-gray-900"
-                data-testid="button-schedule-setup-call"
-                onClick={() => window.location.href = createPageUrl("Contact")}
-              >
-                Schedule Your Setup Call
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop/Tablet (≥768px): Text Over Background */}
-        <div className="max-w-7xl mx-auto text-center relative z-10 hidden md:block">
+      <section className="px-4 sm:px-6 lg:px-8 py-32">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
+            className="border border-border rounded-2xl p-12 bg-card/50"
           >
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl md:text-4xl font-bold text-white mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl md:text-4xl font-bold mb-4"
               data-testid="heading-cta-section"
             >
               Ready to See AI Automation in Action?
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl text-gray-200 mb-8"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-muted-foreground mb-8"
             >
               Experience our AI Receptionist live demo and discover how it can
               transform your business
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-100 shadow-xl"
+                className="text-base px-8"
                 data-testid="button-try-interactive-demo"
                 onClick={() => window.location.href = createPageUrl("AIReceptionist")}
               >
@@ -466,7 +344,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-white text-white bg-white/10 hover:bg-white hover:text-gray-900"
+                className="text-base px-8"
                 data-testid="button-schedule-setup-call"
                 onClick={() => window.location.href = createPageUrl("Contact")}
               >
