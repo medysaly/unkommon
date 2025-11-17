@@ -1,18 +1,12 @@
-import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Phone,
-  Zap,
   Calendar,
   MessageSquare,
   ArrowRight,
-  CheckCircle,
-  Clock,
-  DollarSign,
   TrendingUp,
-  Play,
   Sparkles,
   Target,
   Shield,
@@ -121,18 +115,30 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-40 pb-32 md:pt-48 md:pb-40">
-        {/* Subtle grid background */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(99, 102, 241) 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-40 pb-32 md:pt-48 md:pb-40 min-h-screen flex items-center">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <iframe
+            src="https://player.cloudinary.com/embed/?cloud_name=ddegrzevr&public_id=Ai-Cpu-4K-2025-10-16-08-16-19-Utc_wb9wln&profile=cld-default&autoplay=true&muted=true&controls=false&showLogo=false&bigPlayButton=false&hideContextMenu=true&loop=true"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowFullScreen
+            className="pointer-events-none"
+            style={{
+              border: "none",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            title="AI Background Video"
+          ></iframe>
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
 
-        {/* Gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-
-        <div className="max-w-7xl mx-auto relative">
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
