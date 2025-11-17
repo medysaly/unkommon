@@ -25,6 +25,7 @@ interface ProcessStep {
   lead: string;
   icon: LucideIcon;
   color: string;
+  image: string;
   description: string;
   details: string[];
 }
@@ -50,6 +51,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: Lightbulb,
       color: "from-blue-500 to-cyan-500",
+      image: "/images/about/Discovery and Strategy.png",
       description: "We conduct strategy calls to understand your goals, current systems, and challenges. We identify AI and automation opportunities that enhance performance and efficiency.",
       details: [
         "Understand client goals and challenges",
@@ -64,6 +66,7 @@ export default function About() {
       lead: "AI + Automation",
       icon: Palette,
       color: "from-purple-500 to-pink-500",
+      image: "/images/about/Solution design.png",
       description: "Mehdi designs the AI architecture while Carlton maps automation workflows. Together, we create a seamless blueprint for your solution.",
       details: [
         "Design AI application architecture",
@@ -78,6 +81,7 @@ export default function About() {
       lead: "Building Your Solution",
       icon: Code,
       color: "from-green-500 to-emerald-500",
+      image: "/images/about/Development and integration.png",
       description: "Mehdi develops the AI-powered app while Carlton builds automation workflows. Continuous collaboration ensures everything works harmoniously.",
       details: [
         "Develop AI features and functionalities",
@@ -92,6 +96,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: TestTube,
       color: "from-orange-500 to-red-500",
+      image: "/images/about/Testing & Optimization.png",
       description: "End-to-end testing with real-world simulations using your data. We refine and optimize based on performance and your feedback.",
       details: [
         "Test AI logic and app functionality",
@@ -106,6 +111,7 @@ export default function About() {
       lead: "Launch & Onboard",
       icon: Rocket,
       color: "from-indigo-500 to-purple-500",
+      image: "/images/about/Deployment & Training.png",
       description: "We deploy your AI solution and launch all automations. Your team receives comprehensive training and documentation.",
       details: [
         "Deploy AI to production",
@@ -120,6 +126,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: TrendingUp,
       color: "from-pink-500 to-rose-500",
+      image: "/images/about/Support & Growth.png",
       description: "Ongoing support, maintenance, and updates. We help you grow with new features and optimizations as your business evolves.",
       details: [
         "Continuous support and maintenance",
@@ -247,14 +254,27 @@ export default function About() {
                   <Card className="bg-slate-800 border-slate-700 hover:shadow-xl transition-all duration-300 overflow-hidden" data-testid={`card-process-step-${index}`}>
                     <CardContent className="p-0">
                       <div className="grid md:grid-cols-3 gap-6">
-                        {/* Number & Icon */}
-                        <div className={`bg-gradient-to-br ${step.color} p-8 flex flex-col items-center justify-center text-center`}>
-                          <div className="text-6xl font-bold text-white/30 mb-4" data-testid={`text-step-number-${index}`}>{step.number}</div>
-                          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
-                            <Icon className="w-8 h-8 text-white" />
+                        {/* Number & Icon with Image Background */}
+                        <div className="relative p-8 flex flex-col items-center justify-center text-center overflow-hidden">
+                          {/* Background Image */}
+                          <img
+                            src={step.image}
+                            alt={step.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          {/* Gradient Overlay */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-40`} />
+                          <div className="absolute inset-0 bg-black/40" />
+
+                          {/* Content */}
+                          <div className="relative z-10">
+                            <div className="text-6xl font-bold text-white/30 mb-4" data-testid={`text-step-number-${index}`}>{step.number}</div>
+                            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
+                              <Icon className="w-8 h-8 text-white" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-2" data-testid={`heading-step-title-${index}`}>{step.title}</h3>
+                            <p className="text-sm text-white/80">Led by: {step.lead}</p>
                           </div>
-                          <h3 className="text-2xl font-bold text-white mb-2" data-testid={`heading-step-title-${index}`}>{step.title}</h3>
-                          <p className="text-sm text-white/80">Led by: {step.lead}</p>
                         </div>
 
                         {/* Content */}
