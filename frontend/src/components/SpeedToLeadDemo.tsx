@@ -357,8 +357,9 @@ export default function SpeedToLeadDemo() {
   }, [currentCaseIndex]);
 
   useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (chatEndRef.current && chatEndRef.current.parentElement) {
+      const chatContainer = chatEndRef.current.parentElement;
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   }, [displayedMessages]);
 
@@ -416,285 +417,250 @@ export default function SpeedToLeadDemo() {
   const ChannelIcon = currentCase.channelIcon;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={handlePrevCase}
-            variant="outline"
-            size="icon"
-            className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10"
-            data-testid="button-prev-case"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-          
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <ChannelIcon className="w-5 h-5 text-purple-400" />
-              {currentCase.title}
-            </h3>
-            <p className="text-sm text-gray-400">
-              Case Study {currentCaseIndex + 1} of {caseStudies.length}
-            </p>
-          </div>
-          
-          <Button
-            onClick={handleNextCase}
-            variant="outline"
-            size="icon"
-            className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10"
-            data-testid="button-next-case"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
-        </div>
-
-        <div className="flex gap-3">
-          <Button
-            onClick={handleStart}
-            disabled={isPlaying || currentMessageIndex > 0}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-            data-testid="button-demo-start"
-          >
-            {currentMessageIndex === 0 ? "Start Demo" : "Demo In Progress"}
-            <Play className="w-4 h-4 ml-2" />
-          </Button>
-          <Button
-            onClick={handlePlayPause}
-            disabled={currentMessageIndex === 0 || currentMessageIndex >= currentCase.messages.length}
-            variant="outline"
-            className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
-            data-testid="button-demo-pause"
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-4 h-4 mr-2" />
-                Pause
-              </>
-            ) : (
-              <>
-                <Play className="w-4 h-4 mr-2" />
-                Resume
-              </>
-            )}
-          </Button>
-          <Button
-            onClick={handleReset}
-            variant="outline"
-            className="border-slate-600 text-slate-300 hover:bg-slate-700"
-            data-testid="button-demo-reset"
-          >
-            <RotateCcw className="w-4 h-4 mr-2" />
-            Reset
-          </Button>
-        </div>
+    <div className="space-y-8">
+      {/* Case Study Selector */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          onClick={() => setCurrentCaseIndex(0)}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            currentCaseIndex === 0
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
+          data-testid="button-case-website"
+        >
+          <Globe className="w-4 h-4 mr-2 inline" />
+          Website Form
+        </button>
+        <button
+          onClick={() => setCurrentCaseIndex(1)}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            currentCaseIndex === 1
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
+          data-testid="button-case-email"
+        >
+          <Mail className="w-4 h-4 mr-2 inline" />
+          Email
+        </button>
+        <button
+          onClick={() => setCurrentCaseIndex(2)}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            currentCaseIndex === 2
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
+          data-testid="button-case-chat"
+        >
+          <MessageSquare className="w-4 h-4 mr-2 inline" />
+          Live Chat
+        </button>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
-        <CardContent className="p-6">
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <h4 className="text-sm font-semibold text-purple-400 mb-2 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4" />
-                The Problem
-              </h4>
-              <p className="text-sm text-gray-300">{currentCase.problem}</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-green-400 mb-2 flex items-center gap-2">
-                <Zap className="w-4 h-4" />
-                Our Solution
-              </h4>
-              <p className="text-sm text-gray-300">{currentCase.solution}</p>
-            </div>
-          </div>
+      {/* Case Study Header */}
+      <div className="text-center">
+        <h3 className="text-2xl font-light text-white mb-2 tracking-tight">{currentCase.title}</h3>
+        <p className="text-zinc-500 text-sm font-light mb-2">{currentCase.company.name} • {currentCase.company.industry}</p>
+        <p className="text-zinc-400 font-light">{currentCase.solution}</p>
+      </div>
 
-          <div className="grid md:grid-cols-3 gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700">
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-1">Company</p>
-              <p className="text-sm font-semibold text-white">{currentCase.company.name}</p>
-              <p className="text-xs text-gray-500">{currentCase.company.industry}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-1">Channel</p>
-              <p className="text-sm font-semibold text-purple-400">{currentCase.channel}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-1">AI Response Time</p>
-              <p className="text-sm font-semibold text-green-400">{currentCase.company.responseTime}</p>
-              <p className="text-xs text-red-400">vs {currentCase.competitorDelay}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-purple-400" />
-                {currentCase.channel} Conversation
-              </h3>
-              
-              <div className="h-[450px] overflow-y-auto space-y-4 p-4 bg-slate-900 rounded-lg" data-testid="container-chat">
-                <AnimatePresence>
-                  {displayedMessages.map((message) => (
-                    <motion.div
-                      key={message.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className={`flex ${message.sender === "customer" ? "justify-end" : "justify-start"}`}
-                      data-testid={`message-${message.id}`}
-                    >
-                      <div className={`max-w-[85%] ${message.sender === "customer" ? "order-2" : "order-1"}`}>
-                        <div
-                          className={`rounded-lg p-4 ${
-                            message.sender === "customer"
-                              ? "bg-purple-600/20 border border-purple-500/30"
-                              : "bg-slate-700 border border-slate-600"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2 mb-2">
-                            {message.sender === "ai" ? (
-                              <div className="flex items-center gap-2">
-                                <Zap className="w-4 h-4 text-green-400" />
-                                <span className="text-xs font-semibold text-green-400">AI Agent</span>
-                              </div>
-                            ) : (
-                              <div className="flex items-center gap-2">
-                                <User className="w-4 h-4 text-purple-400" />
-                                <span className="text-xs font-semibold text-purple-400">Customer</span>
-                              </div>
-                            )}
-                            {message.timestamp && (
-                              <span className="text-xs text-gray-500 ml-auto">{message.timestamp}</span>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-200 whitespace-pre-line">{message.text}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-                <div ref={chatEndRef} />
+      {/* Main Demo Area */}
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Conversation Interface */}
+        <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+          <div className="p-6">
+            {/* Channel Header */}
+            <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                <ChannelIcon className="w-6 h-6 text-zinc-400" />
               </div>
-            </CardContent>
-          </Card>
+              <div>
+                <div className="text-white font-light">{currentCase.channel}</div>
+                <div className="text-zinc-500 text-xs font-light">Response: {currentCase.company.responseTime}</div>
+              </div>
+            </div>
+
+            {/* Conversation Messages */}
+            <div className="space-y-3 min-h-[400px] max-h-[500px] overflow-y-auto" data-testid="container-chat">
+              <AnimatePresence mode="popLayout">
+                {displayedMessages.map((message) => (
+                  <motion.div
+                    key={message.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className={`flex ${message.sender === "customer" ? "justify-end" : "justify-start"}`}
+                    data-testid={`message-${message.id}`}
+                  >
+                    <div
+                      className={`max-w-[80%] rounded-xl p-3 ${
+                        message.sender === "customer"
+                          ? "bg-white text-black"
+                          : "bg-zinc-800 text-zinc-200 border border-zinc-700"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        {message.sender === "ai" ? (
+                          <Zap className="w-3 h-3 text-zinc-400" />
+                        ) : (
+                          <User className="w-3 h-3 text-zinc-400" />
+                        )}
+                        <span className="text-xs font-light opacity-75">
+                          {message.sender === "ai" ? "AI Agent" : "Customer"}
+                        </span>
+                        {message.timestamp && (
+                          <span className="text-xs opacity-50 ml-auto">{message.timestamp}</span>
+                        )}
+                      </div>
+                      <p className="text-sm whitespace-pre-line font-light">{message.text}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              <div ref={chatEndRef} />
+            </div>
+
+            {/* Controls */}
+            <div className="flex gap-2 mt-4 pt-4 border-t border-zinc-700/60">
+              {!isPlaying && currentMessageIndex === 0 ? (
+                <button
+                  onClick={handleStart}
+                  className="flex-1 bg-white hover:bg-zinc-100 text-black py-3 px-4 rounded-full text-sm font-light transition-all flex items-center justify-center gap-2"
+                  data-testid="button-demo-start"
+                >
+                  <Play className="w-4 h-4" />
+                  Start Demo
+                </button>
+              ) : !isPlaying ? (
+                <button
+                  onClick={handlePlayPause}
+                  className="flex-1 bg-white hover:bg-zinc-100 text-black py-3 px-4 rounded-full text-sm font-light transition-all flex items-center justify-center gap-2"
+                  data-testid="button-demo-resume"
+                >
+                  <Play className="w-4 h-4" />
+                  Resume
+                </button>
+              ) : (
+                <button
+                  onClick={handlePlayPause}
+                  className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 py-3 px-4 rounded-full text-sm font-light transition-all flex items-center justify-center gap-2 border border-zinc-800"
+                  data-testid="button-demo-pause"
+                >
+                  <Pause className="w-4 h-4" />
+                  Pause
+                </button>
+              )}
+              <button
+                onClick={handleReset}
+                className="bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-3 px-4 rounded-full border border-zinc-800 transition-all"
+                data-testid="button-demo-reset"
+              >
+                <RotateCcw className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></div>
-                Automation Workflow
-              </h3>
-              <div className="space-y-3">
+        {/* Right Column: Workflow & Lead Data */}
+        <div className="space-y-6">
+          {/* Workflow Visualization */}
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h4 className="text-lg font-light text-white mb-4 tracking-tight">Automation Workflow</h4>
+              <div className="space-y-3" data-testid="workflow-container">
                 {workflowSteps.map((step, index) => (
                   <motion.div
                     key={step.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
-                      step.active ? "bg-purple-500/10 border border-purple-500/30" : "bg-slate-900"
+                    initial={{ opacity: 0.5 }}
+                    animate={{
+                      opacity: step.active ? 1 : 0.5,
+                      scale: step.active ? 1.02 : 1
+                    }}
+                    className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
+                      step.active
+                        ? "bg-zinc-800 border border-zinc-700"
+                        : "bg-zinc-950 border border-zinc-800"
                     }`}
                     data-testid={`workflow-step-${step.id}`}
                   >
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      step.active ? "bg-purple-500" : "bg-slate-700"
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      step.active
+                        ? "bg-white text-black"
+                        : "bg-zinc-800"
                     }`}>
                       {step.active ? (
-                        <CheckCircle className="w-5 h-5 text-white" />
+                        <CheckCircle className="w-4 h-4" />
                       ) : (
-                        <span className="text-xs text-gray-400">{step.id}</span>
+                        <span className="text-zinc-400 text-xs font-light">{index + 1}</span>
                       )}
                     </div>
-                    <p className={`text-sm flex-1 ${
-                      step.active ? "text-white font-medium" : "text-gray-400"
+                    <span className={`text-sm font-light ${
+                      step.active ? "text-zinc-200" : "text-zinc-600"
                     }`}>
                       {step.label}
-                    </p>
-                    {step.active && (
-                      <Clock className="w-4 h-4 text-purple-400" />
-                    )}
+                    </span>
                   </motion.div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <User className="w-5 h-5 text-purple-400" />
-                Lead Information
-              </h3>
-              
+          {/* Lead Analysis Data */}
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h4 className="text-lg font-light text-white mb-4 tracking-tight">Lead Information</h4>
               {displayedMessages.length >= currentCase.messages.length ? (
-                <div className="space-y-3">
-                  <div className="p-3 bg-slate-900 rounded-lg">
-                    <p className="text-xs text-gray-400 mb-1">Name</p>
-                    <p className="text-sm text-white font-medium">{currentCase.finalLeadData.name}</p>
+                <div className="space-y-3" data-testid="lead-data-container">
+                  <div className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl">
+                    <div className="flex items-start gap-2">
+                      <User className="w-4 h-4 text-zinc-500 mt-0.5" />
+                      <span className="text-sm text-zinc-500 font-light">Name</span>
+                    </div>
+                    <span className="text-sm text-zinc-200 font-light text-right">{currentCase.finalLeadData.name}</span>
                   </div>
                   {currentCase.finalLeadData.email && (
-                    <div className="p-3 bg-slate-900 rounded-lg">
-                      <p className="text-xs text-gray-400 mb-1">Email</p>
-                      <p className="text-sm text-white font-medium">{currentCase.finalLeadData.email}</p>
+                    <div className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl">
+                      <div className="flex items-start gap-2">
+                        <Mail className="w-4 h-4 text-zinc-500 mt-0.5" />
+                        <span className="text-sm text-zinc-500 font-light">Email</span>
+                      </div>
+                      <span className="text-sm text-zinc-200 font-light text-right">{currentCase.finalLeadData.email}</span>
                     </div>
                   )}
                   {currentCase.finalLeadData.phone && (
-                    <div className="p-3 bg-slate-900 rounded-lg">
-                      <p className="text-xs text-gray-400 mb-1">Phone</p>
-                      <p className="text-sm text-white font-medium">{currentCase.finalLeadData.phone}</p>
+                    <div className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl">
+                      <div className="flex items-start gap-2">
+                        <Phone className="w-4 h-4 text-zinc-500 mt-0.5" />
+                        <span className="text-sm text-zinc-500 font-light">Phone</span>
+                      </div>
+                      <span className="text-sm text-zinc-200 font-light text-right">{currentCase.finalLeadData.phone}</span>
                     </div>
                   )}
-                  <div className="p-3 bg-slate-900 rounded-lg">
-                    <p className="text-xs text-gray-400 mb-1">Interest</p>
-                    <p className="text-sm text-white font-medium">{currentCase.finalLeadData.interest}</p>
+                  <div className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl">
+                    <div className="flex items-start gap-2">
+                      <Target className="w-4 h-4 text-zinc-500 mt-0.5" />
+                      <span className="text-sm text-zinc-500 font-light">Interest</span>
+                    </div>
+                    <span className="text-sm text-zinc-200 font-light text-right">{currentCase.finalLeadData.interest}</span>
                   </div>
                   {currentCase.finalLeadData.additionalData && Object.entries(currentCase.finalLeadData.additionalData).map(([key, value]) => (
-                    <div key={key} className="p-3 bg-slate-900 rounded-lg">
-                      <p className="text-xs text-gray-400 mb-1">{key}</p>
-                      <p className="text-sm text-white font-medium">{value}</p>
+                    <div key={key} className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl">
+                      <span className="text-sm text-zinc-500 font-light">{key}</span>
+                      <span className="text-sm text-zinc-200 font-light text-right">{value}</span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-gray-500">
-                  <User className="w-12 h-12 mx-auto mb-2 opacity-30" />
-                  <p className="text-sm">Lead data will appear here as the conversation progresses...</p>
+                <div className="py-12 text-center">
+                  <p className="text-zinc-600 text-sm font-light">
+                    Lead data will appear here as the conversation progresses
+                  </p>
                 </div>
               )}
-            </CardContent>
-          </Card>
-
-          {displayedMessages.length >= currentCase.messages.length && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <Card className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border-purple-500/30">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-yellow-400" />
-                    Results
-                  </h3>
-                  <ul className="space-y-2">
-                    {currentCase.results.map((result, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-200">
-                        <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

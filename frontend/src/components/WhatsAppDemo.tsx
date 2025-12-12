@@ -121,7 +121,7 @@ export default function WhatsAppDemo() {
         <Button
           onClick={handleStart}
           disabled={isPlaying || currentMessageIndex > 0}
-          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+          className="bg-white hover:bg-zinc-100 text-black font-light disabled:opacity-50"
           data-testid="button-demo-start"
         >
           {currentMessageIndex === 0 ? "Start Demo" : "Demo In Progress"}
@@ -131,7 +131,7 @@ export default function WhatsAppDemo() {
           onClick={handlePlayPause}
           disabled={currentMessageIndex === 0 || currentMessageIndex >= bookingScenario.length}
           variant="outline"
-          className="border-green-500 text-green-400 hover:bg-green-500/10"
+          className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 font-light disabled:opacity-50"
           data-testid="button-demo-pause"
         >
           {isPlaying ? (
@@ -149,7 +149,7 @@ export default function WhatsAppDemo() {
         <Button
           onClick={handleReset}
           variant="outline"
-          className="border-slate-600 text-slate-300 hover:bg-slate-700"
+          className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 font-light"
           data-testid="button-demo-reset"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
@@ -159,19 +159,19 @@ export default function WhatsAppDemo() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-0">
-              <div className="bg-[#075E54] p-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center text-slate-700 font-semibold">
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-0">
+              <div className="bg-zinc-950 border-b border-zinc-700 p-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black font-light">
                   AI
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-white">Business Salon</h3>
-                  <p className="text-xs text-green-100">Online</p>
+                  <h3 className="font-light text-white tracking-tight">Business Salon</h3>
+                  <p className="text-xs text-zinc-400">Online</p>
                 </div>
               </div>
 
-              <div className="h-[500px] overflow-y-auto bg-[#ECE5DD] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJhIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxwYXRoIGQ9Ik0tMTAgMTBsNDAtNDBNLTEwIDMwbDQwLTQwTTEwIDUwbDQwLTQwIiBzdHJva2U9IiNkOWQzY2UiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjMiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')] p-4 space-y-3" data-testid="container-whatsapp-chat">
+              <div className="h-[500px] overflow-y-auto bg-zinc-950/60 p-6 space-y-3" data-testid="container-whatsapp-chat">
                 <AnimatePresence>
                   {displayedMessages.map((message, index) => (
                     <motion.div
@@ -183,17 +183,17 @@ export default function WhatsAppDemo() {
                       data-testid={`message-${message.id}`}
                     >
                       <div
-                        className={`max-w-[75%] rounded-lg p-3 shadow-sm ${
+                        className={`max-w-[75%] rounded-xl p-3 ${
                           message.sender === "customer"
-                            ? "bg-[#DCF8C6]"
-                            : "bg-white"
+                            ? "bg-white text-black"
+                            : "bg-zinc-800 text-zinc-200 border border-zinc-700"
                         }`}
                       >
-                        <p className="text-sm text-slate-800 whitespace-pre-line">{message.text}</p>
+                        <p className="text-sm whitespace-pre-line">{message.text}</p>
                         <div className="flex items-center justify-end gap-1 mt-1">
-                          <span className="text-xs text-slate-500">{message.time}</span>
+                          <span className="text-xs opacity-60">{message.time}</span>
                           {message.sender === "customer" && message.status === "read" && (
-                            <CheckCheck className="w-4 h-4 text-[#53BDEB]" />
+                            <CheckCheck className="w-4 h-4 opacity-60" />
                           )}
                         </div>
                       </div>
@@ -201,15 +201,15 @@ export default function WhatsAppDemo() {
                   ))}
                 </AnimatePresence>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h3 className="font-light text-white tracking-tight mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                 Automation Workflow
               </h3>
               <div className="space-y-3">
@@ -223,65 +223,65 @@ export default function WhatsAppDemo() {
                     data-testid={`workflow-step-${step.id}`}
                   >
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                      step.status === "completed" ? "bg-green-500" :
-                      step.status === "active" ? "bg-blue-500 animate-pulse" :
-                      "bg-slate-600"
+                      step.status === "completed" ? "bg-white text-black" :
+                      step.status === "active" ? "bg-white/80 text-black animate-pulse" :
+                      "bg-zinc-800"
                     }`}>
                       {step.status === "completed" && (
-                        <Check className="w-4 h-4 text-white" />
+                        <Check className="w-4 h-4" />
                       )}
                       {step.status === "active" && (
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                        <div className="w-2 h-2 bg-black rounded-full"></div>
                       )}
                     </div>
                     <div className="flex-1">
-                      <p className={`text-sm ${
-                        step.status === "pending" ? "text-slate-400" : "text-white"
+                      <p className={`text-sm font-light ${
+                        step.status === "pending" ? "text-zinc-500" : "text-white"
                       }`}>
                         {step.label}
                       </p>
                     </div>
                     {step.status === "completed" && (
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                      <Badge className="bg-white/10 text-white border-white/20 font-light">
                         Done
                       </Badge>
                     )}
                     {step.status === "active" && (
-                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                      <Badge className="bg-white/10 text-white border-white/20 font-light">
                         Active
                       </Badge>
                     )}
                   </motion.div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-green-400" />
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h3 className="font-light text-white tracking-tight mb-4 flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-white" />
                 December 2024
               </h3>
               <div className="grid grid-cols-7 gap-2">
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Sun</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Mon</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Tue</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Wed</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Thu</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Fri</div>
-                <div className="text-center text-xs font-medium text-slate-400 py-2">Sat</div>
-                
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Sun</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Mon</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Tue</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Wed</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Thu</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Fri</div>
+                <div className="text-center text-xs font-light text-zinc-400 py-2">Sat</div>
+
                 {daysInMonth.map((day) => (
                   <motion.div
                     key={day}
                     initial={{ scale: 1 }}
                     animate={selectedDate === day ? { scale: [1, 1.1, 1] } : {}}
                     transition={{ duration: 0.3 }}
-                    className={`aspect-square rounded-lg flex items-center justify-center text-sm ${
+                    className={`aspect-square rounded-lg flex items-center justify-center text-sm font-light ${
                       selectedDate === day
-                        ? "bg-green-500 text-white font-semibold ring-2 ring-green-400 ring-offset-2 ring-offset-slate-800"
-                        : "text-slate-300 hover:bg-slate-700"
+                        ? "bg-white text-black ring-2 ring-white/50"
+                        : "text-zinc-300 hover:bg-zinc-800"
                     }`}
                     data-testid={`calendar-day-${day}`}
                   >
@@ -293,15 +293,15 @@ export default function WhatsAppDemo() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-3 bg-green-500/10 border border-green-500/30 rounded-lg"
+                  className="mt-4 p-3 bg-white/10 border border-white/20 rounded-lg"
                 >
-                  <p className="text-sm text-green-400 font-medium">
+                  <p className="text-sm text-white font-light">
                     ✓ Appointment booked for December {selectedDate} at 2:00 PM
                   </p>
                 </motion.div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

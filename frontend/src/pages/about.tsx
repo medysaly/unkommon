@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
+import { ExpandableBenefits } from "@/components/ExpandableBenefits";
+import "@/styles/pearl-button.css";
 import {
   Lightbulb,
   Palette,
@@ -17,6 +17,12 @@ import {
   Zap,
   Linkedin,
   LucideIcon,
+  Clock,
+  Target,
+  Shield,
+  BarChart3,
+  Headphones,
+  Settings,
 } from "lucide-react";
 
 interface ProcessStep {
@@ -51,7 +57,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: Lightbulb,
       color: "from-blue-500 to-cyan-500",
-      image: "/images/about/Discovery and Strategy.png",
+      image: "/images/about/Discovery & strategy.jpeg",
       description: "We conduct strategy calls to understand your goals, current systems, and challenges. We identify AI and automation opportunities that enhance performance and efficiency.",
       details: [
         "Understand client goals and challenges",
@@ -66,7 +72,7 @@ export default function About() {
       lead: "AI + Automation",
       icon: Palette,
       color: "from-purple-500 to-pink-500",
-      image: "/images/about/Solution design.png",
+      image: "/images/about/Solution Design.jpeg",
       description: "Mehdi designs the AI architecture while Carlton maps automation workflows. Together, we create a seamless blueprint for your solution.",
       details: [
         "Design AI application architecture",
@@ -81,7 +87,7 @@ export default function About() {
       lead: "Building Your Solution",
       icon: Code,
       color: "from-green-500 to-emerald-500",
-      image: "/images/about/Development and integration.png",
+      image: "/images/about/Development & Integration.jpeg",
       description: "Mehdi develops the AI-powered app while Carlton builds automation workflows. Continuous collaboration ensures everything works harmoniously.",
       details: [
         "Develop AI features and functionalities",
@@ -96,7 +102,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: TestTube,
       color: "from-orange-500 to-red-500",
-      image: "/images/about/Testing & Optimization.png",
+      image: "/images/about/Testing & Optimization.jpeg",
       description: "End-to-end testing with real-world simulations using your data. We refine and optimize based on performance and your feedback.",
       details: [
         "Test AI logic and app functionality",
@@ -111,7 +117,7 @@ export default function About() {
       lead: "Launch & Onboard",
       icon: Rocket,
       color: "from-indigo-500 to-purple-500",
-      image: "/images/about/Deployment & Training.png",
+      image: "/images/about/Deployment & Training.jpeg",
       description: "We deploy your AI solution and launch all automations. Your team receives comprehensive training and documentation.",
       details: [
         "Deploy AI to production",
@@ -126,7 +132,7 @@ export default function About() {
       lead: "Both Co-Founders",
       icon: TrendingUp,
       color: "from-pink-500 to-rose-500",
-      image: "/images/about/Support & Growth.png",
+      image: "/images/about/Support & Growth.jpeg",
       description: "Ongoing support, maintenance, and updates. We help you grow with new features and optimizations as your business evolves.",
       details: [
         "Continuous support and maintenance",
@@ -185,37 +191,74 @@ export default function About() {
   ];
 
   const benefits = [
-    "Automates repetitive tasks",
-    "Enhances decision-making",
-    "Improves customer engagement",
-    "Saves time and increases ROI"
+    {
+      icon: Brain,
+      title: "Custom AI Solutions",
+      description: "Tailored AI applications designed specifically for your business needs and objectives",
+      gradient: "from-blue-500 to-cyan-500"
+    },
+    {
+      icon: Zap,
+      title: "Complete Automation",
+      description: "End-to-end workflow automation that eliminates repetitive tasks and saves hours daily",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      icon: Settings,
+      title: "Seamless Integration",
+      description: "Full integration with your existing tools, CRMs, and business systems",
+      gradient: "from-green-500 to-emerald-500"
+    },
+    {
+      icon: BarChart3,
+      title: "Data-Driven Insights",
+      description: "Real-time analytics and reporting to track performance and optimize operations",
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+      icon: Clock,
+      title: "24/7 Availability",
+      description: "AI-powered systems that work around the clock without breaks or downtime",
+      gradient: "from-indigo-500 to-purple-500"
+    },
+    {
+      icon: Target,
+      title: "Measurable ROI",
+      description: "Clear metrics and KPIs that demonstrate real business value and cost savings",
+      gradient: "from-pink-500 to-rose-500"
+    },
+    {
+      icon: Shield,
+      title: "Enterprise Security",
+      description: "Bank-level security protocols to protect your data and customer information",
+      gradient: "from-blue-600 to-indigo-600"
+    },
+    {
+      icon: Headphones,
+      title: "Ongoing Support",
+      description: "Dedicated support, maintenance, and continuous optimization from our team",
+      gradient: "from-teal-500 to-cyan-500"
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
-
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-32 pb-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-blue-400/30" data-testid="badge-about-page">
-              <Zap className="w-4 h-4" />
-              About Business Automated
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" data-testid="heading-page-title">
+            <h1 className="text-4xl md:text-6xl font-light text-foreground tracking-tight mb-6" data-testid="heading-page-title">
               AI Innovation Meets{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="text-foreground">
                 Automation Mastery
               </span>
             </h1>
 
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed" data-testid="text-hero-description">
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed" data-testid="text-hero-description">
               We combine the power of AI development and automation engineering to create intelligent,
               fully integrated solutions that transform businesses and deliver real impact.
             </p>
@@ -224,7 +267,7 @@ export default function About() {
       </section>
 
       {/* Process Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900/50">
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -232,63 +275,47 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-process-section">
+            <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4" data-testid="heading-process-section">
               Our Process
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto" data-testid="text-process-description">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-process-description">
               From discovery to deployment, we guide you through every step of your AI transformation
             </p>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {processSteps.map((step, index) => {
               const Icon = step.icon;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="bg-slate-800 border-slate-700 hover:shadow-xl transition-all duration-300 overflow-hidden" data-testid={`card-process-step-${index}`}>
-                    <CardContent className="p-0">
-                      <div className="grid md:grid-cols-3 gap-6">
-                        {/* Number & Icon with Image Background */}
-                        <div className="relative p-8 flex flex-col items-center justify-center text-center overflow-hidden">
-                          {/* Background Image */}
-                          <img
-                            src={step.image}
-                            alt={step.title}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          {/* Gradient Overlay */}
-                          <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-40`} />
-                          <div className="absolute inset-0 bg-black/40" />
+                  <Card className="h-full bg-card border-border hover:shadow-xl transition-all duration-300 overflow-hidden" data-testid={`card-process-step-${index}`}>
+                    <CardContent className="p-6">
+                      {/* Image */}
+                      <div className="relative overflow-hidden mb-4 rounded-lg">
+                        <img
+                          src={step.image}
+                          alt={step.title}
+                          className="w-full h-48 object-cover"
+                        />
+                      </div>
 
-                          {/* Content */}
-                          <div className="relative z-10">
-                            <div className="text-6xl font-bold text-white/30 mb-4" data-testid={`text-step-number-${index}`}>{step.number}</div>
-                            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
-                              <Icon className="w-8 h-8 text-white" />
+                      {/* Content */}
+                      <div className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm" data-testid={`text-step-description-${index}`}>{step.description}</p>
+
+                        <div className="space-y-2">
+                          {step.details.map((detail, idx) => (
+                            <div key={idx} className="flex items-start gap-2" data-testid={`item-step-detail-${index}-${idx}`}>
+                              <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0 mt-0.5" />
+                              <span className="text-xs text-muted-foreground">{detail}</span>
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-2" data-testid={`heading-step-title-${index}`}>{step.title}</h3>
-                            <p className="text-sm text-white/80">Led by: {step.lead}</p>
-                          </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="md:col-span-2 p-8">
-                          <p className="text-gray-300 mb-6 leading-relaxed" data-testid={`text-step-description-${index}`}>{step.description}</p>
-
-                          <div className="grid sm:grid-cols-2 gap-3">
-                            {step.details.map((detail, idx) => (
-                              <div key={idx} className="flex items-start gap-2" data-testid={`item-step-detail-${index}-${idx}`}>
-                                <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                                <span className="text-sm text-gray-300">{detail}</span>
-                              </div>
-                            ))}
-                          </div>
+                          ))}
                         </div>
                       </div>
                     </CardContent>
@@ -298,55 +325,61 @@ export default function About() {
             })}
           </div>
 
-          {/* End Result */}
+          {/* What You'll Receive */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mt-16"
           >
-            <Card className="bg-slate-800 border-slate-700">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6 text-center" data-testid="heading-benefits">
-                  What You'll Receive
-                </h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {benefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="text-center"
-                      data-testid={`item-benefit-${index}`}
-                    >
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
-                        <CheckCircle2 className="w-6 h-6 text-white" />
-                      </div>
-                      <p className="text-white font-medium">{benefit}</p>
-                    </motion.div>
-                  ))}
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-5xl font-light text-foreground tracking-tight mb-4" data-testid="heading-benefits">
+                What You'll Receive
+              </h3>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
+                A comprehensive AI and automation solution designed to transform every aspect of your business operations
+              </p>
+            </div>
+
+            <ExpandableBenefits benefits={benefits} />
+
+            {/* Additional Value Props */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="mt-12 text-center"
+            >
+              <div className="inline-flex flex-wrap justify-center gap-4 text-sm">
+                <div className="flex items-center gap-2 bg-card/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+                  <span className="text-muted-foreground">Expert Team</span>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-2 bg-card/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+                  <span className="text-muted-foreground">Cloud-Based</span>
+                </div>
+                <div className="flex items-center gap-2 bg-card/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+                  <span className="text-muted-foreground">Cutting-Edge Tech</span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="heading-team-section">
+            <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4" data-testid="heading-team-section">
               Meet the Team
             </h2>
-            <p className="text-xl text-gray-300" data-testid="text-team-description">
+            <p className="text-xl text-muted-foreground" data-testid="text-team-description">
               Two experts working together to deliver complete AI solutions
             </p>
           </motion.div>
@@ -362,30 +395,29 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <Card className="bg-slate-800 border-slate-700 hover:shadow-2xl transition-all duration-300 h-full" data-testid={`card-founder-${index}`}>
+                  <Card className="bg-card border-border hover:shadow-2xl transition-all duration-300 h-full" data-testid={`card-founder-${index}`}>
                     <CardContent className="p-8">
                       {/* Header with Image */}
                       <div className="flex flex-col items-center mb-6">
                         <div className="relative mb-4">
-                          <div className={`absolute inset-0 bg-gradient-to-br ${founder.gradient} rounded-full blur-xl opacity-50`}></div>
                           <img
                             src={founder.image}
                             alt={founder.name}
                             className={`relative w-32 h-32 rounded-full object-cover shadow-xl ${
-                              founder.name === "Mehdi Salhi" ? "border-4 border-white" : "border-4 border-slate-700"
+                              founder.name === "Mehdi Salhi" ? "border-4 border-blue-600 dark:border-white" : "border-4 border-purple-600 dark:border-zinc-700"
                             }`}
                             data-testid={`img-founder-${index}`}
                           />
                         </div>
 
                         <div className="text-center mb-4">
-                          <h3 className="text-2xl font-bold text-white mb-1" data-testid={`heading-founder-name-${index}`}>{founder.name}</h3>
-                          <p className="text-blue-400 font-medium mb-3">{founder.role}</p>
+                          <h3 className="text-2xl font-light text-foreground tracking-tight mb-1" data-testid={`heading-founder-name-${index}`}>{founder.name}</h3>
+                          <p className="text-foreground font-medium mb-3">{founder.role}</p>
                           <a
                             href={founder.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
+                            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
                             data-testid={`link-founder-linkedin-${index}`}
                           >
                             <Linkedin className="w-5 h-5" />
@@ -393,19 +425,19 @@ export default function About() {
                           </a>
                         </div>
 
-                        <p className="text-gray-300 text-center mb-6" data-testid={`text-founder-description-${index}`}>{founder.description}</p>
+                        <p className="text-muted-foreground text-center mb-6" data-testid={`text-founder-description-${index}`}>{founder.description}</p>
                       </div>
 
                       {/* Responsibilities */}
                       <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-3">
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
                           Key Responsibilities
                         </h4>
                         <div className="grid grid-cols-2 gap-2">
                           {founder.responsibilities.map((resp, idx) => (
                             <div key={idx} className="flex items-start gap-2" data-testid={`item-responsibility-${index}-${idx}`}>
-                              <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-300">{resp}</span>
+                              <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{resp}</span>
                             </div>
                           ))}
                         </div>
@@ -413,25 +445,25 @@ export default function About() {
 
                       {/* Skills */}
                       <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-3">
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
                           Skills & Expertise
                         </h4>
                         <div className="space-y-2">
                           {founder.skills.map((skill, idx) => (
                             <div key={idx} className="flex items-start gap-2" data-testid={`item-skill-${index}-${idx}`}>
-                              <CheckCircle2 className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-300">{skill}</span>
+                              <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{skill}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Goal */}
-                      <div className={`bg-gradient-to-br ${founder.gradient} p-4 rounded-xl`}>
-                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-2">
+                      <div className="bg-blue-50 dark:bg-white/5 p-4 rounded-xl border border-blue-100 dark:border-white/10">
+                        <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-2">
                           Mission
                         </h4>
-                        <p className="text-sm text-white/90 italic" data-testid={`text-founder-goal-${index}`}>{founder.goal}</p>
+                        <p className="text-sm text-muted-foreground italic" data-testid={`text-founder-goal-${index}`}>{founder.goal}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -442,52 +474,85 @@ export default function About() {
         </div>
       </section>
 
-      {/* Working Together Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <Card className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-blue-500/30">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4 text-center" data-testid="heading-working-together">
-                  Working Together
-                </h3>
-                <p className="text-gray-300 text-center leading-relaxed" data-testid="text-working-together">
-                  Both partners collaborate to deliver AI-powered, automation-driven digital transformation solutions. Mehdi focuses on building and innovating AI applications, while Carlton ensures these solutions are strategically integrated and automated across business systems to deliver measurable outcomes.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-900/50">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="px-4 sm:px-6 lg:px-8 py-32 relative overflow-hidden bg-white dark:bg-black">
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="p-16 text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" data-testid="heading-cta">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Let's discuss how AI and automation can solve your biggest challenges
-            </p>
-            <Link href={createPageUrl("Contact")}>
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
-                data-testid="button-get-started"
-              >
-                Get Started Today
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
+                  {/* Headline */}
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-6"
+                    data-testid="heading-cta"
+                  >
+                    Ready to Transform
+                    <br />
+                    Your Business?
+                  </motion.h2>
+
+                  {/* Description */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+                  >
+                    Let's discuss how AI and automation can solve your biggest challenges
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="flex flex-col sm:flex-row gap-4 justify-center"
+                  >
+                    <button
+                      className="pearl-button"
+                      data-testid="button-get-started"
+                      onClick={() => window.location.href = createPageUrl("Contact")}
+                    >
+                      <div className="wrap">
+                        <p>
+                          <span>✦</span>
+                          Get Started Today
+                          <ArrowRight className="w-5 h-5" />
+                        </p>
+                      </div>
+                    </button>
+                  </motion.div>
+
+                  {/* Trust indicators */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
+                  >
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-foreground" />
+                      <span>Free Consultation</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-foreground" />
+                      <span>Custom Solutions</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-foreground" />
+                      <span>Ongoing Support</span>
+                    </div>
+              </motion.div>
           </motion.div>
         </div>
       </section>

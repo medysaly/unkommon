@@ -1,0 +1,89 @@
+/* From Uiverse.io by Yaya12085 */
+.theme-switch-container {
+}
+
+.theme-switch-label {
+  height: 45px;
+  width: 90px;
+  background-color: #ffffff;
+  border-radius: 22.5px;
+  -webkit-box-shadow: inset 0 0 4px 3px rgba(255, 255, 255, 1),
+    inset 0 0 15px 1px rgba(0, 0, 0, 0.488), 8px 15px 25px rgba(0, 0, 0, 0.096),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 4px 3px rgba(255, 255, 255, 1),
+    inset 0 0 15px 1px rgba(0, 0, 0, 0.488), 8px 15px 25px rgba(0, 0, 0, 0.096),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+}
+
+.theme-switch-label:hover {
+  -webkit-transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+  transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+}
+
+#theme-checkbox:checked ~ .theme-switch-label:hover {
+  -webkit-transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+  transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+}
+
+#theme-checkbox {
+  display: none;
+}
+
+#theme-checkbox:checked ~ .theme-switch-label::before {
+  left: 52.5px;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 70%);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.theme-switch-label::before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #000000;
+  background-image: linear-gradient(
+    130deg,
+    #757272 10%,
+    #ffffff 11%,
+    #726f6f 62%
+  );
+  left: 7.5px;
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3),
+    8px 8px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3), 8px 8px 8px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Mobile responsive - make it smaller */
+@media (max-width: 768px) {
+  .theme-switch-label {
+    height: 30px;
+    width: 60px;
+    border-radius: 15px;
+  }
+
+  .theme-switch-label::before {
+    height: 20px;
+    width: 20px;
+    left: 5px;
+  }
+
+  #theme-checkbox:checked ~ .theme-switch-label::before {
+    left: 35px;
+  }
+}

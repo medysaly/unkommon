@@ -142,7 +142,7 @@ export default function AIContentCreator() {
         <Button
           onClick={handleStart}
           disabled={isPlaying || imageUploaded}
-          className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+          className="bg-white hover:bg-zinc-100 text-black font-light disabled:opacity-50"
           data-testid="button-demo-start"
         >
           {!imageUploaded ? "Start AI Content Creator" : "Demo In Progress"}
@@ -152,7 +152,7 @@ export default function AIContentCreator() {
           onClick={handlePlayPause}
           disabled={!imageUploaded || (currentStep === workflowSteps.length && visibleCaptions.length === platformCaptions.length)}
           variant="outline"
-          className="border-orange-500 text-orange-400 hover:bg-orange-500/10"
+          className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 font-light disabled:opacity-50"
           data-testid="button-demo-pause"
         >
           {isPlaying ? (
@@ -170,7 +170,7 @@ export default function AIContentCreator() {
         <Button
           onClick={handleReset}
           variant="outline"
-          className="border-slate-600 text-slate-300 hover:bg-slate-700"
+          className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 font-light"
           data-testid="button-demo-reset"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
@@ -180,10 +180,10 @@ export default function AIContentCreator() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <ImageIcon className="w-5 h-5 text-orange-400" />
+                <ImageIcon className="w-5 h-5 text-white" />
                 Image Upload
               </h3>
               
@@ -199,12 +199,12 @@ export default function AIContentCreator() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="relative"
                 >
-                  <img 
-                    src={demoImage} 
+                  <img
+                    src={demoImage}
                     alt={demoImageAlt}
                     className="w-full rounded-lg"
                   />
-                  <Badge className="absolute top-2 right-2 bg-green-500 text-white">
+                  <Badge className="absolute top-2 right-2 bg-white text-black">
                     <CheckCircle2 className="w-3 h-3 mr-1" />
                     Uploaded
                   </Badge>
@@ -213,10 +213,10 @@ export default function AIContentCreator() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-400" />
+                <Sparkles className="w-5 h-5 text-white" />
                 AI Processing Workflow
               </h3>
               <div className="space-y-3">
@@ -227,15 +227,15 @@ export default function AIContentCreator() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
-                      currentStep >= index + 1 ? "bg-orange-500/10 border border-orange-500/30" : "bg-slate-900"
+                      currentStep >= index + 1 ? "bg-zinc-800 border border-zinc-700" : "bg-slate-900"
                     }`}
                     data-testid={`workflow-step-${step.id}`}
                   >
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      currentStep >= index + 1 ? "bg-orange-500" : "bg-slate-700"
+                      currentStep >= index + 1 ? "bg-white text-black" : "bg-slate-700"
                     }`}>
                       {currentStep >= index + 1 ? (
-                        <CheckCircle2 className="w-5 h-5 text-white" />
+                        <CheckCircle2 className="w-5 h-5" />
                       ) : (
                         <span className="text-xs text-gray-400">{step.id}</span>
                       )}
@@ -253,10 +253,10 @@ export default function AIContentCreator() {
         </div>
 
         <div className="space-y-4">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <Hash className="w-5 h-5 text-orange-400" />
+                <Hash className="w-5 h-5 text-white" />
                 AI-Generated Captions
               </h3>
               
@@ -276,26 +276,26 @@ export default function AIContentCreator() {
                           key={captionIndex}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="bg-slate-900 rounded-lg p-4 border border-slate-700"
+                          className="bg-slate-900 rounded-lg p-4 border border-zinc-700"
                           data-testid={`caption-${caption.platform.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                         >
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center gap-2">
-                              <Icon className={`w-5 h-5 ${caption.color}`} />
+                              <Icon className="w-5 h-5 text-white" />
                               <span className="font-semibold text-white">{caption.platform}</span>
                             </div>
                             <Badge variant="outline" className="text-xs">
                               {caption.tone}
                             </Badge>
                           </div>
-                          
+
                           <p className="text-sm text-gray-300 mb-3 leading-relaxed">
                             {caption.caption}
                           </p>
-                          
+
                           <div className="flex flex-wrap gap-1 mb-3">
                             {caption.hashtags.map((tag, i) => (
-                              <Badge key={i} variant="outline" className="text-xs bg-orange-500/10 text-orange-400 border-orange-500/30">
+                              <Badge key={i} variant="outline" className="text-xs bg-white/10 text-white border-white/20">
                                 {tag}
                               </Badge>
                             ))}
@@ -322,10 +322,10 @@ export default function AIContentCreator() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <Card className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border-orange-500/30">
+              <Card className="bg-white/10 border-white/20">
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-yellow-400" />
+                    <Clock className="w-5 h-5 text-white" />
                     AI-Recommended Posting Times
                   </h3>
                   <div className="space-y-2">
@@ -339,8 +339,8 @@ export default function AIContentCreator() {
                       </div>
                     ))}
                   </div>
-                  <Button 
-                    className="w-full mt-4 bg-orange-600 hover:bg-orange-700"
+                  <Button
+                    className="w-full mt-4 bg-white hover:bg-zinc-100 text-black font-light"
                     data-testid="button-schedule-posts"
                   >
                     Schedule All Posts

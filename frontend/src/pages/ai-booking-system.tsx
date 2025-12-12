@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Calendar, MessageSquare, Clock, Smartphone, CheckCircle, ArrowRight, Camera, Mic, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "wouter";
 import { createPageUrl } from "@/lib/utils";
 import WhatsAppDemo from "@/components/WhatsAppDemo";
 import AIWhatsAppDemos from "@/components/AIWhatsAppDemos";
+import { LuminousCard } from "@/components/LuminousCard";
+import "@/styles/pearl-button.css";
 
 export default function AIBookingSystem() {
   const features = [
@@ -41,11 +41,9 @@ export default function AIBookingSystem() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10"></div>
-        
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -53,154 +51,81 @@ export default function AIBookingSystem() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-green-400/30" data-testid="badge-page-tag">
-              <Calendar className="w-4 h-4" />
-              AI Booking System
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" data-testid="heading-page-title">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight mb-6 leading-tight"
+              data-testid="heading-page-title"
+            >
               Automated Booking via{" "}
-              <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="text-foreground">
                 WhatsApp & SMS
               </span>
-            </h1>
-            
-            <p className="text-xl text-gray-300 mb-8">
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto"
+            >
               Let customers schedule appointments 24/7 through WhatsApp and SMS. Our AI
               handles the entire booking process automatically.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <button
+                className="pearl-button"
                 data-testid="button-get-started"
                 onClick={() => window.location.href = createPageUrl("Contact")}
               >
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
+                <div className="wrap">
+                  <p>
+                    <span>✧</span>
+                    Get Started
+                    <ArrowRight className="w-5 h-5" />
+                  </p>
+                </div>
+              </button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
-          >
-            Powerful Features
-          </motion.h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="h-full bg-slate-900 border-slate-700 hover:border-green-500/50 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center mb-4 border border-green-500/30">
-                      <feature.icon className="w-6 h-6 text-green-400" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Everything You Need
-              </h2>
-              <p className="text-gray-300 mb-8">
-                Our AI booking system integrates seamlessly with your existing tools
-                and workflows.
-              </p>
-              
-              <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300">{benefit}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <Card className="bg-slate-800 border-slate-700 overflow-hidden">
-                <CardContent className="p-8">
-                  <div className="aspect-square bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center">
-                    <Calendar className="w-32 h-32 text-green-400/50" />
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* WhatsApp Booking Demo */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-slate-800">
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
               See WhatsApp Booking In Action
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Watch how customers book appointments through WhatsApp with AI-powered automation
             </p>
           </motion.div>
 
           {/* Mobile Notice */}
           <div className="md:hidden">
-            <Card className="bg-slate-900 border-slate-700">
+            <Card className="bg-card border-border">
               <CardContent className="p-8 text-center">
-                <MessageSquare className="w-16 h-16 mx-auto mb-4 text-green-400" />
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <div className="w-16 h-16 mx-auto mb-4 bg-card rounded-2xl flex items-center justify-center border border-border">
+                  <MessageSquare className="w-8 h-8 text-foreground" />
+                </div>
+                <h3 className="text-xl font-light text-foreground tracking-tight mb-2">
                   Interactive Demo Available on Larger Screens
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-muted-foreground">
                   To experience the live WhatsApp booking demo, please view this page on a tablet, laptop, or desktop computer.
                 </p>
               </CardContent>
@@ -215,70 +140,56 @@ export default function AIBookingSystem() {
       </section>
 
       {/* Advanced AI Capabilities */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
               Advanced AI Capabilities
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
               Beyond appointment booking, our AI handles complex scenarios that traditionally require human intervention
             </p>
-            
+
             {/* Capability Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-16">
-              <Card className="bg-slate-800 border-slate-700">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                    <Camera className="w-8 h-8 text-green-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Visual Analysis</h3>
-                  <p className="text-gray-400 text-sm">
-                    AI analyzes photos of products, damage, receipts, or issues to provide instant assessment and solutions
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-800 border-slate-700">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                    <Mic className="w-8 h-8 text-green-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Voice Processing</h3>
-                  <p className="text-gray-400 text-sm">
-                    Customers send voice messages, AI transcribes and understands intent to resolve issues automatically
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-800 border-slate-700">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                    <Globe className="w-8 h-8 text-green-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Multilingual Support</h3>
-                  <p className="text-gray-400 text-sm">
-                    AI detects and responds in customer's language while your team sees everything in English
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-6 justify-items-center mb-16">
+              {[
+                { icon: Camera, title: "Visual Analysis", description: "AI analyzes photos of products, damage, receipts, or issues to provide instant assessment and solutions" },
+                { icon: Mic, title: "Voice Processing", description: "Customers send voice messages, AI transcribes and understands intent to resolve issues automatically" },
+                { icon: Globe, title: "Multilingual Support", description: "AI detects and responds in customer's language while your team sees everything in English" }
+              ].map((capability, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <LuminousCard
+                    icon={<capability.icon />}
+                    title={capability.title}
+                    description={capability.description}
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
           {/* Mobile Notice */}
           <div className="md:hidden">
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className="bg-card border-border">
               <CardContent className="p-8 text-center">
-                <MessageSquare className="w-16 h-16 mx-auto mb-4 text-green-400" />
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <div className="w-16 h-16 mx-auto mb-4 bg-card rounded-2xl flex items-center justify-center border border-border">
+                  <MessageSquare className="w-8 h-8 text-foreground" />
+                </div>
+                <h3 className="text-xl font-light text-foreground tracking-tight mb-2">
                   Interactive Demos Available on Larger Screens
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-muted-foreground">
                   To experience the advanced AI capability demos, please view this page on a tablet, laptop, or desktop computer.
                 </p>
               </CardContent>
@@ -292,98 +203,169 @@ export default function AIBookingSystem() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
-        {/* Desktop/Tablet (≥768px): Card with animated WhatsApp */}
-        <div className="max-w-7xl mx-auto hidden md:block">
-          <Card className="bg-gradient-to-r from-green-900/50 to-emerald-900/50 border-green-500/30 p-12 relative overflow-hidden">
-            {/* Sliding WhatsApp Icon */}
-            <motion.div
-              initial={{ x: -200, opacity: 0 }}
-              whileInView={{
-                x: [null, 950, 850],
-                opacity: [1, 1, 1]
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1.5,
-                ease: "easeOut",
-                times: [0, 0.8, 1]
-              }}
-              className="absolute left-10 top-4 w-64 h-64 pointer-events-none"
-              style={{ zIndex: 0 }}
-            >
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/6ebd3f4fc_whatsApp.png"
-                alt="WhatsApp"
-                className="w-full h-full object-contain"
-              />
-            </motion.div>
+      {/* Features Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
+              Powerful Features
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Everything you need for seamless appointment management
+            </p>
+          </motion.div>
 
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Enable Text Booking?
-              </h2>
-              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-                Let's set up WhatsApp & SMS booking for your business.
-              </p>
-              <Button
-                size="lg"
-                className="bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <LuminousCard
+                  icon={<feature.icon />}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
+              Everything You Need
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Our AI booking system integrates seamlessly with your existing tools and workflows
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <Card className="h-full bg-card backdrop-blur-sm border-border hover:border-foreground/30 transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-4">
+                      <div className="relative flex-shrink-0">
+                        <CheckCircle className="w-6 h-6 text-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-muted-foreground text-base leading-relaxed">
+                          {benefit}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-32 overflow-hidden bg-white dark:bg-black">
+
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Headline */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-6"
+              data-testid="heading-cta-section"
+            >
+              Ready to Enable
+              <br />
+              Text Booking?
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+            >
+              Let's set up WhatsApp & SMS booking for your business and start accepting appointments 24/7
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              <button
+                className="pearl-button"
                 data-testid="button-schedule-demo"
                 onClick={() => window.location.href = createPageUrl("Contact")}
               >
-                Schedule Your Demo Call
-              </Button>
-            </div>
-          </Card>
-        </div>
+                <div className="wrap">
+                  <p>
+                    <span>✦</span>
+                    Schedule Your Demo Call
+                    <ArrowRight className="w-5 h-5" />
+                  </p>
+                </div>
+              </button>
+            </motion.div>
 
-        {/* Mobile Landscape (568px-767px): Two Column Layout */}
-        <div className="max-w-7xl mx-auto hidden min-[568px]:flex md:hidden items-center gap-8">
-          <div className="flex-1 bg-slate-800/90 backdrop-blur-sm rounded-2xl p-8 border border-green-500/30">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Ready to Enable Text Booking?
-            </h2>
-            <p className="text-lg text-green-100 mb-6">
-              Let's set up WhatsApp & SMS booking for your business.
-            </p>
-            <Button
-              size="lg"
-              className="w-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
-              data-testid="button-schedule-demo"
-              onClick={() => window.location.href = createPageUrl("Contact")}
+            {/* Trust indicators */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-muted-foreground"
             >
-              Schedule Your Demo Call
-            </Button>
-          </div>
-          <div className="flex-1">
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/6ebd3f4fc_whatsApp.png"
-              alt="WhatsApp"
-              className="w-full h-auto object-contain max-h-96"
-            />
-          </div>
-        </div>
-
-        {/* Mobile Portrait (<568px): Single Column, No Image */}
-        <div className="max-w-full mx-auto text-center block min-[568px]:hidden">
-          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-2xl p-8 border border-green-500/30">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Ready to Enable Text Booking?
-            </h2>
-            <p className="text-base text-green-100 mb-6">
-              Let's set up WhatsApp & SMS booking for your business.
-            </p>
-            <Button
-              size="lg"
-              className="w-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
-              data-testid="button-schedule-demo"
-              onClick={() => window.location.href = createPageUrl("Contact")}
-            >
-              Schedule Your Demo Call
-            </Button>
-          </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-foreground" />
+                <span>Free Setup</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-foreground" />
+                <span>No Credit Card Required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-foreground" />
+                <span>Cancel Anytime</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

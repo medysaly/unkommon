@@ -1,15 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import ChatWidget from "@/components/ChatWidget";
+import SwitchButton from "@/components/SwitchButton";
+import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -24,173 +20,142 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isActive = (href: string) => location === href;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-white dark:bg-black text-foreground transition-colors">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <Link href={createPageUrl("Home")} data-testid="link-logo">
-              <div className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">BA</span>
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4">
+        <nav className="max-w-7xl mx-auto">
+          <div className="flex items-center h-16 px-6 bg-zinc-50/80 dark:bg-white/5 backdrop-blur-xl border border-zinc-200 dark:border-white/10 rounded-full shadow-lg">
+            {/* Logo - Left */}
+            <div className="flex-1">
+              <Link href={createPageUrl("Home")} data-testid="link-logo">
+                <div className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                  <div className="relative w-10 h-10 rounded-xl overflow-hidden backdrop-blur-xl bg-gradient-to-br from-blue-500/20 via-blue-400/10 to-purple-500/20 border border-blue-500/30 dark:border-white/20 shadow-lg flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                    <span className="relative text-blue-600 dark:text-white font-bold text-sm drop-shadow-lg">U</span>
+                  </div>
+                  <span className="text-xl font-black tracking-tight uppercase text-foreground">Unkommon</span>
                 </div>
-                <span className="text-lg font-semibold">Business Automated</span>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href} data-testid={`link-nav-${item.name.toLowerCase().replace(' ', '-')}`}>
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(item.href) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                  >
-                    {item.name}
-                  </span>
-                </Link>
-              ))}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-muted-foreground hover:text-foreground"
-                    data-testid="button-featured-agents"
-                  >
-                    Solutions
-                    <ChevronDown className="w-4 h-4 ml-1" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => window.location.href = createPageUrl("AIReceptionist")}
-                    data-testid="dropdown-ai-receptionist"
-                  >
-                    AI Receptionist
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => window.location.href = createPageUrl("SpeedToLead")}
-                    data-testid="dropdown-speed-to-lead"
-                  >
-                    Speed-to-Lead
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => window.location.href = createPageUrl("AIBookingSystem")}
-                    data-testid="dropdown-ai-booking"
-                  >
-                    AI Booking System
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => window.location.href = createPageUrl("SocialMediaBot")}
-                    data-testid="dropdown-social-media"
-                  >
-                    Social Media Automation
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            {/* Desktop Navigation - Center */}
+            <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
+              <Link href={createPageUrl("Home")} data-testid="link-nav-home">
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    isActive(createPageUrl("Home")) ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  Home
+                </span>
+              </Link>
+              <Link href={createPageUrl("AIAgents")} data-testid="link-nav-ai-agents">
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    isActive(createPageUrl("AIAgents")) ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  AI Agents
+                </span>
+              </Link>
+              <Link href={createPageUrl("Contact")} data-testid="link-nav-contact">
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    isActive(createPageUrl("Contact")) ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  Contact
+                </span>
+              </Link>
+              <Link href={createPageUrl("About")} data-testid="link-nav-about">
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    isActive(createPageUrl("About")) ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  About
+                </span>
+              </Link>
               <Button
                 size="sm"
                 data-testid="button-get-started"
                 onClick={() => window.location.href = createPageUrl("Contact")}
+                className="bg-black hover:bg-zinc-900 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-black"
               >
                 Get Started
               </Button>
             </div>
 
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden p-2 rounded-md hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              data-testid="button-mobile-menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {/* Theme Switch - Right */}
+            <div className="flex-1 flex justify-end items-center gap-4">
+              <div className="hidden md:block">
+                <SwitchButton size="sm" showLabel={false} />
+              </div>
+
+              {/* Mobile menu button */}
+              <button
+                className="md:hidden p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors text-foreground"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                data-testid="button-mobile-menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
             <div className="md:hidden py-4 border-t border-border">
               <div className="flex flex-col space-y-4">
-                {navigation.map((item) => (
-                  <Link key={item.name} href={item.href} data-testid={`link-mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}>
-                    <span
-                      className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                        isActive(item.href) ? "text-primary" : "text-muted-foreground"
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </span>
-                  </Link>
-                ))}
+                <Link href={createPageUrl("Home")} data-testid="link-mobile-nav-home">
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                      isActive(createPageUrl("Home")) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </span>
+                </Link>
 
-                {/* Featured Agents - Mobile Dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-between text-muted-foreground"
-                      data-testid="button-mobile-featured-agents"
-                    >
-                      Solutions
-                      <ChevronDown className="w-4 h-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-[calc(100vw-2rem)]">
-                    <DropdownMenuItem
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = createPageUrl("AIReceptionist");
-                      }}
-                      data-testid="dropdown-mobile-ai-receptionist"
-                    >
-                      AI Receptionist
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = createPageUrl("SpeedToLead");
-                      }}
-                      data-testid="dropdown-mobile-speed-to-lead"
-                    >
-                      Speed-to-Lead
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = createPageUrl("AIBookingSystem");
-                      }}
-                      data-testid="dropdown-mobile-ai-booking"
-                    >
-                      AI Booking System
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = createPageUrl("SocialMediaBot");
-                      }}
-                      data-testid="dropdown-mobile-social-media"
-                    >
-                      Social Media Automation
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <Link href={createPageUrl("AIAgents")} data-testid="link-mobile-nav-ai-agents">
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                      isActive(createPageUrl("AIAgents")) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    AI Agents
+                  </span>
+                </Link>
 
+                <Link href={createPageUrl("Contact")} data-testid="link-mobile-nav-contact">
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                      isActive(createPageUrl("Contact")) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact
+                  </span>
+                </Link>
+
+                <Link href={createPageUrl("About")} data-testid="link-mobile-nav-about">
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                      isActive(createPageUrl("About")) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    About
+                  </span>
+                </Link>
+
+                <SwitchButton size="default" showLabel={true} className="w-full" />
                 <Button
                   className="w-full"
                   onClick={() => {
@@ -216,11 +181,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-3">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">BA</span>
-                </div>
-                <span className="text-lg font-semibold">Business Automated</span>
+              <div className="mb-3">
+                <span className="text-lg font-semibold">Unkommon</span>
               </div>
               <p className="text-muted-foreground mb-4 max-w-md text-sm">
                 Transform your business with intelligent AI solutions.
@@ -232,7 +194,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />
-                  <span>contact@businessautomated.com</span>
+                  <span>contact@unkommon.com</span>
                 </div>
               </div>
             </div>
@@ -262,13 +224,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link href={createPageUrl("SocialMediaBot")} data-testid="link-footer-social-media">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      Social Media Automation
-                    </span>
-                  </Link>
-                </li>
               </ul>
             </div>
 
@@ -284,7 +239,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href={createPageUrl("AgentLibrary")} data-testid="link-footer-agent-library">
+                  <Link href={createPageUrl("AIAgents")} data-testid="link-footer-agent-library">
                     <span className="hover:text-primary transition-colors cursor-pointer">
                       Agent Library
                     </span>
@@ -297,19 +252,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link href={createPageUrl("Sources")} data-testid="link-footer-sources">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      Research & Sources
-                    </span>
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Business Automated. All rights reserved.</p>
+          <div className="border-t border-border mt-8 pt-6 text-center">
+            <div className="flex justify-center mb-6">
+              <SocialMediaIcons />
+            </div>
+            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Unkommon. All rights reserved.</p>
           </div>
         </div>
       </footer>

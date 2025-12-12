@@ -6,17 +6,17 @@ import { Badge } from "@/components/ui/badge";
 
 export default function ContentScheduler() {
   const platforms = [
-    { name: "Instagram", icon: SiInstagram, color: "text-pink-400", posts: 12 },
-    { name: "Facebook", icon: SiFacebook, color: "text-blue-400", posts: 8 },
-    { name: "LinkedIn", icon: SiLinkedin, color: "text-blue-500", posts: 6 },
-    { name: "X (Twitter)", icon: SiX, color: "text-gray-400", posts: 15 },
+    { name: "Instagram", icon: SiInstagram, color: "text-white", posts: 12 },
+    { name: "Facebook", icon: SiFacebook, color: "text-white", posts: 8 },
+    { name: "LinkedIn", icon: SiLinkedin, color: "text-white", posts: 6 },
+    { name: "X (Twitter)", icon: SiX, color: "text-white", posts: 15 },
   ];
 
   const scheduledPosts = [
     {
       platform: "Instagram",
       icon: SiInstagram,
-      color: "bg-pink-500/20 text-pink-400",
+      color: "bg-white/10 text-white",
       time: "Today, 2:00 PM",
       content: "New product launch announcement",
       type: "Image + Caption",
@@ -25,7 +25,7 @@ export default function ContentScheduler() {
     {
       platform: "Facebook",
       icon: SiFacebook,
-      color: "bg-blue-500/20 text-blue-400",
+      color: "bg-white/10 text-white",
       time: "Today, 4:30 PM",
       content: "Behind-the-scenes team photo",
       type: "Image + Caption",
@@ -34,7 +34,7 @@ export default function ContentScheduler() {
     {
       platform: "LinkedIn",
       icon: SiLinkedin,
-      color: "bg-blue-600/20 text-blue-500",
+      color: "bg-white/10 text-white",
       time: "Tomorrow, 9:00 AM",
       content: "Industry insights article",
       type: "Link + Text",
@@ -79,7 +79,7 @@ export default function ContentScheduler() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="bg-slate-800 border-slate-700 hover:border-orange-500/50 transition-colors" data-testid={`card-platform-${platform.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
+              <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50 hover:border-white/30 transition-colors" data-testid={`card-platform-${platform.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
                 <CardContent className="p-4 text-center">
                   <Icon className={`w-8 h-8 ${platform.color} mx-auto mb-2`} />
                   <p className="text-sm text-gray-400 mb-1">{platform.name}</p>
@@ -106,7 +106,7 @@ export default function ContentScheduler() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-slate-800 border-slate-700" data-testid={`card-post-${index}`}>
+                <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50" data-testid={`card-post-${index}`}>
                   <CardContent className="p-4">
                     <div className="flex items-start gap-4">
                       <div className={`w-10 h-10 rounded-lg ${post.color} flex items-center justify-center flex-shrink-0`}>
@@ -115,7 +115,7 @@ export default function ContentScheduler() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-2">
                           <p className="text-sm font-medium text-white">{post.platform}</p>
-                          <Badge variant="outline" className="text-xs bg-green-500/20 text-green-400 border-green-500/30">
+                          <Badge variant="outline" className="text-xs bg-white/10 text-white border-white/20">
                             <CheckCircle2 className="w-3 h-3 mr-1" />
                             {post.status}
                           </Badge>
@@ -154,10 +154,10 @@ export default function ContentScheduler() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="bg-slate-800 border-slate-700 h-full" data-testid={`card-feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50 h-full" data-testid={`card-feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}>
                     <CardContent className="p-4">
-                      <div className="w-10 h-10 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-lg flex items-center justify-center mb-3 border border-orange-500/30">
-                        <Icon className="w-5 h-5 text-orange-400" />
+                      <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-3 border border-white/20">
+                        <Icon className="w-5 h-5 text-white" />
                       </div>
                       <h4 className="text-sm font-bold text-white mb-1">
                         {feature.title}
@@ -171,11 +171,11 @@ export default function ContentScheduler() {
           </div>
 
           {/* Calendar Preview */}
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-sm font-bold text-white">December 2025</h4>
-                <Calendar className="w-5 h-5 text-orange-400" />
+                <Calendar className="w-5 h-5 text-white" />
               </div>
               <div className="grid grid-cols-7 gap-2 text-center">
                 {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
@@ -191,7 +191,7 @@ export default function ContentScheduler() {
                       key={i}
                       className={`text-xs py-1 rounded ${
                         hasPost
-                          ? "bg-orange-500/20 text-orange-400 font-bold"
+                          ? "bg-white/20 text-white font-bold"
                           : "text-gray-400"
                       }`}
                     >
@@ -203,7 +203,7 @@ export default function ContentScheduler() {
                 })}
               </div>
               <p className="text-xs text-gray-500 mt-4 text-center">
-                <span className="inline-block w-2 h-2 bg-orange-500/20 rounded-sm mr-1"></span>
+                <span className="inline-block w-2 h-2 bg-white/20 rounded-sm mr-1"></span>
                 Days with scheduled posts
               </p>
             </CardContent>

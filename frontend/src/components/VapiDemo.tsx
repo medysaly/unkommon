@@ -1,20 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Vapi from "@vapi-ai/web";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Phone,
   PhoneOff,
   Mic,
   MicOff,
-  Volume2,
-  VolumeX,
   Loader2,
   MessageSquare,
   CheckCircle,
-  Clock,
   User
 } from "lucide-react";
 
@@ -176,198 +170,237 @@ export default function VapiDemo() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <Card className="bg-slate-800/50 border-slate-700">
-        <CardHeader>
-          <CardTitle className="text-white flex items-center gap-2">
-            <Phone className="w-5 h-5 text-blue-400" />
-            Talk to BA AI Receptionist
-          </CardTitle>
-          <p className="text-sm text-gray-400">
-            Click the button below to start a voice conversation with our AI receptionist
+    <div className="w-full max-w-5xl mx-auto px-4">
+      <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+        {/* Header */}
+        <div className="border-b border-zinc-700 px-8 py-6">
+          <h3 className="text-2xl font-light text-white tracking-tight">
+            AI Voice Assistant
+          </h3>
+          <p className="text-sm text-zinc-500 mt-1">
+            Experience real-time conversation with our AI receptionist
           </p>
-        </CardHeader>
+        </div>
 
-        <CardContent className="space-y-6">
+        <div className="p-8 md:p-12">
           {/* Error Message */}
           {errorMessage && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg"
+              className="mb-6 p-4 bg-zinc-900 border border-zinc-800 rounded-xl"
             >
-              <p className="text-red-400 text-sm">{errorMessage}</p>
+              <p className="text-zinc-400 text-sm">{errorMessage}</p>
             </motion.div>
           )}
 
-          {/* Call Controls */}
-          <div className="flex flex-col items-center gap-4">
-            {/* Main Call Button */}
-            <div className="relative">
-              {isCallActive && volumeLevel > 0 && (
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-blue-500/20"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                  }}
-                />
-              )}
-
-              <Button
-                size="lg"
-                onClick={isCallActive ? endCall : startCall}
-                disabled={isConnecting}
-                className={`
-                  relative z-10 w-24 h-24 rounded-full text-white font-semibold transition-all
-                  ${isCallActive
-                    ? 'bg-red-600 hover:bg-red-700'
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
-                  }
-                  ${assistantSpeaking ? 'ring-4 ring-blue-400/50' : ''}
-                `}
-              >
-                {isConnecting ? (
-                  <Loader2 className="w-10 h-10 animate-spin" />
-                ) : isCallActive ? (
-                  <PhoneOff className="w-10 h-10" />
-                ) : (
-                  <Phone className="w-10 h-10" />
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            {/* Left: Call Controls */}
+            <div className="flex flex-col items-center justify-center py-8">
+              {/* Main Call Button */}
+              <div className="relative mb-8">
+                {isCallActive && volumeLevel > 0 && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-white/5"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                 )}
-              </Button>
-            </div>
 
-            {/* Call Status */}
-            <div className="text-center">
-              {isConnecting && (
-                <Badge variant="secondary" className="bg-blue-500/20 text-blue-400">
-                  Connecting...
-                </Badge>
-              )}
-              {isCallActive && (
-                <div className="space-y-1">
-                  <Badge variant="secondary" className="bg-green-500/20 text-green-400">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-2" />
-                    Call Active
-                  </Badge>
-                  <p className="text-sm text-gray-400 flex items-center gap-1 justify-center">
-                    <Clock className="w-3 h-3" />
-                    {formatDuration(callDuration)}
-                  </p>
-                </div>
-              )}
-              {!isCallActive && !isConnecting && (
-                <Badge variant="secondary" className="bg-slate-700 text-gray-400">
-                  Ready to Call
-                </Badge>
-              )}
-            </div>
-
-            {/* Secondary Controls */}
-            {isCallActive && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex gap-3"
-              >
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={toggleMute}
-                  className="border-slate-600 hover:bg-slate-700"
+                <button
+                  onClick={isCallActive ? endCall : startCall}
+                  disabled={isConnecting}
+                  className={`
+                    relative z-10 w-28 h-28 rounded-full
+                    transition-all duration-300
+                    flex items-center justify-center
+                    ${isCallActive
+                      ? 'bg-white hover:bg-zinc-100'
+                      : 'bg-white hover:bg-zinc-100'
+                    }
+                    ${isConnecting ? 'opacity-60' : ''}
+                    ${assistantSpeaking ? 'ring-4 ring-white/20' : ''}
+                    disabled:opacity-40 disabled:cursor-not-allowed
+                  `}
                 >
-                  {isMuted ? (
-                    <MicOff className="w-4 h-4 mr-2 text-red-400" />
+                  {isConnecting ? (
+                    <Loader2 className="w-12 h-12 animate-spin text-black" />
+                  ) : isCallActive ? (
+                    <PhoneOff className="w-12 h-12 text-black" />
                   ) : (
-                    <Mic className="w-4 h-4 mr-2 text-blue-400" />
+                    <Phone className="w-12 h-12 text-black" />
                   )}
-                  {isMuted ? 'Unmute' : 'Mute'}
-                </Button>
-              </motion.div>
-            )}
-          </div>
-
-          {/* Transcript */}
-          {transcript.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-6"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <MessageSquare className="w-4 h-4 text-blue-400" />
-                <h3 className="text-sm font-semibold text-white">Conversation</h3>
+                </button>
               </div>
 
-              <div className="bg-slate-900/50 rounded-lg p-4 max-h-64 overflow-y-auto space-y-3">
-                {transcript.map((msg, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: msg.role === "user" ? 20 : -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    {msg.role === "assistant" && (
-                      <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-3 h-3 text-blue-400" />
-                      </div>
-                    )}
-
-                    <div className={`
-                      max-w-[80%] rounded-lg p-3 text-sm
-                      ${msg.role === "user"
-                        ? "bg-blue-600/20 text-blue-100"
-                        : msg.role === "system"
-                        ? "bg-slate-700/50 text-gray-400 text-center italic"
-                        : "bg-slate-700/50 text-gray-200"
-                      }
-                    `}>
-                      {msg.content}
+              {/* Call Status */}
+              <div className="text-center space-y-3">
+                {isConnecting && (
+                  <div className="text-sm text-zinc-400 font-light">
+                    Connecting...
+                  </div>
+                )}
+                {isCallActive && (
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 justify-center">
+                      <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      <span className="text-sm text-white font-light">Live</span>
                     </div>
-
-                    {msg.role === "user" && (
-                      <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                        <User className="w-3 h-3 text-green-400" />
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-
-                {assistantSpeaking && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex gap-2 items-center text-sm text-gray-400"
-                  >
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    BA AI is speaking...
-                  </motion.div>
+                    <div className="text-2xl font-mono text-zinc-400 tracking-wider">
+                      {formatDuration(callDuration)}
+                    </div>
+                  </div>
+                )}
+                {!isCallActive && !isConnecting && (
+                  <div className="text-sm text-zinc-500 font-light">
+                    Click to start call
+                  </div>
                 )}
               </div>
-            </motion.div>
-          )}
+
+              {/* Secondary Controls */}
+              {isCallActive && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6"
+                >
+                  <button
+                    onClick={toggleMute}
+                    className="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-full transition-colors text-sm text-zinc-300 flex items-center gap-2"
+                  >
+                    {isMuted ? (
+                      <>
+                        <MicOff className="w-4 h-4" />
+                        <span>Unmute</span>
+                      </>
+                    ) : (
+                      <>
+                        <Mic className="w-4 h-4" />
+                        <span>Mute</span>
+                      </>
+                    )}
+                  </button>
+                </motion.div>
+              )}
+            </div>
+
+            {/* Right: Transcript */}
+            <div className="flex flex-col h-[400px]">
+              <div className="mb-4">
+                <h4 className="text-sm font-light text-zinc-400 uppercase tracking-wider">
+                  Transcript
+                </h4>
+              </div>
+
+              <div className="flex-1 bg-zinc-950/60 border border-zinc-700/60 rounded-2xl p-6 overflow-y-auto">
+                {transcript.length === 0 && !isCallActive ? (
+                  <div className="h-full flex items-center justify-center">
+                    <div className="text-center space-y-3">
+                      <MessageSquare className="w-10 h-10 text-zinc-700 mx-auto" />
+                      <p className="text-sm text-zinc-600 font-light">
+                        Start a call to see the conversation
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {transcript.map((msg, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-1"
+                      >
+                        <div className="flex items-center gap-2">
+                          {msg.role === "assistant" && (
+                            <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
+                              <Phone className="w-3 h-3 text-zinc-400" />
+                            </div>
+                          )}
+                          {msg.role === "user" && (
+                            <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
+                              <User className="w-3 h-3 text-zinc-400" />
+                            </div>
+                          )}
+                          <span className="text-xs text-zinc-600 uppercase tracking-wider font-light">
+                            {msg.role === "user" ? "You" : msg.role === "assistant" ? "AI" : "System"}
+                          </span>
+                        </div>
+                        <p className={`text-sm leading-relaxed pl-7 ${
+                          msg.role === "system"
+                            ? "text-zinc-600 italic"
+                            : "text-zinc-300"
+                        }`}>
+                          {msg.content}
+                        </p>
+                      </motion.div>
+                    ))}
+
+                    {assistantSpeaking && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex items-center gap-2 text-sm text-zinc-500 pl-7"
+                      >
+                        <div className="flex gap-1">
+                          <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                          <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                          <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                        </div>
+                        <span className="font-light">AI is responding...</span>
+                      </motion.div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
 
           {/* Instructions */}
           {!isCallActive && !isConnecting && (
-            <div className="bg-slate-900/30 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-blue-400" />
-                How it works:
-              </h4>
-              <ul className="text-sm text-gray-400 space-y-1 ml-6 list-disc">
-                <li>Click the phone button to start talking</li>
-                <li>Speak naturally - the AI will listen and respond</li>
-                <li>You can ask about our services or book an appointment</li>
-                <li>Click the red button to end the call anytime</li>
-              </ul>
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-8 pt-8 border-t border-zinc-700/60"
+            >
+              <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto">
+                    <Phone className="w-5 h-5 text-zinc-500" />
+                  </div>
+                  <p className="text-xs text-zinc-500 font-light">
+                    Click to connect with AI
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto">
+                    <MessageSquare className="w-5 h-5 text-zinc-500" />
+                  </div>
+                  <p className="text-xs text-zinc-500 font-light">
+                    Speak naturally about your needs
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto">
+                    <CheckCircle className="w-5 h-5 text-zinc-500" />
+                  </div>
+                  <p className="text-xs text-zinc-500 font-light">
+                    Book appointments instantly
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

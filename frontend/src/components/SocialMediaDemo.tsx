@@ -359,12 +359,12 @@ export default function SocialMediaDemo() {
         </div>
 
         {/* Problem Section */}
-        <Card className="bg-red-950/30 border-red-800/50">
+        <Card className="bg-white/10 border-white/20">
           <CardContent className="p-6">
             <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="text-lg font-semibold text-red-300 mb-2">The Problem</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">The Problem</h3>
                 <p className="text-gray-300">{currentStudy.problem}</p>
               </div>
             </div>
@@ -372,12 +372,12 @@ export default function SocialMediaDemo() {
         </Card>
 
         {/* Solution Section */}
-        <Card className="bg-blue-950/30 border-blue-800/50">
+        <Card className="bg-white/10 border-white/20">
           <CardContent className="p-6">
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="text-lg font-semibold text-blue-300 mb-2">The Solution</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">The Solution</h3>
                 <p className="text-gray-300">{currentStudy.solution}</p>
               </div>
             </div>
@@ -386,11 +386,11 @@ export default function SocialMediaDemo() {
 
         {/* Company Context */}
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50">
             <CardContent className="p-6">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">{currentStudy.company.logo}</span>
+                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                  <span className="text-black font-bold text-lg">{currentStudy.company.logo}</span>
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">{currentStudy.company.name}</h3>
@@ -400,13 +400,13 @@ export default function SocialMediaDemo() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50">
             <CardContent className="p-6">
               <div className="flex items-start gap-3">
                 {currentStudy.socialPost.platform === "Instagram" ? (
-                  <Instagram className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
+                  <Instagram className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                 ) : (
-                  <Facebook className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <Facebook className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                 )}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-400 mb-1">{currentStudy.socialPost.platform} Post</h3>
@@ -455,12 +455,12 @@ export default function SocialMediaDemo() {
       <div className="grid lg:grid-cols-5 gap-6">
         {/* Chat Interface - 40% */}
         <div className="lg:col-span-2">
-          <Card className="bg-slate-900 border-slate-700 h-[600px] flex flex-col">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50 h-[600px] flex flex-col">
             <CardContent className="p-0 flex-1 flex flex-col">
               {/* Chat Header */}
-              <div className="p-4 border-b border-slate-700 flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">{currentStudy.company.logo}</span>
+              <div className="p-4 border-b border-zinc-700 flex items-center gap-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-black font-bold">{currentStudy.company.logo}</span>
                 </div>
                 <div>
                   <h4 className="text-white font-semibold">{currentStudy.company.name}</h4>
@@ -481,8 +481,8 @@ export default function SocialMediaDemo() {
                       <div
                         className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                           message.sender === "user"
-                            ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
-                            : "bg-slate-800 text-gray-200"
+                            ? "bg-white text-black"
+                            : "bg-zinc-800 text-zinc-200 border border-zinc-700"
                         }`}
                       >
                         {message.text}
@@ -510,7 +510,7 @@ export default function SocialMediaDemo() {
         {/* Workflow & Lead Data - 60% */}
         <div className="lg:col-span-3 space-y-6">
           {/* Workflow Visualization */}
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-white mb-4">Automation Workflow</h3>
               <div className="space-y-3">
@@ -518,18 +518,18 @@ export default function SocialMediaDemo() {
                   <motion.div
                     key={step.id}
                     initial={{ opacity: 0.3 }}
-                    animate={{ 
+                    animate={{
                       opacity: activeSteps.includes(step.id) ? 1 : 0.3,
                       scale: activeSteps.includes(step.id) ? 1.02 : 1
                     }}
                     className={`flex items-center gap-3 p-3 rounded-lg ${
-                      activeSteps.includes(step.id) 
-                        ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30" 
+                      activeSteps.includes(step.id)
+                        ? "bg-zinc-800 border border-zinc-700"
                         : "bg-slate-800/50"
                     }`}
                   >
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      activeSteps.includes(step.id) ? "bg-orange-500 text-white" : "bg-slate-700 text-gray-400"
+                      activeSteps.includes(step.id) ? "bg-white text-black" : "bg-slate-700 text-gray-400"
                     }`}>
                       {activeSteps.includes(step.id) ? (
                         <CheckCircle className="w-5 h-5" />
@@ -547,7 +547,7 @@ export default function SocialMediaDemo() {
           </Card>
 
           {/* Lead Capture Panel */}
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-white mb-4">Lead Information</h3>
               <div className="space-y-3">
@@ -589,9 +589,9 @@ export default function SocialMediaDemo() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="mt-6 p-4 bg-green-950/30 border border-green-800/50 rounded-lg"
+                  className="mt-6 p-4 bg-white/10 border border-white/20 rounded-lg"
                 >
-                  <div className="flex items-center gap-2 text-green-400">
+                  <div className="flex items-center gap-2 text-white">
                     <CheckCircle className="w-5 h-5" />
                     <span className="font-semibold">Lead Captured Successfully!</span>
                   </div>
@@ -608,13 +608,13 @@ export default function SocialMediaDemo() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className="bg-green-950/30 border-green-800/50">
+          <Card className="bg-white/10 border-white/20">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-green-300 mb-4">The Results</h3>
+              <h3 className="text-lg font-semibold text-white mb-4">The Results</h3>
               <ul className="space-y-2">
                 {currentStudy.results.map((result, index) => (
                   <li key={index} className="flex items-start gap-2 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                     <span>{result}</span>
                   </li>
                 ))}
@@ -643,7 +643,7 @@ export default function SocialMediaDemo() {
               key={index}
               onClick={() => setCurrentCase(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentCase ? "bg-orange-500" : "bg-slate-600"
+                index === currentCase ? "bg-white" : "bg-slate-600"
               }`}
               data-testid={`button-case-${index + 1}`}
             />
@@ -667,7 +667,7 @@ export default function SocialMediaDemo() {
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-slate-900 border-slate-700">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-white">
-              <ShieldCheck className="w-6 h-6 text-green-400" />
+              <ShieldCheck className="w-6 h-6 text-white" />
               Platform Compliance & Bot Capabilities
             </DialogTitle>
           </DialogHeader>
@@ -677,7 +677,7 @@ export default function SocialMediaDemo() {
               <h3 className="text-lg font-semibold text-white mb-3">✅ What Social Media Bots CAN Do (Fully Automated)</h3>
               <div className="space-y-3 pl-4">
                 <div>
-                  <h4 className="font-semibold text-green-400">Direct Message (DM) Automation</h4>
+                  <h4 className="font-semibold text-white">Direct Message (DM) Automation</h4>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Instagram and Facebook APIs fully support automated DM responses</li>
                     <li>Bot can send and respond to DMs automatically - no human needed</li>
@@ -688,7 +688,7 @@ export default function SocialMediaDemo() {
                 </div>
 
                 <div className="mt-4">
-                  <h4 className="font-semibold text-green-400">Comment Monitoring & Auto-DM</h4>
+                  <h4 className="font-semibold text-white">Comment Monitoring & Auto-DM</h4>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Bot can monitor ALL comments on your posts in real-time</li>
                     <li>Detects keywords ("INFO", "INTERESTED", "PRICE", etc.)</li>
@@ -699,7 +699,7 @@ export default function SocialMediaDemo() {
                 </div>
 
                 <div className="mt-4">
-                  <h4 className="font-semibold text-green-400">Lead Capture & CRM Integration</h4>
+                  <h4 className="font-semibold text-white">Lead Capture & CRM Integration</h4>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Automatically extract contact info (name, email, phone) from conversations</li>
                     <li>Save qualified leads to your CRM in real-time</li>
@@ -714,7 +714,7 @@ export default function SocialMediaDemo() {
               <h3 className="text-lg font-semibold text-white mb-3">⚠️ What Bots CANNOT Do (Platform Restrictions)</h3>
               <div className="space-y-3 pl-4">
                 <div>
-                  <h4 className="font-semibold text-red-400">Auto-Posting Comment Responses</h4>
+                  <h4 className="font-semibold text-white">Auto-Posting Comment Responses</h4>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Instagram severely restricts automated comment responses (anti-spam measures)</li>
                     <li>Facebook allows limited automation but with strict rate limits</li>
@@ -724,7 +724,7 @@ export default function SocialMediaDemo() {
                 </div>
 
                 <div className="mt-4">
-                  <h4 className="font-semibold text-yellow-400">Comment Response Assistance (Human-in-Loop)</h4>
+                  <h4 className="font-semibold text-white">Comment Response Assistance (Human-in-Loop)</h4>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Bot CAN read and analyze comments</li>
                     <li>Bot CAN generate intelligent response suggestions</li>
@@ -743,12 +743,12 @@ export default function SocialMediaDemo() {
                 <p><strong>Step 3:</strong> When someone comments → Bot automatically sends them a personalized DM</p>
                 <p><strong>Step 4:</strong> Full automated conversation happens in DMs (asking questions, qualifying, capturing contact info)</p>
                 <p><strong>Step 5:</strong> Lead data saved to CRM, follow-up actions triggered automatically</p>
-                <p className="mt-3 text-green-400"><strong>Result:</strong> 100% automated, fully compliant, zero manual work required</p>
+                <p className="mt-3 text-white"><strong>Result:</strong> 100% automated, fully compliant, zero manual work required</p>
               </div>
             </div>
 
-            <div className="bg-blue-950/30 border border-blue-800/50 rounded-lg p-4 mt-6">
-              <h4 className="font-semibold text-blue-300 mb-2">Bottom Line</h4>
+            <div className="bg-white/10 border border-white/20 rounded-lg p-4 mt-6">
+              <h4 className="font-semibold text-white mb-2">Bottom Line</h4>
               <p>All three case studies you see on this page represent <strong>100% automated workflows</strong> that are fully compliant with Instagram and Facebook policies. No human intervention needed once the bot is set up.</p>
             </div>
           </div>

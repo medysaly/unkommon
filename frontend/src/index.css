@@ -436,4 +436,94 @@
       background-image: none !important;
     }
   }
+
+  /* Electric Border Animation for Liquid Glass Cards */
+  @keyframes borderFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* 3D Perspective for Benefits Slideshow */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+
+  /* Shimmer animation for cards */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s infinite;
+  }
+
+  /* Slow pulse animation */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Animated gradient mesh */
+  @keyframes meshMove {
+    0%, 100% {
+      background-position: 0% 0%;
+    }
+    25% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+  }
+
+  /* Tsunami wave animation */
+  @keyframes wave {
+    0%, 100% {
+      d: path("M0,150 Q250,100 500,150 T1000,150 L1000,0 L0,0 Z");
+    }
+    25% {
+      d: path("M0,100 Q250,150 500,100 T1000,100 L1000,0 L0,0 Z");
+    }
+    50% {
+      d: path("M0,130 Q250,80 500,130 T1000,130 L1000,0 L0,0 Z");
+    }
+    75% {
+      d: path("M0,120 Q250,170 500,120 T1000,120 L1000,0 L0,0 Z");
+    }
+  }
+
+  .animate-wave {
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  .animate-wave-slow {
+    animation: wave 10s ease-in-out infinite reverse;
+  }
 }

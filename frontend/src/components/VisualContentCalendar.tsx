@@ -18,23 +18,23 @@ interface ScheduledPost {
 }
 
 const scheduledPosts: ScheduledPost[] = [
-  { id: 1, date: 2, platform: "Instagram", icon: SiInstagram, color: "bg-pink-500/20 text-pink-400", time: "7:00 PM", content: "New product showcase", type: "Image" },
-  { id: 2, date: 2, platform: "Facebook", icon: SiFacebook, color: "bg-blue-500/20 text-blue-400", time: "1:00 PM", content: "Customer testimonial", type: "Video" },
-  { id: 3, date: 5, platform: "LinkedIn", icon: SiLinkedin, color: "bg-blue-600/20 text-blue-500", time: "8:00 AM", content: "Industry insights", type: "Article" },
-  { id: 4, date: 5, platform: "X", icon: SiX, color: "bg-gray-500/20 text-gray-300", time: "6:30 PM", content: "Quick tip", type: "Text" },
-  { id: 5, date: 9, platform: "Instagram", icon: SiInstagram, color: "bg-pink-500/20 text-pink-400", time: "7:00 PM", content: "Behind the scenes", type: "Reel" },
-  { id: 6, date: 12, platform: "Facebook", icon: SiFacebook, color: "bg-blue-500/20 text-blue-400", time: "12:00 PM", content: "Flash sale announcement", type: "Image" },
-  { id: 7, date: 12, platform: "LinkedIn", icon: SiLinkedin, color: "bg-blue-600/20 text-blue-500", time: "9:00 AM", content: "Company milestone", type: "Text" },
-  { id: 8, date: 16, platform: "X", icon: SiX, color: "bg-gray-500/20 text-gray-300", time: "5:00 PM", content: "Trending topic response", type: "Text" },
-  { id: 9, date: 16, platform: "Instagram", icon: SiInstagram, color: "bg-pink-500/20 text-pink-400", time: "6:00 PM", content: "User-generated content", type: "Image" },
-  { id: 10, date: 19, platform: "Facebook", icon: SiFacebook, color: "bg-blue-500/20 text-blue-400", time: "2:00 PM", content: "Event reminder", type: "Image" },
-  { id: 11, date: 19, platform: "LinkedIn", icon: SiLinkedin, color: "bg-blue-600/20 text-blue-500", time: "8:30 AM", content: "Thought leadership", type: "Article" },
-  { id: 12, date: 23, platform: "Instagram", icon: SiInstagram, color: "bg-pink-500/20 text-pink-400", time: "7:30 PM", content: "Product tutorial", type: "Reel" },
-  { id: 13, date: 23, platform: "X", icon: SiX, color: "bg-gray-500/20 text-gray-300", time: "4:00 PM", content: "Poll question", type: "Poll" },
-  { id: 14, date: 26, platform: "Facebook", icon: SiFacebook, color: "bg-blue-500/20 text-blue-400", time: "11:00 AM", content: "Community spotlight", type: "Video" },
-  { id: 15, date: 26, platform: "LinkedIn", icon: SiLinkedin, color: "bg-blue-600/20 text-blue-500", time: "7:00 AM", content: "Team achievement", type: "Image" },
-  { id: 16, date: 30, platform: "Instagram", icon: SiInstagram, color: "bg-pink-500/20 text-pink-400", time: "6:00 PM", content: "Month in review", type: "Carousel" },
-  { id: 17, date: 30, platform: "X", icon: SiX, color: "bg-gray-500/20 text-gray-300", time: "3:00 PM", content: "Month highlights", type: "Thread" },
+  { id: 1, date: 2, platform: "Instagram", icon: SiInstagram, color: "bg-white/10 text-white", time: "7:00 PM", content: "New product showcase", type: "Image" },
+  { id: 2, date: 2, platform: "Facebook", icon: SiFacebook, color: "bg-white/10 text-white", time: "1:00 PM", content: "Customer testimonial", type: "Video" },
+  { id: 3, date: 5, platform: "LinkedIn", icon: SiLinkedin, color: "bg-white/10 text-white", time: "8:00 AM", content: "Industry insights", type: "Article" },
+  { id: 4, date: 5, platform: "X", icon: SiX, color: "bg-white/10 text-white", time: "6:30 PM", content: "Quick tip", type: "Text" },
+  { id: 5, date: 9, platform: "Instagram", icon: SiInstagram, color: "bg-white/10 text-white", time: "7:00 PM", content: "Behind the scenes", type: "Reel" },
+  { id: 6, date: 12, platform: "Facebook", icon: SiFacebook, color: "bg-white/10 text-white", time: "12:00 PM", content: "Flash sale announcement", type: "Image" },
+  { id: 7, date: 12, platform: "LinkedIn", icon: SiLinkedin, color: "bg-white/10 text-white", time: "9:00 AM", content: "Company milestone", type: "Text" },
+  { id: 8, date: 16, platform: "X", icon: SiX, color: "bg-white/10 text-white", time: "5:00 PM", content: "Trending topic response", type: "Text" },
+  { id: 9, date: 16, platform: "Instagram", icon: SiInstagram, color: "bg-white/10 text-white", time: "6:00 PM", content: "User-generated content", type: "Image" },
+  { id: 10, date: 19, platform: "Facebook", icon: SiFacebook, color: "bg-white/10 text-white", time: "2:00 PM", content: "Event reminder", type: "Image" },
+  { id: 11, date: 19, platform: "LinkedIn", icon: SiLinkedin, color: "bg-white/10 text-white", time: "8:30 AM", content: "Thought leadership", type: "Article" },
+  { id: 12, date: 23, platform: "Instagram", icon: SiInstagram, color: "bg-white/10 text-white", time: "7:30 PM", content: "Product tutorial", type: "Reel" },
+  { id: 13, date: 23, platform: "X", icon: SiX, color: "bg-white/10 text-white", time: "4:00 PM", content: "Poll question", type: "Poll" },
+  { id: 14, date: 26, platform: "Facebook", icon: SiFacebook, color: "bg-white/10 text-white", time: "11:00 AM", content: "Community spotlight", type: "Video" },
+  { id: 15, date: 26, platform: "LinkedIn", icon: SiLinkedin, color: "bg-white/10 text-white", time: "7:00 AM", content: "Team achievement", type: "Image" },
+  { id: 16, date: 30, platform: "Instagram", icon: SiInstagram, color: "bg-white/10 text-white", time: "6:00 PM", content: "Month in review", type: "Carousel" },
+  { id: 17, date: 30, platform: "X", icon: SiX, color: "bg-white/10 text-white", time: "3:00 PM", content: "Month highlights", type: "Thread" },
 ];
 
 export default function VisualContentCalendar() {
@@ -53,10 +53,10 @@ export default function VisualContentCalendar() {
   const selectedDatePosts = selectedDate ? getPostsForDate(selectedDate) : [];
 
   const platformStats = [
-    { name: "Instagram", icon: SiInstagram, count: scheduledPosts.filter(p => p.platform === "Instagram").length, color: "text-pink-400" },
-    { name: "Facebook", icon: SiFacebook, count: scheduledPosts.filter(p => p.platform === "Facebook").length, color: "text-blue-400" },
-    { name: "LinkedIn", icon: SiLinkedin, count: scheduledPosts.filter(p => p.platform === "LinkedIn").length, color: "text-blue-500" },
-    { name: "X", icon: SiX, count: scheduledPosts.filter(p => p.platform === "X").length, color: "text-gray-300" },
+    { name: "Instagram", icon: SiInstagram, count: scheduledPosts.filter(p => p.platform === "Instagram").length, color: "text-white" },
+    { name: "Facebook", icon: SiFacebook, count: scheduledPosts.filter(p => p.platform === "Facebook").length, color: "text-white" },
+    { name: "LinkedIn", icon: SiLinkedin, count: scheduledPosts.filter(p => p.platform === "LinkedIn").length, color: "text-white" },
+    { name: "X", icon: SiX, count: scheduledPosts.filter(p => p.platform === "X").length, color: "text-white" },
   ];
 
   return (
@@ -65,7 +65,7 @@ export default function VisualContentCalendar() {
         {platformStats.map((platform) => {
           const Icon = platform.icon;
           return (
-            <Card key={platform.name} className="bg-slate-800 border-slate-700">
+            <Card key={platform.name} className="bg-slate-800/30 backdrop-blur-sm border-slate-700/50">
               <CardContent className="p-4 text-center">
                 <Icon className={`w-6 h-6 ${platform.color} mx-auto mb-2`} />
                 <p className="text-2xl font-bold text-white">{platform.count}</p>
@@ -78,11 +78,11 @@ export default function VisualContentCalendar() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <CalendarIcon className="w-5 h-5 text-orange-400" />
+                  <CalendarIcon className="w-5 h-5 text-white" />
                   {currentMonth.name} {currentMonth.year}
                 </h3>
                 <div className="flex gap-2">
@@ -119,7 +119,7 @@ export default function VisualContentCalendar() {
                       onClick={() => setSelectedDate(day)}
                       className={`aspect-square rounded-lg p-2 text-sm transition-all relative ${
                         isSelected
-                          ? "bg-orange-500 text-white ring-2 ring-orange-400"
+                          ? "bg-white text-black ring-2 ring-white/50"
                           : hasPost
                           ? "bg-slate-700 text-white hover:bg-slate-600"
                           : "text-gray-400 hover:bg-slate-700/50"
@@ -136,12 +136,7 @@ export default function VisualContentCalendar() {
                             return (
                               <div
                                 key={i}
-                                className={`w-1 h-1 rounded-full ${
-                                  post.platform === "Instagram" ? "bg-pink-400" :
-                                  post.platform === "Facebook" ? "bg-blue-400" :
-                                  post.platform === "LinkedIn" ? "bg-blue-500" :
-                                  "bg-gray-300"
-                                }`}
+                                className="w-1 h-1 rounded-full bg-white"
                               />
                             );
                           })}
@@ -152,22 +147,22 @@ export default function VisualContentCalendar() {
                 })}
               </div>
 
-              <div className="mt-4 pt-4 border-t border-slate-700">
+              <div className="mt-4 pt-4 border-t border-zinc-700">
                 <div className="flex items-center gap-4 text-xs text-gray-400">
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-pink-400 rounded-full" />
+                    <div className="w-2 h-2 bg-white rounded-full" />
                     <span>Instagram</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                    <div className="w-2 h-2 bg-white rounded-full" />
                     <span>Facebook</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                    <div className="w-2 h-2 bg-white rounded-full" />
                     <span>LinkedIn</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                    <div className="w-2 h-2 bg-white rounded-full" />
                     <span>X</span>
                   </div>
                 </div>
@@ -177,7 +172,7 @@ export default function VisualContentCalendar() {
         </div>
 
         <div>
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl shadow-2xl shadow-black/50">
             <CardContent className="p-6">
               <h3 className="text-lg font-bold text-white mb-4">
                 {selectedDate ? `Posts for Dec ${selectedDate}` : "Select a Date"}
@@ -202,17 +197,12 @@ export default function VisualContentCalendar() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className={`p-4 rounded-lg border ${
-                          post.color.includes("pink") ? "bg-pink-500/10 border-pink-500/30" :
-                          post.color.includes("blue-5") ? "bg-blue-500/10 border-blue-500/30" :
-                          post.color.includes("blue-6") ? "bg-blue-600/10 border-blue-600/30" :
-                          "bg-gray-500/10 border-gray-500/30"
-                        }`}
+                        className="p-4 rounded-lg border bg-white/10 border-white/20"
                         data-testid={`post-${post.id}`}
                       >
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            <Icon className={`w-4 h-4 ${post.color.split(' ')[1]}`} />
+                            <Icon className="w-4 h-4 text-white" />
                             <span className="text-sm font-semibold text-white">{post.platform}</span>
                           </div>
                           <Badge variant="outline" className="text-xs">

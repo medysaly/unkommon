@@ -10,20 +10,20 @@ export default function NotFound() {
       <Card className="w-full max-w-md bg-slate-800 border-slate-700">
         <CardContent className="pt-6 text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center">
-              <AlertCircle className="h-8 w-8 text-red-400" />
+            <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center border border-white/10">
+              <AlertCircle className="h-8 w-8 text-white" />
             </div>
           </div>
           
-          <h1 className="text-3xl font-bold text-white mb-2">404</h1>
-          <h2 className="text-xl font-semibold text-gray-300 mb-4">Page Not Found</h2>
+          <h1 className="text-3xl font-light text-white tracking-tight mb-2">404</h1>
+          <h2 className="text-xl font-light text-gray-300 tracking-tight mb-4">Page Not Found</h2>
 
           <p className="text-sm text-gray-400 mb-6">
             The page you're looking for doesn't exist or has been moved.
           </p>
           
           <Button
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+            className="bg-white hover:bg-zinc-100 text-black shadow-2xl shadow-black/50 hover:shadow-black/70 transition-all group font-light"
             data-testid="button-go-home"
             onClick={() => window.location.href = createPageUrl("Home")}
           >

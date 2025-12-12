@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Play, Pause, RotateCcw, Phone, Globe, Clock, Users, CheckCircle, AlertCircle, Calendar } from "lucide-react";
 
 type CaseStudy = "routing" | "multilingual" | "afterhours";
@@ -186,55 +183,64 @@ export default function AIReceptionistDemos() {
     <div className="space-y-8">
       {/* Case Study Selector */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button
-          variant={selectedCase === "routing" ? "default" : "outline"}
+        <button
           onClick={() => setSelectedCase("routing")}
-          className={selectedCase === "routing" ? "bg-blue-600 hover:bg-blue-700" : "border-slate-700"}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            selectedCase === "routing"
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
           data-testid="button-case-routing"
         >
-          <Users className="w-4 h-4 mr-2" />
+          <Users className="w-4 h-4 mr-2 inline" />
           Call Routing
-        </Button>
-        <Button
-          variant={selectedCase === "multilingual" ? "default" : "outline"}
+        </button>
+        <button
           onClick={() => setSelectedCase("multilingual")}
-          className={selectedCase === "multilingual" ? "bg-blue-600 hover:bg-blue-700" : "border-slate-700"}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            selectedCase === "multilingual"
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
           data-testid="button-case-multilingual"
         >
-          <Globe className="w-4 h-4 mr-2" />
+          <Globe className="w-4 h-4 mr-2 inline" />
           Multi-Language
-        </Button>
-        <Button
-          variant={selectedCase === "afterhours" ? "default" : "outline"}
+        </button>
+        <button
           onClick={() => setSelectedCase("afterhours")}
-          className={selectedCase === "afterhours" ? "bg-blue-600 hover:bg-blue-700" : "border-slate-700"}
+          className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
+            selectedCase === "afterhours"
+              ? "bg-white text-black"
+              : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
+          }`}
           data-testid="button-case-afterhours"
         >
-          <Clock className="w-4 h-4 mr-2" />
+          <Clock className="w-4 h-4 mr-2 inline" />
           After-Hours
-        </Button>
+        </button>
       </div>
 
       {/* Case Study Header */}
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">{currentCase.title}</h3>
-        <p className="text-blue-400 text-sm font-medium mb-2">{currentCase.subtitle}</p>
-        <p className="text-gray-300">{currentCase.description}</p>
+        <h3 className="text-2xl font-light text-white mb-2 tracking-tight">{currentCase.title}</h3>
+        <p className="text-zinc-500 text-sm font-light mb-2">{currentCase.subtitle}</p>
+        <p className="text-zinc-400 font-light">{currentCase.description}</p>
       </div>
 
       {/* Main Demo Area */}
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Phone Call Interface */}
-        <Card className="bg-slate-800 border-slate-700">
-          <CardContent className="p-6">
+        <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+          <div className="p-6">
             {/* Phone Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-t-2xl p-4 flex items-center gap-3 -mx-6 -mt-6 mb-4">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <Phone className="w-6 h-6 text-white" />
+            <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                <Phone className="w-6 h-6 text-zinc-400" />
               </div>
               <div>
-                <div className="text-white font-semibold">AI Receptionist</div>
-                <div className="text-blue-200 text-xs">Active Call</div>
+                <div className="text-white font-light">AI Receptionist</div>
+                <div className="text-zinc-500 text-xs font-light">Active Call</div>
               </div>
             </div>
 
@@ -252,22 +258,22 @@ export default function AIReceptionistDemos() {
                     data-testid={`message-${message.id}`}
                   >
                     <div
-                      className={`max-w-[80%] rounded-lg p-3 ${
+                      className={`max-w-[80%] rounded-xl p-3 ${
                         message.speaker === "caller"
-                          ? "bg-blue-600 text-white"
+                          ? "bg-white text-black"
                           : message.speaker === "system"
-                          ? "bg-slate-700 text-gray-300 italic"
-                          : "bg-slate-600 text-white"
+                          ? "bg-zinc-800 text-zinc-400 italic border border-zinc-700"
+                          : "bg-zinc-800 text-zinc-200 border border-zinc-700"
                       }`}
                     >
                       {message.speaker === "system" && (
-                        <Badge variant="secondary" className="mb-2 text-xs">
-                          <CheckCircle className="w-3 h-3 mr-1" />
+                        <div className="mb-2 text-xs text-zinc-500 flex items-center gap-1">
+                          <CheckCircle className="w-3 h-3" />
                           System
-                        </Badge>
+                        </div>
                       )}
-                      <p className="text-sm whitespace-pre-line" data-testid={`message-text-${message.id}`}>{message.text}</p>
-                      <p className="text-xs opacity-70 mt-1 text-right">{message.time}</p>
+                      <p className="text-sm whitespace-pre-line font-light" data-testid={`message-text-${message.id}`}>{message.text}</p>
+                      <p className="text-xs opacity-50 mt-1 text-right font-light">{message.time}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -275,92 +281,89 @@ export default function AIReceptionistDemos() {
             </div>
 
             {/* Controls */}
-            <div className="flex gap-2 mt-4 pt-4 border-t border-slate-700">
+            <div className="flex gap-2 mt-4 pt-4 border-t border-zinc-700/60">
               {!isPlaying ? (
-                <Button
+                <button
                   onClick={handlePlay}
-                  variant="default"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  className="flex-1 bg-white hover:bg-zinc-100 text-black py-3 px-4 rounded-full text-sm font-light transition-all flex items-center justify-center gap-2"
                   data-testid="button-play-demo"
                 >
-                  <Play className="w-4 h-4 mr-2" />
+                  <Play className="w-4 h-4" />
                   {currentMessageIndex === -1 ? "Start Demo" : "Resume"}
-                </Button>
+                </button>
               ) : (
-                <Button
+                <button
                   onClick={handlePause}
-                  variant="outline"
-                  className="flex-1"
+                  className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 py-3 px-4 rounded-full text-sm font-light transition-all flex items-center justify-center gap-2 border border-zinc-800"
                   data-testid="button-pause-demo"
                 >
-                  <Pause className="w-4 h-4 mr-2" />
+                  <Pause className="w-4 h-4" />
                   Pause
-                </Button>
+                </button>
               )}
-              <Button
+              <button
                 onClick={handleReset}
-                variant="outline"
-                className="border-slate-700"
+                className="bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-3 px-4 rounded-full border border-zinc-800 transition-all"
                 data-testid={`button-reset-${selectedCase}`}
               >
                 <RotateCcw className="w-4 h-4" />
-              </Button>
+              </button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Right Column: Workflow & Analysis */}
         <div className="space-y-6">
           {/* Workflow Visualization */}
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h4 className="text-lg font-semibold text-white mb-4">AI Workflow</h4>
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h4 className="text-lg font-light text-white mb-4 tracking-tight">AI Workflow</h4>
               <div className="space-y-3" data-testid="workflow-container">
                 {workflow.map((step, index) => (
                   <motion.div
                     key={step.id}
                     initial={{ opacity: 0.5 }}
-                    animate={{ 
+                    animate={{
                       opacity: step.status === "pending" ? 0.5 : 1,
                       scale: step.status === "active" ? 1.02 : 1
                     }}
-                    className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
+                    className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
                       step.status === "completed"
-                        ? "bg-green-500/10 border border-green-500/20"
+                        ? "bg-zinc-800 border border-zinc-700"
                         : step.status === "active"
-                        ? "bg-blue-500/10 border border-blue-500/20"
-                        : "bg-slate-900"
+                        ? "bg-zinc-800 border border-zinc-600"
+                        : "bg-zinc-950 border border-zinc-800"
                     }`}
                     data-testid={`workflow-step-${step.id}`}
                   >
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                       step.status === "completed"
-                        ? "bg-green-500"
+                        ? "bg-white text-black"
                         : step.status === "active"
-                        ? "bg-blue-500 animate-pulse"
-                        : "bg-slate-700"
+                        ? "bg-zinc-600 animate-pulse"
+                        : "bg-zinc-800"
                     }`}>
                       {step.status === "completed" ? (
-                        <CheckCircle className="w-4 h-4 text-white" />
+                        <CheckCircle className="w-4 h-4" />
                       ) : (
-                        <span className="text-white text-xs font-bold">{index + 1}</span>
+                        <span className="text-zinc-400 text-xs font-light">{index + 1}</span>
                       )}
                     </div>
-                    <span className={`text-sm font-medium ${
-                      step.status === "pending" ? "text-gray-500" : "text-white"
+                    <span className={`text-sm font-light ${
+                      step.status === "pending" ? "text-zinc-600" : "text-zinc-200"
                     }`}>
                       {step.label}
                     </span>
                   </motion.div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* AI Analysis Data */}
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <h4 className="text-lg font-semibold text-white mb-4">Call Analysis</h4>
+          <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="p-6">
+              <h4 className="text-lg font-light text-white mb-4 tracking-tight">Call Analysis</h4>
               {currentMessageIndex >= 0 ? (
                 <div className="space-y-3" data-testid="analysis-container">
                   {currentCase.analysisData.map((data, index) => (
@@ -369,26 +372,26 @@ export default function AIReceptionistDemos() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="flex items-start justify-between gap-4 p-3 bg-slate-900 rounded-lg"
+                      className="flex items-start justify-between gap-4 p-3 bg-zinc-950 border border-zinc-800 rounded-xl"
                       data-testid={`analysis-item-${index}`}
                     >
                       <div className="flex items-start gap-2">
-                        {data.icon && <data.icon className="w-4 h-4 text-blue-400 mt-0.5" />}
-                        <span className="text-sm text-gray-400" data-testid={`analysis-label-${index}`}>{data.label}</span>
+                        {data.icon && <data.icon className="w-4 h-4 text-zinc-500 mt-0.5" />}
+                        <span className="text-sm text-zinc-500 font-light" data-testid={`analysis-label-${index}`}>{data.label}</span>
                       </div>
-                      <span className="text-sm text-white font-medium text-right" data-testid={`analysis-value-${index}`}>{data.value}</span>
+                      <span className="text-sm text-zinc-200 font-light text-right" data-testid={`analysis-value-${index}`}>{data.value}</span>
                     </motion.div>
                   ))}
                 </div>
               ) : (
                 <div className="py-12 text-center">
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-zinc-600 text-sm font-light">
                     Call analysis will appear here as the demo runs
                   </p>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

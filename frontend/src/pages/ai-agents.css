@@ -1,0 +1,19 @@
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-256px * 4 - 24px * 4));
+  }
+}
+
+.animate-scroll-left-fast {
+  animation: scroll-left 25s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-left-paused {
+  animation: scroll-left 25s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}

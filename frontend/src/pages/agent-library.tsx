@@ -112,9 +112,9 @@ export default function AgentLibrary() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" data-testid="heading-page-title">
+            <h1 className="text-4xl md:text-6xl font-light text-white mb-6 tracking-tight" data-testid="heading-page-title">
               AI Agent{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="text-white">
                 Library
               </span>
             </h1>
@@ -138,7 +138,7 @@ export default function AgentLibrary() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Card className="h-full bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-all hover:shadow-xl group" data-testid={`card-agent-${index}`}>
+                <Card className="h-full bg-slate-800 border-slate-700 hover:border-white/20 transition-all hover:shadow-xl group" data-testid={`card-agent-${index}`}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div
@@ -150,8 +150,8 @@ export default function AgentLibrary() {
                       <span
                         className={`text-xs px-3 py-1 rounded-full font-medium ${
                           agent.status === "Available"
-                            ? "bg-green-500/20 text-green-300"
-                            : "bg-yellow-500/20 text-yellow-300"
+                            ? "bg-white/20 text-white"
+                            : "bg-white/20 text-white"
                         }`}
                         data-testid={`badge-status-${index}`}
                       >
@@ -159,7 +159,7 @@ export default function AgentLibrary() {
                       </span>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2" data-testid={`heading-agent-${index}`}>
+                    <h3 className="text-xl font-light text-white mb-2 tracking-tight" data-testid={`heading-agent-${index}`}>
                       {agent.title}
                     </h3>
                     <p className="text-gray-400 mb-4 text-sm" data-testid={`text-agent-description-${index}`}>
@@ -168,7 +168,7 @@ export default function AgentLibrary() {
                     
                     <Button
                       variant="ghost"
-                      className="p-0 h-auto text-blue-400 group-hover:gap-2 transition-all"
+                      className="p-0 h-auto text-white group-hover:gap-2 transition-all font-light"
                       data-testid={`link-${agent.page.toLowerCase()}`}
                       onClick={() => window.location.href = createPageUrl(agent.page)}
                     >
@@ -184,14 +184,14 @@ export default function AgentLibrary() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-blue-900/20 to-indigo-900/20">
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-black">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-light text-white mb-6 tracking-tight">
               Ready to Automate Your Business?
             </h2>
             <p className="text-xl text-gray-300 mb-8">
@@ -199,12 +199,12 @@ export default function AgentLibrary() {
             </p>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+              className="bg-white hover:bg-zinc-100 text-black text-lg px-8 shadow-2xl shadow-black/50 hover:shadow-black/70 transition-all group font-light"
               data-testid="button-contact-us"
               onClick={() => window.location.href = createPageUrl("Contact")}
             >
               Contact Us
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>
