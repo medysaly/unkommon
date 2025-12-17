@@ -526,4 +526,9 @@
   .animate-wave-slow {
     animation: wave 10s ease-in-out infinite reverse;
   }
+
+  /* 3D Perspective for Interactive Cards */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
 }

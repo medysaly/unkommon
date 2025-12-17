@@ -1,13 +1,14 @@
 import { createPageUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import DarkVeil from "@/components/DarkVeil";
 import { LogoLoop } from "@/components/LogoLoop";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { World } from "@/components/ui/globe";
 import type { GlobeConfig } from "@/components/ui/globe";
 import { TechCard } from "@/components/ui/tech-card";
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -16,6 +17,197 @@ import {
 } from "@/components/ui/accordion";
 import "@/styles/pearl-button.css";
 import "@/styles/glass-cards.css";
+
+// Interactive Agents Image Component
+const InteractiveAgentsImage = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const agents = [
+    {
+      id: 1,
+      title: "The Lead Qualifier",
+      description: "Instant lead qualification and engagement before competitors respond",
+      link: "SpeedToLead",
+      rotateY: 0,
+      topPosition: "58%", // Up/Down - lower % = higher up
+      leftPosition: "71%", // Left/Right - lower % = more left, higher % = more right
+      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    },
+    {
+      id: 2,
+      title: "The AI Receptionist",
+      description: "24/7 phone automation with natural conversations and CRM integration",
+      link: "AIReceptionist",
+      rotateY: 0,
+      topPosition: "65%", // Up/Down - lower % = higher up
+      leftPosition: "40%", // Left/Right - lower % = more left, higher % = more right
+      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    },
+    {
+      id: 3,
+      title: "The Client Reactivator",
+      description: "Unlock revenue from your existing database with automated reactivation",
+      link: "AIBookingSystem",
+      rotateY: 15,
+      topPosition: "73%", // Up/Down - lower % = higher up
+      leftPosition: "25%", // Left/Right - lower % = more left, higher % = more right
+      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2 }}
+      className="relative max-w-7xl mx-auto"
+    >
+      <div className="relative w-full">
+        <img
+          src="/images/backgrounds/AI agents .png"
+          alt="AI Agents"
+          className="w-full h-auto"
+        />
+
+        <div className="absolute inset-0 grid grid-cols-3 gap-0">
+          {agents.map((agent) => (
+            <div
+              key={agent.id}
+              className="relative flex flex-col items-center justify-center perspective-1000"
+            >
+              {/* Agent Name Label - Sitting on table under each agent - HOVER TRIGGER */}
+              <div
+                className="absolute pointer-events-auto z-30 cursor-pointer"
+                style={{
+                  top: agent.topPosition,
+                  left: agent.leftPosition,
+                  transform: `translateX(-50%) rotate(${agent.rotation}deg)`
+                }}
+                onMouseEnter={() => setHoveredCard(agent.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/30 to-white/20 dark:from-white/10 dark:via-white/20 dark:to-white/10 blur-xl"></div>
+                  <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-xl px-5 py-2 rounded-full border border-white/40 dark:border-white/30 shadow-lg">
+                    <p className="text-xs font-semibold text-foreground tracking-wide whitespace-nowrap">
+                      {agent.title}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Premium Liquid Glass 3D Hover Card */}
+              <AnimatePresence mode="wait">
+                {hoveredCard === agent.id && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      rotateY: agent.rotateY,
+                      z: -50,
+                      scale: 0.85,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      rotateY: 0,
+                      z: 0,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      rotateY: agent.rotateY,
+                      z: -50,
+                      scale: 0.85,
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                    }}
+                    className="absolute inset-16 pointer-events-auto cursor-pointer z-40"
+                    style={{
+                      transformStyle: "preserve-3d",
+                      willChange: "transform, opacity"
+                    }}
+                    onMouseEnter={() => setHoveredCard(agent.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    onClick={() => window.location.href = createPageUrl(agent.link)}
+                  >
+                    {/* Single layer liquid glass card - no backdrop blur to prevent glitching */}
+                    <div className="relative w-full h-full rounded-3xl p-6 flex flex-col justify-center items-center text-center"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)",
+                        border: "1px solid rgba(255,255,255,0.3)",
+                        boxShadow: "0 8px 32px 0 rgba(255,255,255,0.1), inset 0 1px 0 0 rgba(255,255,255,0.2)",
+                      }}
+                    >
+                      <div className="relative z-10">
+                        {/* Title with maximum visibility */}
+                        <h3 className="text-3xl font-bold text-white mb-4 tracking-tight"
+                          style={{
+                            textShadow: "0 3px 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,1)",
+                            background: "rgba(0,0,0,0.5)",
+                            backdropFilter: "blur(10px)",
+                            padding: "12px 20px",
+                            borderRadius: "12px",
+                            border: "1px solid rgba(255,255,255,0.2)"
+                          }}
+                        >
+                          {agent.title}
+                        </h3>
+
+                        {/* Description with maximum visibility */}
+                        <p className="text-base text-white font-semibold leading-relaxed mb-6"
+                          style={{
+                            textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 0 25px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,1)",
+                            background: "rgba(0,0,0,0.45)",
+                            backdropFilter: "blur(8px)",
+                            padding: "16px",
+                            borderRadius: "10px",
+                            border: "1px solid rgba(255,255,255,0.15)"
+                          }}
+                        >
+                          {agent.description}
+                        </p>
+
+                        {/* Interactive Learn More Button - Brighter */}
+                        <button
+                          className="group relative px-8 py-3 rounded-full font-bold text-base transition-all duration-300"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.25))",
+                            border: "2px solid rgba(255,255,255,0.6)",
+                            boxShadow: "0 4px 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)",
+                            color: "white",
+                            textShadow: "0 2px 8px rgba(0,0,0,0.5)"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5))";
+                            e.currentTarget.style.boxShadow = "0 8px 35px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.4)";
+                            e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.9)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.25))";
+                            e.currentTarget.style.boxShadow = "0 4px 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)";
+                            e.currentTarget.style.transform = "translateY(0) scale(1)";
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)";
+                          }}
+                        >
+                          <span className="relative z-10">Learn More →</span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const globeConfig: GlobeConfig = {
   pointSize: 4,
@@ -179,43 +371,82 @@ const sampleArcs = [
 ];
 
 export default function Home() {
+  // Header & Subheader Position Controls - Adjust these values
+  const headerControls = {
+    left: "-80px",      // Left/Right position (e.g., "100px", "200px", "-50px")
+    top: "-500px",       // Up/Down position (e.g., "50px", "-30px")
+    rotation: 0,      // Rotation in degrees (e.g., -5, 0, 5)
+  };
+
+  const subheaderControls = {
+    left: "-80px",      // Left/Right position
+    top: "-500px",       // Up/Down position
+    rotation: 0,      // Rotation in degrees
+  };
+
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-screen flex items-center bg-white dark:bg-black">
-
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-screen flex items-center bg-white dark:bg-black"
+        style={{
+          backgroundImage: "url('/images/backgrounds/header.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "0% center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl"
+            className="mt-[530px]"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight text-foreground tracking-tight"
-              data-testid="heading-hero-title"
+            <div
+              className="relative mb-6"
+              style={{
+                left: headerControls.left,
+                top: headerControls.top,
+                transform: `rotate(${headerControls.rotation}deg)`,
+                transformOrigin: "left center"
+              }}
             >
-              Don't Be Common.
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-foreground tracking-tight"
+                data-testid="heading-hero-title"
+              >
+                Don't Be Common.
+              </motion.h1>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl"
-              data-testid="text-hero-description"
+            <div
+              className="relative mb-10"
+              style={{
+                left: subheaderControls.left,
+                top: subheaderControls.top,
+                transform: `rotate(${subheaderControls.rotation}deg)`,
+                transformOrigin: "left center"
+              }}
             >
-              Common businesses miss opportunities. We build the intelligence to catch them.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-xl text-muted-foreground leading-relaxed max-w-3xl"
+                data-testid="text-hero-description"
+              >
+                Common businesses miss opportunities. We build the intelligence to catch them.
+              </motion.p>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <button
                 className="pearl-button"
@@ -309,59 +540,8 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Glass Cards Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="glass-container"
-          >
-            {/* AI Receptionist Card */}
-            <div
-              className="glass-card"
-              style={{ "--r": -15 } as React.CSSProperties}
-              onClick={() => window.location.href = createPageUrl("AIReceptionist")}
-            >
-              <div className="glass-card-content">
-                <h3 className="glass-card-title">The AI Receptionist</h3>
-                <p className="glass-card-description">
-                  24/7 phone automation with natural conversations and CRM integration
-                </p>
-              </div>
-              <div className="glass-card-label">The AI Receptionist</div>
-            </div>
-
-            {/* Speed to Lead Card */}
-            <div
-              className="glass-card"
-              style={{ "--r": 0 } as React.CSSProperties}
-              onClick={() => window.location.href = createPageUrl("SpeedToLead")}
-            >
-              <div className="glass-card-content">
-                <h3 className="glass-card-title">The Lead Qualifier</h3>
-                <p className="glass-card-description">
-                  Instant lead qualification and engagement before competitors respond
-                </p>
-              </div>
-              <div className="glass-card-label">The Lead Qualifier</div>
-            </div>
-
-            {/* AI Booking System Card */}
-            <div
-              className="glass-card"
-              style={{ "--r": 15 } as React.CSSProperties}
-              onClick={() => window.location.href = createPageUrl("AIBookingSystem")}
-            >
-              <div className="glass-card-content">
-                <h3 className="glass-card-title">The Client Reactivator</h3>
-                <p className="glass-card-description">
-                  WhatsApp & SMS booking automation with calendar sync 24/7
-                </p>
-              </div>
-              <div className="glass-card-label">The Client Reactivator</div>
-            </div>
-          </motion.div>
+          {/* Interactive AI Agents Image with 3D Hover Cards */}
+          <InteractiveAgentsImage />
 
           {/* Bottom CTA */}
           <motion.div
