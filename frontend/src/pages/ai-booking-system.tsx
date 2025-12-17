@@ -1,45 +1,11 @@
 import { motion } from "framer-motion";
-import { Calendar, MessageSquare, Clock, Smartphone, CheckCircle, ArrowRight, Camera, Mic, Globe } from "lucide-react";
+import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { createPageUrl } from "@/lib/utils";
 import WhatsAppDemo from "@/components/WhatsAppDemo";
-import AIWhatsAppDemos from "@/components/AIWhatsAppDemos";
-import { LuminousCard } from "@/components/LuminousCard";
 import "@/styles/pearl-button.css";
 
 export default function AIBookingSystem() {
-  const features = [
-    {
-      icon: MessageSquare,
-      title: "WhatsApp & SMS",
-      description: "Customers book via their preferred messaging app",
-    },
-    {
-      icon: Calendar,
-      title: "Smart Scheduling",
-      description: "AI manages availability and prevents double-booking",
-    },
-    {
-      icon: Clock,
-      title: "24/7 Booking",
-      description: "Accept appointments anytime, anywhere",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Friendly",
-      description: "Optimized for on-the-go booking experiences",
-    },
-  ];
-
-  const benefits = [
-    "Reduce no-shows with automated reminders",
-    "Sync with Google Calendar, Outlook, and more",
-    "Custom booking rules and availability",
-    "Multi-location support",
-    "Payment integration",
-    "Real-time availability updates",
-  ];
-
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
@@ -58,10 +24,7 @@ export default function AIBookingSystem() {
               className="text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight mb-6 leading-tight"
               data-testid="heading-page-title"
             >
-              Automated Booking via{" "}
-              <span className="text-foreground">
-                WhatsApp & SMS
-              </span>
+              Unlock Revenue Hidden in Your Existing Database
             </motion.h1>
 
             <motion.p
@@ -70,8 +33,7 @@ export default function AIBookingSystem() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto"
             >
-              Let customers schedule appointments 24/7 through WhatsApp and SMS. Our AI
-              handles the entire booking process automatically.
+              Automated Reactivation. Zero Ad Spend. 100% ROI.
             </motion.p>
 
             <motion.div
@@ -139,150 +101,126 @@ export default function AIBookingSystem() {
         </div>
       </section>
 
-      {/* Advanced AI Capabilities */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
+      {/* Client Reactivator Detailed Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-5xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Advanced AI Capabilities
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-              Beyond appointment booking, our AI handles complex scenarios that traditionally require human intervention
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Your most profitable asset is the list of leads and clients you already paid to acquire. This agent connects to your CRM or patient management system (like Salesforce, ServiceTitan, or OpenDental) to identify dormant contacts. It launches personalized, natural SMS campaigns to re-engage them, reigniting old relationships and filling your calendar without spending a dime on new marketing.
             </p>
-
-            {/* Capability Cards */}
-            <div className="grid md:grid-cols-3 gap-6 justify-items-center mb-16">
-              {[
-                { icon: Camera, title: "Visual Analysis", description: "AI analyzes photos of products, damage, receipts, or issues to provide instant assessment and solutions" },
-                { icon: Mic, title: "Voice Processing", description: "Customers send voice messages, AI transcribes and understands intent to resolve issues automatically" },
-                { icon: Globe, title: "Multilingual Support", description: "AI detects and responds in customer's language while your team sees everything in English" }
-              ].map((capability, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <LuminousCard
-                    icon={<capability.icon />}
-                    title={capability.title}
-                    description={capability.description}
-                  />
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Mobile Notice */}
-          <div className="md:hidden">
-            <Card className="bg-card border-border">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-card rounded-2xl flex items-center justify-center border border-border">
-                  <MessageSquare className="w-8 h-8 text-foreground" />
-                </div>
-                <h3 className="text-xl font-light text-foreground tracking-tight mb-2">
-                  Interactive Demos Available on Larger Screens
-                </h3>
-                <p className="text-muted-foreground">
-                  To experience the advanced AI capability demos, please view this page on a tablet, laptop, or desktop computer.
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* The Capabilities */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                The Capabilities
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Smart Segmentation</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Scans your database to find high-value targets (e.g., "Patients overdue by 6 months" or "Leads who ghosted in 2024").
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Conversational Outreach</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Sends personalized, 2-way text messages—not generic "blasts"—that invite the client to book an appointment or claim an offer.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Autonomous Booking</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Handles the back-and-forth scheduling conversation and books the appointment directly into your calendar.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">List Hygiene</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Automatically flags disconnected numbers and updates client details, cleaning your database while it generates revenue.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Campaign Logic</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Runs specific plays for different goals: Annual Check-ups, Seasonal Promos, or "Unsold Estimate" follow-ups.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Why This Works */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                The "Revenue" Promise
+              </h3>
+              <div className="mb-8">
+                <p className="text-xl text-muted-foreground leading-relaxed italic">
+                  "Stop burning cash on new ads until you've monetized the leads you already own."
                 </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Desktop Demos */}
-          <div className="hidden md:block">
-            <AIWhatsAppDemos />
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Powerful Features
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything you need for seamless appointment management
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <LuminousCard
-                  icon={<feature.icon />}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Everything You Need
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our AI booking system integrates seamlessly with your existing tools and workflows
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <Card className="h-full bg-card backdrop-blur-sm border-border hover:border-foreground/30 transition-all duration-300">
-                  <CardContent className="p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="relative flex-shrink-0">
-                        <CheckCircle className="w-6 h-6 text-foreground" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-muted-foreground text-base leading-relaxed">
-                          {benefit}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+              </div>
+              <h3 className="text-3xl font-semibold text-foreground mb-8 mt-12">
+                Why This Works
+              </h3>
+              <div className="space-y-8">
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Zero Ad Spend
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "This is the killer hook. Business owners hate rising ad costs."
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Specific Systems
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "Mentioning ServiceTitan (Trades) or OpenDental (Dentists) signals you understand their specific industry software."
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    List Hygiene
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "Tells them you will leave their database in better shape than you found it."
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

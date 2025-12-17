@@ -34,12 +34,6 @@ Parameters:
     Type: String
     Description: Cognito User Pool ARN for authorization
 
-  HeyGenApiKey:
-    Type: String
-    Description: HeyGen API key for streaming avatar
-    NoEcho: true
-    Default: ""
-
 Resources:
   # API Gateway with Cognito Authorizer
   BusinessAutomatedApi:
@@ -218,81 +212,6 @@ Resources:
           Properties:
             RestApiId: !Ref BusinessAutomatedApi
             Path: /api/chat
-            Method: POST
-
-  # ===== HEYGEN AVATAR RESOURCES =====
-
-  # DynamoDB Table for HeyGen Conversations
-  HeyGenConversationsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: heygen_conversations
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: sessionId
-          AttributeType: S
-      KeySchema:
-        - AttributeName: sessionId
-          KeyType: HASH
-      TimeToLiveSpecification:
-        Enabled: true
-        AttributeName: ttl
-      Tags:
-        - Key: Service
-          Value: HeyGen
-
-  # HeyGen Token Generation Lambda (Public)
-  HeyGenTokenFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/functions/
-      Handler: heygen.createToken
-      Timeout: 10
-      Environment:
-        Variables:
-          HEYGEN_API_KEY: !Ref HeyGenApiKey
-      Events:
-        HeyGenTokenApi:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BusinessAutomatedApi
-            Path: /api/heygen/token
-            Method: POST
-
-  # HeyGen Clear Conversation Lambda (Public)
-  HeyGenClearFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/functions/
-      Handler: heygen.clearConversation
-      Timeout: 10
-      Environment:
-        Variables:
-          CONVERSATIONS_TABLE_NAME: !Ref HeyGenConversationsTable
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref HeyGenConversationsTable
-      Events:
-        HeyGenClearApi:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BusinessAutomatedApi
-            Path: /api/heygen/conversation/clear
-            Method: POST
-
-  # HeyGen Conversation Lambda - redirects to chatbot (Public)
-  HeyGenConversationFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/functions/
-      Handler: heygen.handleConversation
-      Timeout: 10
-      Events:
-        HeyGenConversationApi:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BusinessAutomatedApi
-            Path: /api/heygen/conversation
             Method: POST
 
 Outputs:

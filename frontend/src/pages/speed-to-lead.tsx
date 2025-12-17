@@ -1,58 +1,11 @@
 import { motion } from "framer-motion";
-import { Zap, MessageCircle, Target, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { createPageUrl } from "@/lib/utils";
 import SpeedToLeadDemo from "@/components/SpeedToLeadDemo";
-import { Citation } from "@/components/Citation";
-import { LuminousCard } from "@/components/LuminousCard";
 import "@/styles/pearl-button.css";
 
 export default function SpeedToLead() {
-  const features = [
-    {
-      icon: Zap,
-      title: "Instant Response",
-      description: "Respond to leads in seconds, not hours",
-    },
-    {
-      icon: MessageCircle,
-      title: "Personalized Messages",
-      description: "AI-crafted responses tailored to each inquiry",
-    },
-    {
-      icon: Target,
-      title: "Lead Qualification",
-      description: "Automatically qualify and prioritize leads",
-    },
-    {
-      icon: TrendingUp,
-      title: "Higher Conversion",
-      description: "Convert more leads with immediate engagement",
-    },
-  ];
-
-  const stats = [
-    { 
-      value: "21x", 
-      label: "Higher Qualification Rate",
-      citation: "lead-response-5min",
-      description: "Responding within 5 min vs 30 min"
-    },
-    { 
-      value: "78%", 
-      label: "Buy From First Responder",
-      citation: "first-responder-wins",
-      description: "Speed is critical in competitive markets"
-    },
-    { value: "24/7", label: "Always Available" },
-    { 
-      value: "391%", 
-      label: "Conversion Increase",
-      citation: "lead-response-1min",
-      description: "With 1-minute response time"
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
@@ -71,10 +24,7 @@ export default function SpeedToLead() {
               className="text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight mb-6 leading-tight"
               data-testid="heading-page-title"
             >
-              Capture Leads Before Your{" "}
-              <span className="text-foreground">
-                Competition
-              </span>
+              Turn New Inquiries Into Qualified Meetings in Minutes
             </motion.h1>
 
             <motion.p
@@ -133,7 +83,7 @@ export default function SpeedToLead() {
             <Card className="bg-card border-border">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-card rounded-2xl flex items-center justify-center border border-border">
-                  <Zap className="w-8 h-8 text-foreground" />
+                  <CheckCircle className="w-8 h-8 text-foreground" />
                 </div>
                 <h3 className="text-xl font-light text-foreground tracking-tight mb-2">
                   Interactive Demos Available on Larger Screens
@@ -152,83 +102,126 @@ export default function SpeedToLead() {
         </div>
       </section>
 
-      {/* Features Section - Lightning-Fast Lead Response */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
+      {/* Lead Qualifier Detailed Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Lightning-Fast Lead Response
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our AI responds instantly across all channels, qualifying and engaging leads before your competition even sees them
+            <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              This agent connects directly to your existing lead sources—Facebook & Instagram Ads, Zillow, and website forms—to engage every new inquiry within seconds. It starts a real conversation via SMS, email, or phone to filter out spam and duplicates. Qualified prospects are scored and either booked straight onto your calendar or routed to a rep, with every interaction synced back into your CRM (like Salesforce, HubSpot, or GoHighLevel).
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <LuminousCard
-                  icon={<feature.icon />}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* The Capabilities */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                The Capabilities
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Instant Outreach</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Triggers immediate response to leads from Facebook, Zillow, chat widgets, and calls.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Automated Qualification</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Asks your key qualifying questions (budget, timeline, authority) using your custom rules.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Smart Routing</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Auto-books meetings directly to rep calendars based on lead score.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Persistent Follow-up</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Executes multi-touch nurture sequences over SMS, email, and voice.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">CRM Sync</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Updates Salesforce/HubSpot fields automatically and filters out spam/duplicates.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
 
-      {/* Stats Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4">
-              The Power of Speed
-            </h2>
-            <p className="text-muted-foreground text-lg">Real data that proves speed wins in lead conversion</p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-                data-testid={`stat-card-${index}`}
-              >
-                <Card className="h-full bg-card backdrop-blur-sm border-border hover:border-foreground/30 transition-all duration-300">
-                  <CardContent className="p-6 text-center">
-                    <div className="text-4xl md:text-5xl font-bold text-foreground mb-2 group-hover:scale-110 transition-transform">
-                      {stat.value}
-                      {stat.citation && <Citation statisticId={stat.citation} />}
-                    </div>
-                    <div className="text-muted-foreground text-sm font-medium mb-1">{stat.label}</div>
-                    {stat.description && (
-                      <div className="text-muted-foreground text-xs mt-1">{stat.description}</div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {/* Why This Works */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                The "Pipeline" Promise
+              </h3>
+              <div className="mb-8">
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Never let a hot lead go cold again—every inquiry gets a fast response, clear qualification, and a path to a booked meeting, turning more of your marketing spend into real, forecastable pipeline.
+                </p>
+              </div>
+              <h3 className="text-3xl font-semibold text-foreground mb-8 mt-12">
+                Why This Works
+              </h3>
+              <div className="space-y-8">
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    CRM Enrichment
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "This bot keeps my Salesforce/HubSpot clean."
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Peak Intent
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    Uses marketing language that realtors and agencies understand.
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Integrates with Existing Sources
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "Removes the fear that they have to change their whole marketing strategy. It just plugs in."
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

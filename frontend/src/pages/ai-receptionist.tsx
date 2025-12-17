@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Phone, CheckCircle, ArrowRight, MessageSquare, Languages, Voicemail, FileText, CalendarClock, HelpCircle } from "lucide-react";
+import { Phone, CheckCircle, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { createPageUrl } from "@/lib/utils";
 import VapiDemo from "@/components/VapiDemo";
 import AIReceptionistDemos from "@/components/AIReceptionistDemos";
 import { Citation } from "@/components/Citation";
 import { DetailsAccordion } from "@/components/DetailsAccordion";
-import { LuminousCard } from "@/components/LuminousCard";
 import "@/styles/pearl-button.css";
 
 export default function AIReceptionist() {
@@ -123,10 +122,7 @@ export default function AIReceptionist() {
               className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight text-foreground tracking-tight"
               data-testid="heading-page-title"
             >
-              Stop Missing Calls.{" "}
-              <span className="text-foreground">
-                Start Booking Revenue
-              </span>
+              AI Receptionist That Answers Every Call, 24/7
             </motion.h1>
 
             <motion.p
@@ -136,7 +132,7 @@ export default function AIReceptionist() {
               className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto"
               data-testid="text-page-description"
             >
-              You miss 30% of calls. That's $10k/month in lost revenue. Our AI answers every call instantly, speaks any language fluently, and books directly into your calendar.
+              Book appointments, route calls, and handle FAQs automatically so your team can focus on real customers, not ringing phones.
             </motion.p>
 
             <motion.div
@@ -209,6 +205,131 @@ export default function AIReceptionist() {
         </div>
       </section>
 
+      {/* AI Receptionist Detailed Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-5xl mx-auto mb-16"
+          >
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Our AI receptionist greets every caller instantly, understands what they need, and takes action whether that is booking, rescheduling, or canceling an appointment, answering common questions, or routing them to the right person. It connects directly to your calendar and tools to keep your schedule full, reduce no-shows, and log key details without manual data entry. By handling routine calls and after-hours inquiries, it frees your staff to focus on complex conversations and high-value clients, while ensuring no opportunity is missed.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* The Capabilities */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                The Capabilities
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Omnichannel Response</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Answers calls and messages instantly, identifying intent (booking, cancellation, pricing) immediately.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Full Calendar Management</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Autonomous booking, rescheduling, and cancellations directly into your system.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Custom Brand Persona</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      We design the agent's personality to match your brand voice—whether that is professional and clinical, or warm and casual.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Strict Guardrails</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Built with rigid safety protocols. The agent operates within your specific business rules and never goes "off-script."
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Intelligent Routing</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Solves routine problems solo and surgically routes complex matters to the right human department
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-foreground mt-2" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Revenue & Upsells</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Suggests relevant add-ons or service upgrades during the booking process to increase average order value.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Why This Works */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h3 className="text-3xl font-semibold text-foreground mb-8">
+                Why This Works
+              </h3>
+              <div className="space-y-8">
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Smart Qualification
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "I won't waste your time with spam."
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Revenue & Upsells
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "This bot makes me money."
+                  </p>
+                </div>
+                <div className="border-l-4 border-foreground pl-6">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Instant Support
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed italic">
+                    "This bot saves me time on boring admin tasks."
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* AI Receptionist Capability Demos */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
@@ -235,111 +356,6 @@ export default function AIReceptionist() {
           >
             <AIReceptionistDemos />
           </motion.div>
-        </div>
-      </section>
-
-      {/* Additional Capabilities Grid */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4 tracking-tight">
-              Complete Office Automation Suite
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Additional capabilities to run your entire office operations
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-            {/* FAQ & Information Handling */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0 }}
-            >
-              <LuminousCard
-                icon={<HelpCircle className="w-16 h-16" />}
-                title="FAQ & Information"
-                description="Instantly answers common questions about hours, services, pricing, and policies from your knowledge base."
-              />
-            </motion.div>
-
-            {/* Appointment Changes */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <LuminousCard
-                icon={<CalendarClock className="w-16 h-16" />}
-                title="Appointment Management"
-                description="Handles rescheduling, cancellations, and modifications automatically with calendar integration."
-              />
-            </motion.div>
-
-            {/* Voicemail Transcription */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <LuminousCard
-                icon={<Voicemail className="w-16 h-16" />}
-                title="Voicemail Intelligence"
-                description="Transcribes messages, extracts key information, and categorizes by urgency for efficient follow-up."
-              />
-            </motion.div>
-
-            {/* CRM Integration */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <LuminousCard
-                icon={<FileText className="w-16 h-16" />}
-                title="CRM Integration"
-                description="Automatically logs calls, updates contact records, and syncs with your existing CRM system."
-              />
-            </motion.div>
-
-            {/* Message Taking */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <LuminousCard
-                icon={<MessageSquare className="w-16 h-16" />}
-                title="Intelligent Message Taking"
-                description="Captures detailed messages with caller information, reason for call, and preferred callback time."
-              />
-            </motion.div>
-
-            {/* Multi-Language Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <LuminousCard
-                icon={<Languages className="w-16 h-16" />}
-                title="50+ Languages"
-                description="Supports conversations in over 50 languages with automatic detection and native-level fluency."
-              />
-            </motion.div>
-          </div>
         </div>
       </section>
 
