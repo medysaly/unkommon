@@ -18,42 +18,43 @@ import {
 import "@/styles/pearl-button.css";
 import "@/styles/glass-cards.css";
 
+// Agents data - shared between desktop and mobile views
+const agents = [
+  {
+    id: 1,
+    title: "The Lead Qualifier",
+    description: "Instant lead qualification and engagement before competitors respond",
+    link: "SpeedToLead",
+    rotateY: 0,
+    topPosition: "58%", // Up/Down - lower % = higher up
+    leftPosition: "71%", // Left/Right - lower % = more left, higher % = more right
+    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+  },
+  {
+    id: 2,
+    title: "The AI Receptionist",
+    description: "24/7 phone automation with natural conversations and CRM integration",
+    link: "AIReceptionist",
+    rotateY: 0,
+    topPosition: "65%", // Up/Down - lower % = higher up
+    leftPosition: "40%", // Left/Right - lower % = more left, higher % = more right
+    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+  },
+  {
+    id: 3,
+    title: "The Client Reactivator",
+    description: "Unlock revenue from your existing database with automated reactivation",
+    link: "AIBookingSystem",
+    rotateY: 15,
+    topPosition: "73%", // Up/Down - lower % = higher up
+    leftPosition: "25%", // Left/Right - lower % = more left, higher % = more right
+    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+  },
+];
+
 // Interactive Agents Image Component
 const InteractiveAgentsImage = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  const agents = [
-    {
-      id: 1,
-      title: "The Lead Qualifier",
-      description: "Instant lead qualification and engagement before competitors respond",
-      link: "SpeedToLead",
-      rotateY: 0,
-      topPosition: "58%", // Up/Down - lower % = higher up
-      leftPosition: "71%", // Left/Right - lower % = more left, higher % = more right
-      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
-    },
-    {
-      id: 2,
-      title: "The AI Receptionist",
-      description: "24/7 phone automation with natural conversations and CRM integration",
-      link: "AIReceptionist",
-      rotateY: 0,
-      topPosition: "65%", // Up/Down - lower % = higher up
-      leftPosition: "40%", // Left/Right - lower % = more left, higher % = more right
-      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
-    },
-    {
-      id: 3,
-      title: "The Client Reactivator",
-      description: "Unlock revenue from your existing database with automated reactivation",
-      link: "AIBookingSystem",
-      rotateY: 15,
-      topPosition: "73%", // Up/Down - lower % = higher up
-      leftPosition: "25%", // Left/Right - lower % = more left, higher % = more right
-      rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
-    },
-  ];
 
   return (
     <motion.div
@@ -134,64 +135,54 @@ const InteractiveAgentsImage = () => {
                     onMouseLeave={() => setHoveredCard(null)}
                     onClick={() => window.location.href = createPageUrl(agent.link)}
                   >
-                    {/* Single layer liquid glass card - no backdrop blur to prevent glitching */}
-                    <div className="relative w-full h-full rounded-3xl p-6 flex flex-col justify-center items-center text-center"
+                    {/* Liquid glass card with enhanced glassmorphism */}
+                    <div className="relative w-full h-full rounded-3xl p-6 flex flex-col justify-center items-center text-center backdrop-blur-xl"
                       style={{
-                        background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)",
-                        border: "1px solid rgba(255,255,255,0.3)",
-                        boxShadow: "0 8px 32px 0 rgba(255,255,255,0.1), inset 0 1px 0 0 rgba(255,255,255,0.2)",
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)",
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15), inset 0 1px 0 0 rgba(255,255,255,0.3)",
                       }}
                     >
                       <div className="relative z-10">
-                        {/* Title with maximum visibility */}
+                        {/* Title with text shadow only */}
                         <h3 className="text-3xl font-bold text-white mb-4 tracking-tight"
                           style={{
-                            textShadow: "0 3px 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,1)",
-                            background: "rgba(0,0,0,0.5)",
-                            backdropFilter: "blur(10px)",
-                            padding: "12px 20px",
-                            borderRadius: "12px",
-                            border: "1px solid rgba(255,255,255,0.2)"
+                            textShadow: "0 2px 20px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1)",
                           }}
                         >
                           {agent.title}
                         </h3>
 
-                        {/* Description with maximum visibility */}
+                        {/* Description with text shadow only */}
                         <p className="text-base text-white font-semibold leading-relaxed mb-6"
                           style={{
-                            textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 0 25px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,1)",
-                            background: "rgba(0,0,0,0.45)",
-                            backdropFilter: "blur(8px)",
-                            padding: "16px",
-                            borderRadius: "10px",
-                            border: "1px solid rgba(255,255,255,0.15)"
+                            textShadow: "0 2px 15px rgba(0,0,0,0.9), 0 4px 30px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1)",
                           }}
                         >
                           {agent.description}
                         </p>
 
-                        {/* Interactive Learn More Button - Brighter */}
+                        {/* Interactive Learn More Button - Subtle Glass */}
                         <button
                           className="group relative px-8 py-3 rounded-full font-bold text-base transition-all duration-300"
                           style={{
-                            background: "linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.25))",
-                            border: "2px solid rgba(255,255,255,0.6)",
-                            boxShadow: "0 4px 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)",
+                            background: "rgba(255,255,255,0.15)",
+                            border: "1px solid rgba(255,255,255,0.3)",
+                            boxShadow: "0 2px 10px rgba(255,255,255,0.1)",
                             color: "white",
-                            textShadow: "0 2px 8px rgba(0,0,0,0.5)"
+                            textShadow: "0 1px 3px rgba(0,0,0,0.5)"
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5))";
-                            e.currentTarget.style.boxShadow = "0 8px 35px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.4)";
-                            e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
-                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.9)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.25)";
+                            e.currentTarget.style.boxShadow = "0 4px 15px rgba(255,255,255,0.2)";
+                            e.currentTarget.style.transform = "translateY(-2px)";
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)";
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.25))";
-                            e.currentTarget.style.boxShadow = "0 4px 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)";
-                            e.currentTarget.style.transform = "translateY(0) scale(1)";
-                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.15)";
+                            e.currentTarget.style.boxShadow = "0 2px 10px rgba(255,255,255,0.1)";
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
                           }}
                         >
                           <span className="relative z-10">Learn More →</span>
@@ -567,8 +558,55 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Interactive AI Agents Image with 3D Hover Cards */}
-          <InteractiveAgentsImage />
+          {/* Desktop: Interactive AI Agents Image with 3D Hover Cards */}
+          <div className="hidden md:block">
+            <InteractiveAgentsImage />
+          </div>
+
+          {/* Mobile: Image + Buttons Below */}
+          <div className="block md:hidden">
+            {/* AI Agents Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mb-8"
+            >
+              <img
+                src="/images/backgrounds/AI agents .png"
+                alt="AI Agents"
+                className="w-full h-auto rounded-2xl"
+              />
+            </motion.div>
+
+            {/* Three Agent Buttons */}
+            <div className="space-y-4 px-4">
+              {agents.map((agent, index) => (
+                <motion.button
+                  key={agent.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * index }}
+                  onClick={() => window.location.href = createPageUrl(agent.link)}
+                  className="w-full text-left p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 active:scale-95"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)",
+                    border: "1px solid rgba(255,255,255,0.25)",
+                    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
+                  }}
+                >
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    {agent.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {agent.description}
+                  </p>
+                </motion.button>
+              ))}
+            </div>
+          </div>
 
           {/* Bottom CTA */}
           <motion.div
