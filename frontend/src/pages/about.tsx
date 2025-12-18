@@ -238,7 +238,7 @@ export default function About() {
             </div>
 
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
-              We are a US-based consultancy with locations in Stamford, CT and Orlando, Florida. We understand the nuances of the American market, the importance of compliance, and the speed of business. When you hire unkommon, you are hiring a partner within your time zone.
+              We are a North American consultancy with locations in New York City, Stamford CT, Orlando Florida, and Vancouver Island Canada. We understand the nuances of the market, the importance of compliance, and the speed of business. When you hire Unkommon, you are hiring a partner within your time zone.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-lg text-muted-foreground">
@@ -253,6 +253,10 @@ export default function About() {
               <div className="flex items-center gap-2">
                 <MapPin className="w-5 h-5" />
                 <span>Orlando, FL</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5" />
+                <span>Vancouver Island, BC</span>
               </div>
             </div>
           </motion.div>

@@ -175,13 +175,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="fixed bottom-8 z-50"
-            style={{
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '340px',
-              maxWidth: '90vw'
-            }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[340px] max-w-[90vw]"
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
