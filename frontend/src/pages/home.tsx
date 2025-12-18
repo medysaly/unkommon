@@ -384,8 +384,15 @@ export default function Home() {
     rotation: 0,      // Rotation in degrees
   };
 
+  // CTA Buttons Position Controls - Adjust these values
+  const ctaButtonsControls = {
+    left: "-450px",      // Left/Right position (e.g., "100px", "200px", "-50px")
+    top: "-500px",         // Up/Down position (e.g., "50px", "-30px")
+    rotation: 0,        // Rotation in degrees (e.g., -5, 0, 5)
+  };
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden -mt-20">
       {/* Hero Section */}
       <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-screen flex items-center bg-white dark:bg-black"
         style={{
@@ -442,38 +449,48 @@ export default function Home() {
               </motion.p>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+            <div
+              className="relative"
+              style={{
+                left: ctaButtonsControls.left,
+                top: ctaButtonsControls.top,
+                transform: `rotate(${ctaButtonsControls.rotation}deg)`,
+                transformOrigin: "left center"
+              }}
             >
-              <button
-                className="pearl-button"
-                data-testid="button-try-demo"
-                onClick={() => window.location.href = createPageUrl("AIReceptionist")}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <div className="wrap">
-                  <p>
-                    <span>✧</span>
-                    Try Live Demo
-                    <ArrowRight className="w-5 h-5" />
-                  </p>
-                </div>
-              </button>
-              <button
-                className="pearl-button"
-                data-testid="button-schedule-consultation"
-                onClick={() => window.location.href = createPageUrl("Contact")}
-              >
-                <div className="wrap">
-                  <p>
-                    <span>✦</span>
-                    Schedule Consultation
-                  </p>
-                </div>
-              </button>
-            </motion.div>
+                <button
+                  className="pearl-button"
+                  data-testid="button-try-demo"
+                  onClick={() => window.location.href = createPageUrl("AIReceptionist")}
+                >
+                  <div className="wrap">
+                    <p>
+                      <span>✧</span>
+                      Try Live Demo
+                      <ArrowRight className="w-5 h-5" />
+                    </p>
+                  </div>
+                </button>
+                <button
+                  className="pearl-button"
+                  data-testid="button-schedule-consultation"
+                  onClick={() => window.location.href = createPageUrl("Contact")}
+                >
+                  <div className="wrap">
+                    <p>
+                      <span>✦</span>
+                      Schedule Consultation
+                    </p>
+                  </div>
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
