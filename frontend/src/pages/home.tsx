@@ -394,7 +394,8 @@ export default function Home() {
   return (
     <div className="overflow-hidden -mt-20">
       {/* Hero Section */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-screen flex items-center bg-white dark:bg-black"
+      <section
+        className="hero-section relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-[500px] sm:min-h-[700px] md:min-h-screen flex items-center bg-white dark:bg-black"
         style={{
           backgroundImage: "url('/images/backgrounds/header.png')",
           backgroundSize: "cover",
@@ -402,12 +403,21 @@ export default function Home() {
           backgroundRepeat: "no-repeat"
         }}
       >
+        <style>{`
+          @media (max-width: 640px) {
+            .hero-section {
+              background-size: auto 300px !important;
+              background-position: top center !important;
+              min-height: 400px !important;
+            }
+          }
+        `}</style>
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-[530px]"
+            className="mt-[150px] sm:mt-[350px] md:mt-[530px]"
           >
             <div
               className="relative mb-6"

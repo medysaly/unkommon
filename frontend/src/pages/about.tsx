@@ -27,7 +27,7 @@ export default function About() {
     <div className="min-h-screen bg-white dark:bg-black -mt-20">
       {/* Section 1: Clean Background Hero */}
       <section
-        className="relative overflow-hidden min-h-screen pt-20"
+        className="about-hero relative overflow-hidden min-h-[400px] sm:min-h-[600px] md:min-h-screen pt-20"
         style={{
           backgroundImage: "url('/images/backgrounds/About.png')",
           backgroundSize: "cover",
@@ -35,6 +35,15 @@ export default function About() {
           backgroundRepeat: "no-repeat"
         }}
       >
+        <style>{`
+          @media (max-width: 640px) {
+            .about-hero {
+              background-size: auto 300px !important;
+              background-position: top center !important;
+              min-height: 350px !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* Section 2: Philosophy Content */}
