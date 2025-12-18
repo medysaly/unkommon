@@ -49,15 +49,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   Home
                 </span>
               </Link>
-              <Link href={createPageUrl("AIAgents")} data-testid="link-nav-ai-agents">
-                <span
-                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                    isActive(createPageUrl("AIAgents")) ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  AI Agents
-                </span>
-              </Link>
               <Link href={createPageUrl("Contact")} data-testid="link-nav-contact">
                 <span
                   className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
@@ -119,17 +110,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Home
-                  </span>
-                </Link>
-
-                <Link href={createPageUrl("AIAgents")} data-testid="link-mobile-nav-ai-agents">
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(createPageUrl("AIAgents")) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    AI Agents
                   </span>
                 </Link>
 
@@ -235,13 +215,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Link href={createPageUrl("About")} data-testid="link-footer-about">
                     <span className="hover:text-primary transition-colors cursor-pointer">
                       About Us
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={createPageUrl("AIAgents")} data-testid="link-footer-agent-library">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      Agent Library
                     </span>
                   </Link>
                 </li>

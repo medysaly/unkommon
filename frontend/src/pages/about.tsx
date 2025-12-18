@@ -24,18 +24,32 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      {/* Section 1: The Manifesto (Hero Section) */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-32 pb-20 overflow-hidden bg-white dark:bg-black">
+    <div className="min-h-screen bg-white dark:bg-black -mt-20">
+      {/* Section 1: Clean Background Hero */}
+      <section
+        className="relative overflow-hidden min-h-screen pt-20"
+        style={{
+          backgroundImage: "url('/images/backgrounds/About.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
+      </section>
+
+      {/* Section 2: Philosophy Content */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm uppercase tracking-wider text-muted-foreground mb-6"
             >
@@ -44,7 +58,8 @@ export default function About() {
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-8 leading-tight"
               data-testid="heading-page-title"
@@ -54,7 +69,8 @@ export default function About() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto space-y-6"
               data-testid="text-hero-description"
@@ -208,13 +224,28 @@ export default function About() {
             <div className="flex items-center justify-center gap-3 mb-6">
               <MapPin className="w-6 h-6 text-foreground" />
               <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight">
-                Engineered in Stamford, CT.
+                Engineered in NYC.
               </h2>
             </div>
 
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              We are a US-based consultancy. We understand the nuances of the American market, the importance of compliance, and the speed of business in the Tri-State area. When you hire unkommon, you are hiring a partner within your time zone.
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
+              We are a US-based consultancy with locations in Stamford, CT and Orlando, Florida. We understand the nuances of the American market, the importance of compliance, and the speed of business. When you hire unkommon, you are hiring a partner within your time zone.
             </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-lg text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5" />
+                <span>New York City</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5" />
+                <span>Stamford, CT</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5" />
+                <span>Orlando, FL</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

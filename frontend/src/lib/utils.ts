@@ -9,7 +9,6 @@ export function cn(...inputs: ClassValue[]) {
 export function createPageUrl(pageName: string): string {
   const urlMap: Record<string, string> = {
     'Home': '/',
-    'AIAgents': '/ai-agents',
     'AIReceptionist': '/ai-receptionist',
     'SpeedToLead': '/speed-to-lead',
     'AIBookingSystem': '/ai-booking-system',

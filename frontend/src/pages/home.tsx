@@ -792,7 +792,7 @@ export default function Home() {
               <button
                 className="pearl-button"
                 data-testid="button-try-interactive-demo"
-                onClick={() => window.location.href = createPageUrl("AIAgents")}
+                onClick={() => window.location.href = createPageUrl("AIReceptionist")}
               >
                 <div className="wrap">
                   <p>

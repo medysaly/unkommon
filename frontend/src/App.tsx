@@ -7,7 +7,6 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/theme-provider";
 import Layout from "@/pages/layout";
 import Home from "@/pages/home";
-import AIAgents from "@/pages/ai-agents";
 import AIReceptionist from "@/pages/ai-receptionist";
 import SpeedToLead from "@/pages/speed-to-lead";
 import AIBookingSystem from "@/pages/ai-booking-system";
@@ -40,7 +39,6 @@ function Router() {
             <Layout>
               <Switch>
                 <Route path="/" component={Home} />
-                <Route path="/ai-agents" component={AIAgents} />
                 <Route path="/ai-receptionist" component={AIReceptionist} />
                 <Route path="/speed-to-lead" component={SpeedToLead} />
                 <Route path="/ai-booking-system" component={AIBookingSystem} />
