@@ -362,24 +362,27 @@ const sampleArcs = [
 ];
 
 export default function Home() {
-  // Header & Subheader Position Controls - Adjust these values
-  const headerControls = {
-    left: "-80px",      // Left/Right position (e.g., "100px", "200px", "-50px")
-    top: "-500px",       // Up/Down position (e.g., "50px", "-30px")
-    rotation: 0,      // Rotation in degrees (e.g., -5, 0, 5)
-  };
+  // Check if mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  const subheaderControls = {
-    left: "-80px",      // Left/Right position
-    top: "-500px",       // Up/Down position
+  // Header & Subheader Position Controls - Responsive values
+  const headerControls = {
+    left: isMobile ? "0px" : "-80px",      // Left/Right position
+    top: isMobile ? "0px" : "-500px",       // Up/Down position
     rotation: 0,      // Rotation in degrees
   };
 
-  // CTA Buttons Position Controls - Adjust these values
+  const subheaderControls = {
+    left: isMobile ? "0px" : "-80px",      // Left/Right position
+    top: isMobile ? "0px" : "-500px",       // Up/Down position
+    rotation: 0,      // Rotation in degrees
+  };
+
+  // CTA Buttons Position Controls - Responsive values
   const ctaButtonsControls = {
-    left: "-450px",      // Left/Right position (e.g., "100px", "200px", "-50px")
-    top: "-500px",         // Up/Down position (e.g., "50px", "-30px")
-    rotation: 0,        // Rotation in degrees (e.g., -5, 0, 5)
+    left: isMobile ? "0px" : "-450px",      // Left/Right position
+    top: isMobile ? "0px" : "-500px",         // Up/Down position
+    rotation: 0,        // Rotation in degrees
   };
 
   return (
