@@ -177,7 +177,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
             transition={{ type: 'spring', stiffness: 200, damping: 25 }}
             className="fixed bottom-8 z-50"
             style={{
-              left: '40%',
+              left: '50%',
               transform: 'translateX(-50%)',
               width: '340px',
               maxWidth: '90vw'
