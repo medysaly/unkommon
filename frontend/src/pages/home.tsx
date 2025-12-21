@@ -368,20 +368,20 @@ export default function Home() {
   // Header & Subheader Position Controls - Responsive values
   const headerControls = {
     left: isMobile ? "0px" : "-80px",      // Left/Right position
-    top: isMobile ? "0px" : "-500px",       // Up/Down position
+    top: isMobile ? "0px" : "-450px",       // Up/Down position
     rotation: 0,      // Rotation in degrees
   };
 
   const subheaderControls = {
     left: isMobile ? "0px" : "-80px",      // Left/Right position
-    top: isMobile ? "0px" : "-500px",       // Up/Down position
+    top: isMobile ? "0px" : "-470px",       // Up/Down position
     rotation: 0,      // Rotation in degrees
   };
 
   // CTA Buttons Position Controls - Responsive values
   const ctaButtonsControls = {
     left: isMobile ? "0px" : "-450px",      // Left/Right position
-    top: isMobile ? "0px" : "-500px",         // Up/Down position
+    top: isMobile ? "0px" : "-480px",         // Up/Down position
     rotation: 0,        // Rotation in degrees
   };
 
