@@ -29,7 +29,7 @@ import CurvedLoop from "@/components/CurvedLoop";
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  companyUrl: z.string().url("Please enter a valid company URL").or(z.string().length(0)),
+  companyUrl: z.string().url("Please enter a valid company URL").optional().or(z.literal("")),
   primaryBottleneck: z.string().min(1, "Please select a primary bottleneck"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
