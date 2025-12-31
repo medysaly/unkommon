@@ -292,7 +292,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
                     <MessageCircle className="h-5 w-5 text-white/90" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-base tracking-tight text-white/95">Business AI</h3>
+                    <h3 className="font-semibold text-base tracking-tight text-white/95">Unkommon AI</h3>
                     <div className="flex items-center gap-1.5">
                       <motion.div
                         className="w-1.5 h-1.5 rounded-full bg-emerald-400/80"
