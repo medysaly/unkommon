@@ -14,11 +14,11 @@ const sesClient = new SESClient({ region: process.env.AWS_REGION || 'us-east-1' 
 const TABLE_NAME = process.env.CHATBOT_TABLE_NAME || 'chatbot_conversations';
 const APPOINTMENTS_TABLE = process.env.APPOINTMENTS_TABLE_NAME || 'chatbot_appointments';
 const MODEL_ID = process.env.BEDROCK_MODEL_ID || 'anthropic.claude-3-haiku-20240307-v1:0';
-const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'businessautomatedai@gmail.com';
+const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'contact@unkommon.ai';
 
 // ===== SYSTEM PROMPT =====
 // AWS Learning: This defines the AI's personality and knowledge
-const SYSTEM_PROMPT = `You are an AI assistant for Business Automated, a company that provides AI automation services in New York, NY.
+const SYSTEM_PROMPT = `You are an AI assistant for Unkommon, a company that provides AI automation services in New York, NY.
 
 Your role is to help potential customers learn about our services and book appointments. Be friendly, professional, and concise.
 
@@ -30,7 +30,7 @@ Our Services:
 
 Contact Information:
 - Phone: 718-500-1191
-- Email: businessautomatedai@gmail.com
+- Email: contact@unkommon.ai
 - Office: New York, NY
 
 APPOINTMENT BOOKING:
@@ -260,7 +260,7 @@ async function invokeBedrockModel(messages) {
     console.error('Bedrock invocation error:', error);
 
     // Fallback response if Bedrock fails
-    return "I'm having trouble connecting right now. Please try again in a moment, or reach out directly at businessautomatedai@gmail.com or 718-500-1191.";
+    return "I'm having trouble connecting right now. Please try again in a moment, or reach out directly at support@unkommon.ai or 718-500-1191.";
   }
 }
 
@@ -394,7 +394,7 @@ async function sendAppointmentEmails(bookingDetails, appointmentId) {
     // Email to client
     const clientEmailBody = `Hi ${bookingDetails.name},
 
-Thank you for booking a consultation with Business Automated! We're excited to discuss how our AI automation solutions can transform your business.
+Thank you for booking a consultation with Unkommon! We're excited to discuss how our AI automation solutions can transform your business.
 
 Appointment Details:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -412,9 +412,9 @@ Questions?
 Feel free to call us at 718-500-1191 or reply to this email.
 
 Best regards,
-Business Automated Team
+Unkommon Team
 New York, NY
-businessautomatedai@gmail.com`;
+contact@unkommon.ai`;
 
     const clientCommand = new SendEmailCommand({
       Source: COMPANY_EMAIL,
@@ -423,7 +423,7 @@ businessautomatedai@gmail.com`;
       },
       Message: {
         Subject: {
-          Data: `✅ Appointment Confirmed - Business Automated`,
+          Data: `✅ Appointment Confirmed - Unkommon`,
         },
         Body: {
           Text: {

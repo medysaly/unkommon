@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Business Automated Backend - Serverless API with Cognito
+Description: Unkommon Backend - Serverless API with Cognito
 
 Globals:
   Function:
@@ -23,12 +23,12 @@ Parameters:
   SesFromEmail:
     Type: String
     Description: SES verified from email address
-    Default: businessautomatedai@gmail.com
+    Default: info@unkommon.ai
 
   SesToEmail:
     Type: String
     Description: SES notification recipient email
-    Default: businessautomatedai@gmail.com
+    Default: sales@unkommon.ai
 
   CognitoUserPoolArn:
     Type: String
@@ -184,7 +184,7 @@ Resources:
           CHATBOT_TABLE_NAME: !Ref ChatbotConversationsTable
           APPOINTMENTS_TABLE_NAME: !Ref AppointmentsTable
           BEDROCK_MODEL_ID: anthropic.claude-3-haiku-20240307-v1:0
-          COMPANY_EMAIL: businessautomatedai@gmail.com
+          COMPANY_EMAIL: contact@unkommon.ai
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ChatbotConversationsTable
