@@ -1,0 +1,132 @@
+import json
+import boto3
+from botocore.exceptions import ClientError
+
+# Initialize AWS SES client
+ses_client = boto3.client('ses', region_name='us-east-1')
+
+def lambda_handler(event, context):
+    """
+    Contact form handler - receives form data and sends email via SES
+    
+    Expected POST body:
+    {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "companyUrl": "https://example.com",
+        "primaryBottleneck": "Lead Response Time",
+        "message": "I want to learn more..."
+    }
+    """
+    
+    # Parse request body
+    try:
+        if isinstance(event.get('body'), str):
+            body = json.loads(event['body'])
+        else:
+            body = event.get('body', {})
+    except json.JSONDecodeError:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            'body': json.dumps({'error': 'Invalid JSON in request body'})
+        }
+    
+    # Extract form fields
+    name = body.get('name', '')
+    email = body.get('email', '')
+    company_url = body.get('companyUrl', 'Not provided')
+    bottleneck = body.get('primaryBottleneck', 'Not specified')
+    message = body.get('message', '')
+    
+    # Validate required fields
+    if not name or not email or not message:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            'body': json.dumps({'error': 'Missing required fields: name, email, or message'})
+        }
+    
+    # Prepare email content
+    email_subject = f"🚀 New Contact Form Submission from {name}"
+    email_body = f"""
+New Contact Form Submission from Unkommon.ai
+
+Contact Details:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: {name}
+Email: {email}
+Company URL: {company_url}
+Primary Bottleneck: {bottleneck}
+
+Message:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This lead was submitted via the Unkommon website contact form.
+Respond within 24 hours for best conversion rates!
+"""
+    
+    # Send email via SES
+    try:
+        response = ses_client.send_email(
+            Source='info@unkommon.ai',  # FROM address (must be verified in SES)
+            Destination={
+                'ToAddresses': ['sales@unkommon.ai']  # TO address (where you receive leads)
+            },
+            Message={
+                'Subject': {
+                    'Data': email_subject,
+                    'Charset': 'UTF-8'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': email_body,
+                        'Charset': 'UTF-8'
+                    }
+                }
+            }
+        )
+        
+        print(f"Email sent successfully! Message ID: {response['MessageId']}")
+        
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            'body': json.dumps({
+                'message': 'Contact form submitted successfully!',
+                'messageId': response['MessageId']
+            })
+        }
+        
+    except ClientError as e:
+        print(f"Error sending email: {e}")
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            'body': json.dumps({
+                'error': 'Failed to send email',
+                'details': str(e)
+            })
+        }
