@@ -55,7 +55,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'https://l243ksgsdl.execute-api.us-east-1.amazonaws.com/prod';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod';
       const response = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: {
