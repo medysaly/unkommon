@@ -14,7 +14,7 @@ Parameters:
     Type: String
     Description: SES verified FROM email address
     Default: info@unkommon.ai
-  
+
   SesToEmail:
     Type: String
     Description: SES TO email address (where leads go)
@@ -27,9 +27,9 @@ Resources:
     Properties:
       StageName: Prod
       Cors:
-        AllowMethods: "'GET,POST,OPTIONS'"
-        AllowHeaders: "'Content-Type,Authorization'"
-        AllowOrigin: "'*'"
+        AllowMethods: '''GET,POST,OPTIONS'''
+        AllowHeaders: '''Content-Type,Authorization'''
+        AllowOrigin: '''*'''
 
   # Contact Form Lambda Function
   ContactFormFunction:
@@ -44,11 +44,11 @@ Resources:
           SES_TO_EMAIL: !Ref SesToEmail
       Policies:
         - Statement:
-          - Effect: Allow
-            Action:
-              - ses:SendEmail
-              - ses:SendRawEmail
-            Resource: '*'
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: '*'
       Events:
         ContactApi:
           Type: Api
@@ -56,16 +56,36 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/contact
             Method: POST
+            
+  ChatbotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: chatbot/
+      Handler: app.lambda_handler
+      Policies:
+        - Statement:
+          - Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+            Resource: '*'
+      Events:
+        ChatApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/chat
+            Method: POST           
+
 
 Outputs:
   ApiEndpoint:
     Description: API Gateway endpoint URL
-    Value: !Sub 'https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
-  
+    Value: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod
+
   ContactFormEndpoint:
     Description: Contact Form API endpoint
-    Value: !Sub 'https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/contact'
-  
+    Value: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/contact
+
   ContactFormFunctionArn:
     Description: Contact Form Lambda Function ARN
     Value: !GetAtt ContactFormFunction.Arn

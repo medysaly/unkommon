@@ -32,7 +32,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
 
   // Get API endpoint from environment or prop
   const API_URL =
-    apiEndpoint || import.meta.env.VITE_API_URL || 'https://l243ksgsdl.execute-api.us-east-1.amazonaws.com/prod';
+    apiEndpoint || import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod';
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
