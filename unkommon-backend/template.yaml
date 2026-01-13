@@ -67,7 +67,10 @@ Resources:
           - Effect: Allow
             Action:
               - bedrock:InvokeModel
-            Resource: '*'
+              - bedrock:InvokeModelWithResponseStream
+            Resource:
+              - 'arn:aws:bedrock:*::foundation-model/*'
+              - 'arn:aws:bedrock:*:*:inference-profile/*'
       Events:
         ChatApi:
           Type: Api
