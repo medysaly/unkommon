@@ -20,7 +20,7 @@ The Big Picture:
 Basically, we help you scale your customer service without hiring more people, save tons of time on repetitive tasks, and make more money by responding faster to opportunities. Most of our clients see results within the first week.
 
 Getting Started:
-If someone wants to try it out, they can call (203) XXX-XXXX anytime to talk to our demo AI Receptionist and see how natural it sounds. We also offer a free 30-minute efficiency audit where we analyze their business and show exactly how much time and money they could save. They can book that through the contact form on the website or just email sales@unkommon.ai.
+If someone wants to try it out, they can call (203) 680-9629 anytime to talk to our demo AI Receptionist and see how natural it sounds. We also offer a free 30-minute efficiency audit where we analyze their business and show exactly how much time and money they could save. They can book that through the contact form on the website or just email sales@unkommon.ai.
 
 Pricing:
 We create custom solutions for each business, so pricing depends on their specific needs. The best approach is to schedule that free audit call so we can give them an accurate quote based on their situation.
