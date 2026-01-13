@@ -137,7 +137,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
         id: `error-${Date.now()}`,
         role: 'assistant',
         content:
-          "I'm having trouble connecting right now. Please try again in a moment, or contact us directly at contact@unkommon.com or 718-500-1191.",
+          "I'm having trouble connecting right now. Please try again in a moment, or contact us directly at contact@unkommon.com or (203) 680-9629.",
         timestamp: Date.now(),
       };
 

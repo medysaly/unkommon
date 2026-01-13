@@ -170,7 +170,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <Phone className="w-4 h-4" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+1 (203) 680-9629</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />

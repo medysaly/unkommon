@@ -208,7 +208,7 @@ export default function Contact() {
                 </p>
 
                 <a
-                  href="tel:+12035551234"
+                  href="tel:+12036809629"
                   className="inline-block"
                 >
                   <motion.div
@@ -216,7 +216,7 @@ export default function Contact() {
                     whileTap={{ scale: 0.95 }}
                     className="text-5xl md:text-6xl font-light text-foreground mb-3 hover:text-blue-500 transition-colors cursor-pointer"
                   >
-                    (203) XXX-XXXX
+                    +1 (203) 680-9629
                   </motion.div>
                 </a>
 
