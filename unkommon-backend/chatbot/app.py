@@ -99,7 +99,10 @@ def lambda_handler(event, context):
         
         # Call Claude via Bedrock
         response = bedrock_runtime.invoke_model(
-            modelId='anthropic.claude-3-5-sonnet-20241022-v2:0',
+            modelId='global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+
+
+
             body=json.dumps(request_body)
         )
         
