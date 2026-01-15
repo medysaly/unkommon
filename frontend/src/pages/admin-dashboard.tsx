@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast";
 import "@/lib/amplify-config";
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://l243ksgsdl.execute-api.us-east-1.amazonaws.com/prod';
+const API_URL = import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod';
 
 interface Lead {
   id: number;
