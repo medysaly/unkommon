@@ -18,4 +18,13 @@ manifest_hash = "cacc28ae47a06143bdf6e075862f38cb"
 packagetype = "Zip"
 functions = ["ChatbotFunction"]
 
+[function_build_definitions.ae0da03d-d483-43fd-bd64-3e3d1d1cbcff]
+codeuri = "/Users/mehdisalhi/Desktop/Projects/businessAI/businessautomated/unkommon-backend/leads_api"
+runtime = "python3.13"
+architecture = "x86_64"
+handler = "app.lambda_handler"
+manifest_hash = "641b2abdf32cb83545644d57bf972920"
+packagetype = "Zip"
+functions = ["LeadsApiFunction"]
+
 [layer_build_definitions]

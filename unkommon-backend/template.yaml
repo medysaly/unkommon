@@ -89,7 +89,7 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/contact
             Method: POST
-            
+  # Chatbot Lambda Function         
   ChatbotFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -115,8 +115,28 @@ Resources:
           Properties:
             RestApiId: !Ref UnkommonApi
             Path: /api/chat
-            Method: POST           
-
+            Method: POST 
+                      
+# Leads API Lambda Function
+  LeadsApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: leads_api/
+      Handler: app.lambda_handler
+      Description: Leads API - returns all leads for dashboard
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref LeadsTable
+      Events:
+        GetLeads:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/leads
+            Method: GET
 
 Outputs:
   ApiEndpoint:
