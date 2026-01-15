@@ -1,9 +1,39 @@
 import json
 import boto3
+import uuid
+from datetime import datetime
 from botocore.exceptions import ClientError
 
 # Initialize AWS SES client
 ses_client = boto3.client('ses', region_name='us-east-1')
+
+# Initialize DynamoDB
+dynamodb = boto3.resource('dynamodb')
+leads_table = dynamodb.Table('unkommon-leads')
+
+def save_lead_to_db(data):
+    """Save lead to DynamoDB"""
+    lead_id = str(uuid.uuid4())
+    timestamp = int(datetime.now().timestamp())
+    
+    item = {
+        'leadId': lead_id,
+        'createdAt': timestamp,
+        'name': data.get('name', 'Unknown'),
+        'email': data.get('email', ''),
+        'phone': data.get('phone', 'N/A'),
+        'message': data.get('message', ''),
+        'primaryBottleneck': data.get('primaryBottleneck', 'N/A'),
+        'source': 'contact_form',
+        'appointmentBooked': False,
+        'appointmentTime': None,
+        'metadata': {}
+    }
+    
+    leads_table.put_item(Item=item)
+    print(f"✅ Lead saved to DB: {lead_id}")
+    return lead_id
+
 
 def lambda_handler(event, context):
     """
@@ -57,6 +87,14 @@ def lambda_handler(event, context):
             'body': json.dumps({'error': 'Missing required fields: name, email, or message'})
         }
     
+        # Save to database first
+    try:
+        lead_id = save_lead_to_db(body)
+    except Exception as db_error:
+        print(f"❌ DB Error: {db_error}")
+        # Continue anyway - don't fail the whole request
+    
+
     # Prepare email content
     email_subject = f"🚀 New Contact Form Submission from {name}"
     email_body = f"""
