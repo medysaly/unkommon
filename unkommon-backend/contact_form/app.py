@@ -86,8 +86,8 @@ def lambda_handler(event, context):
             },
             'body': json.dumps({'error': 'Missing required fields: name, email, or message'})
         }
-    
-        # Save to database first
+
+    # Save to database first
     try:
         lead_id = save_lead_to_db(body)
     except Exception as db_error:

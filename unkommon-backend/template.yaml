@@ -72,7 +72,10 @@ Resources:
         Variables:
           SES_FROM_EMAIL: !Ref SesFromEmail
           SES_TO_EMAIL: !Ref SesToEmail
+          LEADS_TABLE_NAME: !Ref LeadsTable
       Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
         - Statement:
             - Effect: Allow
               Action:
