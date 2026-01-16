@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { signIn } from "aws-amplify/auth";
+import { signIn, signOut } from "aws-amplify/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +20,15 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
+      // Sign out any existing session first (silently ignore errors if no session exists)
+      try {
+        await signOut();
+      } catch (signOutError) {
+        // Ignore errors - this just means no one was logged in
+        console.log("No existing session to sign out");
+      }
+
+      // Now sign in with new credentials
       await signIn({
         username,
         password,
