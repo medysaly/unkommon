@@ -62,7 +62,7 @@ export default function AdminDashboard() {
       }
 
       const data = await response.json();
-      setLeads(Array.isArray(data) ? data : []);
+      setLeads(data.leads || []);
     } catch (error) {
       console.error("Fetch leads error:", error);
       toast({
