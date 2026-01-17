@@ -7,8 +7,14 @@ from datetime import datetime
 # Initialize Bedrock client
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 
+
+# Initialize DynamoDB
+dynamodb = boto3.resource('dynamodb')
+leads_table = dynamodb.Table('unkommon-leads')
+
+
 # System prompt with company knowledge
-SYSTEM_PROMPT = """Your name is Sarah and you work at Unkommon, helping businesses automate their operations with AI solutions.
+SYSTEM_PROMPT = """Your name is Riley and you work at Unkommon, helping businesses automate their operations with AI solutions.
 
 About Unkommon:
 Unkommon (formerly called Business Automated) helps businesses save time and increase revenue through AI automation. We specialize in making sure you never miss a customer call, lead, or appointment. You can reach us at sales@unkommon.ai or visit our website at unkommon.ai.
@@ -28,6 +34,66 @@ We create custom solutions for each business, so pricing depends on their specif
 How to Communicate:
 Talk like a real person, not a robot or corporate website. Keep your responses short and conversational, usually 2-3 sentences unless someone asks for details. Never use markdown formatting like hashtags, asterisks, dashes, or numbered lists. Never use emojis. Write naturally like you're texting a colleague. Be warm, friendly, and helpful, but stay professional. Get to the point quickly. If you need to mention multiple things, use commas and the word "and" instead of making lists. Your goal is to help people understand how Unkommon can help their business and guide them toward trying the demo or booking a consultation.
 """
+
+
+def should_capture_lead(user_message, ai_response):
+    """Detect if user is showing interest and should be captured as a lead"""
+    interest_keywords = [
+        'book', 'schedule', 'appointment', 'call', 'demo', 'interested',
+        'pricing', 'price', 'cost', 'how much', 'sign up', 'get started',
+        'contact', 'email', 'phone', 'reach out', 'audit', 'consultation'
+    ]
+    
+    message_lower = user_message.lower()
+    return any(keyword in message_lower for keyword in interest_keywords)
+
+
+def save_chatbot_lead(user_message, ai_response, conversation_id):
+    """
+    Save chatbot lead to DynamoDB if user shows interest
+    Interest indicators: wants to book, schedule, talk to someone, get more info, etc.
+    """
+    interest_keywords = [
+        'book', 'schedule', 'appointment', 'call me', 'contact me',
+        'interested', 'sign up', 'demo', 'trial', 'pricing',
+        'more info', 'tell me more', 'learn more', 'get started'
+    ]
+    
+    # Check if user message shows interest
+    message_lower = user_message.lower()
+    is_interested = any(keyword in message_lower for keyword in interest_keywords)
+    
+    if is_interested:
+        lead_id = str(uuid.uuid4())
+        timestamp = int(datetime.now().timestamp())
+        
+        item = {
+            'leadId': lead_id,
+            'createdAt': timestamp,
+            'name': 'Chatbot User',
+            'email': 'pending@chatbot.com',
+            'phone': 'N/A',
+            'message': user_message,
+            'primaryBottleneck': 'N/A',
+            'source': 'chatbot',
+            'appointmentBooked': False,
+            'appointmentTime': None,
+            'metadata': {
+                'conversationId': conversation_id,
+                'aiResponse': ai_response
+            }
+        }
+        
+        try:
+            leads_table.put_item(Item=item)
+            print(f"✅ Chatbot lead captured: {lead_id}")
+            return lead_id
+        except Exception as e:
+            print(f"❌ Failed to save chatbot lead: {e}")
+            return None
+    
+    return None
+
 
 def lambda_handler(event, context):
     """
@@ -82,7 +148,10 @@ def lambda_handler(event, context):
         # Parse response
         response_body = json.loads(response['body'].read())
         ai_response = response_body['content'][0]['text']
-        
+        # Try to capture lead if user shows interest
+        save_chatbot_lead(user_message, ai_response, conversation_id)
+
+
         # Return successful response
         return {
             'statusCode': 200,

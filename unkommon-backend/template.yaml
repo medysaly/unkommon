@@ -89,13 +89,19 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/contact
             Method: POST
+
   # Chatbot Lambda Function         
   ChatbotFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: chatbot/
       Handler: app.lambda_handler
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
       Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
         - Statement:
           - Effect: Allow
             Action:
