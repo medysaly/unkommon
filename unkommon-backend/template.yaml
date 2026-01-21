@@ -30,7 +30,7 @@ Resources:
         AllowMethods: '''GET,POST,OPTIONS'''
         AllowHeaders: '''Content-Type,Authorization'''
         AllowOrigin: '''*'''
-        AllowCredentials: 
+
   # DynamoDB Table for Leads
   LeadsTable:
     Type: AWS::DynamoDB::Table
@@ -121,9 +121,9 @@ Resources:
           Properties:
             RestApiId: !Ref UnkommonApi
             Path: /api/chat
-            Method: POST 
-                      
-# Leads API Lambda Function
+            Method: POST
+
+  # Leads API Lambda Function
   LeadsApiFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -143,6 +143,26 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/leads
             Method: GET
+
+  # Vapi Webhook Function
+  VapiWebhookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: vapi_webhook/
+      Handler: app.lambda_handler
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+      Events:
+        VapiWebhook:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/vapi-webhook
+            Method: POST
 
 Outputs:
   ApiEndpoint:
