@@ -33,11 +33,11 @@ def lambda_handler(event, context):
         # Extract relevant data
         message = body.get('message', {})
         call_data = message.get('call', {})
-        
+
         phone_number = call_data.get('customer', {}).get('number', 'Unknown')
-        call_summary = message.get('summary', 'No summary available')
-        transcript = message.get('transcript', '')
-        call_duration = message.get('durationSeconds', 0)
+        call_summary = message.get('summary', '') or 'No summary available'
+        transcript = message.get('transcript', '') or message.get('artifact', {}).get('transcript', '')
+        call_duration = int(message.get('durationSeconds', 0) or 0)  # Convert to int for DynamoDB
         
         # Save to DynamoDB
         lead_id = str(uuid.uuid4())
