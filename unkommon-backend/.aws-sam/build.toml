@@ -14,7 +14,7 @@ codeuri = "/Users/mehdisalhi/Desktop/Projects/businessAI/businessautomated/unkom
 runtime = "python3.13"
 architecture = "x86_64"
 handler = "app.lambda_handler"
-manifest_hash = "cacc28ae47a06143bdf6e075862f38cb"
+manifest_hash = "8f5ecb0021e4ebeaa9042ff7ef10def7"
 packagetype = "Zip"
 functions = ["ChatbotFunction"]
 

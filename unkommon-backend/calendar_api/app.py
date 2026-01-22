@@ -13,15 +13,18 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
 def get_calendar_service():
-    """Get authenticated Google Calendar service"""
+    """Get authenticated Google Calendar service using domain-wide delegation"""
     secret = secrets_client.get_secret_value(SecretId='unkommon/google-calendar')
     creds_dict = json.loads(secret['SecretString'])
-    
+
     credentials = service_account.Credentials.from_service_account_info(
         creds_dict, scopes=SCOPES
     )
-    
-    return build('calendar', 'v3', credentials=credentials)
+
+    # Use domain-wide delegation to impersonate the calendar owner
+    delegated_credentials = credentials.with_subject(CALENDAR_ID)
+
+    return build('calendar', 'v3', credentials=delegated_credentials)
 
 
 def get_available_slots(date_str):

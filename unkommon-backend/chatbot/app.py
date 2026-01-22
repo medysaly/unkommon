@@ -3,6 +3,7 @@ import re
 import boto3
 import os
 import uuid
+import requests
 from datetime import datetime
 
 # Initialize Bedrock client
@@ -12,6 +13,9 @@ bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
+
+# Environment variable for calendar API
+CALENDAR_API_URL = 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
 
 
 # System prompt with company knowledge
@@ -38,6 +42,66 @@ Talk like a real person, not a robot or corporate website. Keep your responses s
 When someone wants to book a call, schedule a demo, or shows serious interest, always ask for their name, email, and phone number so you can have someone reach out to them. Say something natural like "I'd love to have someone from the team reach out to you. Could you share your name, email, and best phone number to reach you?" Once they provide their info, confirm you've noted it down and someone will contact them soon.
 
 """
+
+# Define tools for the AI to use
+TOOLS = [
+    {
+        "name": "check_availability",
+        "description": "Check available appointment slots for a specific date. Use this when someone wants to book a call or see when you're available.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "description": "The date to check in YYYY-MM-DD format"
+                }
+            },
+            "required": ["date"]
+        }
+    },
+    {
+        "name": "book_appointment",
+        "description": "Book a 30-minute consultation appointment. Use this after getting the customer's name, email, phone, and preferred time.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "date": {"type": "string", "description": "Date in YYYY-MM-DD format"},
+                "time": {"type": "string", "description": "Time in HH:MM format (24-hour)"},
+                "name": {"type": "string", "description": "Customer's full name"},
+                "email": {"type": "string", "description": "Customer's email address"},
+                "phone": {"type": "string", "description": "Customer's phone number"}
+            },
+            "required": ["date", "time", "name", "email", "phone"]
+        }
+    }
+]
+
+def execute_tool(tool_name, tool_input):
+    """Execute a tool and return the result"""
+    try:
+        if tool_name == "check_availability":
+            response = requests.get(
+                f"{CALENDAR_API_URL}/availability",
+                params={"date": tool_input["date"]}
+            )
+            data = response.json()
+            slots = data.get("availableSlots", [])
+            if slots:
+                return f"Available times on {tool_input['date']}: {', '.join(slots)}"
+            return f"No available slots on {tool_input['date']}"
+            
+        elif tool_name == "book_appointment":
+            response = requests.post(
+                f"{CALENDAR_API_URL}/book",
+                json=tool_input
+            )
+            data = response.json()
+            if data.get("success"):
+                return f"Appointment booked successfully for {tool_input['name']} on {tool_input['date']} at {tool_input['time']}"
+            return f"Failed to book: {data.get('error', 'Unknown error')}"
+            
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 
 def should_capture_lead(user_message, ai_response):
@@ -149,7 +213,7 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
     
     return None
 
-
+# Lambda handler
 def lambda_handler(event, context):
     """
     Lambda handler for chatbot API
@@ -178,33 +242,70 @@ def lambda_handler(event, context):
         # For now, we'll use a simple single-turn conversation
         # In production, you'd want to store conversation history in DynamoDB
         
+        messages = [{"role": "user", "content": user_message}]
+        
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": 1000,
             "system": SYSTEM_PROMPT,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": user_message
-                }
-            ],
+            "messages": messages,
+            "tools": TOOLS,
             "temperature": 0.7
         }
+
         
-        # Call Claude via Bedrock
-        response = bedrock_runtime.invoke_model(
-            modelId='global.anthropic.claude-sonnet-4-5-20250929-v1:0',
-
-
-
-            body=json.dumps(request_body)
-        )
+        # Tool calling loop - keeps going until Claude gives a final text response
+        ai_response = ""
+        max_iterations = 5  # Safety limit to prevent infinite loops
         
-        # Parse response
-        response_body = json.loads(response['body'].read())
-        ai_response = response_body['content'][0]['text']
+        for _ in range(max_iterations):
+            # Call Claude via Bedrock
+            response = bedrock_runtime.invoke_model(
+                modelId='global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+                body=json.dumps(request_body)
+            )
+            
+            response_body = json.loads(response['body'].read())
+            stop_reason = response_body.get('stop_reason', '')
+            
+            # Check if Claude wants to use a tool
+            if stop_reason == 'tool_use':
+                # Claude wants to use a tool - find the tool_use block
+                assistant_content = response_body['content']
+                messages.append({"role": "assistant", "content": assistant_content})
+                
+                # Process each tool use
+                tool_results = []
+                for block in assistant_content:
+                    if block.get('type') == 'tool_use':
+                        tool_name = block['name']
+                        tool_input = block['input']
+                        tool_id = block['id']
+                        
+                        # Execute the tool
+                        result = execute_tool(tool_name, tool_input)
+                        
+                        tool_results.append({
+                            "type": "tool_result",
+                            "tool_use_id": tool_id,
+                            "content": result
+                        })
+                
+                # Add tool results to messages for next iteration
+                messages.append({"role": "user", "content": tool_results})
+                request_body["messages"] = messages
+                
+            else:
+                # Claude gave a final response (end_turn) - extract text
+                for block in response_body['content']:
+                    if block.get('type') == 'text':
+                        ai_response = block['text']
+                        break
+                break  # Exit the loop
+        
         # Try to capture lead if user shows interest
         save_chatbot_lead(user_message, ai_response, conversation_id)
+
 
 
         # Return successful response
