@@ -36,4 +36,13 @@ manifest_hash = ""
 packagetype = "Zip"
 functions = ["VapiWebhookFunction"]
 
+[function_build_definitions.c817566b-a32b-4cfd-b3e6-af959a2842d5]
+codeuri = "/Users/mehdisalhi/Desktop/Projects/businessAI/businessautomated/unkommon-backend/calendar_api"
+runtime = "python3.13"
+architecture = "x86_64"
+handler = "app.lambda_handler"
+manifest_hash = "6bdc65a255d187d735725fa0bf6ebc5f"
+packagetype = "Zip"
+functions = ["CalendarApiFunction"]
+
 [layer_build_definitions]

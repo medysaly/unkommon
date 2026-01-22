@@ -163,6 +163,35 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/vapi-webhook
             Method: POST
+  # Calendar API Function
+  CalendarApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: calendar_api/
+      Handler: app.lambda_handler
+      Timeout: 30
+      Environment:
+        Variables:
+          GOOGLE_CALENDAR_SECRET: unkommon/google-calendar
+      Policies:
+        - Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+            Resource: !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:unkommon/google-calendar*
+      Events:
+        GetAvailability:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/calendar/availability
+            Method: GET
+        BookAppointment:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/calendar/book
+            Method: POST
 
 Outputs:
   ApiEndpoint:
