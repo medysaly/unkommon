@@ -13,6 +13,7 @@ bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
+conversations_table = dynamodb.Table('unkommon-conversations')
 
 # Environment variable for calendar API
 CALENDAR_API_URL = 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
@@ -135,6 +136,33 @@ def execute_tool(tool_name, tool_input):
         return f"Error: {str(e)}"
 
 
+def get_conversation_history(conversation_id):
+    """Retrieve conversation history from DynamoDB"""
+    try:
+        response = conversations_table.get_item(Key={'conversationId': conversation_id})
+        item = response.get('Item')
+        if item:
+            return item.get('messages', [])
+        return []
+    except Exception as e:
+        print(f"Error getting conversation history: {e}")
+        return []
+
+
+def save_conversation_history(conversation_id, messages):
+    """Save conversation history to DynamoDB with 24-hour TTL"""
+    try:
+        ttl = int(datetime.now().timestamp()) + 86400  # 24 hours from now
+        conversations_table.put_item(Item={
+            'conversationId': conversation_id,
+            'messages': messages,
+            'ttl': ttl,
+            'updatedAt': int(datetime.now().timestamp())
+        })
+    except Exception as e:
+        print(f"Error saving conversation history: {e}")
+
+
 def should_capture_lead(user_message, ai_response):
     """Detect if user is showing interest and should be captured as a lead"""
     interest_keywords = [
@@ -234,11 +262,11 @@ def lambda_handler(event, context):
                 'body': json.dumps({'error': 'Message is required'})
             }
         
-        # Prepare Claude API request
-        # For now, we'll use a simple single-turn conversation
-        # In production, you'd want to store conversation history in DynamoDB
-        
-        messages = [{"role": "user", "content": user_message}]
+        # Load conversation history
+        messages = get_conversation_history(conversation_id)
+
+        # Add the new user message
+        messages.append({"role": "user", "content": user_message})
         
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
@@ -297,8 +325,13 @@ def lambda_handler(event, context):
                     if block.get('type') == 'text':
                         ai_response = block['text']
                         break
+                # Add assistant response to messages for history
+                messages.append({"role": "assistant", "content": ai_response})
                 break  # Exit the loop
-        
+
+        # Save conversation history
+        save_conversation_history(conversation_id, messages)
+
         # Try to capture lead if user shows interest
         save_chatbot_lead(user_message, ai_response, conversation_id)
 

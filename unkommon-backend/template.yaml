@@ -31,6 +31,25 @@ Resources:
         AllowHeaders: '''Content-Type,Authorization'''
         AllowOrigin: '''*'''
 
+  # DynamoDB Table for Conversations
+  ConversationsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: unkommon-conversations
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: conversationId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: conversationId
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      Tags:
+        - Key: Project
+          Value: Unkommon
+
   # DynamoDB Table for Leads
   LeadsTable:
     Type: AWS::DynamoDB::Table
@@ -90,7 +109,7 @@ Resources:
             Path: /api/contact
             Method: POST
 
-  # Chatbot Lambda Function         
+  # Chatbot Lambda Function
   ChatbotFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -99,9 +118,12 @@ Resources:
       Environment:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
+          CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ConversationsTable
         - Statement:
           - Effect: Allow
             Action:
