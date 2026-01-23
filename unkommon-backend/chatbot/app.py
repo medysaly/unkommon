@@ -251,7 +251,8 @@ def lambda_handler(event, context):
         
         user_message = body.get('message', '').strip()
         conversation_id = body.get('conversationId') or str(uuid.uuid4())
-        
+        today = datetime.now().strftime('%A, %B %d, %Y')
+
         if not user_message:
             return {
                 'statusCode': 400,
@@ -271,7 +272,7 @@ def lambda_handler(event, context):
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": 1000,
-            "system": SYSTEM_PROMPT,
+            "system": f"Today's date is {today}.\n\n{SYSTEM_PROMPT}",
             "messages": messages,
             "tools": TOOLS,
             "temperature": 0.7

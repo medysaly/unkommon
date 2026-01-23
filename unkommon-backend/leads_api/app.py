@@ -24,6 +24,11 @@ def lambda_handler(event, context):
         
         # Sort by createdAt descending (newest first)
         leads.sort(key=lambda x: x.get('createdAt', 0), reverse=True)
+                # Convert createdAt from seconds to milliseconds for frontend
+        for lead in leads:
+            if 'createdAt' in lead:
+                lead['createdAt'] = lead['createdAt'] * 1000
+
         
         # Calculate stats
         now = int(datetime.now().timestamp())

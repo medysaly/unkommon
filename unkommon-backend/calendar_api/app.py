@@ -7,6 +7,10 @@ from googleapiclient.discovery import build
 # Initialize AWS clients
 secrets_client = boto3.client('secretsmanager', region_name='us-east-1')
 
+# Initialize SES client
+ses_client = boto3.client('ses', region_name='us-east-1')
+SES_FROM_EMAIL = 'info@unkommon.ai'
+
 # Calendar settings
 CALENDAR_ID = 'contact@unkommon.ai'
 SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -77,14 +81,45 @@ def get_available_slots(date_str):
     return available_slots
 
 
+def send_confirmation_email(name, email, date_str, time_str):
+    """Send confirmation email to client and notification to sales"""
+    try:
+        # Email to client
+        ses_client.send_email(
+            Source=SES_FROM_EMAIL,
+            Destination={'ToAddresses': [email]},
+            Message={
+                'Subject': {'Data': 'Your Unkommon Consultation is Confirmed'},
+                'Body': {
+                    'Text': {'Data': f"Hi {name},\n\nYour 30-minute efficiency audit is confirmed for {date_str} at {time_str} EST.\n\nWe look forward to speaking with you!\n\nBest,\nThe Unkommon Team"}
+                }
+            }
+        )
+
+        # Email to sales team
+        ses_client.send_email(
+            Source=SES_FROM_EMAIL,
+            Destination={'ToAddresses': ['sales@unkommon.ai']},
+            Message={
+                'Subject': {'Data': f'New Booking: {name}'},
+                'Body': {
+                    'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {time_str} EST"}
+                }
+            }
+        )
+        print(f"Confirmation emails sent to {email} and sales@unkommon.ai")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
+
 def book_appointment(date_str, time_str, name, email, phone):
     """Book a 30-minute appointment"""
     service = get_calendar_service()
-    
+
     # Parse date and time
     start_datetime = datetime.strptime(f'{date_str} {time_str}', '%Y-%m-%d %H:%M')
     end_datetime = start_datetime + timedelta(minutes=30)
-    
+
     event = {
         'summary': f'Unkommon Consultation - {name}',
         'description': f'Name: {name}\nEmail: {email}\nPhone: {phone}\n\nBooked via AI assistant',
@@ -97,8 +132,12 @@ def book_appointment(date_str, time_str, name, email, phone):
             'timeZone': 'America/New_York',
         },
     }
-    
+
     created_event = service.events().insert(calendarId=CALENDAR_ID, body=event).execute()
+
+    # Send confirmation emails
+    send_confirmation_email(name, email, date_str, time_str)
+
     return created_event.get('id')
 
 
