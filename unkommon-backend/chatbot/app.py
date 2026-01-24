@@ -5,6 +5,8 @@ import os
 import uuid
 import requests
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
 
 # Initialize Bedrock client
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
@@ -61,6 +63,7 @@ You offer three distinct AI Agents. Use these details to answer questions:
 - **Tone:** Helpful but direct. Avoid fluff.
 
 ### BOOKING PROTOCOL (TOOL USE)
+All appointment times are in Eastern Time (ET). Always mention "Eastern Time" when confirming times with users.
 You have access to two tools: `check_availability` and `book_appointment`. Follow this strict sequence:
 
 1. **Intent:** If the user wants a demo, audit, or to discuss pricing/setup, ask for their preferred day.
@@ -251,7 +254,8 @@ def lambda_handler(event, context):
         
         user_message = body.get('message', '').strip()
         conversation_id = body.get('conversationId') or str(uuid.uuid4())
-        today = datetime.now().strftime('%A, %B %d, %Y')
+        today = datetime.now(ZoneInfo('America/New_York')).strftime('%A, %B %d, %Y')
+
 
         if not user_message:
             return {
