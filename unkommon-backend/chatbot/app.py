@@ -5,7 +5,6 @@ import os
 import uuid
 import requests
 from datetime import datetime, timedelta
-import dateparser
 from zoneinfo import ZoneInfo
 
 
@@ -65,15 +64,14 @@ You offer three distinct AI Agents. Use these details to answer questions:
 
 ### BOOKING PROTOCOL (TOOL USE)
 All appointment times are in Eastern Time (ET). Always mention "Eastern Time" when confirming times with users.
-You have access to three tools: `parse_date`, `check_availability`, and `book_appointment`. Follow this strict sequence:
+You have access to two tools: `check_availability` and `book_appointment`. Use the CALENDAR REFERENCE provided to convert dates.
 
 1. **Intent:** If the user wants a demo, audit, or to discuss pricing/setup, ask for their preferred day.
-2. **Parse:** When the user mentions a date (like "next Friday" or "tomorrow"), ALWAYS use `parse_date` first to get the exact date.
-3. **Check:** SILENTLY use `check_availability` with the parsed date.
-4. **Offer:** Present 2-3 specific available times in natural text (e.g., "I have openings this Tuesday at 10am and 2pm. Do either work?").
-5. **Gather Details:** Once a time is picked, ask for their **Name**, **Email**, and **Phone Number**.
-6. **Execute:** Only when you have Date, Time, Name, Email, and Phone, execute the `book_appointment` tool.
-7. **Confirm:** Confirm the booking in plain text.
+2. **Check:** Use the CALENDAR REFERENCE to convert the user's date (like "next Friday") to YYYY-MM-DD format, then SILENTLY use `check_availability`.
+3. **Offer:** Present 2-3 specific available times in natural text (e.g., "I have openings this Tuesday at 10am and 2pm. Do either work?").
+4. **Gather Details:** Once a time is picked, ask for their **Name**, **Email**, and **Phone Number**.
+5. **Execute:** Only when you have Date, Time, Name, Email, and Phone, execute the `book_appointment` tool.
+6. **Confirm:** Confirm the booking in plain text.
 
 ### OBJECTION HANDLING
 - **"Will this replace my staff?"**: "Not necessarily. Most clients use a hybrid model where the AI handles the repetitive volume and admin, allowing your human team to focus on high-value, complex interactions."
@@ -82,21 +80,6 @@ You have access to three tools: `parse_date`, `check_availability`, and `book_ap
 
 # Define tools for the AI to use
 TOOLS = [
-
-        {
-        "name": "parse_date",
-        "description": "Convert natural language dates like 'next Friday', 'tomorrow', 'January 30th' into an actual date. ALWAYS use this tool first when the user mentions any date before checking availability.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "date_text": {
-                    "type": "string",
-                    "description": "The natural language date from the user, e.g. 'next Friday', 'tomorrow', 'this Wednesday'"
-                }
-            },
-            "required": ["date_text"]
-        }
-    },
 
     {
         "name": "check_availability",
@@ -131,23 +114,10 @@ TOOLS = [
 
 def execute_tool(tool_name, tool_input):
     """Execute a tool and return the result"""
+    print(f"🔧 Tool called: {tool_name} with input: {tool_input}")
     try:
-        if tool_name == "parse_date":
-            from zoneinfo import ZoneInfo
-            parsed = dateparser.parse(
-                tool_input["date_text"],
-                settings={
-                    'TIMEZONE': 'America/New_York',
-                    'RETURN_AS_TIMEZONE_AWARE': True,
-                    'PREFER_DATES_FROM': 'future',
-                    'RELATIVE_BASE': datetime.now(ZoneInfo('America/New_York'))
-                }
-            )
-            if parsed:
-                return f"The date '{tool_input['date_text']}' is {parsed.strftime('%A, %B %d, %Y')} (use {parsed.strftime('%Y-%m-%d')} for booking)"
-            return f"Could not parse the date '{tool_input['date_text']}'. Please ask the user for a specific date."
-        
-        elif tool_name == "check_availability":
+        if tool_name == "check_availability":
+            print(f"📅 Checking availability for date: {tool_input['date']}")
             response = requests.get(
                 f"{CALENDAR_API_URL}/availability",
                 params={"date": tool_input["date"]}
@@ -157,8 +127,9 @@ def execute_tool(tool_name, tool_input):
             if slots:
                 return f"Available times on {tool_input['date']}: {', '.join(slots)}"
             return f"No available slots on {tool_input['date']}"
-            
+
         elif tool_name == "book_appointment":
+            print(f"📅 Booking appointment: {tool_input}")
             response = requests.post(
                 f"{CALENDAR_API_URL}/book",
                 json=tool_input
@@ -288,7 +259,16 @@ def lambda_handler(event, context):
         
         user_message = body.get('message', '').strip()
         conversation_id = body.get('conversationId') or str(uuid.uuid4())
-        today = datetime.now(ZoneInfo('America/New_York')).strftime('%A, %B %d, %Y')
+
+        # Generate calendar reference for next 14 days
+        now_et = datetime.now(ZoneInfo('America/New_York'))
+        today = now_et.strftime('%A, %B %d, %Y')
+        calendar_lines = []
+        for i in range(14):
+            day = now_et + timedelta(days=i)
+            label = " (today)" if i == 0 else " (tomorrow)" if i == 1 else ""
+            calendar_lines.append(f"{day.strftime('%A')} = {day.strftime('%Y-%m-%d')}{label}")
+        calendar_reference = "\n".join(calendar_lines)
 
 
         if not user_message:
@@ -310,7 +290,7 @@ def lambda_handler(event, context):
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": 1000,
-            "system": f"Today's date is {today}.\n\n{SYSTEM_PROMPT}",
+            "system": f"Today is {today}.\n\nCALENDAR REFERENCE (use for date conversion):\n{calendar_reference}\n\n{SYSTEM_PROMPT}",
             "messages": messages,
             "tools": TOOLS,
             "temperature": 0.7

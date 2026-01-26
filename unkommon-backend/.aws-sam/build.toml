@@ -36,16 +36,13 @@ manifest_hash = "6bdc65a255d187d735725fa0bf6ebc5f"
 packagetype = "Zip"
 functions = ["CalendarApiFunction"]
 
-[function_build_definitions.09175a19-36ca-456e-a55f-8ecc1325c18c]
+[function_build_definitions.9dde6a12-2f93-462a-b14b-fb48a3666540]
 codeuri = "/Users/mehdisalhi/Desktop/Projects/businessAI/businessautomated/unkommon-backend/chatbot"
 runtime = "python3.13"
 architecture = "x86_64"
 handler = "app.lambda_handler"
-manifest_hash = "a0be132c989f4ef401bb01a825777771"
+manifest_hash = "8f5ecb0021e4ebeaa9042ff7ef10def7"
 packagetype = "Zip"
 functions = ["ChatbotFunction"]
-
-[function_build_definitions.09175a19-36ca-456e-a55f-8ecc1325c18c.metadata]
-BuildMethod = "python3.13"
 
 [layer_build_definitions]
