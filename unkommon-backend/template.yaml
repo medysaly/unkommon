@@ -117,6 +117,8 @@ Resources:
     Properties:
       CodeUri: chatbot/
       Handler: app.lambda_handler
+      Timeout: 120
+      MemorySize: 256
       Environment:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
