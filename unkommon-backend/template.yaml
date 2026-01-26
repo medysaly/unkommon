@@ -112,6 +112,8 @@ Resources:
   # Chatbot Lambda Function
   ChatbotFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: python3.13
     Properties:
       CodeUri: chatbot/
       Handler: app.lambda_handler
