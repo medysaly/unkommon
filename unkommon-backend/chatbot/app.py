@@ -114,14 +114,16 @@ TOOLS = [
 
 def execute_tool(tool_name, tool_input):
     """Execute a tool and return the result"""
-    print(f"🔧 Tool called: {tool_name} with input: {tool_input}")
+    print(f"Tool called: {tool_name} with input: {tool_input}")
     try:
         if tool_name == "check_availability":
-            print(f"📅 Checking availability for date: {tool_input['date']}")
+            print(f"Checking availability for date: {tool_input['date']}")
             response = requests.get(
                 f"{CALENDAR_API_URL}/availability",
-                params={"date": tool_input["date"]}
+                params={"date": tool_input["date"]},
+                timeout=15
             )
+            response.raise_for_status()
             data = response.json()
             slots = data.get("availableSlots", [])
             if slots:
@@ -129,17 +131,23 @@ def execute_tool(tool_name, tool_input):
             return f"No available slots on {tool_input['date']}"
 
         elif tool_name == "book_appointment":
-            print(f"📅 Booking appointment: {tool_input}")
+            print(f"Booking appointment: {tool_input}")
             response = requests.post(
                 f"{CALENDAR_API_URL}/book",
-                json=tool_input
+                json=tool_input,
+                timeout=30
             )
+            response.raise_for_status()
             data = response.json()
             if data.get("success"):
-                return f"Appointment booked successfully for {tool_input['name']} on {tool_input['date']} at {tool_input['time']}"
+                email_status = "Confirmation email sent." if data.get("emailSent") else "Note: confirmation email could not be sent."
+                return f"Appointment booked successfully for {tool_input['name']} on {tool_input['date']} at {tool_input['time']}. {email_status}"
             return f"Failed to book: {data.get('error', 'Unknown error')}"
 
-        
+    except requests.exceptions.Timeout:
+        return f"Error: Calendar service timed out. Please try again."
+    except requests.exceptions.RequestException as e:
+        return f"Error connecting to calendar service: {str(e)}"
     except Exception as e:
         return f"Error: {str(e)}"
 

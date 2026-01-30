@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 from datetime import datetime, timedelta
 from google.oauth2 import service_account
@@ -9,16 +10,17 @@ secrets_client = boto3.client('secretsmanager', region_name='us-east-1')
 
 # Initialize SES client
 ses_client = boto3.client('ses', region_name='us-east-1')
-SES_FROM_EMAIL = 'info@unkommon.ai'
+SES_FROM_EMAIL = os.environ.get('SES_FROM_EMAIL', 'info@unkommon.ai')
 
 # Calendar settings
 CALENDAR_ID = 'contact@unkommon.ai'
+CALENDAR_SECRET_ID = os.environ.get('GOOGLE_CALENDAR_SECRET', 'unkommon/google-calendar')
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
 def get_calendar_service():
     """Get authenticated Google Calendar service using domain-wide delegation"""
-    secret = secrets_client.get_secret_value(SecretId='unkommon/google-calendar')
+    secret = secrets_client.get_secret_value(SecretId=CALENDAR_SECRET_ID)
     creds_dict = json.loads(secret['SecretString'])
 
     credentials = service_account.Credentials.from_service_account_info(
@@ -82,38 +84,37 @@ def get_available_slots(date_str):
 
 
 def send_confirmation_email(name, email, date_str, time_str):
-    """Send confirmation email to client and notification to sales"""
-    try:
-        # Email to client
-        ses_client.send_email(
-            Source=SES_FROM_EMAIL,
-            Destination={'ToAddresses': [email]},
-            Message={
-                'Subject': {'Data': 'Your Unkommon Consultation is Confirmed'},
-                'Body': {
-                    'Text': {'Data': f"Hi {name},\n\nYour 30-minute efficiency audit is confirmed for {date_str} at {time_str} EST.\n\nWe look forward to speaking with you!\n\nBest,\nThe Unkommon Team"}
-                }
+    """Send confirmation email to client and notification to sales. Returns True on success, raises on failure."""
+    # Email to client
+    client_response = ses_client.send_email(
+        Source=SES_FROM_EMAIL,
+        Destination={'ToAddresses': [email]},
+        Message={
+            'Subject': {'Data': 'Your Unkommon Consultation is Confirmed'},
+            'Body': {
+                'Text': {'Data': f"Hi {name},\n\nYour 30-minute efficiency audit is confirmed for {date_str} at {time_str} EST.\n\nWe look forward to speaking with you!\n\nBest,\nThe Unkommon Team"}
             }
-        )
+        }
+    )
+    print(f"Client confirmation email sent to {email} | MessageId: {client_response['MessageId']}")
 
-        # Email to sales team
-        ses_client.send_email(
-            Source=SES_FROM_EMAIL,
-            Destination={'ToAddresses': ['sales@unkommon.ai']},
-            Message={
-                'Subject': {'Data': f'New Booking: {name}'},
-                'Body': {
-                    'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {time_str} EST"}
-                }
+    # Email to sales team
+    sales_response = ses_client.send_email(
+        Source=SES_FROM_EMAIL,
+        Destination={'ToAddresses': ['sales@unkommon.ai']},
+        Message={
+            'Subject': {'Data': f'New Booking: {name}'},
+            'Body': {
+                'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {time_str} EST"}
             }
-        )
-        print(f"Confirmation emails sent to {email} and sales@unkommon.ai")
-    except Exception as e:
-        print(f"Failed to send email: {e}")
+        }
+    )
+    print(f"Sales notification email sent | MessageId: {sales_response['MessageId']}")
+    return True
 
 
 def book_appointment(date_str, time_str, name, email, phone):
-    """Book a 30-minute appointment"""
+    """Book a 30-minute appointment. Returns (event_id, email_sent) tuple."""
     service = get_calendar_service()
 
     # Parse date and time
@@ -134,11 +135,17 @@ def book_appointment(date_str, time_str, name, email, phone):
     }
 
     created_event = service.events().insert(calendarId=CALENDAR_ID, body=event).execute()
+    event_id = created_event.get('id')
 
     # Send confirmation emails
-    send_confirmation_email(name, email, date_str, time_str)
+    email_sent = False
+    try:
+        send_confirmation_email(name, email, date_str, time_str)
+        email_sent = True
+    except Exception as e:
+        print(f"Failed to send confirmation email: {e}")
 
-    return created_event.get('id')
+    return event_id, email_sent
 
 
 def lambda_handler(event, context):
@@ -147,76 +154,77 @@ def lambda_handler(event, context):
     - GET /api/calendar/availability?date=2025-01-22
     - POST /api/calendar/book { date, time, name, email, phone }
     """
-    
+
+    # CORS headers (defined outside try so error handler can use them)
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+    }
+
     try:
         http_method = event.get('httpMethod', '')
         path = event.get('path', '')
-        
-        # CORS headers
-        headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-        }
-        
+
         # Handle OPTIONS preflight
         if http_method == 'OPTIONS':
             return {'statusCode': 200, 'headers': headers, 'body': ''}
-        
+
         # GET availability
         if http_method == 'GET' and 'availability' in path:
             params = event.get('queryStringParameters', {}) or {}
             date_str = params.get('date')
-            
+
             if not date_str:
                 return {
                     'statusCode': 400,
                     'headers': headers,
                     'body': json.dumps({'error': 'date parameter required (YYYY-MM-DD)'})
                 }
-            
+
             slots = get_available_slots(date_str)
             return {
                 'statusCode': 200,
                 'headers': headers,
                 'body': json.dumps({'date': date_str, 'availableSlots': slots})
             }
-        
+
         # POST book appointment
         if http_method == 'POST' and 'book' in path:
             body = json.loads(event['body']) if isinstance(event.get('body'), str) else event.get('body', {})
-            
+
             required = ['date', 'time', 'name', 'email', 'phone']
             missing = [f for f in required if not body.get(f)]
-            
+
             if missing:
                 return {
                     'statusCode': 400,
                     'headers': headers,
                     'body': json.dumps({'error': f'Missing fields: {", ".join(missing)}'})
                 }
-            
-            event_id = book_appointment(
+
+            event_id, email_sent = book_appointment(
                 body['date'], body['time'], body['name'], body['email'], body['phone']
             )
-            
+
             return {
                 'statusCode': 200,
                 'headers': headers,
                 'body': json.dumps({
                     'success': True,
                     'eventId': event_id,
+                    'emailSent': email_sent,
                     'message': f"Appointment booked for {body['date']} at {body['time']}"
                 })
             }
-        
+
         return {
             'statusCode': 404,
             'headers': headers,
             'body': json.dumps({'error': 'Not found'})
         }
-        
+
     except Exception as e:
         print(f"Calendar API error: {str(e)}")
         return {
