@@ -13,7 +13,7 @@ Parameters:
   SesFromEmail:
     Type: String
     Description: SES verified FROM email address
-    Default: info@unkommon.ai
+    Default: contact@unkommon.ai
 
   SesToEmail:
     Type: String

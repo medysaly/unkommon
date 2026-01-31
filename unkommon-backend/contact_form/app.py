@@ -119,7 +119,7 @@ Respond within 24 hours for best conversion rates!
     # Send email via SES
     try:
         response = ses_client.send_email(
-            Source='info@unkommon.ai',  # FROM address (must be verified in SES)
+            Source='contact@unkommon.ai',  # FROM address (must be verified in SES)
             Destination={
                 'ToAddresses': ['sales@unkommon.ai']  # TO address (where you receive leads)
             },

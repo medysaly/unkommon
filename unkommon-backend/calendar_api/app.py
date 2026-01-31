@@ -10,7 +10,7 @@ secrets_client = boto3.client('secretsmanager', region_name='us-east-1')
 
 # Initialize SES client
 ses_client = boto3.client('ses', region_name='us-east-1')
-SES_FROM_EMAIL = os.environ.get('SES_FROM_EMAIL', 'info@unkommon.ai')
+SES_FROM_EMAIL = os.environ.get('SES_FROM_EMAIL', 'contact@unkommon.ai')
 
 # Calendar settings
 CALENDAR_ID = 'contact@unkommon.ai'
