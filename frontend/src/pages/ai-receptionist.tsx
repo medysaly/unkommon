@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, CheckCircle, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { createPageUrl } from "@/lib/utils";
 import VapiDemo from "@/components/VapiDemo";
 import AIReceptionistDemos from "@/components/AIReceptionistDemos";
@@ -182,25 +181,7 @@ export default function AIReceptionist() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Mobile Notice */}
-            <div className="md:hidden">
-              <Card className="bg-card border-border">
-                <CardContent className="p-8 text-center">
-                  <Phone className="w-16 h-16 mx-auto mb-4 text-foreground" />
-                  <h3 className="text-xl font-light text-foreground mb-2 tracking-tight">
-                    Interactive Demo Available on Larger Screens
-                  </h3>
-                  <p className="text-muted-foreground">
-                    To experience the live AI receptionist demo, please view this page on a tablet, laptop, or desktop computer.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Desktop Demo */}
-            <div className="hidden md:block">
-              <VapiDemo />
-            </div>
+            <VapiDemo />
           </motion.div>
         </div>
       </section>

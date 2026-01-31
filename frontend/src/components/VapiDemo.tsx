@@ -292,8 +292,8 @@ export default function VapiDemo() {
               )}
             </div>
 
-            {/* Right: Transcript */}
-            <div className="flex flex-col h-[400px]">
+            {/* Right: Transcript (desktop only) */}
+            <div className="hidden md:flex flex-col h-[400px]">
               <div className="mb-4">
                 <h4 className="text-sm font-light text-zinc-400 uppercase tracking-wider">
                   Transcript
@@ -371,7 +371,7 @@ export default function VapiDemo() {
               animate={{ opacity: 1 }}
               className="mt-8 pt-8 border-t border-zinc-700/60"
             >
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="hidden md:grid md:grid-cols-3 gap-6 text-center">
                 <div className="space-y-2">
                   <div className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto">
                     <Phone className="w-5 h-5 text-zinc-500" />

@@ -85,7 +85,7 @@ export default function SocialMediaIcons() {
       </li>
       <li className="icon-content">
         <a
-          href="mailto:contact@unkommon.com"
+          href="mailto:contact@unkommon.ai"
           aria-label="Mail"
           data-social="mail"
           className="social-link"

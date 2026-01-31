@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send, Clock, Sparkles, ArrowRight, Calendar } from "lucide-react";
+import { Phone, MapPin, Send, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -229,89 +228,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Section 2: The Audit - Booking Widget */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.005, y: -2 }}
-            className="relative group"
-          >
-            <div className="relative overflow-hidden rounded-[30px] p-10 md:p-12">
-              {/* Liquid glass background */}
-              <div className="absolute inset-0 bg-white/10"
-                   style={{
-                     WebkitBackdropFilter: 'blur(20px) saturate(100%)',
-                     backdropFilter: 'blur(40px) saturate(180%)'
-                   }}
-              />
-
-              {/* Border gradient */}
-              <div className="absolute -inset-[1px] rounded-[30px] transition-opacity duration-300 group-hover:opacity-90"
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 50%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0.15) 100%)',
-                     border: '0.5px solid rgba(255,255,255,0.15)',
-                     filter: 'blur(0.5px)',
-                     opacity: 0.7,
-                     zIndex: -1
-                   }}
-              />
-
-              {/* Shine effect */}
-              <div className="absolute inset-0 rounded-[30px] pointer-events-none"
-                   style={{
-                     background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
-                     opacity: 0.8
-                   }}
-              />
-
-              {/* Shadow */}
-              <div className="absolute inset-0 rounded-[30px] -z-10"
-                   style={{
-                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(255, 255, 255, 0.1) inset'
-                   }}
-              />
-
-              {/* Content */}
-              <div className="relative text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-white rounded-2xl mb-6">
-                  <Calendar className="w-8 h-8 text-white dark:text-black" />
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-4">
-                  Schedule Your Efficiency Audit.
-                </h2>
-
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-                  We are currently accepting new clients for Q1 deployment. Select a time below for a 30-minute architectural review with a solution engineer. We will discuss your current bottlenecks and map out a custom automation strategy.
-                </p>
-
-                {/* Calendly Embed Placeholder */}
-                <div className="bg-card/30 border border-border/50 rounded-2xl p-12 backdrop-blur-sm">
-                  <p className="text-muted-foreground mb-4">
-                    [Calendly Booking Widget Embed Here]
-                  </p>
-                  <Button
-                    size="lg"
-                    className="bg-black hover:bg-zinc-900 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-black shadow-xl transition-all group font-light h-14 text-lg"
-                  >
-                    Book Your Audit Call
-                    <Calendar className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
-                  </Button>
-                  <p className="text-sm text-muted-foreground mt-4">
-                    30-Minute Strategy Session • No Obligation
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section 3: Direct Inquiry - Contact Form */}
+      {/* Section 2: Direct Inquiry - Contact Form */}
       <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -594,10 +511,10 @@ export default function Contact() {
                   <div className="pt-4 border-t border-border/30">
                     <p className="text-sm text-muted-foreground mb-2">For general inquiries:</p>
                     <a
-                      href="mailto:hello@unkommon.com"
+                      href="mailto:info@unkommon.ai"
                       className="text-lg text-foreground hover:text-blue-500 transition-colors font-medium"
                     >
-                      hello@unkommon.com
+                      info@unkommon.ai
                     </a>
                   </div>
                 </div>

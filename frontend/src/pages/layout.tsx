@@ -174,7 +174,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />
-                  <span>contact@unkommon.com</span>
+                  <span>contact@unkommon.ai</span>
                 </div>
               </div>
             </div>
