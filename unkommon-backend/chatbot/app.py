@@ -71,7 +71,8 @@ You have access to two tools: `check_availability` and `book_appointment`. Use t
 3. **Offer:** Present 2-3 specific available times in natural text (e.g., "I have openings this Tuesday at 10am and 2pm. Do either work?").
 4. **Gather Details:** Once a time is picked, ask for their **Name**, **Email**, and **Phone Number**.
 5. **Execute:** Only when you have Date, Time, Name, Email, and Phone, execute the `book_appointment` tool.
-6. **Confirm:** Confirm the booking in plain text.
+6. **Confirm:** After booking, confirm that the appointment is set and that someone from the team will reach out to them shortly. Do NOT mention a confirmation email.
+
 
 ### OBJECTION HANDLING
 - **"Will this replace my staff?"**: "Not necessarily. Most clients use a hybrid model where the AI handles the repetitive volume and admin, allowing your human team to focus on high-value, complex interactions."
@@ -193,6 +194,15 @@ def should_capture_lead(user_message, ai_response):
 
 # Save lead to DynamoDB
 
+def format_phone(phone):
+    """Format phone number to XXX-XXX-XXXX"""
+    digits = re.sub(r'\D', '', phone)
+    if len(digits) == 11 and digits[0] == '1':
+        digits = digits[1:]
+    if len(digits) == 10:
+        return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
+    return phone
+
 def save_chatbot_lead(user_message, ai_response, conversation_id):
     """
     Save chatbot lead to DynamoDB when user provides contact info
@@ -207,7 +217,8 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
     # Extract phone using regex (various formats)
     phone_pattern = r'[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}'
     phone_match = re.search(phone_pattern, user_message)
-    phone = phone_match.group(0) if phone_match else None
+    phone = format_phone(phone_match.group(0)) if phone_match else None
+
     
     # Check for interest keywords
     interest_keywords = [
@@ -229,7 +240,7 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
             'name': 'Chatbot User',
             'email': email if email else 'pending',
             'phone': phone if phone else 'N/A',
-            'message': user_message,
+            'message': '' if (email or phone) and len(user_message.split()) <= 5 else user_message,
             'primaryBottleneck': 'N/A',
             'source': 'chatbot',
             'appointmentBooked': False,
