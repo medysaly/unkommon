@@ -73,12 +73,12 @@
   fill: #000;
 }
 
-.social-media-list .icon-content .social-link[data-social="facebook"]:hover {
-  color: #00a2ff;
+.social-media-list .icon-content .social-link[data-social="linkedin"]:hover {
+  color: #0077b5;
 }
 
-.dark .social-media-list .icon-content .social-link[data-social="facebook"]:hover {
-  color: #00a2ff;
+.dark .social-media-list .icon-content .social-link[data-social="linkedin"]:hover {
+  color: #0077b5;
 }
 
 .social-media-list .icon-content .social-link[data-social="instagram"]:hover {
