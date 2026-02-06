@@ -639,7 +639,7 @@ export default function Home() {
       </section>
 
       {/* Engineering Standard Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-black dark:bg-black">
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-zinc-100 dark:bg-black">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -649,10 +649,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8">
+            <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
               We Don't Just Prompt. We Engineer.
             </h2>
-            <p className="text-xl text-gray-400 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
               Most agencies rely on generic models. Unkommon builds proprietary, state-based architectures using advanced retrieval systems. The result is an AI that never hallucinates and follows your business rules with mathematical precision.
             </p>
           </motion.div>
@@ -665,21 +665,21 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative bg-[#1a1a1a] rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
             >
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-white mb-3">
+                <h3 className="text-2xl font-semibold text-foreground mb-3">
                   Zero Hallucinations
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 font-medium">
+                <p className="text-sm text-muted-foreground mb-4 font-medium">
                   RAG Architecture
                 </p>
-                <p className="text-base text-gray-300 leading-relaxed mb-6">
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
                   Generic AI guesses. Our agents know. We use RAG technology to vector-embed your specific company data—PDFs, websites, and price lists—into a private knowledge base. When a client asks a question, the agent retrieves the exact answer from your documents before speaking. It never invents facts.
                 </p>
-                <div className="pt-4 border-t border-gray-800">
-                  <p className="text-sm text-gray-500 mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-gray-400 italic">
+                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
+                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
+                  <p className="text-sm text-muted-foreground italic">
                     "It won't lie to my customers."
                   </p>
                 </div>
@@ -692,21 +692,21 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative bg-[#1a1a1a] rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
             >
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-white mb-3">
+                <h3 className="text-2xl font-semibold text-foreground mb-3">
                   Rigid Logic Flows
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 font-medium">
+                <p className="text-sm text-muted-foreground mb-4 font-medium">
                   LangGraph
                 </p>
-                <p className="text-base text-gray-300 leading-relaxed mb-6">
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
                   We do not let the AI 'improvise.' We build agents using LangGraph to enforce strict, cyclical state machines. This ensures the conversation follows a rigid logical path (e.g., Qualify → Schedule → Confirm) and cannot be tricked into going off-script or skipping steps.
                 </p>
-                <div className="pt-4 border-t border-gray-800">
-                  <p className="text-sm text-gray-500 mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-gray-400 italic">
+                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
+                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
+                  <p className="text-sm text-muted-foreground italic">
                     "It won't go rogue or say crazy things."
                   </p>
                 </div>
@@ -719,21 +719,21 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative bg-[#1a1a1a] rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
             >
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-white mb-3">
+                <h3 className="text-2xl font-semibold text-foreground mb-3">
                   Enterprise Reliability
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 font-medium">
+                <p className="text-sm text-muted-foreground mb-4 font-medium">
                   AWS Cloud
                 </p>
-                <p className="text-base text-gray-300 leading-relaxed mb-6">
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
                   Built on Amazon Web Services (AWS) compute and database layers. We ensure 99.9% uptime, bank-grade encryption, and the ability to scale from 10 calls to 10,000 calls instantly without latency.
                 </p>
-                <div className="pt-4 border-t border-gray-800">
-                  <p className="text-sm text-gray-500 mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-gray-400 italic">
+                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
+                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
+                  <p className="text-sm text-muted-foreground italic">
                     "It won't crash."
                   </p>
                 </div>
