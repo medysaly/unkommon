@@ -426,7 +426,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-foreground tracking-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-white tracking-tight"
                 data-testid="heading-hero-title"
               >
                 Don't Be Common.
@@ -446,7 +446,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl text-muted-foreground leading-relaxed max-w-3xl"
+                className="text-xl text-white/70 leading-relaxed max-w-3xl"
                 data-testid="text-hero-description"
               >
                 Common businesses miss opportunities. We build the intelligence to catch them.
@@ -469,7 +469,7 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
                 <button
-                  className="pearl-button"
+                  className="pearl-button pearl-button-dark"
                   data-testid="button-try-demo"
                   onClick={() => window.location.href = createPageUrl("AIReceptionist")}
                 >
@@ -482,7 +482,7 @@ export default function Home() {
                   </div>
                 </button>
                 <button
-                  className="pearl-button"
+                  className="pearl-button pearl-button-dark"
                   data-testid="button-schedule-consultation"
                   onClick={() => window.location.href = createPageUrl("Contact")}
                 >
