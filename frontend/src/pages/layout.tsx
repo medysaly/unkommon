@@ -29,10 +29,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex-1">
               <Link href={createPageUrl("Home")} data-testid="link-logo">
                 <div className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
-                  <div className="relative w-10 h-10 rounded-xl overflow-hidden backdrop-blur-xl bg-gradient-to-br from-blue-500/20 via-blue-400/10 to-purple-500/20 border border-blue-500/30 dark:border-white/20 shadow-lg flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-                    <span className="relative text-blue-600 dark:text-white font-bold text-sm drop-shadow-lg">U</span>
-                  </div>
+                  <img src="/favicon.svg" alt="Unkommon" className="w-10 h-10 rounded-xl object-contain" />
+
                   <span className="text-xl font-black tracking-tight uppercase text-foreground">Unkommon</span>
                 </div>
               </Link>
