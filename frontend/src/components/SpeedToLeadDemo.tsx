@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Play, 
-  Pause, 
-  RotateCcw, 
-  ChevronLeft, 
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  ChevronLeft,
   ChevronRight,
   CheckCircle,
   Clock,
@@ -16,7 +16,8 @@ import {
   MessageSquare,
   Zap,
   AlertCircle,
-  Globe
+  Globe,
+  Target
 } from "lucide-react";
 
 interface Message {
