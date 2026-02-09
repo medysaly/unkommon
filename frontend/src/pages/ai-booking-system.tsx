@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { createPageUrl } from "@/lib/utils";
-import WhatsAppDemo from "@/components/WhatsAppDemo";
+import ClientReactivatorDemo from "@/components/ClientReactivatorDemo";
 import "@/styles/pearl-button.css";
 
 export default function AIBookingSystem() {
@@ -60,7 +60,7 @@ export default function AIBookingSystem() {
         </div>
       </section>
 
-      {/* WhatsApp Booking Demo */}
+      {/* Client Reactivator Demo */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -70,10 +70,10 @@ export default function AIBookingSystem() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              See WhatsApp Booking In Action
+              See Client Reactivation In Action
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Watch how customers book appointments through WhatsApp with AI-powered automation
+              Watch how AI scans your database, engages dormant customers, and books appointments automatically
             </p>
           </motion.div>
 
@@ -88,7 +88,7 @@ export default function AIBookingSystem() {
                   Interactive Demo Available on Larger Screens
                 </h3>
                 <p className="text-muted-foreground">
-                  To experience the live WhatsApp booking demo, please view this page on a tablet, laptop, or desktop computer.
+                  To experience the live reactivation demo, please view this page on a tablet, laptop, or desktop computer.
                 </p>
               </CardContent>
             </Card>
@@ -96,7 +96,7 @@ export default function AIBookingSystem() {
 
           {/* Desktop Demo */}
           <div className="hidden md:block">
-            <WhatsAppDemo />
+            <ClientReactivatorDemo />
           </div>
         </div>
       </section>
@@ -244,9 +244,9 @@ export default function AIBookingSystem() {
               className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-6"
               data-testid="heading-cta-section"
             >
-              Ready to Enable
+              Ready to Reactivate
               <br />
-              Text Booking?
+              Your Database?
             </motion.h2>
 
             {/* Description */}
@@ -257,7 +257,7 @@ export default function AIBookingSystem() {
               transition={{ delay: 0.4 }}
               className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Let's set up WhatsApp & SMS booking for your business and start accepting appointments 24/7
+              Let's connect to your CRM and start turning dormant contacts into booked appointments
             </motion.p>
 
             {/* CTA Button */}
