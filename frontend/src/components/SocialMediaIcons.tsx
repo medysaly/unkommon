@@ -49,7 +49,7 @@ export default function SocialMediaIcons() {
       </li>
       <li className="icon-content">
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/unkommon.ai/"
           aria-label="Instagram"
           data-social="instagram"
           className="social-link"
@@ -67,7 +67,7 @@ export default function SocialMediaIcons() {
       </li>
       <li className="icon-content">
         <a
-          href="https://twitter.com/"
+          href="https://x.com/unkommonai"
           aria-label="Twitter"
           data-social="twitter"
           className="social-link"
