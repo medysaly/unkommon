@@ -27,7 +27,7 @@ Resources:
     Properties:
       StageName: Prod
       Cors:
-        AllowMethods: '''GET,POST,OPTIONS'''
+        AllowMethods: '''GET,POST,DELETE,OPTIONS'''
         AllowHeaders: '''Content-Type,Authorization'''
         AllowOrigin: '''*'''
 
@@ -158,7 +158,7 @@ Resources:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
       Policies:
-        - DynamoDBReadPolicy:
+        - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
       Events:
         GetLeads:
@@ -167,6 +167,12 @@ Resources:
             RestApiId: !Ref UnkommonApi
             Path: /api/leads
             Method: GET
+        DeleteLeads:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/leads
+            Method: DELETE
 
   # Vapi Webhook Function
   VapiWebhookFunction:

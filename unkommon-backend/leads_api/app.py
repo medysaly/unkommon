@@ -13,50 +13,100 @@ def decimal_default(obj):
     raise TypeError
 
 def lambda_handler(event, context):
-    """
-    GET /api/leads - Return all leads with stats
-    """
-    
+    http_method = event.get('httpMethod', 'GET')
+
+    if http_method == 'DELETE':
+        return handle_delete(event)
+
+    return handle_get(event)
+
+
+def handle_get(event):
+    """GET /api/leads - Return all leads with stats"""
     try:
-        # Scan all leads from DynamoDB
         response = leads_table.scan()
         leads = response.get('Items', [])
-        
-        # Sort by createdAt descending (newest first)
+
         leads.sort(key=lambda x: x.get('createdAt', 0), reverse=True)
-                # Convert createdAt from seconds to milliseconds for frontend
         for lead in leads:
             if 'createdAt' in lead:
                 lead['createdAt'] = lead['createdAt'] * 1000
 
-        
-        # Calculate stats
         now = int(datetime.now().timestamp())
         week_ago = int((datetime.now() - timedelta(days=7)).timestamp())
         today_start = int(datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).timestamp())
-        
+
         stats = {
             'total': len(leads),
             'thisWeek': len([l for l in leads if l.get('createdAt', 0) > week_ago]),
             'today': len([l for l in leads if l.get('createdAt', 0) > today_start])
         }
-        
+
         return {
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS'
+                'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
             },
             'body': json.dumps({
                 'leads': leads,
                 'stats': stats
             }, default=decimal_default)
         }
-        
+
     except Exception as e:
         print(f"Error: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'error': str(e)})
+        }
+
+
+def handle_delete(event):
+    """DELETE /api/leads - Delete one lead or all leads"""
+    try:
+        params = event.get('queryStringParameters') or {}
+        lead_id = params.get('leadId')
+
+        if lead_id:
+            # Delete single lead
+            leads_table.delete_item(Key={'leadId': lead_id})
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
+                },
+                'body': json.dumps({'message': f'Lead {lead_id} deleted'})
+            }
+        else:
+            # Delete ALL leads
+            response = leads_table.scan(ProjectionExpression='leadId')
+            items = response.get('Items', [])
+            with leads_table.batch_writer() as batch:
+                for item in items:
+                    batch.delete_item(Key={'leadId': item['leadId']})
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
+                },
+                'body': json.dumps({'message': f'All {len(items)} leads deleted'})
+            }
+
+    except Exception as e:
+        print(f"Delete error: {str(e)}")
         return {
             'statusCode': 500,
             'headers': {
