@@ -203,23 +203,39 @@ def format_phone(phone):
         return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
     return phone
 
+def find_existing_lead(conversation_id):
+    """Find an existing lead for this conversation"""
+    try:
+        response = leads_table.scan(
+            FilterExpression='metadata.conversationId = :cid AND source = :src',
+            ExpressionAttributeValues={
+                ':cid': conversation_id,
+                ':src': 'chatbot'
+            }
+        )
+        items = response.get('Items', [])
+        return items[0] if items else None
+    except Exception as e:
+        print(f"Error finding existing lead: {e}")
+        return None
+
+
 def save_chatbot_lead(user_message, ai_response, conversation_id):
     """
-    Save chatbot lead to DynamoDB when user provides contact info
-    Extracts email, phone, and name from the message
+    Save or update chatbot lead in DynamoDB.
+    One conversation = one lead. Updates existing lead with new info.
     """
-    
+
     # Extract email using regex
     email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     email_match = re.search(email_pattern, user_message)
     email = email_match.group(0) if email_match else None
-    
+
     # Extract phone using regex (various formats)
     phone_pattern = r'[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}'
     phone_match = re.search(phone_pattern, user_message)
     phone = format_phone(phone_match.group(0)) if phone_match else None
 
-    
     # Check for interest keywords
     interest_keywords = [
         'book', 'schedule', 'appointment', 'call me', 'contact me',
@@ -228,12 +244,46 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
     ]
     message_lower = user_message.lower()
     is_interested = any(keyword in message_lower for keyword in interest_keywords)
-    
-    # Only save if we have contact info OR user shows interest
-    if email or phone or is_interested:
+
+    # Only proceed if we have contact info OR user shows interest
+    if not (email or phone or is_interested):
+        return None
+
+    # Check if a lead already exists for this conversation
+    existing = find_existing_lead(conversation_id)
+
+    if existing:
+        # Update existing lead with new info
+        update_parts = []
+        expr_values = {}
+
+        if email and existing.get('email') in ('pending', None):
+            update_parts.append('email = :email')
+            expr_values[':email'] = email
+
+        if phone and existing.get('phone') in ('N/A', None):
+            update_parts.append('phone = :phone')
+            expr_values[':phone'] = phone
+
+        if not update_parts:
+            return existing['leadId']
+
+        try:
+            leads_table.update_item(
+                Key={'leadId': existing['leadId']},
+                UpdateExpression='SET ' + ', '.join(update_parts),
+                ExpressionAttributeValues=expr_values
+            )
+            print(f"✅ Lead updated: {existing['leadId']} | Email: {email} | Phone: {phone}")
+            return existing['leadId']
+        except Exception as e:
+            print(f"❌ Failed to update lead: {e}")
+            return None
+    else:
+        # Create new lead
         lead_id = str(uuid.uuid4())
         timestamp = int(datetime.now().timestamp())
-        
+
         item = {
             'leadId': lead_id,
             'createdAt': timestamp,
@@ -252,7 +302,7 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
                 'hasPhone': bool(phone)
             }
         }
-        
+
         try:
             leads_table.put_item(Item=item)
             print(f"✅ Chatbot lead captured: {lead_id} | Email: {email} | Phone: {phone}")
@@ -260,8 +310,6 @@ def save_chatbot_lead(user_message, ai_response, conversation_id):
         except Exception as e:
             print(f"❌ Failed to save chatbot lead: {e}")
             return None
-    
-    return None
 
 
 # Lambda handler
