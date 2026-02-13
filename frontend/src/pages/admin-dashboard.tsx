@@ -11,6 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.
 
 interface Lead {
   id: number;
+  leadId: string;
   name: string;
   email: string;
   phone: string | null;
@@ -23,6 +24,8 @@ export default function AdminDashboard() {
   const [, setLocation] = useLocation();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [user, setUser] = useState<{ username: string } | null>(null);
   const { toast } = useToast();
 
@@ -41,14 +44,16 @@ export default function AdminDashboard() {
     }
   };
 
+  const getAuthToken = async () => {
+    const session = await fetchAuthSession();
+    const idToken = session.tokens?.idToken?.toString();
+    if (!idToken) throw new Error("No auth token");
+    return idToken;
+  };
+
   const fetchLeads = async () => {
     try {
-      const session = await fetchAuthSession();
-      const idToken = session.tokens?.idToken?.toString();
-
-      if (!idToken) {
-        throw new Error("No auth token");
-      }
+      const idToken = await getAuthToken();
 
       const response = await fetch(`${API_URL}/api/leads`, {
         headers: {
@@ -72,6 +77,52 @@ export default function AdminDashboard() {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDeleteLead = async (leadId: string) => {
+    try {
+      const idToken = await getAuthToken();
+      const response = await fetch(`${API_URL}/api/leads?leadId=${leadId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${idToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) throw new Error("Failed to delete lead");
+
+      setLeads(prev => prev.filter(l => l.leadId !== leadId));
+      toast({ title: "Deleted", description: "Lead removed" });
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast({ title: "Error", description: "Failed to delete lead", variant: "destructive" });
+    }
+  };
+
+  const handleClearAll = async () => {
+    setIsDeleting(true);
+    try {
+      const idToken = await getAuthToken();
+      const response = await fetch(`${API_URL}/api/leads`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${idToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) throw new Error("Failed to clear leads");
+
+      setLeads([]);
+      setShowClearConfirm(false);
+      toast({ title: "Cleared", description: "All leads have been deleted" });
+    } catch (error) {
+      console.error("Clear all error:", error);
+      toast({ title: "Error", description: "Failed to clear leads", variant: "destructive" });
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -163,10 +214,47 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle>All Leads</CardTitle>
-            <CardDescription>
-              Contact form submissions from your website
-            </CardDescription>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>All Leads</CardTitle>
+                <CardDescription>
+                  Contact form submissions from your website
+                </CardDescription>
+              </div>
+              {leads.length > 0 && (
+                <div>
+                  {showClearConfirm ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-muted-foreground">Are you sure?</span>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={handleClearAll}
+                        disabled={isDeleting}
+                      >
+                        {isDeleting ? "Deleting..." : "Yes, delete all"}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowClearConfirm(false)}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowClearConfirm(true)}
+                      className="text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
+                    >
+                      Clear All
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
           </CardHeader>
           <CardContent>
             {leads.length === 0 ? (
@@ -184,11 +272,12 @@ export default function AdminDashboard() {
                       <TableHead>Phone</TableHead>
                       <TableHead>Company</TableHead>
                       <TableHead>Message</TableHead>
+                      <TableHead className="w-[50px]"></TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {leads.map((lead) => (
-                      <TableRow key={lead.id}>
+                      <TableRow key={lead.leadId || lead.id}>
                         <TableCell className="whitespace-nowrap">
                           {formatDate(lead.createdAt)}
                         </TableCell>
@@ -215,6 +304,15 @@ export default function AdminDashboard() {
                         </TableCell>
                         <TableCell className="max-w-md">
                           <p className="truncate">{lead.message}</p>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            onClick={() => handleDeleteLead(lead.leadId)}
+                            className="text-muted-foreground hover:text-destructive transition-colors"
+                            title="Delete lead"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                          </button>
                         </TableCell>
                       </TableRow>
                     ))}
