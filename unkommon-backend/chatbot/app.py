@@ -6,6 +6,7 @@ import uuid
 import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
+from boto3.dynamodb.conditions import Attr
 
 
 # Initialize Bedrock client
@@ -207,11 +208,7 @@ def find_existing_lead(conversation_id):
     """Find an existing lead for this conversation"""
     try:
         response = leads_table.scan(
-            FilterExpression='metadata.conversationId = :cid AND source = :src',
-            ExpressionAttributeValues={
-                ':cid': conversation_id,
-                ':src': 'chatbot'
-            }
+            FilterExpression=Attr('metadata.conversationId').eq(conversation_id) & Attr('source').eq('chatbot')
         )
         items = response.get('Items', [])
         return items[0] if items else None
