@@ -20,7 +20,7 @@ interface Message {
 
 export default function VapiDemo() {
   const VAPI_PUBLIC_KEY = import.meta.env.VITE_VAPI_PUBLIC_KEY || 'c255164f-83e2-42ee-9fb6-570fcffe29d6';
-  const VAPI_ASSISTANT_ID = import.meta.env.VITE_VAPI_ASSISTANT_ID || 'b19322bc-441b-42b4-929b-89709ee9204a';
+  const VAPI_ASSISTANT_ID = import.meta.env.VITE_VAPI_ASSISTANT_ID || '29e65b19-722b-4cc0-a658-d3b5ec9f44e2';
 
   const [isCallActive, setIsCallActive] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
@@ -135,7 +135,7 @@ export default function VapiDemo() {
     setErrorMessage("");
     setTranscript([{
       role: "system",
-      content: "Connecting to BA AI Receptionist...",
+      content: "Connecting to Unkommon AI Receptionist...",
       timestamp: new Date()
     }]);
 
