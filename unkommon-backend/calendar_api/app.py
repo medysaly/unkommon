@@ -84,21 +84,7 @@ def get_available_slots(date_str):
 
 
 def send_confirmation_email(name, email, date_str, time_str):
-    """Send confirmation email to client and notification to sales. Returns True on success, raises on failure."""
-    # Email to client
-    client_response = ses_client.send_email(
-        Source=SES_FROM_EMAIL,
-        Destination={'ToAddresses': [email]},
-        Message={
-            'Subject': {'Data': 'Your Unkommon Consultation is Confirmed'},
-            'Body': {
-                'Text': {'Data': f"Hi {name},\n\nYour 30-minute efficiency audit is confirmed for {date_str} at {time_str} EST.\n\nWe look forward to speaking with you!\n\nBest,\nThe Unkommon Team"}
-            }
-        }
-    )
-    print(f"Client confirmation email sent to {email} | MessageId: {client_response['MessageId']}")
-
-    # Email to sales team
+    """Send booking notification to sales team."""
     sales_response = ses_client.send_email(
         Source=SES_FROM_EMAIL,
         Destination={'ToAddresses': ['sales@unkommon.ai']},
@@ -111,6 +97,7 @@ def send_confirmation_email(name, email, date_str, time_str):
     )
     print(f"Sales notification email sent | MessageId: {sales_response['MessageId']}")
     return True
+
 
 
 def book_appointment(date_str, time_str, name, email, phone):
