@@ -7,6 +7,9 @@ from datetime import datetime
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
 
+# Initialize SES
+ses_client = boto3.client('ses', region_name='us-east-1')
+
 def lambda_handler(event, context):
     """
     Webhook endpoint for Vapi phone calls
@@ -62,6 +65,22 @@ def lambda_handler(event, context):
         }
         
         leads_table.put_item(Item=item)
+                # Send email notification
+        try:
+            ses_client.send_email(
+                Source='contact@unkommon.ai',
+                Destination={'ToAddresses': ['sales@unkommon.ai']},
+                Message={
+                    'Subject': {'Data': f'New Call Lead: {phone_number}'},
+                    'Body': {
+                        'Text': {'Data': f"New phone call received:\n\nPhone: {phone_number}\nDuration: {call_duration} seconds\n\nSummary:\n{call_summary}"}
+                    }
+                }
+            )
+            print(f"📧 Email notification sent for call from {phone_number}")
+        except Exception as email_err:
+            print(f"⚠️ Email notification failed: {email_err}")
+
         print(f"✅ Vapi lead saved: {lead_id} | Phone: {phone_number}")
         
         return {

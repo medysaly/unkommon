@@ -186,6 +186,12 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: '*'
       Events:
         VapiWebhook:
           Type: Api
