@@ -26,6 +26,7 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [expandedMessages, setExpandedMessages] = useState<Set<string>>(new Set());
   const [user, setUser] = useState<{ username: string } | null>(null);
   const { toast } = useToast();
 
@@ -303,7 +304,29 @@ export default function AdminDashboard() {
                           )}
                         </TableCell>
                         <TableCell className="max-w-md">
-                          <p className="truncate">{lead.message}</p>
+                          <div>
+                            <p className={expandedMessages.has(lead.leadId) ? "" : "truncate"}>
+                              {lead.message}
+                            </p>
+                            {lead.message && lead.message.length > 50 && (
+                              <button
+                                onClick={() => {
+                                  setExpandedMessages(prev => {
+                                    const next = new Set(prev);
+                                    if (next.has(lead.leadId)) {
+                                      next.delete(lead.leadId);
+                                    } else {
+                                      next.add(lead.leadId);
+                                    }
+                                    return next;
+                                  });
+                                }}
+                                className="text-xs text-primary hover:underline mt-1"
+                              >
+                                {expandedMessages.has(lead.leadId) ? "Show less" : "Show more"}
+                              </button>
+                            )}
+                          </div>
                         </TableCell>
                         <TableCell>
                           <button
