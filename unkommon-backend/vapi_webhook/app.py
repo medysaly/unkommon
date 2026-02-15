@@ -1,4 +1,5 @@
 import json
+import re
 import boto3
 import uuid
 from datetime import datetime
@@ -36,11 +37,30 @@ def lambda_handler(event, context):
         # Extract relevant data
         message = body.get('message', {})
         call_data = message.get('call', {})
-
+        # Extract call details
         phone_number = call_data.get('customer', {}).get('number', 'Unknown')
-        call_summary = message.get('summary', '') or 'No summary available'
         transcript = message.get('transcript', '') or message.get('artifact', {}).get('transcript', '')
-        call_duration = int(message.get('durationSeconds', 0) or 0)  # Convert to int for DynamoDB
+        call_duration = int(message.get('durationSeconds', 0) or 0)
+
+        # Extract structured data from Vapi analysis
+        analysis = message.get('analysis', {})
+        call_summary = message.get('summary', '') or analysis.get('summary', '')
+        structured_data = analysis.get('structuredData', {})
+
+        # Get name and email from structured data
+        caller_name = structured_data.get('name', '')
+        caller_email = structured_data.get('email', '')
+
+        # Fallback: extract email from transcript using regex
+        if not caller_email and transcript:
+            email_match = re.search(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', transcript)
+            if email_match:
+                caller_email = email_match.group(0)
+
+        # Fallback: use transcript as summary if no summary available
+        if not call_summary:
+            call_summary = transcript[:500] if transcript else 'No summary available'
+
         
         # Save to DynamoDB
         lead_id = str(uuid.uuid4())
@@ -49,8 +69,8 @@ def lambda_handler(event, context):
         item = {
             'leadId': lead_id,
             'createdAt': timestamp,
-            'name': 'Phone Caller',
-            'email': 'pending',
+            'name': caller_name if caller_name else 'Phone Caller',
+            'email': caller_email if caller_email else 'N/A (phone call)',
             'phone': phone_number,
             'message': call_summary,
             'primaryBottleneck': 'N/A',
