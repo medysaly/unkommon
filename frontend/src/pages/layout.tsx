@@ -47,6 +47,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   Home
                 </span>
               </Link>
+              <Link href={createPageUrl("AgentLibrary")} data-testid="link-nav-solutions">
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    isActive(createPageUrl("AgentLibrary")) ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  Solutions
+                </span>
+              </Link>
               <Link href={createPageUrl("Contact")} data-testid="link-nav-contact">
                 <span
                   className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
@@ -108,6 +117,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Home
+                  </span>
+                </Link>
+
+                <Link href={createPageUrl("AgentLibrary")} data-testid="link-mobile-nav-solutions">
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                      isActive(createPageUrl("AgentLibrary")) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Solutions
                   </span>
                 </Link>
 
