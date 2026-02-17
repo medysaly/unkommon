@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, RotateCcw, Phone, Globe, Clock, Users, CheckCircle, AlertCircle, Calendar } from "lucide-react";
+import { Play, Pause, RotateCcw, Phone, Globe, Clock, Users, CheckCircle, AlertCircle, Calendar, MessageCircle } from "lucide-react";
 
-type CaseStudy = "routing" | "multilingual" | "afterhours";
+type CaseStudy = "routing" | "multilingual" | "messaging";
 
 interface CallMessage {
   id: number;
@@ -87,36 +87,36 @@ const caseStudyData = {
       { label: "Confirmation Sent", value: "SMS to 555-0123", icon: CheckCircle },
     ]
   },
-  afterhours: {
-    title: "After-Hours Handling",
-    subtitle: "24/7 Emergency Response",
-    description: "Customer calls at 11 PM with an urgent issue. AI assesses priority and escalates appropriately.",
+  messaging: {
+    title: "Omnichannel Messaging",
+    subtitle: "WhatsApp & Instagram Integration",
+    description: "Customer messages on WhatsApp asking about services. AI responds instantly, checks availability, and books an appointment — all through chat.",
     messages: [
-      { id: 1, speaker: "ai" as const, text: "Thank you for calling Premier Plumbing. You've reached us after business hours. How may I assist you?", time: "11:03 PM", type: "speech" as const },
-      { id: 2, speaker: "caller" as const, text: "Hi, I have a pipe that burst in my basement and water is flooding everywhere!", time: "11:03 PM", type: "speech" as const },
-      { id: 3, speaker: "system" as const, text: "Urgency analysis: EMERGENCY - Water damage risk", time: "11:03 PM", type: "action" as const },
-      { id: 4, speaker: "ai" as const, text: "I understand this is an emergency. First, do you know where your main water shutoff valve is located?", time: "11:03 PM", type: "speech" as const },
-      { id: 5, speaker: "caller" as const, text: "Yes, I've already shut it off", time: "11:03 PM", type: "speech" as const },
-      { id: 6, speaker: "ai" as const, text: "Excellent, that's the most important step. I'm contacting our on-call emergency technician right now. What's your address?", time: "11:04 PM", type: "speech" as const },
-      { id: 7, speaker: "caller" as const, text: "742 Evergreen Terrace", time: "11:04 PM", type: "speech" as const },
-      { id: 8, speaker: "system" as const, text: "Alert sent to on-call technician Mike Johnson - ETA 22 mins", time: "11:04 PM", type: "action" as const },
-      { id: 9, speaker: "ai" as const, text: "I've dispatched Mike Johnson, our emergency technician. He's 22 minutes away and I've texted you his contact info and ETA. He'll call you in 2 minutes to confirm.", time: "11:04 PM", type: "speech" as const },
-      { id: 10, speaker: "caller" as const, text: "Thank you so much!", time: "11:05 PM", type: "speech" as const },
+      { id: 1, speaker: "caller" as const, text: "Hi! I saw your page on Instagram. Do you offer teeth whitening services?", time: "3:42 PM", type: "speech" as const },
+      { id: 2, speaker: "system" as const, text: "WhatsApp message received - Intent: Service inquiry", time: "3:42 PM", type: "action" as const },
+      { id: 3, speaker: "ai" as const, text: "Hi there! Yes, we offer professional teeth whitening with amazing results. We have two options: in-office whitening (1 hour, $299) and take-home kits ($149). Would you like to book a consultation?", time: "3:42 PM", type: "speech" as const },
+      { id: 4, speaker: "caller" as const, text: "The in-office one sounds great. Do you have anything available this week?", time: "3:43 PM", type: "speech" as const },
+      { id: 5, speaker: "system" as const, text: "Checking calendar availability for this week...", time: "3:43 PM", type: "action" as const },
+      { id: 6, speaker: "ai" as const, text: "I have openings on Thursday at 2:00 PM and Friday at 10:00 AM. Which works better for you?", time: "3:43 PM", type: "speech" as const },
+      { id: 7, speaker: "caller" as const, text: "Friday at 10 works! My name is Jessica Torres.", time: "3:44 PM", type: "speech" as const },
+      { id: 8, speaker: "system" as const, text: "Booking confirmed - Calendar updated, confirmation sent", time: "3:44 PM", type: "action" as const },
+      { id: 9, speaker: "ai" as const, text: "You're all set, Jessica! Your in-office teeth whitening appointment is booked for Friday at 10:00 AM. I've sent you a confirmation with our address and pre-appointment instructions. See you then!", time: "3:44 PM", type: "speech" as const },
+      { id: 10, speaker: "caller" as const, text: "Perfect, thank you so much!", time: "3:44 PM", type: "speech" as const },
     ],
     workflow: [
-      { id: 1, label: "After-Hours Call", status: "pending" as const },
-      { id: 2, label: "Assess Urgency", status: "pending" as const },
-      { id: 3, label: "Emergency Protocol", status: "pending" as const },
-      { id: 4, label: "Locate Address", status: "pending" as const },
-      { id: 5, label: "Alert On-Call Tech", status: "pending" as const },
-      { id: 6, label: "Send SMS Updates", status: "pending" as const },
+      { id: 1, label: "Message Received", status: "pending" as const },
+      { id: 2, label: "Detect Intent", status: "pending" as const },
+      { id: 3, label: "Service Info Sent", status: "pending" as const },
+      { id: 4, label: "Check Availability", status: "pending" as const },
+      { id: 5, label: "Book Appointment", status: "pending" as const },
+      { id: 6, label: "Send Confirmation", status: "pending" as const },
     ],
     analysisData: [
-      { label: "Call Time", value: "11:03 PM (After hours)", icon: Clock },
-      { label: "Urgency Level", value: "EMERGENCY (9/10)", icon: AlertCircle },
-      { label: "Issue Type", value: "Burst pipe flooding", icon: AlertCircle },
-      { label: "Technician Alerted", value: "Mike Johnson", icon: Users },
-      { label: "Response Time", value: "22 minutes ETA", icon: CheckCircle },
+      { label: "Channel", value: "WhatsApp", icon: MessageCircle },
+      { label: "Intent Detected", value: "Service inquiry + Booking", icon: CheckCircle },
+      { label: "Response Time", value: "< 1 second", icon: Clock },
+      { label: "Appointment Booked", value: "Friday 10:00 AM", icon: Calendar },
+      { label: "Lead Captured", value: "Jessica Torres", icon: Users },
     ]
   },
 };
@@ -208,16 +208,16 @@ export default function AIReceptionistDemos() {
           Multi-Language
         </button>
         <button
-          onClick={() => setSelectedCase("afterhours")}
+          onClick={() => setSelectedCase("messaging")}
           className={`px-6 py-3 rounded-full text-sm font-light transition-all ${
-            selectedCase === "afterhours"
+            selectedCase === "messaging"
               ? "bg-white text-black"
               : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800 border border-zinc-800"
           }`}
-          data-testid="button-case-afterhours"
+          data-testid="button-case-messaging"
         >
-          <Clock className="w-4 h-4 mr-2 inline" />
-          After-Hours
+          <MessageCircle className="w-4 h-4 mr-2 inline" />
+          Messaging
         </button>
       </div>
 
@@ -236,11 +236,19 @@ export default function AIReceptionistDemos() {
             {/* Phone Header */}
             <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                <Phone className="w-6 h-6 text-zinc-400" />
+                {selectedCase === "messaging" ? (
+                  <MessageCircle className="w-6 h-6 text-zinc-400" />
+                ) : (
+                  <Phone className="w-6 h-6 text-zinc-400" />
+                )}
               </div>
               <div>
-                <div className="text-white font-light">AI Receptionist</div>
-                <div className="text-zinc-500 text-xs font-light">Active Call</div>
+                <div className="text-white font-light">
+                  {selectedCase === "messaging" ? "WhatsApp Chat" : "AI Receptionist"}
+                </div>
+                <div className="text-zinc-500 text-xs font-light">
+                  {selectedCase === "messaging" ? "Active Chat" : "Active Call"}
+                </div>
               </div>
             </div>
 
@@ -363,7 +371,9 @@ export default function AIReceptionistDemos() {
           {/* AI Analysis Data */}
           <div className="bg-gradient-to-b from-zinc-900 to-black border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
             <div className="p-6">
-              <h4 className="text-lg font-light text-white mb-4 tracking-tight">Call Analysis</h4>
+              <h4 className="text-lg font-light text-white mb-4 tracking-tight">
+                {selectedCase === "messaging" ? "Chat Analysis" : "Call Analysis"}
+              </h4>
               {currentMessageIndex >= 0 ? (
                 <div className="space-y-3" data-testid="analysis-container">
                   {currentCase.analysisData.map((data, index) => (
