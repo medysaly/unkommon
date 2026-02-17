@@ -98,7 +98,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-border">
+            <div className="md:hidden mt-2 py-4 px-6 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-2xl shadow-lg">
               <div className="flex flex-col space-y-4">
                 <Link href={createPageUrl("Home")} data-testid="link-mobile-nav-home">
                   <span
