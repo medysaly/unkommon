@@ -17,6 +17,7 @@ const solutions = [
       "50+ language support with instant detection",
     ],
     page: "AIReceptionist",
+    image: "/images/backgrounds/AI receptionist.jpg",
   },
   {
     icon: Zap,
@@ -31,6 +32,7 @@ const solutions = [
       "Direct calendar booking integration",
     ],
     page: "SpeedToLead",
+    image: "/images/backgrounds/Speed to lead.png",
   },
   {
     icon: Calendar,
@@ -45,6 +47,7 @@ const solutions = [
       "Appointment booking built in",
     ],
     page: "AIBookingSystem",
+    image: "/images/backgrounds/the client reactivator .png",
   },
 ];
 
@@ -137,31 +140,25 @@ export default function AgentLibrary() {
 
               {/* Visual Side */}
               <div className={index % 2 === 1 ? "md:order-1" : ""}>
-                <div className="bg-gradient-to-b from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-black border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-12">
-                  <div className="flex flex-col items-center text-center space-y-4">
-                    <div className="w-16 h-16 rounded-2xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center">
-                      <solution.icon className="w-8 h-8 text-foreground" />
-                    </div>
-                    <h3 className="text-2xl font-light text-foreground tracking-tight">
+                <div
+                  className="relative overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-2xl aspect-[4/3] group cursor-pointer"
+                  onClick={() =>
+                    (window.location.href = createPageUrl(solution.page))
+                  }
+                >
+                  <img
+                    src={solution.image}
+                    alt={solution.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                    <h3 className="text-2xl font-light text-white tracking-tight mb-2">
                       {solution.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground max-w-xs">
+                    <p className="text-sm text-white/70">
                       {solution.subtitle}
                     </p>
-                    <button
-                      className="pearl-button mt-4"
-                      onClick={() =>
-                        (window.location.href = createPageUrl(solution.page))
-                      }
-                    >
-                      <div className="wrap">
-                        <p>
-                          <span>✧</span>
-                          Explore
-                          <ArrowRight className="w-5 h-5" />
-                        </p>
-                      </div>
-                    </button>
                   </div>
                 </div>
               </div>
