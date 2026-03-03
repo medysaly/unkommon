@@ -9,18 +9,12 @@ import {
 } from "lucide-react";
 
 export default function About() {
-  // Tech stack logos/names
-  const techStack = [
-    "Python",
-    "LangChain",
-    "Bland AI",
-    "Twilio",
-    "Make",
-    "Vapi",
-    "OpenAI",
-    "AWS",
-    "React",
-    "Node.js"
+  const builtDifferent = [
+    { title: "You Choose the AI", description: "Unlike cookie-cutter tools locked to one model, you pick the LLM that fits your needs and budget. GPT-4, Claude, Gemini — or any combination. Your AI, your rules." },
+    { title: "Your Data Stays Yours", description: "Hosted on AWS in a secure, isolated environment. No shared databases. No third-party access. Your patient records, client files, and case data — nobody touches them but you." },
+    { title: "Trained on YOUR Business", description: "We train the AI on your actual data: your services, your pricing, your FAQs, your tone of voice. It doesn't hallucinate generic answers — it responds like your best employee because it knows your business inside out." },
+    { title: "Custom-Built, Not Templated", description: "Every AI agent is built specifically for your practice or firm. We study your workflow, your bottlenecks, your clients. The result fits like a glove — not a one-size-fits-all tool your competitors are also using." },
+    { title: "Zero Hallucinations", description: "We implement strict guardrails so your AI never makes up information. It uses only verified data from your business. No fabricated pricing. No wrong appointment times. No embarrassing mistakes. Just reliable, on-brand responses every time." },
   ];
 
   return (
@@ -135,24 +129,25 @@ export default function About() {
           >
             <div className="text-center mb-12">
               <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-tight mb-4">
-                Enterprise-Grade Infrastructure
+                Built Different
               </h3>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                We build custom solutions using enterprise-grade infrastructure, not just off-the-shelf prompts.
+                Here's why businesses in real estate, dental, and law choose Unkommon over generic AI tools.
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-              {techStack.map((tech, index) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {builtDifferent.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-card/50 backdrop-blur-sm px-6 py-3 rounded-full border border-border/50 hover:border-foreground/30 transition-all duration-300"
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
                 >
-                  <span className="text-sm font-medium text-foreground">{tech}</span>
+                  <h4 className="text-lg font-semibold text-foreground mb-3">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </motion.div>
               ))}
             </div>
