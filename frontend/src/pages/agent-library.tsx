@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { createPageUrl } from "@/lib/utils";
-import { Phone, Zap, Calendar, ArrowRight, CheckCircle } from "lucide-react";
+import { Phone, Zap, Calendar, ArrowRight, CheckCircle, Wrench, Shield, Brain, Server, Sparkles } from "lucide-react";
 import "@/styles/pearl-button.css";
 
 const solutions = [
@@ -164,6 +164,157 @@ export default function AgentLibrary() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Custom Solutions Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center">
+                <Wrench className="w-5 h-5 text-foreground" />
+              </div>
+              <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+                Beyond the three
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
+              Something Else?
+              <br />
+              We'll Build It.
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Every business is different. If your bottleneck doesn't fit neatly into one of our three solutions — tell us the problem, we'll build the solution. Custom AI agents designed around YOUR specific workflow.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {[
+              { icon: Brain, title: "Insurance Verification", desc: "Automate insurance checks and pre-authorizations before patients walk in." },
+              { icon: Sparkles, title: "Review Management", desc: "Automatically request and respond to Google reviews after every appointment." },
+              { icon: Wrench, title: "Document Automation", desc: "Generate lease agreements, intake forms, or engagement letters in seconds." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50"
+              >
+                <item.icon className="w-8 h-8 text-foreground mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-muted-foreground mb-6">
+              These are just examples. If you can describe the problem, we can automate it.
+            </p>
+            <button
+              className="inline-flex items-center gap-2 text-foreground font-medium hover:gap-3 transition-all group"
+              onClick={() => (window.location.href = createPageUrl("Contact"))}
+            >
+              Tell us your bottleneck
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Private AI Assistant Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-50 dark:bg-zinc-900/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid md:grid-cols-2 gap-16 items-center"
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center">
+                  <Server className="w-5 h-5 text-foreground" />
+                </div>
+                <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+                  Enterprise-grade
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-6">
+                Your Own Private
+                <br />
+                AI Assistant
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Imagine hiring a senior employee who never sleeps, never forgets, and costs a fraction of a salary. We deploy a private AI assistant inside your business — hosted on your own cloud, trained on your data, accessible to your entire team 24/7.
+              </p>
+
+              <ul className="space-y-4 mb-8">
+                {[
+                  { icon: Shield, text: "Hosted in your own secure AWS environment — nobody else has access" },
+                  { icon: Brain, text: "Trained on your documents, processes, and institutional knowledge" },
+                  { icon: Sparkles, text: "Handles emails, scheduling, customer inquiries, internal Q&A — whatever you need" },
+                  { icon: CheckCircle, text: "Your team interacts with it naturally — like messaging a coworker" },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <item.icon className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className="inline-flex items-center gap-2 text-foreground font-medium hover:gap-3 transition-all group"
+                onClick={() => (window.location.href = createPageUrl("Contact"))}
+              >
+                Learn more
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black shadow-2xl"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-sm font-medium text-foreground">Private AI — Online</span>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900">
+                    <p className="text-sm text-muted-foreground mb-1">You</p>
+                    <p className="text-foreground text-sm">What appointments do we have open this Thursday afternoon?</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+                    <p className="text-sm text-muted-foreground mb-1">AI Assistant</p>
+                    <p className="text-foreground text-sm">Thursday afternoon has 3 open slots: 1:00 PM, 2:30 PM, and 4:00 PM. Dr. Patel is in all day. Should I book a patient into one of these?</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900">
+                    <p className="text-sm text-muted-foreground mb-1">You</p>
+                    <p className="text-foreground text-sm">Yes, book Sarah Chen at 2:30 for a cleaning.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+                    <p className="text-sm text-muted-foreground mb-1">AI Assistant</p>
+                    <p className="text-foreground text-sm">Done. Sarah Chen is booked for Thursday at 2:30 PM with Dr. Patel. Confirmation text sent to her. Anything else?</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
