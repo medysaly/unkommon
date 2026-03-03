@@ -23,7 +23,7 @@ const agents = [
   {
     id: 1,
     title: "The Lead Qualifier",
-    description: "Instant lead qualification and engagement before competitors respond",
+    description: "A buyer submits a Zillow form at 11 PM. You respond in 90 seconds. Your competitor responds Monday morning. You win.",
     link: "SpeedToLead",
     rotateY: 0,
     topPosition: "58%", // Up/Down - lower % = higher up
@@ -33,7 +33,7 @@ const agents = [
   {
     id: 2,
     title: "The AI Receptionist",
-    description: "24/7 phone automation with natural conversations and CRM integration",
+    description: "Your front desk, running 24/7. Answers calls, books appointments, routes inquiries — while you focus on closing deals and billable work.",
     link: "AIReceptionist",
     rotateY: 0,
     topPosition: "65%", // Up/Down - lower % = higher up
@@ -43,7 +43,7 @@ const agents = [
   {
     id: 3,
     title: "The Client Reactivator",
-    description: "Unlock revenue from your existing database with automated reactivation",
+    description: "Hundreds of past clients sitting dormant in your CRM. We turn that dead database into booked appointments and revenue.",
     link: "AIBookingSystem",
     rotateY: 15,
     topPosition: "73%", // Up/Down - lower % = higher up
@@ -449,7 +449,7 @@ export default function Home() {
                 className="text-xl text-white/70 leading-relaxed max-w-3xl"
                 data-testid="text-hero-description"
               >
-                Common businesses miss opportunities. We build the intelligence to catch them.
+                Every missed call is a lost commission. Every slow follow-up is a lost patient. Every after-hours inquiry is a lost case. We fix that.
               </motion.p>
             </div>
 
@@ -515,21 +515,12 @@ export default function Home() {
         <div className="w-full">
           <LogoLoop
             logos={[
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Healthcare</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Legal Services</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Accounting and Finance</span> },
               { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Real Estate</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Property Management</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Home Services</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Restaurants and Bars</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Hospitality</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Retail</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">E-commerce</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Education and Training</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Manufacturing</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Logistics</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Human Resources</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Recruiting</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Real Estate</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
             ]}
             speed={50}
             direction="left"
@@ -917,7 +908,7 @@ export default function Home() {
                   How does the AI know the specifics of my business?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We do not rely on generic training data. We use Retrieval-Augmented Generation (RAG) to build a custom Knowledge Base specific to your company. We ingest your website, training manuals, pricing PDFs, and calendars. When a lead asks a question, the agent references your documents to provide an accurate answer. It does not guess.
+                  We do not rely on generic training data. We use Retrieval-Augmented Generation (RAG) to build a custom Knowledge Base specific to your business. For a dental practice, we ingest your services, insurance accepted, and appointment types. For a real estate agency, your listings, market data, and buyer guides. For a law firm, your practice areas and intake criteria. When a client asks a question, the agent references your documents to provide an accurate answer. It does not guess.
                 </AccordionContent>
               </AccordionItem>
 
@@ -953,7 +944,7 @@ export default function Home() {
                   Does this integrate with my existing software?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Yes. We build native API integrations into major industry CRMs (Salesforce, HubSpot, Clio, ServiceTitan, etc.). The AI reads your real-time calendar availability and writes lead data directly into your client fields. No manual data entry is required.
+                  Yes. We build native API integrations into the CRMs you already use — Dentrix and Open Dental for dental practices, Follow Up Boss and KVCore for real estate, Clio and MyCase for law firms. The AI reads your real-time calendar availability and writes lead data directly into your client fields. No manual data entry is required.
                 </AccordionContent>
               </AccordionItem>
 
@@ -980,7 +971,7 @@ export default function Home() {
                   Is the "Client Reactivator" just a bulk SMS blast?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  No. Traditional SMS marketing is a one-way 'blast' that annoys customers. Our agent initiates a 2-way, personalized conversation. It references specific details (like 'your last visit was 6 months ago') and waits for a reply. It uses natural language processing to have a real back-and-forth chat to find a time that works, rather than just shouting a discount code.
+                  No. Traditional SMS marketing is a one-way 'blast' that annoys customers. Our agent initiates a 2-way, personalized conversation. For a dental practice, it might say 'Hi Sarah, it's been 8 months since your last cleaning — we have openings this week.' For a real estate agency, 'Hi Mark, home values in your neighborhood are up 12% — want an updated market analysis?' It waits for a reply and has a real back-and-forth chat to find a time that works.
                 </AccordionContent>
               </AccordionItem>
 

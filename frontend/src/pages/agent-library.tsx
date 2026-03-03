@@ -9,11 +9,11 @@ const solutions = [
     title: "AI Receptionist",
     subtitle: "Every call. Every channel. 24/7.",
     description:
-      "Answers phone calls, WhatsApp, Instagram DMs, and SMS automatically. Books appointments, routes inquiries, and captures leads across every channel — so you never miss an opportunity.",
+      "Never miss another patient call, buyer inquiry, or potential case. Your AI receptionist answers every call 24/7, books appointments, routes to the right person, and speaks 50+ languages — so your front desk never drops the ball.",
     features: [
-      "Omnichannel — phone, WhatsApp, Instagram, SMS, email",
-      "Autonomous appointment booking & rescheduling",
-      "Intelligent call routing to the right department",
+      "Dental scheduling — cleanings, emergencies, follow-ups",
+      "Real estate inquiry handling — listings, showings, buyer qualification",
+      "Legal intake — case screening, attorney matching, consultation booking",
       "50+ language support with instant detection",
     ],
     page: "AIReceptionist",
@@ -24,11 +24,11 @@ const solutions = [
     title: "Speed-to-Lead",
     subtitle: "Respond in seconds, not hours.",
     description:
-      "The moment a lead comes in — from a form, ad, or inquiry — your AI qualifies them, sends a personalized response, and books a meeting before your competitors even check their inbox.",
+      "The moment a buyer submits a Zillow inquiry, a patient fills out your contact form, or someone searches for an attorney — your AI qualifies them, sends a personalized response, and books a meeting. All within 90 seconds.",
     features: [
-      "Instant response to every new inquiry",
-      "AI-powered lead qualification & scoring",
-      "Personalized follow-up sequences",
+      "Real estate lead capture — Zillow, Realtor.com, website forms",
+      "Dental new patient booking — insurance verification, family scheduling",
+      "Law firm case qualification — practice area matching, consultation booking",
       "Direct calendar booking integration",
     ],
     page: "SpeedToLead",
@@ -39,11 +39,11 @@ const solutions = [
     title: "Client Reactivator",
     subtitle: "Unlock revenue from your existing database.",
     description:
-      "Automatically re-engages past clients and dormant leads with personalized outreach via WhatsApp, SMS, and email — turning your existing database into a revenue machine.",
+      "Your patient database is full of people who haven't been in 6+ months. Your CRM has hundreds of past clients who went cold. We turn that dormant data into booked appointments and recovered revenue with personalized AI outreach.",
     features: [
-      "Automated reactivation campaigns",
-      "WhatsApp & SMS outreach at scale",
-      "Smart segmentation of dormant clients",
+      "Dental recall — overdue cleanings, incomplete treatment plans",
+      "Real estate past client nurture — market updates, home value alerts",
+      "Law firm client re-engagement — case follow-ups, referral requests",
       "Appointment booking built in",
     ],
     page: "AIBookingSystem",

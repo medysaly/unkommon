@@ -69,274 +69,273 @@ interface CaseStudy {
 const caseStudies: CaseStudy[] = [
   {
     id: 1,
-    title: "Website Contact Form → Instant Response",
+    title: "Zillow Inquiry → Instant Response",
     channel: "Website Form",
     channelIcon: Globe,
-    problem: "Traditional businesses take 24-48 hours to respond to website inquiries. By then, the lead has already contacted 3-4 competitors and made a decision.",
-    solution: "AI responds within 2 seconds of form submission, answers questions instantly, and books qualified leads into sales calendars before competitors even see the inquiry.",
+    problem: "Buyers submit Zillow inquiries at all hours. Most agents respond the next morning — by then, the buyer has already booked showings with 3 other agents.",
+    solution: "AI responds within 2 seconds of Zillow form submission, qualifies the buyer, answers listing questions, and books a showing before your competitors even see the lead.",
     company: {
-      name: "Premier Roofing Co",
-      industry: "Home Services",
+      name: "Stamford Premier Realty",
+      industry: "Real Estate",
       responseTime: "2 seconds"
     },
     initialContext: {
-      source: "Website Contact Form",
-      urgency: "High - Storm damage"
+      source: "Zillow Contact Form",
+      urgency: "High - Active buyer"
     },
     messages: [
       { 
         id: 1, 
         sender: "customer", 
-        text: "Customer submitted form:\n\nName: David Chen\nEmail: d.chen@email.com\nPhone: 555-0187\nMessage: 'Had some shingles blow off in last night's storm. Need estimate ASAP.'", 
+        text: "Zillow inquiry received:\n\nName: David Chen\nEmail: d.chen@email.com\nPhone: 555-0187\nListing: 42 Riverside Dr, Stamford — $1.2M\nMessage: 'Is this still available? Would love to see it this week.'", 
         delay: 1,
-        timestamp: "10:23:14 AM"
+        timestamp: "11:47:14 PM"
       },
       { 
         id: 2, 
         sender: "ai", 
-        text: "Hi David! Thanks for reaching out. I'm so sorry to hear about the storm damage. We can definitely help - we specialize in emergency storm repairs.\n\nI have availability for an inspection today at 2pm or 4pm. Which works better for you?", 
+        text: "Hi David! Yes, 42 Riverside Dr is still available — beautiful 4-bed Colonial with the renovated kitchen. Great choice.\n\nI can get you in for a private showing. Are you pre-approved, and does Saturday morning or Sunday afternoon work better?", 
         delay: 2,
-        timestamp: "10:23:16 AM (2 sec)"
+        timestamp: "11:47:16 PM (2 sec)"
       },
       { 
         id: 3, 
         sender: "customer", 
-        text: "2pm would be great! How soon can you get the work done?", 
+        text: "Saturday morning works! Yes, pre-approved up to $1.3M with Chase.", 
         delay: 3,
-        timestamp: "10:24:30 AM"
+        timestamp: "11:48:30 PM"
       },
       { 
         id: 4, 
         sender: "ai", 
-        text: "Perfect! You're booked for 2pm today. For storm damage repairs, we typically complete the work within 48 hours of the estimate - often same day for emergency cases like yours.\n\nYou'll receive:\n• Confirmation text to 555-0187\n• Reminder 1 hour before\n• Inspector's name & photo\n\nAnything else I can help with?", 
+        text: "Perfect! You're booked for Saturday at 10 AM at 42 Riverside Dr. Your agent will be Lisa Park — she knows this property inside out.\n\nYou'll receive:\n• Confirmation text to 555-0187\n• Property details & comparable sales\n• Lisa's direct number\n\nAnything else you'd like to know about the listing?", 
         delay: 4,
-        timestamp: "10:24:32 AM"
+        timestamp: "11:48:32 PM"
       },
       { 
         id: 5, 
         sender: "customer", 
         text: "No that's perfect, thanks!", 
         delay: 5,
-        timestamp: "10:25:01 AM"
+        timestamp: "11:49:01 PM"
       }
     ],
     workflowSteps: [
-      { id: 1, label: "Form Submitted", active: false, activatesAt: 0 },
-      { id: 2, label: "AI Reads Inquiry", active: false, activatesAt: 1 },
-      { id: 3, label: "Check Availability", active: false, activatesAt: 1 },
+      { id: 1, label: "Zillow Lead Received", active: false, activatesAt: 0 },
+      { id: 2, label: "AI Qualifies Buyer", active: false, activatesAt: 1 },
+      { id: 3, label: "Check Agent Availability", active: false, activatesAt: 1 },
       { id: 4, label: "Send Response", active: false, activatesAt: 1 },
-      { id: 5, label: "Book Appointment", active: false, activatesAt: 3 },
+      { id: 5, label: "Book Showing", active: false, activatesAt: 3 },
       { id: 6, label: "CRM Updated", active: false, activatesAt: 4 }
     ],
     finalLeadData: {
       name: "David Chen",
       email: "d.chen@email.com",
       phone: "555-0187",
-      interest: "Emergency Storm Damage Repair",
+      interest: "42 Riverside Dr, Stamford — $1.2M",
       additionalData: {
-        "Source": "Website Contact Form",
+        "Source": "Zillow Inquiry",
         "Response Time": "2 seconds",
-        "Appointment": "Today, 2:00 PM",
-        "Urgency": "High - Storm Emergency",
+        "Showing": "Saturday, 10:00 AM",
+        "Pre-Approval": "$1.3M — Chase",
         "Lead Score": "Hot 🔥"
       }
     },
     results: [
-      "2-second response (vs 24-48 hour industry average)",
-      "Appointment booked in under 2 minutes",
-      "Lead captured before competitors responded"
+      "2-second response at 11:47 PM (competitors respond Monday)",
+      "Showing booked in under 2 minutes",
+      "Qualified buyer captured before other agents saw the lead"
     ],
-    competitorDelay: "24-48 hours"
+    competitorDelay: "Next morning (12+ hours)"
   },
   {
     id: 2,
-    title: "Email Inquiry → Instant Answer",
-    channel: "Email",
+    title: "New Patient Form → Instant Booking",
+    channel: "Website Form",
     channelIcon: Mail,
-    problem: "Email inboxes overflow with inquiries. Sales teams manually respond during business hours only. Night and weekend leads go unanswered for 12+ hours.",
-    solution: "AI monitors email 24/7, responds instantly with intelligent answers, and escalates qualified leads to sales team with full conversation context.",
+    problem: "New patients fill out website contact forms at night and on weekends. Front desk staff don't see them until Monday. By then, the patient has booked elsewhere.",
+    solution: "AI responds instantly to every new patient inquiry, answers insurance and availability questions, and books their first appointment — even at 10 PM on a Sunday.",
     company: {
-      name: "TechFlow Solutions",
-      industry: "B2B Software",
-      responseTime: "5 seconds"
+      name: "Stamford Dental Spa",
+      industry: "Dental Practice",
+      responseTime: "3 seconds"
     },
     initialContext: {
-      source: "Sales Inquiry Email",
-      urgency: "Medium - Evaluating vendors"
+      source: "Website New Patient Form",
+      urgency: "Medium - New patient seeking dentist"
     },
     messages: [
       { 
         id: 1, 
         sender: "customer", 
-        text: "Email received from: sarah.williams@innovatecorp.com\n\nSubject: Pricing for Team Plan\n\nHi,\n\nWe're a 25-person team looking to switch from our current project management tool. What's your pricing for our size? Do you offer migration support?\n\nBest,\nSarah Williams\nOperations Manager, InnovateCorp", 
+        text: "New patient form submitted:\n\nName: Sarah Williams\nEmail: sarah.w@email.com\nPhone: 203-555-0234\nMessage: 'Just moved to Stamford. Looking for a new dentist for my family. Do you accept Delta Dental insurance?'", 
         delay: 1,
-        timestamp: "9:47:33 PM"
+        timestamp: "8:47:33 PM"
       },
       { 
         id: 2, 
         sender: "ai", 
-        text: "Hi Sarah,\n\nThanks for reaching out! Great timing - we'd love to help InnovateCorp make the switch.\n\nFor a 25-person team:\n• Professional Plan: $15/user/month ($375/month)\n• Includes: Unlimited projects, API access, priority support\n• Yes, we provide FREE migration support (data transfer + team training)\n\nI can schedule a 15-min demo call tomorrow to show you our migration process. Does 10am or 2pm EST work?", 
+        text: "Hi Sarah! Welcome to Stamford! 🎉 Yes, we accept Delta Dental — you're all set on insurance.\n\nWe'd love to get you and your family in for cleanings. How many family members, and do mornings or afternoons work better?\n\nWe have openings this week!", 
         delay: 2,
-        timestamp: "9:47:38 PM (5 sec)"
+        timestamp: "8:47:36 PM (3 sec)"
       },
       { 
         id: 3, 
         sender: "customer", 
-        text: "10am works! What info do you need from me?", 
+        text: "It's me, my husband, and our 8-year-old. Mornings would be great!", 
         delay: 3,
-        timestamp: "9:51:12 PM"
+        timestamp: "8:51:12 PM"
       },
       { 
         id: 4, 
         sender: "ai", 
-        text: "Perfect! You're all set for tomorrow at 10am EST.\n\nI'll need:\n✓ Your phone number (we'll send Zoom link)\n✓ Current tool you're using (helps us prep)\n✓ Any specific features you need\n\nCalendar invite + prep materials will hit your inbox in 60 seconds. Looking forward to it!", 
+        text: "Perfect! I can book all three of you on Thursday morning:\n• 9:00 AM — Sarah (cleaning + exam)\n• 9:30 AM — Husband (cleaning + exam)\n• 10:00 AM — Child (pediatric cleaning)\n\nDr. Patel handles the whole family. Sound good?", 
         delay: 4,
-        timestamp: "9:51:15 PM"
+        timestamp: "8:51:15 PM"
       },
       { 
         id: 5, 
         sender: "customer", 
-        text: "555-0234, currently using Basecamp, mainly need better time tracking and reporting.", 
+        text: "That's perfect! Thank you so much!", 
         delay: 5,
-        timestamp: "9:52:48 PM"
+        timestamp: "8:52:48 PM"
       },
       { 
         id: 6, 
         sender: "ai", 
-        text: "Excellent! I've added those details to your demo prep.\n\nOur time tracking and custom reports are exactly what Basecamp users love about switching. You're going to see some powerful stuff tomorrow at 10am.\n\nConfirmation sent to sarah.williams@innovatecorp.com. See you then! 🚀", 
+        text: "You're all booked! ✓ Confirmation texts sent to 203-555-0234.\n\nI'll also email new patient forms you can fill out ahead of time to save time at the office. We're at 789 Main St, Stamford. See you Thursday! 😊", 
         delay: 6,
-        timestamp: "9:52:51 PM"
+        timestamp: "8:52:51 PM"
       }
     ],
     workflowSteps: [
-      { id: 1, label: "Email Received", active: false, activatesAt: 0 },
-      { id: 2, label: "AI Analyzes Intent", active: false, activatesAt: 1 },
-      { id: 3, label: "Fetch Pricing Info", active: false, activatesAt: 1 },
+      { id: 1, label: "Form Received", active: false, activatesAt: 0 },
+      { id: 2, label: "Verify Insurance", active: false, activatesAt: 1 },
+      { id: 3, label: "Check Availability", active: false, activatesAt: 1 },
       { id: 4, label: "Send Response", active: false, activatesAt: 1 },
-      { id: 5, label: "Schedule Demo", active: false, activatesAt: 3 },
-      { id: 6, label: "Notify Sales Team", active: false, activatesAt: 5 }
+      { id: 5, label: "Book Family Appointments", active: false, activatesAt: 3 },
+      { id: 6, label: "Send New Patient Forms", active: false, activatesAt: 5 }
     ],
     finalLeadData: {
       name: "Sarah Williams",
-      email: "sarah.williams@innovatecorp.com",
-      phone: "555-0234",
-      interest: "Professional Plan - 25 users",
+      email: "sarah.w@email.com",
+      phone: "203-555-0234",
+      interest: "Family Dental — 3 new patients",
       additionalData: {
-        "Company": "InnovateCorp",
-        "Role": "Operations Manager",
-        "Current Tool": "Basecamp",
-        "Team Size": "25 people",
-        "Demo": "Tomorrow, 10am EST",
-        "Lead Score": "Warm 🟡"
+        "Insurance": "Delta Dental (verified)",
+        "Family Size": "3 patients",
+        "Appointments": "Thursday AM (9:00, 9:30, 10:00)",
+        "Response Time": "3 seconds",
+        "Lead Score": "Hot 🔥"
       }
     },
     results: [
-      "5-second response at 9:47 PM (after hours)",
-      "Demo booked in 5 minutes vs next-day manual follow-up",
-      "Sales team notified with full context"
+      "3-second response at 8:47 PM (after hours)",
+      "3 family appointments booked in 5 minutes",
+      "New patients captured before they called another dentist"
     ],
-    competitorDelay: "12+ hours (next business day)"
+    competitorDelay: "Next business day (14+ hours)"
   },
   {
     id: 3,
-    title: "Live Chat → Instant Qualification",
+    title: "Google Search → Instant Case Screening",
     channel: "Live Chat",
     channelIcon: MessageSquare,
-    problem: "Website visitors click away within 30 seconds if no one responds. Chat widgets sit empty during lunch breaks, after hours, and busy periods.",
-    solution: "AI engages every visitor instantly, answers product questions, qualifies budget and timeline, and transfers hot leads to human sales reps with full context.",
+    problem: "Someone injured in an accident searches for a lawyer at 11 PM. They fill out 5 contact forms. The first firm to respond gets the case.",
+    solution: "AI engages instantly via live chat, asks qualifying questions about the case type, determines if it's a good fit, and books a consultation with the right attorney.",
     company: {
-      name: "AutoNation Plus",
-      industry: "Car Dealership",
+      name: "Fairfield Injury Law",
+      industry: "Law Firm",
       responseTime: "1 second"
     },
     initialContext: {
       source: "Website Live Chat",
-      urgency: "High - Ready to buy"
+      urgency: "High - Injury case"
     },
     messages: [
       { 
         id: 1, 
         sender: "customer", 
-        text: "Hi, do you have any 2024 Toyota Camrys in stock?", 
+        text: "Hi, I was in a car accident last week and I think I need a lawyer. The other driver ran a red light.", 
         delay: 1,
-        timestamp: "2:15:43 PM"
+        timestamp: "11:15:43 PM"
       },
       { 
         id: 2, 
         sender: "ai", 
-        text: "Hi there! 👋 Yes, we currently have 7 new 2024 Camrys in stock - several colors and trims available.\n\nAre you looking for a specific trim level (SE, XSE, TRD)?", 
+        text: "I'm sorry to hear about your accident. You've come to the right place — we handle car accident cases throughout Fairfield County.\n\nA few quick questions to get you connected with the right attorney: Were you injured, and have you seen a doctor?", 
         delay: 2,
-        timestamp: "2:15:44 PM (1 sec)"
+        timestamp: "11:15:44 PM (1 sec)"
       },
       { 
         id: 3, 
         sender: "customer", 
-        text: "XSE in white if possible. What's the price?", 
+        text: "Yes, I went to the ER. I have whiplash and my back is still hurting.", 
         delay: 3,
-        timestamp: "2:16:12 PM"
+        timestamp: "11:16:12 PM"
       },
       { 
         id: 4, 
         sender: "ai", 
-        text: "Perfect! We have 2 white XSE models:\n• 2024 Camry XSE - $32,450\n• 2024 Camry XSE V6 - $36,900\n\nBoth include our current $2,000 dealer incentive. Are you trading in a vehicle?", 
+        text: "That's important — having medical documentation helps your case significantly. Two more questions:\n\n1. Do you have the other driver's insurance info?\n2. Has their insurance company contacted you yet?", 
         delay: 4,
-        timestamp: "2:16:14 PM"
+        timestamp: "11:16:14 PM"
       },
       { 
         id: 5, 
         sender: "customer", 
-        text: "Yes, 2018 Honda Accord. What's my next step?", 
+        text: "Yes I have their info. Their insurance called today and offered me $5,000 but that seems low.", 
         delay: 5,
-        timestamp: "2:17:01 PM"
+        timestamp: "11:17:01 PM"
       },
       { 
         id: 6, 
         sender: "ai", 
-        text: "Great! Here's what I can do for you:\n\n1. Get your trade-in estimate (takes 2 min)\n2. Reserve the white XSE you want\n3. Schedule a test drive today\n\nWhat's your name and best phone number? I'll connect you with Michael (our sales manager) who's available right now.", 
+        text: "Good instinct — do NOT accept that offer. Early lowball offers are very common, and your case may be worth significantly more, especially with ongoing back pain.\n\nI'd like to get you a free consultation with Attorney James Park — he specializes in car accident injuries. He has availability tomorrow at 11 AM or 3 PM. Which works?", 
         delay: 6,
-        timestamp: "2:17:03 PM"
+        timestamp: "11:17:03 PM"
       },
       { 
         id: 7, 
         sender: "customer", 
-        text: "Robert Kim, 555-0156", 
+        text: "Robert Kim, 203-555-0156. 11 AM works.", 
         delay: 7,
-        timestamp: "2:17:41 PM"
+        timestamp: "11:17:41 PM"
       },
       { 
         id: 8, 
         sender: "ai", 
-        text: "Perfect, Robert! Michael is calling you at 555-0156 in the next 60 seconds. He'll:\n✓ Get your Accord's trade-in value\n✓ Answer any questions\n✓ Get you scheduled for a test drive\n\nYou're going to love the white XSE! 🚗", 
+        text: "You're booked, Robert. Tomorrow at 11 AM with Attorney Park.\n\n✓ Confirmation text sent to 203-555-0156\n✓ Reminder tomorrow morning\n✓ Free consultation — no obligation\n\nImportant: don't speak to the other insurance company again before your consultation. Take care.", 
         delay: 8,
-        timestamp: "2:17:43 PM"
+        timestamp: "11:17:43 PM"
       }
     ],
     workflowSteps: [
       { id: 1, label: "Chat Initiated", active: false, activatesAt: 0 },
-      { id: 2, label: "Check Inventory", active: false, activatesAt: 1 },
-      { id: 3, label: "Qualify Budget", active: false, activatesAt: 3 },
+      { id: 2, label: "Case Type Detection", active: false, activatesAt: 1 },
+      { id: 3, label: "Qualify Case", active: false, activatesAt: 3 },
       { id: 4, label: "Capture Lead", active: false, activatesAt: 6 },
-      { id: 5, label: "Transfer to Sales", active: false, activatesAt: 7 }
+      { id: 5, label: "Book Consultation", active: false, activatesAt: 7 }
     ],
     finalLeadData: {
       name: "Robert Kim",
-      phone: "555-0156",
-      interest: "2024 Camry XSE (White) + Trade-in",
+      phone: "203-555-0156",
+      interest: "Personal Injury — Car Accident",
       additionalData: {
-        "Vehicle Interest": "2024 Toyota Camry XSE White",
-        "Price Point": "$32,450",
-        "Trade-In": "2018 Honda Accord",
-        "Status": "Hot Lead - Transfer to Sales",
-        "Response Time": "1 second",
+        "Case Type": "Car Accident — Whiplash + Back Injury",
+        "Liability": "Clear — Other driver ran red light",
+        "Medical": "ER visit + ongoing treatment",
+        "Insurance Status": "Lowball offer received ($5K)",
+        "Consultation": "Tomorrow, 11:00 AM",
         "Lead Score": "Hot 🔥"
       }
     },
     results: [
-      "1-second initial response",
-      "Lead qualified and transferred in 2 minutes",
-      "Sales rep called with full context ready"
+      "1-second response at 11:15 PM",
+      "Case qualified and consultation booked in 2 minutes",
+      "Client advised not to accept lowball offer"
     ],
-    competitorDelay: "No response (chat offline)"
+    competitorDelay: "No response (office closed)"
   }
 ];
 
