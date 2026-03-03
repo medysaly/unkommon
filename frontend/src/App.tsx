@@ -10,12 +10,7 @@ import Home from "@/pages/home";
 import AIReceptionist from "@/pages/ai-receptionist";
 import SpeedToLead from "@/pages/speed-to-lead";
 import AIBookingSystem from "@/pages/ai-booking-system";
-import ExecutiveAssistant from "@/pages/executive-assistant";
-import CompanyKnowledgeBot from "@/pages/company-knowledge-bot";
-import ContentFactory from "@/pages/content-factory";
-import LinkedInAutomation from "@/pages/linkedin-automation";
-import SEORankTracker from "@/pages/seo-rank-tracker";
-import DHLTrackingBot from "@/pages/dhl-tracking-bot";
+
 import AgentLibrary from "@/pages/agent-library";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
@@ -42,12 +37,7 @@ function Router() {
                 <Route path="/ai-receptionist" component={AIReceptionist} />
                 <Route path="/speed-to-lead" component={SpeedToLead} />
                 <Route path="/ai-booking-system" component={AIBookingSystem} />
-                <Route path="/executive-assistant" component={ExecutiveAssistant} />
-                <Route path="/company-knowledge-bot" component={CompanyKnowledgeBot} />
-                <Route path="/content-factory" component={ContentFactory} />
-                <Route path="/linkedin-automation" component={LinkedInAutomation} />
-                <Route path="/seo-rank-tracker" component={SEORankTracker} />
-                <Route path="/dhl-tracking-bot" component={DHLTrackingBot} />
+
                 <Route path="/agent-library" component={AgentLibrary} />
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
