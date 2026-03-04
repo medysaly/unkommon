@@ -11,7 +11,7 @@ import {
 export default function About() {
   const builtDifferent = [
     { title: "You Choose the AI", description: "Unlike cookie-cutter tools locked to one model, you pick the LLM that fits your needs and budget. GPT-4, Claude, Gemini — or any combination. Your AI, your rules." },
-    { title: "Your Data Stays Yours", description: "Hosted on AWS in a secure, isolated environment. No shared databases. No third-party access. Your patient records, client files, and case data — nobody touches them but you." },
+    { title: "Your Data Stays Yours", description: "Hosted in a dedicated, isolated cloud environment. No shared databases. No third-party access. Your patient records, client files, and case data — nobody touches them but you." },
     { title: "Trained on YOUR Business", description: "We train the AI on your actual data: your services, your pricing, your FAQs, your tone of voice. It doesn't hallucinate generic answers — it responds like your best employee because it knows your business inside out." },
     { title: "Custom-Built, Not Templated", description: "Every AI agent is built specifically for your practice or firm. We study your workflow, your bottlenecks, your clients. The result fits like a glove — not a one-size-fits-all tool your competitors are also using." },
     { title: "Zero Hallucinations", description: "We implement strict guardrails so your AI never makes up information. It uses only verified data from your business. No fabricated pricing. No wrong appointment times. No embarrassing mistakes. Just reliable, on-brand responses every time." },
