@@ -256,12 +256,12 @@ export default function AgentLibrary() {
                 AI Assistant
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Imagine hiring a senior employee who never sleeps, never forgets, and costs a fraction of a salary. We deploy a private AI assistant inside your business — hosted on your own cloud, trained on your data, accessible to your entire team 24/7.
+                Imagine hiring a senior employee who never sleeps, never forgets, and costs a fraction of a salary. We deploy a private AI assistant inside your business — hosted in a dedicated, isolated cloud environment, trained on your data, accessible to your entire team 24/7.
               </p>
 
               <ul className="space-y-4 mb-8">
                 {[
-                  { icon: Shield, text: "Hosted in your own secure AWS environment — nobody else has access" },
+                  { icon: Shield, text: "Hosted in a dedicated, isolated cloud environment — your data stays yours, nobody else has access" },
                   { icon: Brain, text: "Trained on your documents, processes, and institutional knowledge" },
                   { icon: Sparkles, text: "Handles emails, scheduling, customer inquiries, internal Q&A — whatever you need" },
                   { icon: CheckCircle, text: "Your team interacts with it naturally — like messaging a coworker" },
