@@ -93,8 +93,40 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Book a Call - Cal.com Embed */}
+      <section className="px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-white dark:text-black" />
+              </div>
+              <h2 className="text-4xl font-light text-foreground tracking-tight">
+                Book a Call
+              </h2>
+            </div>
+            <p className="text-muted-foreground mb-8">
+              Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
+            </p>
+
+            <div style={{ overflow: 'hidden', height: '700px' }}>
+              <iframe
+                src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
+                style={{ width: '100%', height: '900px', border: 'none', background: 'transparent' }}
+                title="Book a 30-minute call with Unkommon"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Locations */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+      <section className="px-4 sm:px-6 lg:px-8 py-16 pb-32">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,38 +153,6 @@ export default function Contact() {
                 <div className="text-xl text-foreground font-medium mb-1">New Jersey</div>
                 <div className="text-sm text-muted-foreground">NJ</div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Book a Call - Cal.com Embed */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 pb-32">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-white dark:text-black" />
-              </div>
-              <h2 className="text-4xl font-light text-foreground tracking-tight">
-                Book a Call
-              </h2>
-            </div>
-            <p className="text-muted-foreground mb-8">
-              Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
-            </p>
-
-            <div style={{ overflow: 'hidden', height: '700px' }}>
-              <iframe
-                src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
-                style={{ width: '100%', height: '800px', border: 'none', background: 'transparent' }}
-                title="Book a 30-minute call with Unkommon"
-              />
             </div>
           </motion.div>
         </div>
