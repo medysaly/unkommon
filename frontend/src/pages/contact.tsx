@@ -144,68 +144,30 @@ export default function Contact() {
 
       {/* Section 2: Book a Call - Cal.com Embed */}
       <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.005, y: -2 }}
-            className="relative group"
           >
-            <div className="relative overflow-hidden rounded-[30px] p-10 md:p-12">
-              {/* Liquid glass background */}
-              <div className="absolute inset-0 bg-white/10"
-                   style={{
-                     WebkitBackdropFilter: 'blur(20px) saturate(100%)',
-                     backdropFilter: 'blur(40px) saturate(180%)'
-                   }}
-              />
-              {/* Border gradient */}
-              <div className="absolute -inset-[1px] rounded-[30px] transition-opacity duration-300 group-hover:opacity-90"
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 50%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0.15) 100%)',
-                     border: '0.5px solid rgba(255,255,255,0.15)',
-                     filter: 'blur(0.5px)',
-                     opacity: 0.7,
-                     zIndex: -1
-                   }}
-              />
-              {/* Shine effect */}
-              <div className="absolute inset-0 rounded-[30px] pointer-events-none"
-                   style={{
-                     background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
-                     opacity: 0.8
-                   }}
-              />
-              {/* Shadow */}
-              <div className="absolute inset-0 rounded-[30px] -z-10"
-                   style={{
-                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(255, 255, 255, 0.1) inset'
-                   }}
-              />
-
-              {/* Content */}
-              <div className="relative">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center">
-                    <Calendar className="w-6 h-6 text-white dark:text-black" />
-                  </div>
-                  <h2 className="text-4xl font-light text-foreground tracking-tight">
-                    Book a Call
-                  </h2>
-                </div>
-                <p className="text-muted-foreground mb-8">
-                  Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
-                </p>
-
-                <iframe
-                  src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
-                  style={{ width: '100%', height: '700px', border: 'none', background: 'transparent' }}
-                  title="Book a 30-minute call with Unkommon"
-                />
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-white dark:text-black" />
               </div>
+              <h2 className="text-4xl font-light text-foreground tracking-tight">
+                Book a Call
+              </h2>
             </div>
+            <p className="text-muted-foreground mb-8">
+              Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
+            </p>
+
+            <iframe
+              src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
+              style={{ width: '100%', height: '700px', border: 'none', background: 'transparent' }}
+              title="Book a 30-minute call with Unkommon"
+            />
           </motion.div>
         </div>
       </section>
