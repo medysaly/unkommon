@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Calendar } from "lucide-react";
+import { Phone, Calendar, MapPin } from "lucide-react";
 import CurvedLoop from "@/components/CurvedLoop";
 
 export default function Contact() {
@@ -89,6 +89,39 @@ export default function Contact() {
             <p className="text-sm text-muted-foreground uppercase tracking-wider">
               Live Demo Agent • Active 24/7
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Locations */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-white rounded-2xl mb-6">
+              <MapPin className="w-8 h-8 text-white dark:text-black" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-10">
+              Locations
+            </h2>
+            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+              <div>
+                <div className="text-xl text-foreground font-medium mb-1">New York City</div>
+                <div className="text-sm text-muted-foreground">NYC, NY</div>
+              </div>
+              <div>
+                <div className="text-xl text-foreground font-medium mb-1">Stamford</div>
+                <div className="text-sm text-muted-foreground">Stamford, CT</div>
+              </div>
+              <div>
+                <div className="text-xl text-foreground font-medium mb-1">New Jersey</div>
+                <div className="text-sm text-muted-foreground">NJ</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
