@@ -285,13 +285,11 @@ export default function Contact() {
                   Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
                 </p>
 
-                <div className="rounded-2xl overflow-hidden border border-border/30">
-                  <iframe
-                    src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view"
-                    style={{ width: '100%', height: '700px', border: 'none' }}
-                    title="Book a 30-minute call with Unkommon"
-                  />
-                </div>
+                <iframe
+                  src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
+                  style={{ width: '100%', height: '700px', border: 'none', background: 'transparent' }}
+                  title="Book a 30-minute call with Unkommon"
+                />
               </div>
             </div>
           </motion.div>
