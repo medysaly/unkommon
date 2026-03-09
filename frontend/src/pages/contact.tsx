@@ -1,15 +1,13 @@
 import { motion } from "framer-motion";
-import { Phone, MapPin, Calendar } from "lucide-react";
+import { Phone, Calendar } from "lucide-react";
 import CurvedLoop from "@/components/CurvedLoop";
 
 export default function Contact() {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-white dark:bg-black">
-      {/* Background */}
-      <div className="fixed inset-0 z-0 bg-white dark:bg-black"></div>
+    <div className="min-h-screen bg-white dark:bg-black">
 
       {/* Hero Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <section className="px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -25,9 +23,7 @@ export default function Contact() {
               data-testid="heading-page-title"
             >
               Let's{" "}
-              <span className="text-foreground">
-                Connect
-              </span>
+              <span className="text-foreground">Connect</span>
             </motion.h1>
 
             <motion.p
@@ -39,7 +35,6 @@ export default function Contact() {
               Ready to transform your business with AI? We're here to help you achieve your automation goals.
             </motion.p>
 
-            {/* Curved Loop Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,90 +55,46 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Section 1: Proof of Concept - Demo Number */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-4xl mx-auto">
+      {/* Demo Number */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.005, y: -2 }}
-            className="relative group"
           >
-            <div className="relative overflow-hidden rounded-[30px] p-10 md:p-12 text-center">
-              {/* Liquid glass background */}
-              <div className="absolute inset-0 bg-white/10"
-                   style={{
-                     WebkitBackdropFilter: 'blur(20px) saturate(100%)',
-                     backdropFilter: 'blur(40px) saturate(180%)'
-                   }}
-              />
-
-              {/* Border gradient */}
-              <div className="absolute -inset-[1px] rounded-[30px] transition-opacity duration-300 group-hover:opacity-90"
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 50%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0.15) 100%)',
-                     border: '0.5px solid rgba(255,255,255,0.15)',
-                     filter: 'blur(0.5px)',
-                     opacity: 0.7,
-                     zIndex: -1
-                   }}
-              />
-
-              {/* Shine effect */}
-              <div className="absolute inset-0 rounded-[30px] pointer-events-none"
-                   style={{
-                     background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
-                     opacity: 0.8
-                   }}
-              />
-
-              {/* Shadow */}
-              <div className="absolute inset-0 rounded-[30px] -z-10"
-                   style={{
-                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(255, 255, 255, 0.1) inset'
-                   }}
-              />
-
-              {/* Content */}
-              <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-white rounded-2xl mb-6">
-                  <Phone className="w-8 h-8 text-white dark:text-black" />
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-4">
-                  Don't just email us. Test us.
-                </h2>
-
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-                  Experience the speed and natural voice of the Unkommon AI Receptionist firsthand. Call the number below to interact with our demo agent. Try to book an appointment, ask about pricing, or stump it with complex questions.
-                </p>
-
-                <a
-                  href="tel:+12036809629"
-                  className="inline-block"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="text-5xl md:text-6xl font-light text-foreground mb-3 hover:text-blue-500 transition-colors cursor-pointer"
-                  >
-                    +1 (203) 680-9629
-                  </motion.div>
-                </a>
-
-                <p className="text-sm text-muted-foreground uppercase tracking-wider">
-                  Live Demo Agent • Active 24/7
-                </p>
-              </div>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-white rounded-2xl mb-6">
+              <Phone className="w-8 h-8 text-white dark:text-black" />
             </div>
+
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-4">
+              Don't just email us. Test us.
+            </h2>
+
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+              Experience the speed and natural voice of the Unkommon AI Receptionist firsthand. Call the number below to interact with our demo agent. Try to book an appointment, ask about pricing, or stump it with complex questions.
+            </p>
+
+            <a href="tel:+12036809629" className="inline-block">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-5xl md:text-6xl font-light text-foreground mb-3 hover:text-blue-500 transition-colors cursor-pointer"
+              >
+                +1 (203) 680-9629
+              </motion.div>
+            </a>
+
+            <p className="text-sm text-muted-foreground uppercase tracking-wider">
+              Live Demo Agent • Active 24/7
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 2: Book a Call - Cal.com Embed */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-16">
+      {/* Book a Call - Cal.com Embed */}
+      <section className="px-4 sm:px-6 lg:px-8 py-16 pb-32">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -166,125 +117,9 @@ export default function Contact() {
             <div style={{ overflow: 'hidden', height: '700px' }}>
               <iframe
                 src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
-                style={{ width: '100%', height: '740px', border: 'none', background: 'transparent', marginBottom: '-40px' }}
+                style={{ width: '100%', height: '760px', border: 'none', background: 'transparent' }}
                 title="Book a 30-minute call with Unkommon"
               />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-
-      {/* Section 4: Physical Presence - Headquarters */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-16 pb-32">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.005, y: -2 }}
-            className="relative group"
-          >
-            <div className="relative overflow-hidden rounded-[30px] p-10 md:p-12 text-center">
-              {/* Liquid glass background */}
-              <div className="absolute inset-0 bg-white/10"
-                   style={{
-                     WebkitBackdropFilter: 'blur(20px) saturate(100%)',
-                     backdropFilter: 'blur(40px) saturate(180%)'
-                   }}
-              />
-
-              {/* Border gradient */}
-              <div className="absolute -inset-[1px] rounded-[30px] transition-opacity duration-300 group-hover:opacity-90"
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 50%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0.15) 100%)',
-                     border: '0.5px solid rgba(255,255,255,0.15)',
-                     filter: 'blur(0.5px)',
-                     opacity: 0.7,
-                     zIndex: -1
-                   }}
-              />
-
-              {/* Shine effect */}
-              <div className="absolute inset-0 rounded-[30px] pointer-events-none"
-                   style={{
-                     background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
-                     opacity: 0.8
-                   }}
-              />
-
-              {/* Shadow */}
-              <div className="absolute inset-0 rounded-[30px] -z-10"
-                   style={{
-                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(255, 255, 255, 0.1) inset'
-                   }}
-              />
-
-              {/* Content */}
-              <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-white rounded-2xl mb-6">
-                  <MapPin className="w-8 h-8 text-white dark:text-black" />
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-                  Locations
-                </h2>
-
-                <div className="space-y-6 max-w-2xl mx-auto">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <div className="text-xl text-foreground font-medium mb-2">
-                        New York City
-                      </div>
-                      <div className="text-base text-muted-foreground">
-                        NYC, NY<br />
-                        United States
-                      </div>
-                    </div>
-
-                    <div className="text-center">
-                      <div className="text-xl text-foreground font-medium mb-2">
-                        Stamford
-                      </div>
-                      <div className="text-base text-muted-foreground">
-                        Stamford, CT<br />
-                        United States
-                      </div>
-                    </div>
-
-                    <div className="text-center">
-                      <div className="text-xl text-foreground font-medium mb-2">
-                        Orlando
-                      </div>
-                      <div className="text-base text-muted-foreground">
-                        Orlando, FL<br />
-                        United States
-                      </div>
-                    </div>
-
-                    <div className="text-center">
-                      <div className="text-xl text-foreground font-medium mb-2">
-                        Vancouver Island
-                      </div>
-                      <div className="text-base text-muted-foreground">
-                        Vancouver Island, BC<br />
-                        Canada
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-border/30">
-                    <p className="text-sm text-muted-foreground mb-2">For general inquiries:</p>
-                    <a
-                      href="mailto:info@unkommon.ai"
-                      className="text-lg text-foreground hover:text-blue-500 transition-colors font-medium"
-                    >
-                      info@unkommon.ai
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
