@@ -114,7 +114,7 @@ export default function Contact() {
               Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
             </p>
 
-            <div style={{ overflow: 'hidden', height: '600px', background: '#000' }}>
+            <div style={{ overflow: 'hidden', height: '650px', background: '#000' }}>
               <iframe
                 src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view"
                 // @ts-ignore
