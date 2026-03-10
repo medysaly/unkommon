@@ -4,7 +4,7 @@ import CurvedLoop from "@/components/CurvedLoop";
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen" style={{ background: '#101010' }}>
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 pt-32 pb-20">
