@@ -1,37 +1,8 @@
 import { motion } from "framer-motion";
 import { Phone, Calendar, MapPin } from "lucide-react";
-import { useEffect } from "react";
 import CurvedLoop from "@/components/CurvedLoop";
 
 export default function Contact() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://app.cal.com/embed/embed.js";
-    script.async = true;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      const Cal = (window as any).Cal;
-      if (!Cal) return;
-      Cal("init", { origin: "https://cal.com" });
-      Cal("inline", {
-        elementOrSelector: "#cal-embed",
-        calLink: "mehdi-salhi-8tv8tj/30min",
-        layout: "month_view",
-        config: { theme: "dark" },
-      });
-      Cal("ui", {
-        theme: "dark",
-        styles: { branding: { brandColor: "#000000" } },
-        hideEventTypeDetails: false,
-        layout: "month_view",
-      });
-    };
-
-    return () => {
-      script.remove();
-    };
-  }, []);
   return (
     <div className="min-h-screen bg-white dark:bg-black">
 
@@ -143,7 +114,15 @@ export default function Contact() {
               Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
             </p>
 
-            <div id="cal-embed" style={{ width: '100%', minHeight: '620px' }} />
+            <div style={{ overflow: 'hidden', height: '620px', background: '#000' }}>
+              <iframe
+                src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view"
+                // @ts-ignore
+                allowTransparency="true"
+                style={{ width: '100%', height: '900px', border: 'none', background: '#000', colorScheme: 'dark' }}
+                title="Book a 30-minute call with Unkommon"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
