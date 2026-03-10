@@ -117,7 +117,7 @@ export default function Contact() {
             <div style={{ overflow: 'hidden', height: '620px' }}>
               <iframe
                 src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view&background=transparent"
-                style={{ width: '100%', height: '900px', border: 'none', background: 'transparent' }}
+                style={{ width: '100%', height: '900px', border: 'none', background: 'transparent', filter: 'brightness(0.8)' }}
                 title="Book a 30-minute call with Unkommon"
               />
             </div>
