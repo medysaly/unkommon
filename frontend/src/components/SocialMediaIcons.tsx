@@ -3,18 +3,9 @@
  * @design: Uiverse.io by firemonste_8052
  */
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import "@/styles/social-media-icons.css";
 
 export default function SocialMediaIcons() {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <ul

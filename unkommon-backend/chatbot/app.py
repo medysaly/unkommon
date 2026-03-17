@@ -181,16 +181,6 @@ def save_conversation_history(conversation_id, messages):
         print(f"Error saving conversation history: {e}")
 
 
-def should_capture_lead(user_message, ai_response):
-    """Detect if user is showing interest and should be captured as a lead"""
-    interest_keywords = [
-        'book', 'schedule', 'appointment', 'call', 'demo', 'interested',
-        'pricing', 'price', 'cost', 'how much', 'sign up', 'get started',
-        'contact', 'email', 'phone', 'reach out', 'audit', 'consultation'
-    ]
-    
-    message_lower = user_message.lower()
-    return any(keyword in message_lower for keyword in interest_keywords)
 
 
 # Save lead to DynamoDB
