@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import boto3
 import uuid
@@ -13,7 +14,7 @@ from app import (
 
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 
-CALENDAR_API_URL = 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
+CALENDAR_API_URL = os.environ.get('CALENDAR_API_URL', 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar')
 
 
 def handler(event, response_stream, context):

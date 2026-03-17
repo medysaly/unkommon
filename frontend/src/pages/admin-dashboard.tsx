@@ -45,11 +45,10 @@ export default function AdminDashboard() {
     }
   };
 
-  const getAuthToken = async () => {
-    const session = await fetchAuthSession();
-    const idToken = session.tokens?.idToken?.toString();
-    if (!idToken) throw new Error("No auth token");
-    return idToken;
+  const getAuthToken = () => {
+    const key = import.meta.env.VITE_ADMIN_API_KEY;
+    if (!key) throw new Error("No admin API key configured");
+    return key;
   };
 
   const fetchLeads = async () => {

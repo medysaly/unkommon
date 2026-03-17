@@ -20,6 +20,17 @@ Parameters:
     Description: SES TO email address (where leads go)
     Default: sales@unkommon.ai
 
+  AdminApiKey:
+    Type: String
+    Description: API key for admin endpoints (leads)
+    NoEcho: true
+
+  VapiWebhookSecret:
+    Type: String
+    Description: Secret token for Vapi webhook validation
+    Default: ''
+    NoEcho: true
+
 Resources:
   # API Gateway
   UnkommonApi:
@@ -29,7 +40,7 @@ Resources:
       Cors:
         AllowMethods: '''GET,POST,DELETE,OPTIONS'''
         AllowHeaders: '''Content-Type,Authorization'''
-        AllowOrigin: '''*'''
+        AllowOrigin: '''https://unkommon.ai'''
 
   # DynamoDB Table for Conversations
   ConversationsTable:
@@ -160,11 +171,11 @@ Resources:
           LEADS_TABLE_NAME: !Ref LeadsTable
           CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
       FunctionUrlConfig:
-        AuthType: NONE
+        AuthType: AWS_IAM
         InvokeMode: RESPONSE_STREAM
         Cors:
           AllowOrigins:
-            - '*'
+            - 'https://unkommon.ai'
           AllowHeaders:
             - Content-Type
           AllowMethods:
@@ -198,6 +209,7 @@ Resources:
       Environment:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
+          ADMIN_API_KEY: !Ref AdminApiKey
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
@@ -224,6 +236,7 @@ Resources:
       Environment:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
+          VAPI_WEBHOOK_SECRET: !Ref VapiWebhookSecret
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable

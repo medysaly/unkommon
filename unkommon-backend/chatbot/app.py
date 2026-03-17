@@ -19,7 +19,7 @@ leads_table = dynamodb.Table('unkommon-leads')
 conversations_table = dynamodb.Table('unkommon-conversations')
 
 # Environment variable for calendar API
-CALENDAR_API_URL = 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
+CALENDAR_API_URL = os.environ.get('CALENDAR_API_URL', 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar')
 
 
 # System prompt with company knowledge
@@ -368,7 +368,7 @@ def lambda_handler(event, context):
         for _ in range(max_iterations):
             # Call Claude via Bedrock
             response = bedrock_runtime.invoke_model(
-                modelId='anthropic.claude-haiku-4-5-20251001-v1:0',
+                modelId='global.anthropic.claude-sonnet-4-5-20250929-v1:0',
                 body=json.dumps(request_body)
             )
             

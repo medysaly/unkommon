@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -6,13 +7,30 @@ from decimal import Decimal
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
 
+ADMIN_API_KEY = os.environ.get('ADMIN_API_KEY', '')
+ALLOWED_ORIGIN = 'https://unkommon.ai'
+
 # Helper to convert Decimal to int/float for JSON
 def decimal_default(obj):
     if isinstance(obj, Decimal):
         return int(obj) if obj % 1 == 0 else float(obj)
     raise TypeError
 
+def unauthorized():
+    return {
+        'statusCode': 401,
+        'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': ALLOWED_ORIGIN},
+        'body': json.dumps({'error': 'Unauthorized'})
+    }
+
 def lambda_handler(event, context):
+    # Verify API key
+    headers = event.get('headers', {})
+    auth = headers.get('Authorization') or headers.get('authorization') or ''
+    token = auth.replace('Bearer ', '') if auth.startswith('Bearer ') else ''
+    if not ADMIN_API_KEY or token != ADMIN_API_KEY:
+        return unauthorized()
+
     http_method = event.get('httpMethod', 'GET')
 
     if http_method == 'DELETE':
@@ -46,7 +64,7 @@ def handle_get(event):
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
                 'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                 'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
             },
@@ -62,9 +80,9 @@ def handle_get(event):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': ALLOWED_ORIGIN
             },
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': 'Internal server error'})
         }
 
 
@@ -81,7 +99,7 @@ def handle_delete(event):
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
                     'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                     'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
                 },
@@ -98,7 +116,7 @@ def handle_delete(event):
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
                     'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                     'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
                 },
@@ -111,7 +129,7 @@ def handle_delete(event):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': ALLOWED_ORIGIN
             },
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': 'Internal server error'})
         }

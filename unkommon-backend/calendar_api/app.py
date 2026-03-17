@@ -91,7 +91,7 @@ def send_confirmation_email(name, email, date_str, time_str):
         Message={
             'Subject': {'Data': f'New Booking: {name}'},
             'Body': {
-                'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {time_str} EST"}
+                'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {datetime.strptime(time_str, '%H:%M').strftime('%-I:%M %p')} ET"}
             }
         }
     )

@@ -1,5 +1,8 @@
 import json
+import os
 import re
+import hmac
+import hashlib
 import boto3
 import uuid
 from datetime import datetime
@@ -11,13 +14,32 @@ leads_table = dynamodb.Table('unkommon-leads')
 # Initialize SES
 ses_client = boto3.client('ses', region_name='us-east-1')
 
+VAPI_WEBHOOK_SECRET = os.environ.get('VAPI_WEBHOOK_SECRET', '')
+
+def verify_vapi_signature(event):
+    """Verify the webhook request came from Vapi using the secret token."""
+    if not VAPI_WEBHOOK_SECRET:
+        return True  # Skip validation if no secret configured (log warning)
+    headers = event.get('headers', {})
+    auth = headers.get('x-vapi-secret') or headers.get('X-Vapi-Secret') or ''
+    return hmac.compare_digest(auth, VAPI_WEBHOOK_SECRET)
+
 def lambda_handler(event, context):
     """
     Webhook endpoint for Vapi phone calls
     Vapi sends call data when a call ends
     """
-    
+
     try:
+        # Verify webhook authenticity
+        if not verify_vapi_signature(event):
+            print("Unauthorized webhook request - invalid signature")
+            return {
+                'statusCode': 401,
+                'headers': {'Content-Type': 'application/json'},
+                'body': json.dumps({'error': 'Unauthorized'})
+            }
+
         # Parse the webhook payload from Vapi
         body = json.loads(event['body']) if isinstance(event.get('body'), str) else event.get('body', {})
         
@@ -114,5 +136,5 @@ def lambda_handler(event, context):
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json'},
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': 'Internal server error'})
         }
