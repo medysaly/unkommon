@@ -368,7 +368,7 @@ def lambda_handler(event, context):
         for _ in range(max_iterations):
             # Call Claude via Bedrock
             response = bedrock_runtime.invoke_model(
-                modelId='global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+                modelId='anthropic.claude-haiku-4-5-20251001-v1:0',
                 body=json.dumps(request_body)
             )
             

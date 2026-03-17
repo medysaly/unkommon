@@ -147,6 +147,47 @@ Resources:
             Path: /api/chat
             Method: POST
 
+  # Chatbot Streaming Lambda Function (Function URL)
+  ChatbotStreamFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: chatbot/
+      Handler: stream.handler
+      Timeout: 120
+      MemorySize: 256
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+          CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: RESPONSE_STREAM
+        Cors:
+          AllowOrigins:
+            - '*'
+          AllowHeaders:
+            - Content-Type
+          AllowMethods:
+            - POST
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ConversationsTable
+        - Statement:
+          - Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+              - bedrock:InvokeModelWithResponseStream
+            Resource:
+              - 'arn:aws:bedrock:*::foundation-model/*'
+              - 'arn:aws:bedrock:*:*:inference-profile/*'
+          - Effect: Allow
+            Action:
+              - aws-marketplace:ViewSubscriptions
+              - aws-marketplace:Subscribe
+            Resource: '*'
+
   # Leads API Lambda Function
   LeadsApiFunction:
     Type: AWS::Serverless::Function
@@ -247,3 +288,7 @@ Outputs:
   ContactFormFunctionArn:
     Description: Contact Form Lambda Function ARN
     Value: !GetAtt ContactFormFunction.Arn
+
+  ChatbotStreamUrl:
+    Description: Chatbot streaming Function URL
+    Value: !GetAtt ChatbotStreamFunctionUrl.FunctionUrl
