@@ -33,7 +33,6 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
   // Get API endpoints from environment or prop
   const API_URL =
     apiEndpoint || import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod';
-  const STREAM_URL = import.meta.env.VITE_CHAT_STREAM_URL || '';
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -102,87 +101,41 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
     setIsLoading(true);
 
     try {
-      if (STREAM_URL) {
-        // Streaming mode
-        const response = await fetch(STREAM_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: userMessage.content,
-            conversationId: conversationId,
-          }),
-        });
+      const response = await fetch(`${API_URL}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMessage.content,
+          conversationId: conversationId,
+        }),
+      });
 
-        if (!response.ok) throw new Error(`API error: ${response.status}`);
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
 
-        const reader = response.body?.getReader();
-        if (!reader) throw new Error('No response body');
+      const data = await response.json();
+      const fullText = data.response;
+      const assistantMsgId = `assistant-${data.timestamp}`;
 
-        const decoder = new TextDecoder();
-        const assistantMsgId = `assistant-${Date.now()}`;
-        let fullText = '';
-        let newConversationId = conversationId;
+      // Add empty message then stream text in word by word
+      setMessages((prev) => [...prev, {
+        id: assistantMsgId,
+        role: 'assistant' as const,
+        content: '',
+        timestamp: data.timestamp,
+      }]);
+      setIsLoading(false);
+      setConversationId(data.conversationId);
 
-        // Add empty assistant message that we'll stream into
-        setMessages((prev) => [...prev, {
-          id: assistantMsgId,
-          role: 'assistant' as const,
-          content: '',
-          timestamp: Date.now(),
-        }]);
-        setIsLoading(false);
-
-        let buffer = '';
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split('\n');
-          buffer = lines.pop() || '';
-
-          for (const line of lines) {
-            if (!line.startsWith('data: ')) continue;
-            try {
-              const data = JSON.parse(line.slice(6));
-              if (data.text) {
-                fullText += data.text;
-                setMessages((prev) =>
-                  prev.map((m) => m.id === assistantMsgId ? { ...m, content: fullText } : m)
-                );
-              }
-              if (data.conversationId) {
-                newConversationId = data.conversationId;
-              }
-            } catch {}
-          }
-        }
-
-        setConversationId(newConversationId);
-      } else {
-        // Non-streaming fallback
-        const response = await fetch(`${API_URL}/api/chat`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: userMessage.content,
-            conversationId: conversationId,
-          }),
-        });
-
-        if (!response.ok) throw new Error(`API error: ${response.status}`);
-
-        const data = await response.json();
-
-        const assistantMessage: Message = {
-          id: `assistant-${data.timestamp}`,
-          role: 'assistant',
-          content: data.response,
-          timestamp: data.timestamp,
-        };
-
-        setMessages((prev) => [...prev, assistantMessage]);
-        setConversationId(data.conversationId);
+      // Simulate streaming — reveal text word by word
+      const words = fullText.split(' ');
+      let displayed = '';
+      for (let i = 0; i < words.length; i++) {
+        displayed += (i === 0 ? '' : ' ') + words[i];
+        const current = displayed;
+        setMessages((prev) =>
+          prev.map((m) => m.id === assistantMsgId ? { ...m, content: current } : m)
+        );
+        await new Promise((r) => setTimeout(r, 30));
       }
     } catch (error) {
       console.error('Error sending message:', error);
