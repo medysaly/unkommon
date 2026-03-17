@@ -19,7 +19,7 @@ leads_table = dynamodb.Table('unkommon-leads')
 conversations_table = dynamodb.Table('unkommon-conversations')
 
 # Environment variable for calendar API
-CALENDAR_API_URL = os.environ.get('CALENDAR_API_URL', 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar')
+CALENDAR_API_URL = os.environ['CALENDAR_API_URL']
 
 
 # System prompt with company knowledge
@@ -442,10 +442,9 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'https://unkommon.ai'
             },
             'body': json.dumps({
-                'error': 'Failed to process request',
-                'message': str(e)
+                'error': 'Failed to process request'
             })
         }

@@ -37,6 +37,11 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
+      MethodSettings:
+        - ResourcePath: '/*'
+          HttpMethod: '*'
+          ThrottlingBurstLimit: 20
+          ThrottlingRateLimit: 10
       Cors:
         AllowMethods: '''GET,POST,DELETE,OPTIONS'''
         AllowHeaders: '''Content-Type,Authorization'''
@@ -132,6 +137,7 @@ Resources:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
           CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
+          CALENDAR_API_URL: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/calendar
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
@@ -143,8 +149,8 @@ Resources:
               - bedrock:InvokeModel
               - bedrock:InvokeModelWithResponseStream
             Resource:
-              - 'arn:aws:bedrock:*::foundation-model/*'
-              - 'arn:aws:bedrock:*:*:inference-profile/*'
+              - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-*'
+              - 'arn:aws:bedrock:*:*:inference-profile/anthropic.claude-*'
           - Effect: Allow
             Action:
               - aws-marketplace:ViewSubscriptions
@@ -170,6 +176,7 @@ Resources:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
           CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
+          CALENDAR_API_URL: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/calendar
       FunctionUrlConfig:
         AuthType: AWS_IAM
         InvokeMode: RESPONSE_STREAM
@@ -191,8 +198,8 @@ Resources:
               - bedrock:InvokeModel
               - bedrock:InvokeModelWithResponseStream
             Resource:
-              - 'arn:aws:bedrock:*::foundation-model/*'
-              - 'arn:aws:bedrock:*:*:inference-profile/*'
+              - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-*'
+              - 'arn:aws:bedrock:*:*:inference-profile/anthropic.claude-*'
           - Effect: Allow
             Action:
               - aws-marketplace:ViewSubscriptions

@@ -164,7 +164,6 @@ Respond within 24 hours for best conversion rates!
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
             'body': json.dumps({
-                'error': 'Failed to send email',
-                'details': str(e)
+                'error': 'Failed to send email'
             })
         }

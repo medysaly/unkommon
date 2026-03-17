@@ -145,7 +145,7 @@ def lambda_handler(event, context):
     # CORS headers (defined outside try so error handler can use them)
     headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://unkommon.ai',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
     }
@@ -191,6 +191,27 @@ def lambda_handler(event, context):
                     'body': json.dumps({'error': f'Missing fields: {", ".join(missing)}'})
                 }
 
+            # Validate date format (YYYY-MM-DD)
+            import re
+            if not re.match(r'^\d{4}-\d{2}-\d{2}$', body['date']):
+                return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'Invalid date format'})}
+            try:
+                datetime.strptime(body['date'], '%Y-%m-%d')
+            except ValueError:
+                return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'Invalid date'})}
+
+            # Validate time format (HH:MM)
+            if not re.match(r'^\d{2}:\d{2}$', body['time']):
+                return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'Invalid time format'})}
+
+            # Validate email
+            if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', body['email']):
+                return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'Invalid email'})}
+
+            # Sanitize name (max 100 chars, no special chars)
+            body['name'] = body['name'][:100].strip()
+            body['phone'] = re.sub(r'[^\d+\-() ]', '', body['phone'])[:20]
+
             event_id, email_sent = book_appointment(
                 body['date'], body['time'], body['name'], body['email'], body['phone']
             )
@@ -217,5 +238,5 @@ def lambda_handler(event, context):
         return {
             'statusCode': 500,
             'headers': headers,
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': 'Internal server error'})
         }

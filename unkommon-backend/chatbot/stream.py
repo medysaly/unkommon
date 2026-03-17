@@ -14,7 +14,7 @@ from app import (
 
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 
-CALENDAR_API_URL = os.environ.get('CALENDAR_API_URL', 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar')
+CALENDAR_API_URL = os.environ['CALENDAR_API_URL']
 
 
 def handler(event, response_stream, context):
@@ -139,6 +139,6 @@ def handler(event, response_stream, context):
 
     except Exception as e:
         print(f"Streaming error: {e}")
-        response_stream.write(f"data: {json.dumps({'error': str(e)})}\n\n".encode())
+        response_stream.write(f"data: {json.dumps({'error': 'Failed to process request'})}\n\n".encode())
 
     response_stream.close()

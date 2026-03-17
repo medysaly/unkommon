@@ -41,7 +41,7 @@ export default function VapiDemo() {
 
     // Set up event listeners
     vapiRef.current.on("call-start", () => {
-      console.log("Call started");
+      // console.log("Call started");
       setIsCallActive(true);
       setIsConnecting(false);
       callStartTime.current = Date.now();
@@ -53,7 +53,7 @@ export default function VapiDemo() {
     });
 
     vapiRef.current.on("call-end", () => {
-      console.log("Call ended");
+      // console.log("Call ended");
       setIsCallActive(false);
       setIsConnecting(false);
       setAssistantSpeaking(false);
@@ -66,12 +66,12 @@ export default function VapiDemo() {
     });
 
     vapiRef.current.on("speech-start", () => {
-      console.log("Assistant started speaking");
+      // console.log("Assistant started speaking");
       setAssistantSpeaking(true);
     });
 
     vapiRef.current.on("speech-end", () => {
-      console.log("Assistant stopped speaking");
+      // console.log("Assistant stopped speaking");
       setAssistantSpeaking(false);
     });
 
@@ -80,7 +80,7 @@ export default function VapiDemo() {
     });
 
     vapiRef.current.on("message", (message: any) => {
-      console.log("Message received:", message);
+      // console.log("Message received:", message);
 
       // Add transcript messages
       if (message.type === "transcript" && message.transcript) {

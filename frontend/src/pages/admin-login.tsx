@@ -25,7 +25,7 @@ export default function AdminLogin() {
         await signOut();
       } catch (signOutError) {
         // Ignore errors - this just means no one was logged in
-        console.log("No existing session to sign out");
+        // No existing session to sign out
       }
 
       // Now sign in with new credentials
