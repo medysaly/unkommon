@@ -145,7 +145,7 @@ def lambda_handler(event, context):
     # CORS headers (defined outside try so error handler can use them)
     headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://unkommon.ai',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
     }

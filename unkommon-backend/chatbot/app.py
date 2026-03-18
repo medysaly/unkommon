@@ -432,7 +432,7 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({
                 'error': 'Failed to process request'

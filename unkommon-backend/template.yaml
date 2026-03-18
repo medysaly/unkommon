@@ -45,7 +45,7 @@ Resources:
       Cors:
         AllowMethods: '''GET,POST,DELETE,OPTIONS'''
         AllowHeaders: '''Content-Type,Authorization'''
-        AllowOrigin: '''https://unkommon.ai'''
+        AllowOrigin: '''*'''
 
   # DynamoDB Table for Conversations
   ConversationsTable:
@@ -137,7 +137,7 @@ Resources:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
           CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
-          CALENDAR_API_URL: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/calendar
+          CALENDAR_API_URL: 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
@@ -164,47 +164,6 @@ Resources:
             Path: /api/chat
             Method: POST
 
-  # Chatbot Streaming Lambda Function (Function URL)
-  ChatbotStreamFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: chatbot/
-      Handler: stream.handler
-      Timeout: 120
-      MemorySize: 256
-      Environment:
-        Variables:
-          LEADS_TABLE_NAME: !Ref LeadsTable
-          CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
-          CALENDAR_API_URL: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/calendar
-      FunctionUrlConfig:
-        AuthType: AWS_IAM
-        InvokeMode: RESPONSE_STREAM
-        Cors:
-          AllowOrigins:
-            - 'https://unkommon.ai'
-          AllowHeaders:
-            - Content-Type
-          AllowMethods:
-            - POST
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref LeadsTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ConversationsTable
-        - Statement:
-          - Effect: Allow
-            Action:
-              - bedrock:InvokeModel
-              - bedrock:InvokeModelWithResponseStream
-            Resource:
-              - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-*'
-              - 'arn:aws:bedrock:*:*:inference-profile/anthropic.claude-*'
-          - Effect: Allow
-            Action:
-              - aws-marketplace:ViewSubscriptions
-              - aws-marketplace:Subscribe
-            Resource: '*'
 
   # Leads API Lambda Function
   LeadsApiFunction:
@@ -309,6 +268,3 @@ Outputs:
     Description: Contact Form Lambda Function ARN
     Value: !GetAtt ContactFormFunction.Arn
 
-  ChatbotStreamUrl:
-    Description: Chatbot streaming Function URL
-    Value: !GetAtt ChatbotStreamFunctionUrl.FunctionUrl

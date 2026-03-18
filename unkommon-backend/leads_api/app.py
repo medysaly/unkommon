@@ -8,7 +8,7 @@ dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
 
 ADMIN_API_KEY = os.environ.get('ADMIN_API_KEY', '')
-ALLOWED_ORIGIN = 'https://unkommon.ai'
+ALLOWED_ORIGIN = '*'
 
 # Helper to convert Decimal to int/float for JSON
 def decimal_default(obj):
