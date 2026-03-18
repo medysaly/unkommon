@@ -31,6 +31,11 @@ Parameters:
     Default: ''
     NoEcho: true
 
+  ResendApiKey:
+    Type: String
+    Description: Resend API key for sending emails
+    NoEcho: true
+
 Resources:
   # API Gateway
   UnkommonApi:
@@ -150,7 +155,7 @@ Resources:
               - bedrock:InvokeModelWithResponseStream
             Resource:
               - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-*'
-              - 'arn:aws:bedrock:*:*:inference-profile/anthropic.claude-*'
+              - 'arn:aws:bedrock:*:*:inference-profile/*anthropic.claude-*'
           - Effect: Allow
             Action:
               - aws-marketplace:ViewSubscriptions
@@ -203,15 +208,10 @@ Resources:
         Variables:
           LEADS_TABLE_NAME: !Ref LeadsTable
           VAPI_WEBHOOK_SECRET: !Ref VapiWebhookSecret
+          RESEND_API_KEY: !Ref ResendApiKey
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
-        - Statement:
-            - Effect: Allow
-              Action:
-                - ses:SendEmail
-                - ses:SendRawEmail
-              Resource: '*'
       Events:
         VapiWebhook:
           Type: Api
@@ -229,18 +229,13 @@ Resources:
       Environment:
         Variables:
           GOOGLE_CALENDAR_SECRET: unkommon/google-calendar
-          SES_FROM_EMAIL: !Ref SesFromEmail
+          RESEND_API_KEY: !Ref ResendApiKey
       Policies:
         - Statement:
           - Effect: Allow
             Action:
               - secretsmanager:GetSecretValue
             Resource: !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:unkommon/google-calendar*
-          - Effect: Allow
-            Action:
-              - ses:SendEmail
-              - ses:SendRawEmail
-            Resource: '*'
       Events:
         GetAvailability:
           Type: Api

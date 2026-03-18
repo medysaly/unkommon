@@ -6,15 +6,29 @@ import hashlib
 import boto3
 import uuid
 from datetime import datetime
+from urllib.request import Request, urlopen
+from urllib.error import URLError
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
 
-# Initialize SES
-ses_client = boto3.client('ses', region_name='us-east-1')
-
 VAPI_WEBHOOK_SECRET = os.environ.get('VAPI_WEBHOOK_SECRET', '')
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
+
+def send_email(to, subject, body):
+    """Send email via Resend API"""
+    data = json.dumps({
+        'from': 'Unkommon <info@unkommon.ai>',
+        'to': [to],
+        'subject': subject,
+        'text': body
+    }).encode('utf-8')
+    req = Request('https://api.resend.com/emails', data=data, method='POST')
+    req.add_header('Authorization', f'Bearer {RESEND_API_KEY}')
+    req.add_header('Content-Type', 'application/json')
+    resp = urlopen(req)
+    return json.loads(resp.read())
 
 def verify_vapi_signature(event):
     """Verify the webhook request came from Vapi using the secret token."""
@@ -107,17 +121,13 @@ def lambda_handler(event, context):
         }
         
         leads_table.put_item(Item=item)
-                # Send email notification
+
+        # Send internal notification
         try:
-            ses_client.send_email(
-                Source='contact@unkommon.ai',
-                Destination={'ToAddresses': ['sales@unkommon.ai']},
-                Message={
-                    'Subject': {'Data': f'New Call Lead: {phone_number}'},
-                    'Body': {
-                        'Text': {'Data': f"New phone call received:\n\nPhone: {phone_number}\nDuration: {call_duration} seconds\n\nSummary:\n{call_summary}"}
-                    }
-                }
+            send_email(
+                'sales@unkommon.ai',
+                f'New Call Lead: {phone_number}',
+                f"New phone call received:\n\nPhone: {phone_number}\nDuration: {call_duration} seconds\n\nSummary:\n{call_summary}"
             )
             print(f"📧 Email notification sent for call from {phone_number}")
         except Exception as email_err:

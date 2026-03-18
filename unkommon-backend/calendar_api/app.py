@@ -4,13 +4,12 @@ import boto3
 from datetime import datetime, timedelta
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+from urllib.request import Request, urlopen
 
 # Initialize AWS clients
 secrets_client = boto3.client('secretsmanager', region_name='us-east-1')
 
-# Initialize SES client
-ses_client = boto3.client('ses', region_name='us-east-1')
-SES_FROM_EMAIL = os.environ.get('SES_FROM_EMAIL', 'contact@unkommon.ai')
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 
 # Calendar settings
 CALENDAR_ID = 'contact@unkommon.ai'
@@ -83,19 +82,38 @@ def get_available_slots(date_str):
     return available_slots
 
 
+def send_email(to, subject, body):
+    """Send email via Resend API"""
+    data = json.dumps({
+        'from': 'Unkommon <info@unkommon.ai>',
+        'to': [to],
+        'subject': subject,
+        'text': body
+    }).encode('utf-8')
+    req = Request('https://api.resend.com/emails', data=data, method='POST')
+    req.add_header('Authorization', f'Bearer {RESEND_API_KEY}')
+    req.add_header('Content-Type', 'application/json')
+    resp = urlopen(req)
+    return json.loads(resp.read())
+
 def send_confirmation_email(name, email, date_str, time_str):
-    """Send booking notification to sales team."""
-    sales_response = ses_client.send_email(
-        Source=SES_FROM_EMAIL,
-        Destination={'ToAddresses': ['sales@unkommon.ai']},
-        Message={
-            'Subject': {'Data': f'New Booking: {name}'},
-            'Body': {
-                'Text': {'Data': f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {datetime.strptime(time_str, '%H:%M').strftime('%-I:%M %p')} ET"}
-            }
-        }
+    """Send booking notification to sales team and confirmation to customer."""
+    time_formatted = datetime.strptime(time_str, '%H:%M').strftime('%-I:%M %p')
+
+    # Notify sales team
+    send_email(
+        'sales@unkommon.ai',
+        f'New Booking: {name}',
+        f"New consultation booked:\n\nName: {name}\nEmail: {email}\nDate: {date_str}\nTime: {time_formatted} ET"
     )
-    print(f"Sales notification email sent | MessageId: {sales_response['MessageId']}")
+
+    # Send confirmation to customer
+    send_email(
+        email,
+        'Your Unkommon Consultation is Confirmed',
+        f"Hi {name},\n\nYour consultation is confirmed!\n\nDate: {date_str}\nTime: {time_formatted} ET\nDuration: 30 minutes\n\nWe'll send you a meeting link before the call.\n\nSee you then!\n— The Unkommon Team"
+    )
+    print(f"Confirmation emails sent for {name}")
     return True
 
 
