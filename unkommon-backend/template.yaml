@@ -209,6 +209,7 @@ Resources:
           LEADS_TABLE_NAME: !Ref LeadsTable
           VAPI_WEBHOOK_SECRET: !Ref VapiWebhookSecret
           RESEND_API_KEY: !Ref ResendApiKey
+          CALENDAR_API_URL: 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar'
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable

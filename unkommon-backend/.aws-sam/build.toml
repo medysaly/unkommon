@@ -32,7 +32,7 @@ codeuri = "/Users/mehdisalhi/Desktop/projects/businessAI/businessautomated/unkom
 runtime = "python3.13"
 architecture = "x86_64"
 handler = "app.lambda_handler"
-manifest_hash = "641b2abdf32cb83545644d57bf972920"
+manifest_hash = "04b3f4751c547f301d5a6ddad2d292c0"
 packagetype = "Zip"
 functions = ["VapiWebhookFunction"]
 
@@ -41,7 +41,7 @@ codeuri = "/Users/mehdisalhi/Desktop/projects/businessAI/businessautomated/unkom
 runtime = "python3.13"
 architecture = "x86_64"
 handler = "app.lambda_handler"
-manifest_hash = "6bdc65a255d187d735725fa0bf6ebc5f"
+manifest_hash = "985e72c37d147405208102320e5a4135"
 packagetype = "Zip"
 functions = ["CalendarApiFunction"]
 
