@@ -9,12 +9,15 @@ export function cn(...inputs: ClassValue[]) {
 export function createPageUrl(pageName: string): string {
   const urlMap: Record<string, string> = {
     'Home': '/',
-    'AIReceptionist': '/ai-receptionist',
-    'SpeedToLead': '/speed-to-lead',
-    'AIBookingSystem': '/ai-booking-system',
-    'AgentLibrary': '/agent-library',
+    'Solutions': '/solutions',
+    'HowItWorks': '/how-it-works',
     'About': '/about',
     'Contact': '/contact',
+    // Legacy aliases — old product pages redirect to /solutions
+    'AIReceptionist': '/solutions',
+    'SpeedToLead': '/solutions',
+    'AIBookingSystem': '/solutions',
+    'AgentLibrary': '/solutions',
   };
 
   return urlMap[pageName] || '/';

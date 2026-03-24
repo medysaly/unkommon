@@ -13,7 +13,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const navigation = [
     { name: "Home", href: createPageUrl("Home") },
-    { name: "About", href: createPageUrl("About") },
+    { name: "Solutions", href: createPageUrl("Solutions") },
+    { name: "How It Works", href: createPageUrl("HowItWorks") },
     { name: "Contact", href: createPageUrl("Contact") },
   ];
 
@@ -38,49 +39,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Desktop Navigation - Center */}
             <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
-              <Link href={createPageUrl("Home")} data-testid="link-nav-home">
-                <span
-                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                    isActive(createPageUrl("Home")) ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  Home
-                </span>
-              </Link>
-              <Link href={createPageUrl("AgentLibrary")} data-testid="link-nav-solutions">
-                <span
-                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                    isActive(createPageUrl("AgentLibrary")) ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  Solutions
-                </span>
-              </Link>
-              <Link href={createPageUrl("Contact")} data-testid="link-nav-contact">
-                <span
-                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                    isActive(createPageUrl("Contact")) ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  Contact
-                </span>
-              </Link>
-              <Link href={createPageUrl("About")} data-testid="link-nav-about">
-                <span
-                  className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                    isActive(createPageUrl("About")) ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  About
-                </span>
-              </Link>
+              {navigation.map((item) => (
+                <Link key={item.name} href={item.href} data-testid={`link-nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <span
+                    className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                      isActive(item.href) ? "text-foreground" : "text-muted-foreground"
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
               <Button
                 size="sm"
                 data-testid="button-get-started"
                 onClick={() => window.location.href = createPageUrl("Contact")}
                 className="bg-black hover:bg-zinc-900 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-black"
               >
-                Get Started
+                Book AI Audit
               </Button>
             </div>
 
@@ -109,49 +85,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {mobileMenuOpen && (
             <div className="md:hidden mt-2 py-4 px-6 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-2xl shadow-lg">
               <div className="flex flex-col space-y-4">
-                <Link href={createPageUrl("Home")} data-testid="link-mobile-nav-home">
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(createPageUrl("Home")) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Home
-                  </span>
-                </Link>
-
-                <Link href={createPageUrl("AgentLibrary")} data-testid="link-mobile-nav-solutions">
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(createPageUrl("AgentLibrary")) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Solutions
-                  </span>
-                </Link>
-
-                <Link href={createPageUrl("Contact")} data-testid="link-mobile-nav-contact">
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(createPageUrl("Contact")) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contact
-                  </span>
-                </Link>
-
-                <Link href={createPageUrl("About")} data-testid="link-mobile-nav-about">
-                  <span
-                    className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                      isActive(createPageUrl("About")) ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    About
-                  </span>
-                </Link>
+                {navigation.map((item) => (
+                  <Link key={item.name} href={item.href} data-testid={`link-mobile-nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <span
+                      className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                        isActive(item.href) ? "text-primary" : "text-muted-foreground"
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </span>
+                  </Link>
+                ))}
 
                 <SwitchButton size="default" showLabel={true} className="w-full" />
                 <Button
@@ -162,7 +107,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   }}
                   data-testid="button-mobile-get-started"
                 >
-                  Get Started
+                  Book AI Audit
                 </Button>
               </div>
             </div>
@@ -183,7 +128,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="text-lg font-semibold">Unkommon</span>
               </div>
               <p className="text-muted-foreground mb-4 max-w-md text-sm">
-                Transform your business with intelligent AI solutions.
+                AI systems that drive revenue, reduce overhead, and scale your operations.
               </p>
               <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
@@ -202,23 +147,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h3 className="font-semibold mb-3 text-sm">Solutions</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href={createPageUrl("AIReceptionist")} data-testid="link-footer-ai-receptionist">
+                  <Link href={createPageUrl("Solutions")} data-testid="link-footer-solutions">
                     <span className="hover:text-primary transition-colors cursor-pointer">
-                      AI Receptionist
+                      All Solutions
                     </span>
                   </Link>
                 </li>
                 <li>
-                  <Link href={createPageUrl("SpeedToLead")} data-testid="link-footer-speed-to-lead">
+                  <Link href={createPageUrl("HowItWorks")} data-testid="link-footer-how-it-works">
                     <span className="hover:text-primary transition-colors cursor-pointer">
-                      Speed-to-Lead
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={createPageUrl("AIBookingSystem")} data-testid="link-footer-ai-booking">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      AI Booking System
+                      How It Works
                     </span>
                   </Link>
                 </li>

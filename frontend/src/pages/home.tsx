@@ -1,20 +1,10 @@
 import { createPageUrl } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import DarkVeil from "@/components/DarkVeil";
 import { LogoLoop } from "@/components/LogoLoop";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { World } from "@/components/ui/globe";
 import type { GlobeConfig } from "@/components/ui/globe";
-import { TechCard } from "@/components/ui/tech-card";
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import "@/styles/pearl-button.css";
 import "@/styles/glass-cards.css";
 
@@ -22,33 +12,33 @@ import "@/styles/glass-cards.css";
 const agents = [
   {
     id: 1,
-    title: "The Lead Qualifier",
-    description: "A buyer submits a Zillow form at 11 PM. You respond in 90 seconds. Your competitor responds Monday morning. You win.",
-    link: "SpeedToLead",
+    title: "Lead Automation",
+    description: "A patient fills out your contact form. You respond in 60 seconds. Your competitor responds Monday morning. You win the appointment.",
+    link: "Solutions",
     rotateY: 0,
-    topPosition: "58%", // Up/Down - lower % = higher up
-    leftPosition: "71%", // Left/Right - lower % = more left, higher % = more right
-    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    topPosition: "58%",
+    leftPosition: "71%",
+    rotation: 8,
   },
   {
     id: 2,
-    title: "The AI Receptionist",
-    description: "Your front desk, running 24/7. Answers calls, books appointments, routes inquiries — while you focus on closing deals and billable work.",
-    link: "AIReceptionist",
+    title: "Voice AI Operations",
+    description: "24/7 call handling, appointment booking, and inquiry routing — so your team only handles what requires a human.",
+    link: "Solutions",
     rotateY: 0,
-    topPosition: "65%", // Up/Down - lower % = higher up
-    leftPosition: "40%", // Left/Right - lower % = more left, higher % = more right
-    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    topPosition: "65%",
+    leftPosition: "40%",
+    rotation: 8,
   },
   {
     id: 3,
-    title: "The Client Reactivator",
-    description: "Hundreds of past clients sitting dormant in your CRM. We turn that dead database into booked appointments and revenue.",
-    link: "AIBookingSystem",
+    title: "Revenue Recovery",
+    description: "Your dormant database has thousands in unrealized revenue. We turn cold contacts into booked appointments and recovered claims.",
+    link: "Solutions",
     rotateY: 15,
-    topPosition: "73%", // Up/Down - lower % = higher up
-    leftPosition: "25%", // Left/Right - lower % = more left, higher % = more right
-    rotation: 8, // Rotation in degrees (e.g., -10, 0, 10)
+    topPosition: "73%",
+    leftPosition: "25%",
+    rotation: 8,
   },
 ];
 
@@ -429,7 +419,7 @@ export default function Home() {
                 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-white tracking-tight"
                 data-testid="heading-hero-title"
               >
-                Don't Be Common.
+                They sell you a chatbot. We build you an automated workforce.
               </motion.h1>
             </div>
 
@@ -449,7 +439,7 @@ export default function Home() {
                 className="text-xl text-white/70 leading-relaxed max-w-3xl"
                 data-testid="text-hero-description"
               >
-                Every missed call is a lost commission. Every slow follow-up is a lost patient. Every after-hours inquiry is a lost case. We fix that.
+                Production-grade, agentic AI systems for dental practices, legal firms, and professional services. HIPAA-compliant. AWS-native. Engineered to recover revenue.
               </motion.p>
             </div>
 
@@ -470,26 +460,26 @@ export default function Home() {
               >
                 <button
                   className="pearl-button pearl-button-dark"
-                  data-testid="button-try-demo"
-                  onClick={() => window.location.href = createPageUrl("AIReceptionist")}
+                  data-testid="button-see-solutions"
+                  onClick={() => window.location.href = createPageUrl("Solutions")}
                 >
                   <div className="wrap">
                     <p>
                       <span>✧</span>
-                      Try Live Demo
+                      See Our Solutions
                       <ArrowRight className="w-5 h-5" />
                     </p>
                   </div>
                 </button>
                 <button
                   className="pearl-button pearl-button-dark"
-                  data-testid="button-schedule-consultation"
+                  data-testid="button-book-audit"
                   onClick={() => window.location.href = createPageUrl("Contact")}
                 >
                   <div className="wrap">
                     <p>
                       <span>✦</span>
-                      Schedule Consultation
+                      Book Your AI Audit
                     </p>
                   </div>
                 </button>
@@ -515,12 +505,12 @@ export default function Home() {
         <div className="w-full">
           <LogoLoop
             logos={[
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Real Estate</span> },
               { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
               { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Real Estate</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Professional Services</span> },
               { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
               { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Professional Services</span> },
             ]}
             speed={50}
             direction="left"
@@ -545,10 +535,10 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
-              The Three Engines of Automated Revenue.
+              Three AI Systems. One Goal: More Revenue, Less Overhead.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              Most businesses have three specific bottlenecks: missed calls, slow lead response, and dormant databases. We don't sell generic chatbots; we deploy three specialized, purpose-built agents to solve these problems permanently.
+              Most practices lose $100k+ annually to missed calls, slow follow-ups, and dormant databases. We engineer production AI systems that eliminate these bottlenecks permanently.
             </p>
           </motion.div>
 
@@ -611,7 +601,7 @@ export default function Home() {
             className="text-center mt-16"
           >
             <p className="text-muted-foreground text-lg mb-6">
-              Each agent works independently or together as a unified system
+              Each system works independently or together as a unified AI workforce
             </p>
             <button
               className="pearl-button"
@@ -629,106 +619,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Engineering Standard Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-zinc-100 dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
-              We Don't Just Prompt. We Engineer.
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              Most agencies rely on generic models. Unkommon builds proprietary, state-based architectures using advanced retrieval systems. The result is an AI that never hallucinates and follows your business rules with mathematical precision.
-            </p>
-          </motion.div>
-
-          {/* Three Features Grid - Agent Card Style */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1: Zero Hallucinations */}
+      {/* Metrics Strip */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-zinc-100 dark:bg-zinc-900/30 border-y border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
+              transition={{ delay: 0.1 }}
             >
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-foreground mb-3">
-                  Zero Hallucinations
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 font-medium">
-                  RAG Architecture
-                </p>
-                <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                  Generic AI guesses. Our agents know. We use RAG technology to vector-embed your specific company data—PDFs, websites, and price lists—into a private knowledge base. When a client asks a question, the agent retrieves the exact answer from your documents before speaking. It never invents facts.
-                </p>
-                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
-                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-muted-foreground italic">
-                    "It won't lie to my customers."
-                  </p>
-                </div>
-              </div>
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">&lt;60s</h3>
+              <p className="text-muted-foreground text-sm">Lead Response Time</p>
             </motion.div>
-
-            {/* Feature 2: Rigid Logic Flows */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
+              transition={{ delay: 0.2 }}
             >
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-foreground mb-3">
-                  Rigid Logic Flows
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 font-medium">
-                  LangGraph
-                </p>
-                <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                  We do not let the AI 'improvise.' We build agents using LangGraph to enforce strict, cyclical state machines. This ensures the conversation follows a rigid logical path (e.g., Qualify → Schedule → Confirm) and cannot be tricked into going off-script or skipping steps.
-                </p>
-                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
-                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-muted-foreground italic">
-                    "It won't go rogue or say crazy things."
-                  </p>
-                </div>
-              </div>
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">70%</h3>
+              <p className="text-muted-foreground text-sm">Admin Work Reduction</p>
             </motion.div>
-
-            {/* Feature 3: Enterprise Reliability */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 group shadow-sm"
+              transition={{ delay: 0.3 }}
             >
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold text-foreground mb-3">
-                  Enterprise Reliability
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 font-medium">
-                  AWS Cloud
-                </p>
-                <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                  Built on Amazon Web Services (AWS) compute and database layers. We ensure 99.9% uptime, bank-grade encryption, and the ability to scale from 10 calls to 10,000 calls instantly without latency.
-                </p>
-                <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
-                  <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                  <p className="text-sm text-muted-foreground italic">
-                    "It won't crash."
-                  </p>
-                </div>
-              </div>
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">24/7</h3>
+              <p className="text-muted-foreground text-sm">Call Coverage</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">HIPAA</h3>
+              <p className="text-muted-foreground text-sm">Compliant Infrastructure</p>
             </motion.div>
           </div>
         </div>
@@ -779,38 +708,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Technologies Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight leading-tight mb-6">
-              Powered by Leading AI Technologies
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              We integrate the most advanced AI models to deliver exceptional results for your business automation needs.
-            </p>
-          </motion.div>
-
-          <div className="flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full max-w-2xl"
-            >
-              <TechCard />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black" style={{ zIndex: 20 }}>
         <div className="max-w-4xl mx-auto text-center">
@@ -829,7 +726,7 @@ export default function Home() {
               className="text-3xl md:text-4xl lg:text-5xl font-light mb-4 text-foreground tracking-tight"
               data-testid="heading-cta-section"
             >
-              Ready to See AI Automation in Action?
+              Stop Settling for Off-the-Shelf AI
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -838,8 +735,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
             >
-              Experience our AI Receptionist live demo and discover how it can
-              transform your business
+              Let's engineer a system that actually works for your practice.
+              Start with a free 30-minute AI Systems Audit.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -850,26 +747,26 @@ export default function Home() {
             >
               <button
                 className="pearl-button"
-                data-testid="button-try-interactive-demo"
-                onClick={() => window.location.href = createPageUrl("AIReceptionist")}
+                data-testid="button-see-solutions"
+                onClick={() => window.location.href = createPageUrl("Solutions")}
               >
                 <div className="wrap">
                   <p>
                     <span>✧</span>
-                    Try Interactive Demo
+                    See Our Solutions
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>
               </button>
               <button
                 className="pearl-button"
-                data-testid="button-schedule-setup-call"
+                data-testid="button-book-audit"
                 onClick={() => window.location.href = createPageUrl("Contact")}
               >
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Schedule Your Setup Call
+                    Book Your AI Audit
                   </p>
                 </div>
               </button>
@@ -878,126 +775,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight leading-tight mb-6">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Everything you need to know about our AI automation solutions
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  How does the AI know the specifics of my business?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We do not rely on generic training data. We use Retrieval-Augmented Generation (RAG) to build a custom Knowledge Base specific to your business. For a dental practice, we ingest your services, insurance accepted, and appointment types. For a real estate agency, your listings, market data, and buyer guides. For a law firm, your practice areas and intake criteria. When a client asks a question, the agent references your documents to provide an accurate answer. It does not guess.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Will my clients know they are talking to a robot?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Our voice agents utilize ultra-low latency models (sub-800ms response time) and are trained on natural human speech patterns, including pauses and filler words. While we recommend transparency, many clients report that callers often don't realize they are speaking to an AI until the end of the booking.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  What happens if the AI gets confused or the caller is angry?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We design strict Escalation Protocols. If a caller expresses frustration or asks a complex question outside the agent's guardrails, the AI instantly acknowledges its limitation and executes a 'Hot Transfer' to a human staff member or takes a detailed message for priority review.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Is the setup technical or time-consuming for me?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  No. Unkommon is a full-service consultancy, not a DIY platform. We handle the engineering, the CRM integrations, and the prompt testing. Your only responsibility is a 60-minute 'Discovery Call' to define your rules; we handle the deployment.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Does this integrate with my existing software?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Yes. We build native API integrations into the CRMs you already use — Dentrix and Open Dental for dental practices, Follow Up Boss and KVCore for real estate, Clio and MyCase for law firms. The AI reads your real-time calendar availability and writes lead data directly into your client fields. No manual data entry is required.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-6" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Is my client data secure?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Absolutely. We build on enterprise-grade cloud infrastructure with end-to-end encryption. Unlike public chatbots, your proprietary business data is siloed and is never used to train public models.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-7" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Regarding "Speed-to-Lead" does responding instantly feel aggressive?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  No, it feels responsive. Data shows that lead conversion drops by 400% if you wait just 5 minutes to respond. Our agents use Webhooks to trigger a response within seconds of a form submission. Because the lead is at 'peak intent' (literally looking at their phone), they view the instant outreach as excellent customer service, not aggression.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-8" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Is the "Client Reactivator" just a bulk SMS blast?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  No. Traditional SMS marketing is a one-way 'blast' that annoys customers. Our agent initiates a 2-way, personalized conversation. For a dental practice, it might say 'Hi Sarah, it's been 8 months since your last cleaning — we have openings this week.' For a real estate agency, 'Hi Mark, home values in your neighborhood are up 12% — want an updated market analysis?' It waits for a reply and has a real back-and-forth chat to find a time that works.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-9" className="border-b border-border/50">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  What is the typical investment for an Unkommon engagement?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We design custom infrastructure, so investment varies by complexity. However, most partners start with a one-time Deployment Fee (covering architecture & setup) ranging from $1,500–$3,000, and a monthly Maintenance Retainer starting at $500/mo.
-                  <br /><br />
-                  <strong>Note:</strong> This is roughly 15% of the cost of hiring a human employee for the same role.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-10" className="border-b-0">
-                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Are there hidden fees?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Transparency is key. Your monthly package includes a set number of talk minutes (usually sufficient for 95% of businesses). If you have a massive surge in call volume, we offer simple pay-as-you-go rates for the extra usage—no surprise bills.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

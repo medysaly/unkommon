@@ -67,7 +67,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
         id: 'welcome',
         role: 'assistant',
         content:
-          "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• AI Receptionist\n• Speed-to-Lead\n• AI Booking System\n• Social Media Bot",
+          "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• Voice AI Operations\n• Lead Automation\n• Revenue Recovery\n• Custom AI Systems\n• How our process works",
         timestamp: Date.now(),
       };
       setMessages([welcomeMessage]);
@@ -167,7 +167,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
       id: 'welcome',
       role: 'assistant',
       content:
-        "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• AI Receptionist\n• Speed-to-Lead\n• AI Booking System\n• Social Media Bot",
+        "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• Voice AI Operations\n• Lead Automation\n• Revenue Recovery\n• Custom AI Systems\n• How our process works",
       timestamp: Date.now(),
     };
     setMessages([welcomeMessage]);

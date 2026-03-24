@@ -4,19 +4,35 @@ import { createPageUrl } from "@/lib/utils";
 import "@/styles/pearl-button.css";
 import {
   ArrowRight,
-  CheckCircle2,
+  CheckCircle,
   MapPin,
+  Shield,
+  Brain,
+  Target,
 } from "lucide-react";
 
-export default function About() {
-  const builtDifferent = [
-    { title: "You Choose the AI", description: "Unlike cookie-cutter tools locked to one model, you pick the LLM that fits your needs and budget. GPT-4, Claude, Gemini — or any combination. Your AI, your rules." },
-    { title: "Your Data Stays Yours", description: "Hosted in a dedicated, isolated cloud environment. No shared databases. No third-party access. Your patient records, client files, and case data — nobody touches them but you." },
-    { title: "Trained on YOUR Business", description: "We train the AI on your actual data: your services, your pricing, your FAQs, your tone of voice. It doesn't hallucinate generic answers — it responds like your best employee because it knows your business inside out." },
-    { title: "Custom-Built, Not Templated", description: "Every AI agent is built specifically for your practice or firm. We study your workflow, your bottlenecks, your clients. The result fits like a glove — not a one-size-fits-all tool your competitors are also using." },
-    { title: "Zero Hallucinations", description: "We implement strict guardrails so your AI never makes up information. It uses only verified data from your business. No fabricated pricing. No wrong appointment times. No embarrassing mistakes. Just reliable, on-brand responses every time." },
-  ];
+const unkommonStandard = [
+  {
+    icon: Shield,
+    title: "Security First",
+    description:
+      "We build on your private AWS cloud. You own your data. HIPAA-compliant. No public 'wrappers' — dedicated, isolated infrastructure that meets healthcare and legal compliance requirements.",
+  },
+  {
+    icon: Brain,
+    title: "Engineering-Led",
+    description:
+      "We are software engineers and ML specialists, not prompt engineers. RAG architecture, LangGraph state machines, AWS Textract, Bedrock — production infrastructure, not Zapier templates.",
+  },
+  {
+    icon: Target,
+    title: "Measurable ROI",
+    description:
+      "We don't focus on 'vibe-coding.' We focus on reduced no-shows, increased claim recovery, and sub-60-second lead response times. Every system ships with analytics.",
+  },
+];
 
+export default function About() {
   return (
     <div className="min-h-screen bg-white dark:bg-black -mt-20">
       {/* Section 1: Clean Background Hero */}
@@ -26,7 +42,7 @@ export default function About() {
           backgroundImage: "url('/images/backgrounds/About.png')",
           backgroundSize: "cover",
           backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat"
+          backgroundRepeat: "no-repeat",
         }}
       >
         <style>{`
@@ -40,7 +56,7 @@ export default function About() {
         `}</style>
       </section>
 
-      {/* Section 2: Philosophy Content */}
+      {/* Section 2: Core Identity */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
@@ -56,7 +72,7 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm uppercase tracking-wider text-muted-foreground mb-6"
             >
-              Our Philosophy
+              Who We Are
             </motion.p>
 
             <motion.h1
@@ -67,7 +83,7 @@ export default function About() {
               className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-8 leading-tight"
               data-testid="heading-page-title"
             >
-              Human talent is too expensive to be wasted on repetitive tasks.
+              They sell you a chatbot. We build you an automated workforce.
             </motion.h1>
 
             <motion.div
@@ -79,20 +95,20 @@ export default function About() {
               data-testid="text-hero-description"
             >
               <p>
-                The modern business is leaking potential. High-value staff are drowning in low-value data entry. Phones are ringing unanswered. Leads are growing cold in spreadsheets.
+                Most "AI Agencies" in 2026 are just configuring third-party wrappers and Zapier templates.
               </p>
               <p>
-                We formed <span className="text-foreground font-medium">unkommon</span> to solve a specific engineering problem: How do we scale the personal touch of a business without scaling the payroll?
+                At <span className="text-foreground font-medium">Unkommon</span>, we don't just "do AI." We engineer production-grade, agentic systems that live inside your core business logic.
               </p>
-              <p className="text-foreground font-medium">
-                The answer is not "hiring more people." The answer is intelligent infrastructure.
+              <p>
+                As a systems-first consultancy, we specialize in bridging the gap between "we tried ChatGPT" and "we have an AI-driven revenue engine." Leveraging AWS infrastructure and custom ML orchestration, we build high-security, HIPAA-compliant solutions for dental practices, legal firms, and professional services that are losing $100k+ annually to administrative friction.
               </p>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 2: The "Anti-Agency" Stance */}
+      {/* Section 3: What We Solve */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
@@ -110,52 +126,107 @@ export default function About() {
               <p>
                 There is a gold rush in Artificial Intelligence right now. Thousands of agencies have sprung up overnight, offering "magic" solutions that are nothing more than thin wrappers around public tools.
               </p>
-              <p>
-                <span className="text-foreground font-medium">Unkommon is different.</span> We approach automation with a computer science discipline. We build bespoke, cloud-native architectures that respect data security, system uptime, and logical rigor.
-              </p>
               <p className="text-foreground font-medium">
                 We don't just write prompts; we write code.
               </p>
             </div>
           </motion.div>
 
-          {/* Tech Stack Transparency */}
+          {/* What We Solve Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-20"
+            className="mt-16"
           >
             <div className="text-center mb-12">
               <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-tight mb-4">
-                Built Different
+                What We Solve
               </h3>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Here's why businesses in real estate, dental, and law choose Unkommon over generic AI tools.
-              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {builtDifferent.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
-                >
-                  <h4 className="text-lg font-semibold text-foreground mb-3">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                </motion.div>
-              ))}
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
+              >
+                <h4 className="text-lg font-semibold text-foreground mb-3">Revenue Recovery</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  AI agents that parse insurance denials (AWS Textract + Bedrock) and auto-draft clinical appeals. Turn rejected claims into recovered revenue without manual admin work.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
+              >
+                <h4 className="text-lg font-semibold text-foreground mb-3">Patient & Client Journey</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Multi-agent systems that handle 24/7 voice triage, instant qualification, and CRM-integrated scheduling. Every call answered, every lead qualified, every appointment booked.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
+              >
+                <h4 className="text-lg font-semibold text-foreground mb-3">Operational Efficiency</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Custom-built agents that execute end-to-end business processes — from intake to follow-up. Reduce manual busy work by up to 70% so your team focuses on billable work.
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 3: The Leadership */}
+      {/* Section 4: The Unkommon Standard */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-zinc-50 dark:bg-zinc-900/30">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4">
+              The Unkommon Standard
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {unkommonStandard.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black text-center"
+              >
+                <div className="w-12 h-12 rounded-xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6 text-foreground" />
+                </div>
+                <h3 className="text-xl font-medium text-foreground mb-3">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: The Leadership */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
@@ -167,7 +238,6 @@ export default function About() {
             <Card className="bg-card border-border hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-8 md:p-12">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                  {/* Image */}
                   <div className="flex-shrink-0 mx-auto md:mx-0">
                     <img
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/7a75c6f87_mehdi.jpg"
@@ -177,10 +247,12 @@ export default function About() {
                     />
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1">
                     <div className="mb-6">
-                      <h3 className="text-3xl font-light text-foreground tracking-tight mb-2" data-testid="heading-founder-name">
+                      <h3
+                        className="text-3xl font-light text-foreground tracking-tight mb-2"
+                        data-testid="heading-founder-name"
+                      >
                         Mehdi Salhi
                       </h3>
                       <p className="text-lg text-foreground font-medium mb-4">
@@ -199,13 +271,14 @@ export default function About() {
 
                     <div className="space-y-4 text-muted-foreground leading-relaxed">
                       <p>
-                        With a background in Computer Science and a specialization in Cloud Infrastructure, Mehdi built <span className="text-foreground font-medium">unkommon</span> to bridge the gap between enterprise-grade technology and local business application.
+                        With a background in Computer Science and a specialization in Cloud Infrastructure and ML engineering, Mehdi built{" "}
+                        <span className="text-foreground font-medium">unkommon</span> to bridge the gap between enterprise-grade AI technology and the practices that need it most.
                       </p>
                       <p>
-                        Frustrated by the fragility of off-the-shelf automation tools, he focuses on designing robust, state-based AI agents that operate with the reliability of a dedicated employee.
+                        Frustrated by the fragility of off-the-shelf automation tools and the commoditization of "AI agencies," he focuses on designing production-grade, agentic systems built on AWS — with strict standards for HIPAA compliance, latency, and measurable ROI.
                       </p>
                       <p>
-                        He leads the engineering strategy, ensuring every deployed agent meets strict standards for latency, security, and brand alignment.
+                        He leads the engineering strategy, ensuring every deployed system operates with the reliability and security that dental practices, law firms, and professional services demand.
                       </p>
                     </div>
                   </div>
@@ -216,7 +289,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 4: The Location */}
+      {/* Section 6: Location */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
@@ -228,37 +301,18 @@ export default function About() {
             <div className="flex items-center justify-center gap-3 mb-6">
               <MapPin className="w-6 h-6 text-foreground" />
               <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight">
-                Engineered in NYC.
+                Based in Stamford, CT.
               </h2>
             </div>
 
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
-              We are a North American consultancy with locations in New York City, Stamford CT, Orlando Florida, and Vancouver Island Canada. We understand the nuances of the market, the importance of compliance, and the speed of business. When you hire Unkommon, you are hiring a partner within your time zone.
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Engineering the future of SMB operations. We understand the nuances of the U.S. healthcare and legal markets, the importance of compliance, and the speed of business. When you hire Unkommon, you're hiring a partner within your time zone.
             </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-lg text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>New York City</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Stamford, CT</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Orlando, FL</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Vancouver Island, BC</span>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 5: The Closing Statement */}
+      {/* Section 7: Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 py-32 relative overflow-hidden bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
@@ -268,7 +322,6 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            {/* Headline */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -277,12 +330,11 @@ export default function About() {
               className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-12 leading-tight"
               data-testid="heading-cta"
             >
-              The future is not AI replacing humans.
+              Stop settling for off-the-shelf AI.
               <br />
-              The future is AI empowering humans.
+              Let's engineer a system that works.
             </motion.h2>
 
-            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -292,20 +344,19 @@ export default function About() {
             >
               <button
                 className="pearl-button"
-                data-testid="button-work-with-us"
-                onClick={() => window.location.href = createPageUrl("Contact")}
+                data-testid="button-book-audit"
+                onClick={() => (window.location.href = createPageUrl("Contact"))}
               >
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Work With Us
+                    Book Your AI Audit
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>
               </button>
             </motion.div>
 
-            {/* Trust indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -314,16 +365,16 @@ export default function About() {
               className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
             >
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-foreground" />
+                <CheckCircle className="w-4 h-4 text-foreground" />
                 <span>Free Consultation</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-foreground" />
-                <span>US-Based</span>
+                <CheckCircle className="w-4 h-4 text-foreground" />
+                <span>HIPAA-Compliant</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-foreground" />
-                <span>Enterprise Security</span>
+                <CheckCircle className="w-4 h-4 text-foreground" />
+                <span>Stamford, CT Based</span>
               </div>
             </motion.div>
           </motion.div>

@@ -32,7 +32,7 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
             >
-              Ready to transform your business with AI? We're here to help you achieve your automation goals.
+              Ready to see what production AI can do for your practice? Start with a free 30-minute AI Systems Audit.
             </motion.p>
 
             <motion.div
@@ -43,7 +43,7 @@ export default function Contact() {
               style={{ height: '150px' }}
             >
               <CurvedLoop
-                marqueeText="24/7 Support • <1hr Response • 100% Custom • "
+                marqueeText="Free AI Audit • Custom Systems • HIPAA-Compliant • Production-Grade • "
                 speed={2}
                 curveAmount={100}
                 direction="left"
@@ -73,7 +73,7 @@ export default function Contact() {
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              Experience the speed and natural voice of the Unkommon AI Receptionist firsthand. Call the number below to interact with our demo agent. Try to book an appointment, ask about pricing, or stump it with complex questions.
+              Experience our Voice AI system firsthand. Call the number below to interact with our production AI agent. Try to book an appointment, ask about pricing, or test it with complex questions.
             </p>
 
             <a href="tel:+12036809629" className="inline-block">
@@ -111,7 +111,7 @@ export default function Contact() {
               </h2>
             </div>
             <p className="text-muted-foreground mb-8">
-              Pick a time that works for you — 30 minutes, no pressure. We'll map out how AI can work for your business.
+              Pick a time for your free 30-minute AI Systems Audit. We'll map your workflow bottlenecks and show you exactly what we can automate.
             </p>
 
             <div style={{ overflow: 'hidden', height: '680px', background: '#000' }}>
