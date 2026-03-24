@@ -445,50 +445,42 @@ export default function Home() {
               </motion.p>
             </div>
 
-            <div
-              className="relative mt-auto pb-4"
-              style={{
-                left: ctaButtonsControls.left,
-                top: ctaButtonsControls.top,
-                transform: `rotate(${ctaButtonsControls.rotation}deg)`,
-                transformOrigin: "left center"
-              }}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
-                <button
-                  className="pearl-button pearl-button-dark"
-                  data-testid="button-see-solutions"
-                  onClick={() => window.location.href = createPageUrl("Solutions")}
-                >
-                  <div className="wrap">
-                    <p>
-                      <span>✧</span>
-                      See Our Solutions
-                      <ArrowRight className="w-5 h-5" />
-                    </p>
-                  </div>
-                </button>
-                <button
-                  className="pearl-button pearl-button-dark"
-                  data-testid="button-book-audit"
-                  onClick={() => window.location.href = createPageUrl("Contact")}
-                >
-                  <div className="wrap">
-                    <p>
-                      <span>✦</span>
-                      Book Your AI Audit
-                    </p>
-                  </div>
-                </button>
-              </motion.div>
-            </div>
           </motion.div>
         </div>
+
+        {/* CTA Buttons - Absolute bottom of hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="absolute bottom-8 left-0 right-0 z-10 flex flex-col sm:flex-row gap-4 justify-center px-4"
+        >
+          <button
+            className="pearl-button pearl-button-dark"
+            data-testid="button-see-solutions"
+            onClick={() => window.location.href = createPageUrl("Solutions")}
+          >
+            <div className="wrap">
+              <p>
+                <span>✧</span>
+                See Our Solutions
+                <ArrowRight className="w-5 h-5" />
+              </p>
+            </div>
+          </button>
+          <button
+            className="pearl-button pearl-button-dark"
+            data-testid="button-book-audit"
+            onClick={() => window.location.href = createPageUrl("Contact")}
+          >
+            <div className="wrap">
+              <p>
+                <span>✦</span>
+                Book Your AI Audit
+              </p>
+            </div>
+          </button>
+        </motion.div>
       </section>
 
       {/* Trusted By Section with Logo Loop */}
