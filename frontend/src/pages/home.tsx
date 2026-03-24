@@ -379,7 +379,7 @@ export default function Home() {
     <div className="overflow-hidden -mt-20">
       {/* Hero Section */}
       <section
-        className="hero-section relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-[500px] sm:min-h-[700px] md:min-h-screen flex items-start bg-white dark:bg-black"
+        className="hero-section relative px-4 sm:px-6 lg:px-8 pt-20 pb-8 overflow-hidden min-h-[500px] sm:min-h-[700px] md:min-h-screen flex items-start bg-white dark:bg-black"
         style={{
           backgroundImage: "url('/images/backgrounds/header.png')",
           backgroundSize: "contain",
@@ -396,12 +396,12 @@ export default function Home() {
             }
           }
         `}</style>
-        <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <div className="max-w-7xl mx-auto relative z-10 w-full h-full flex flex-col">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-[150px] sm:mt-[180px] md:mt-[120px]"
+            className="mt-[100px] sm:mt-[80px] md:mt-[60px] flex flex-col flex-1"
           >
             <div
               className="relative mb-6"
@@ -446,7 +446,7 @@ export default function Home() {
             </div>
 
             <div
-              className="relative"
+              className="relative mt-auto pb-4"
               style={{
                 left: ctaButtonsControls.left,
                 top: ctaButtonsControls.top,
