@@ -357,21 +357,21 @@ export default function Home() {
 
   // Header & Subheader Position Controls - Responsive values
   const headerControls = {
-    left: isMobile ? "0px" : "-80px",
-    top: isMobile ? "0px" : "-450px",
+    left: isMobile ? "0px" : "0px",
+    top: isMobile ? "0px" : "0px",
     rotation: 0,
   };
 
   const subheaderControls = {
-    left: isMobile ? "0px" : "-80px",
-    top: isMobile ? "0px" : "-470px",
+    left: isMobile ? "0px" : "0px",
+    top: isMobile ? "0px" : "0px",
     rotation: 0,
   };
 
   // CTA Buttons Position Controls - Responsive values
   const ctaButtonsControls = {
-    left: isMobile ? "0px" : "-450px",
-    top: isMobile ? "0px" : "-480px",
+    left: isMobile ? "0px" : "0px",
+    top: isMobile ? "0px" : "0px",
     rotation: 0,
   };
 
@@ -379,11 +379,11 @@ export default function Home() {
     <div className="overflow-hidden -mt-20">
       {/* Hero Section */}
       <section
-        className="hero-section relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-[500px] sm:min-h-[700px] md:min-h-screen flex items-center bg-white dark:bg-black"
+        className="hero-section relative px-4 sm:px-6 lg:px-8 pt-20 pb-16 overflow-hidden min-h-[500px] sm:min-h-[700px] md:min-h-screen flex items-start bg-white dark:bg-black"
         style={{
           backgroundImage: "url('/images/backgrounds/header.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "0% center",
+          backgroundSize: "contain",
+          backgroundPosition: "center bottom",
           backgroundRepeat: "no-repeat"
         }}
       >
@@ -391,7 +391,7 @@ export default function Home() {
           @media (max-width: 640px) {
             .hero-section {
               background-size: auto 300px !important;
-              background-position: top center !important;
+              background-position: bottom center !important;
               min-height: 400px !important;
             }
           }
@@ -401,7 +401,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-[150px] sm:mt-[350px] md:mt-[530px]"
+            className="mt-[150px] sm:mt-[180px] md:mt-[120px]"
           >
             <div
               className="relative mb-6"
