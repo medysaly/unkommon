@@ -356,23 +356,22 @@ export default function Home() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Header & Subheader Position Controls - Responsive values
-  // Adjusted top offsets to compensate for longer headline text
   const headerControls = {
     left: isMobile ? "0px" : "-80px",
-    top: isMobile ? "0px" : "-520px",
+    top: isMobile ? "0px" : "-450px",
     rotation: 0,
   };
 
   const subheaderControls = {
     left: isMobile ? "0px" : "-80px",
-    top: isMobile ? "0px" : "-540px",
+    top: isMobile ? "0px" : "-470px",
     rotation: 0,
   };
 
   // CTA Buttons Position Controls - Responsive values
   const ctaButtonsControls = {
     left: isMobile ? "0px" : "-450px",
-    top: isMobile ? "0px" : "-550px",
+    top: isMobile ? "0px" : "-480px",
     rotation: 0,
   };
 
@@ -417,10 +416,12 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-white tracking-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-white tracking-tight"
                 data-testid="heading-hero-title"
               >
-                They sell you a chatbot. We build you an automated workforce.
+                They sell you a chatbot.
+                <br />
+                We build you an automated workforce.
               </motion.h1>
             </div>
 
@@ -437,7 +438,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl text-white/70 leading-relaxed max-w-3xl"
+                className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl"
                 data-testid="text-hero-description"
               >
                 Production-grade, agentic AI systems for dental practices, legal firms, and professional services. HIPAA-compliant. AWS-native. Engineered to recover revenue.
