@@ -283,7 +283,7 @@ export default function HowItWorks() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-6" className="border-b border-border/50">
+              <AccordionItem value="item-6" className="border-b-0">
                 <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
                   Is my data secure? Are you HIPAA-compliant?
                 </AccordionTrigger>
@@ -291,22 +291,84 @@ export default function HowItWorks() {
                   Absolutely. We build on your private AWS cloud with HIPAA-compliant infrastructure, end-to-end encryption, and isolated data environments. Your proprietary business data is siloed and is never used to train public models. No third-party "wrappers" touching your patient or client data.
                 </AccordionContent>
               </AccordionItem>
+            </Accordion>
+          </motion.div>
+        </div>
+      </section>
 
-              <AccordionItem value="item-7" className="border-b border-border/50">
+      {/* Investment & ROI FAQ */}
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-zinc-50 dark:bg-zinc-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight leading-tight mb-6">
+              Investment & ROI
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              We don't compete on price. We compete on returns.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="roi-1" className="border-b border-border/50">
                 <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  What is the typical investment?
+                  What is the typical investment for an Unkommon system?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We design custom infrastructure, so investment varies by complexity. Most engagements start with a one-time Deployment Fee (covering architecture & setup) and a monthly Maintenance Retainer. This is roughly 15% of the cost of hiring a human employee for the same role. We'll scope exact pricing during your free AI Systems Audit.
+                  We don't sell "off-the-shelf" bots. We engineer proprietary assets tailored to your firm's specific workflows and compliance needs. Most engagements begin with a Fixed-Scope Implementation followed by a performance-based Optimization Retainer. Investment is scoped during your AI Systems Audit based on your specific requirements and the revenue opportunity we identify.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-8" className="border-b-0">
+              <AccordionItem value="roi-2" className="border-b border-border/50">
                 <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
-                  Are there hidden fees?
+                  Why don't you offer a $99/mo "Basic" plan?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Transparency is key. Your monthly package includes a set number of talk minutes (usually sufficient for 95% of businesses). If you have a massive surge in call volume, we offer simple pay-as-you-go rates for the extra usage — no surprise bills.
+                  Generic $99/mo chatbots are "stateless" wrappers. They often hallucinate, lack deep CRM integration, and pose significant data security risks. Unkommon builds State-Based Agentic Systems on your private AWS cloud. You are investing in an engineered workforce that has the authority to execute tasks — not just a window widget that chats.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="roi-3" className="border-b border-border/50">
+                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
+                  What is the expected ROI?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                  <p className="mb-4">Our systems are designed to attack specific "revenue leaks":</p>
+                  <ul className="space-y-2 mb-4">
+                    <li><span className="text-foreground font-medium">Dental:</span> Recovering $3k–$7k/mo in denied insurance claims.</li>
+                    <li><span className="text-foreground font-medium">Law:</span> Capturing $10k+ in billable cases that would have gone to a competitor after-hours.</li>
+                    <li><span className="text-foreground font-medium">Real Estate:</span> Increasing lead conversion by 300% through sub-60-second response times.</li>
+                  </ul>
+                  <p>We quantify these numbers during your initial AI Systems Audit.</p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="roi-4" className="border-b border-border/50">
+                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
+                  Do I own the AI systems you build?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                  Yes. Unlike SaaS platforms where you lose your data and logic if you stop paying, Unkommon builds your agents on your own AWS infrastructure. You own the knowledge base, the logic flows, and the data. We remain your engineering partners to monitor, scale, and optimize the system as your practice grows.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="roi-5" className="border-b-0">
+                <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
+                  Is there a long-term contract?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                  Our initial implementation is a fixed-price project. Once the system is live and generating value, most clients move to a monthly Optimization Retainer. This covers 24/7 monitoring, "agent training" (refining responses based on real interactions), and building out new automated workflows as needed. You stay because of the results, not a contract.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
