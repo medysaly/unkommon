@@ -356,23 +356,24 @@ export default function Home() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Header & Subheader Position Controls - Responsive values
+  // Adjusted top offsets to compensate for longer headline text
   const headerControls = {
-    left: isMobile ? "0px" : "-80px",      // Left/Right position
-    top: isMobile ? "0px" : "-450px",       // Up/Down position
-    rotation: 0,      // Rotation in degrees
+    left: isMobile ? "0px" : "-80px",
+    top: isMobile ? "0px" : "-520px",
+    rotation: 0,
   };
 
   const subheaderControls = {
-    left: isMobile ? "0px" : "-80px",      // Left/Right position
-    top: isMobile ? "0px" : "-470px",       // Up/Down position
-    rotation: 0,      // Rotation in degrees
+    left: isMobile ? "0px" : "-80px",
+    top: isMobile ? "0px" : "-540px",
+    rotation: 0,
   };
 
   // CTA Buttons Position Controls - Responsive values
   const ctaButtonsControls = {
-    left: isMobile ? "0px" : "-450px",      // Left/Right position
-    top: isMobile ? "0px" : "-480px",         // Up/Down position
-    rotation: 0,        // Rotation in degrees
+    left: isMobile ? "0px" : "-450px",
+    top: isMobile ? "0px" : "-550px",
+    rotation: 0,
   };
 
   return (
