@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: "Home", href: createPageUrl("Home") },
     { name: "Solutions", href: createPageUrl("Solutions") },
     { name: "How It Works", href: createPageUrl("HowItWorks") },
-    { name: "Contact", href: createPageUrl("Contact") },
+    { name: "About", href: createPageUrl("About") },
   ];
 
   const isActive = (href: string) => location === href;
