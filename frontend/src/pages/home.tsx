@@ -658,7 +658,7 @@ export default function Home() {
       </section>
 
       {/* Global Deployment Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black">
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -703,7 +703,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-white dark:bg-black" style={{ zIndex: 20 }}>
+      <section className="px-4 sm:px-6 lg:px-8 py-32 bg-black" style={{ zIndex: 20 }}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
