@@ -535,10 +535,10 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
-              Three AI Systems. One Goal: More Revenue, Less Overhead.
+              Three AI Systems. One Automated Workforce.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              Most practices lose $100k+ annually to missed calls, slow follow-ups, and dormant databases. We engineer production AI systems that eliminate these bottlenecks permanently.
+              Each system works independently or together — covering your calls, leads, and dormant revenue 24/7.
             </p>
           </motion.div>
 

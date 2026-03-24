@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, Shield, Scale, Lock } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import ChatWidget from "@/components/ChatWidget";
@@ -185,7 +185,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="border-t border-border mt-8 pt-6 text-center">
+          {/* Compliance Bar */}
+          <div className="border-t border-border mt-8 pt-6">
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-6">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Shield className="w-4 h-4 flex-shrink-0" />
+                <span>Architecture aligned with <span className="text-foreground font-medium">HIPAA</span></span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Scale className="w-4 h-4 flex-shrink-0" />
+                <span>Architecture aligned with <span className="text-foreground font-medium">ABA Guidelines</span></span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Lock className="w-4 h-4 flex-shrink-0" />
+                <span>Architecture aligned with <span className="text-foreground font-medium">SOC 2</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border pt-6 text-center">
             <div className="flex justify-center mb-6">
               <SocialMediaIcons />
             </div>
