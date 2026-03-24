@@ -4,7 +4,6 @@ import { Menu, X, Phone, Mail, MapPin, Shield, Scale, Lock } from "lucide-react"
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import ChatWidget from "@/components/ChatWidget";
-import SwitchButton from "@/components/SwitchButton";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -21,11 +20,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isActive = (href: string) => location === href;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-foreground transition-colors">
+    <div className="min-h-screen bg-black text-foreground">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4">
         <nav className="max-w-7xl mx-auto">
-          <div className="flex items-center h-16 px-6 bg-zinc-50/80 dark:bg-white/5 backdrop-blur-xl border border-zinc-200 dark:border-white/10 rounded-full shadow-lg">
+          <div className="flex items-center h-16 px-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-lg">
             {/* Logo - Left */}
             <div className="flex-1">
               <Link href={createPageUrl("Home")} data-testid="link-logo">
@@ -54,21 +53,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 size="sm"
                 data-testid="button-get-started"
                 onClick={() => window.location.href = createPageUrl("Contact")}
-                className="bg-black hover:bg-zinc-900 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-black"
+                className="bg-white hover:bg-zinc-100 text-black"
               >
                 Book AI Audit
               </Button>
             </div>
 
-            {/* Theme Switch - Right */}
             <div className="flex-1 flex justify-end items-center gap-4">
-              <div className="hidden md:block">
-                <SwitchButton size="sm" showLabel={false} />
-              </div>
-
               {/* Mobile menu button */}
               <button
-                className="md:hidden p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors text-foreground"
+                className="md:hidden p-2 rounded-md hover:bg-white/10 transition-colors text-foreground"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 data-testid="button-mobile-menu"
               >
@@ -83,7 +77,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-2 py-4 px-6 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-2xl shadow-lg">
+            <div className="md:hidden mt-2 py-4 px-6 bg-zinc-900 border border-white/10 rounded-2xl shadow-lg">
               <div className="flex flex-col space-y-4">
                 {navigation.map((item) => (
                   <Link key={item.name} href={item.href} data-testid={`link-mobile-nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -98,7 +92,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 ))}
 
-                <SwitchButton size="default" showLabel={true} className="w-full" />
                 <Button
                   className="w-full"
                   onClick={() => {
