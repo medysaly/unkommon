@@ -1,7 +1,9 @@
 import { createPageUrl } from "@/lib/utils";
-import { ArrowRight, Globe, Zap, Clock, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LogoLoop } from "@/components/LogoLoop";
+import { World } from "@/components/ui/globe";
+import type { GlobeConfig } from "@/components/ui/globe";
 import { useState } from "react";
 import "@/styles/pearl-button.css";
 import "@/styles/glass-cards.css";
@@ -188,6 +190,166 @@ const InteractiveAgentsImage = () => {
   );
 };
 
+const globeConfig: GlobeConfig = {
+  pointSize: 4,
+  globeColor: "#0f172a",
+  showAtmosphere: true,
+  atmosphereColor: "#60a5fa",
+  atmosphereAltitude: 0.2,
+  emissive: "#1e3a8a",
+  emissiveIntensity: 0.15,
+  shininess: 0.9,
+  polygonColor: "rgba(56, 189, 248, 0.8)",
+  ambientLight: "#ffffff",
+  directionalLeftLight: "#ffffff",
+  directionalTopLight: "#ffffff",
+  pointLight: "#ffffff",
+  arcTime: 3000,
+  arcLength: 0.9,
+  rings: 2,
+  maxRings: 3,
+  initialPosition: { lat: 20, lng: 0 },
+  autoRotate: true,
+  autoRotateSpeed: 0.8,
+};
+
+const sampleArcs = [
+  {
+    order: 1,
+    startLat: -19.885592,
+    startLng: -43.951191,
+    endLat: -22.9068,
+    endLng: -43.1729,
+    arcAlt: 0.1,
+    color: "#38bdf8",
+  },
+  {
+    order: 1,
+    startLat: 28.6139,
+    startLng: 77.209,
+    endLat: 3.139,
+    endLng: 101.6869,
+    arcAlt: 0.2,
+    color: "#38bdf8",
+  },
+  {
+    order: 1,
+    startLat: -19.885592,
+    startLng: -43.951191,
+    endLat: -1.303396,
+    endLng: 36.852443,
+    arcAlt: 0.5,
+    color: "#38bdf8",
+  },
+  {
+    order: 2,
+    startLat: 1.3521,
+    startLng: 103.8198,
+    endLat: 35.6762,
+    endLng: 139.6503,
+    arcAlt: 0.2,
+    color: "#38bdf8",
+  },
+  {
+    order: 2,
+    startLat: 51.5072,
+    startLng: -0.1276,
+    endLat: 3.139,
+    endLng: 101.6869,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 2,
+    startLat: -15.785493,
+    startLng: -47.909029,
+    endLat: 36.162809,
+    endLng: -115.119411,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 3,
+    startLat: -33.8688,
+    startLng: 151.2093,
+    endLat: 22.3193,
+    endLng: 114.1694,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 3,
+    startLat: 21.3099,
+    startLng: -157.8581,
+    endLat: 40.7128,
+    endLng: -74.006,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 3,
+    startLat: -6.2088,
+    startLng: 106.8456,
+    endLat: 51.5072,
+    endLng: -0.1276,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 4,
+    startLat: 11.986597,
+    startLng: 8.571831,
+    endLat: -15.595412,
+    endLng: -56.05918,
+    arcAlt: 0.5,
+    color: "#38bdf8",
+  },
+  {
+    order: 4,
+    startLat: -34.6037,
+    startLng: -58.3816,
+    endLat: 22.3193,
+    endLng: 114.1694,
+    arcAlt: 0.7,
+    color: "#38bdf8",
+  },
+  {
+    order: 4,
+    startLat: 51.5072,
+    startLng: -0.1276,
+    endLat: 48.8566,
+    endLng: -2.3522,
+    arcAlt: 0.1,
+    color: "#38bdf8",
+  },
+  {
+    order: 5,
+    startLat: 14.5995,
+    startLng: 120.9842,
+    endLat: 51.5072,
+    endLng: -0.1276,
+    arcAlt: 0.3,
+    color: "#38bdf8",
+  },
+  {
+    order: 5,
+    startLat: 1.3521,
+    startLng: 103.8198,
+    endLat: -33.8688,
+    endLng: 151.2093,
+    arcAlt: 0.2,
+    color: "#38bdf8",
+  },
+  {
+    order: 5,
+    startLat: 34.0522,
+    startLng: -118.2437,
+    endLat: 48.8566,
+    endLng: -2.3522,
+    arcAlt: 0.2,
+    color: "#38bdf8",
+  },
+];
 
 export default function Home() {
   // Check if mobile
@@ -531,26 +693,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { icon: Globe, label: "50+ Languages", desc: "Auto-detect and respond in your patient's or client's native language" },
-                { icon: Clock, label: "24/7 Coverage", desc: "No missed calls, no after-hours voicemail, no lost leads" },
-                { icon: Shield, label: "99.9% Uptime", desc: "AWS-native infrastructure with enterprise-grade reliability" },
-                { icon: Zap, label: "Infinite Scale", desc: "Handle 1 call or 1,000 concurrent — no extra staff needed" },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i }}
-                  className="p-6 rounded-2xl border border-white/10 bg-white/5"
-                >
-                  <item.icon className="w-8 h-8 text-white/60 mb-3" />
-                  <h4 className="text-xl font-medium text-foreground mb-1">{item.label}</h4>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </motion.div>
-              ))}
+            <div className="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full">
+                <World data={sampleArcs} globeConfig={globeConfig} />
+              </div>
             </div>
           </motion.div>
         </div>
