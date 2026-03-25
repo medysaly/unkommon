@@ -296,7 +296,47 @@ function WorldInner(props: WorldProps) {
   );
 }
 
+function isWebGLAvailable(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl2") ||
+      canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl");
+    return gl instanceof WebGLRenderingContext || gl instanceof WebGL2RenderingContext;
+  } catch {
+    return false;
+  }
+}
+
+const WebGLFallback = () => (
+  <div
+    style={{
+      width: "100%",
+      height: "100%",
+      background: "radial-gradient(ellipse at center, #1a1a2e 0%, #000000 70%)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div style={{ textAlign: "center", opacity: 0.4 }}>
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#60a5fa" }}>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+    </div>
+  </div>
+);
+
 export function World(props: WorldProps) {
+  const webglSupported = typeof window !== "undefined" && isWebGLAvailable();
+
+  if (!webglSupported) {
+    return <WebGLFallback />;
+  }
+
   return (
     <GlobeErrorBoundary>
       <WorldInner {...props} />
