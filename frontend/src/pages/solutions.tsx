@@ -436,6 +436,55 @@ export default function Solutions() {
         </div>
       </section>
 
+      {/* What We're Not */}
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
+              What We're Not
+            </h2>
+          </motion.div>
+
+          <div className="space-y-6 max-w-2xl mx-auto">
+            {[
+              "Not a SaaS platform you subscribe to",
+              "Not a chatbot builder with a drag-and-drop interface",
+              "Not a template agency reselling other companies' tools",
+              "Not a $99/month solution competing on price",
+              "Not a vendor you replace after 6 months",
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex items-start gap-4 text-lg text-muted-foreground"
+              >
+                <span className="text-foreground mt-1">—</span>
+                <span>{item}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-12 text-xl text-foreground font-medium max-w-3xl mx-auto leading-relaxed"
+          >
+            We're an engineering partner. The systems we build become infrastructure your practice runs on.
+          </motion.p>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-32 overflow-hidden bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto text-center relative z-10">

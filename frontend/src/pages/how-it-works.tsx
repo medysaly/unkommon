@@ -46,17 +46,17 @@ const steps = [
     number: "04",
     icon: Rocket,
     title: "Deploy",
-    subtitle: "Staged rollout with monitoring",
+    subtitle: "Staged rollout in hybrid mode",
     description:
-      "Your AI goes live alongside existing staff in a hybrid model. We monitor in real-time, tune response quality, and ensure zero disruption to current operations. Your team stays in the loop.",
+      "The AI runs alongside your staff in a hybrid model until it hits 99% reliability. We don't flip a switch and disappear. Your team stays in the loop, and the AI earns its place before it runs solo.",
   },
   {
     number: "05",
     icon: TrendingUp,
     title: "Optimize",
-    subtitle: "Ongoing performance monitoring",
+    subtitle: "Continuous monitoring and agent training",
     description:
-      "Monthly reporting on calls handled, leads qualified, appointments booked, and revenue recovered. Continuous conversation analysis and improvement. The system gets smarter over time.",
+      "Continuous monitoring, agent training based on real interactions, and ongoing builds as your needs grow. We refine responses, expand workflows, and scale the system. You stay because of results, not a contract.",
   },
 ];
 
@@ -137,7 +137,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* Engineering Standard Section */}
+      {/* The Technical Moat */}
       <section className="px-4 sm:px-6 lg:px-8 py-32 bg-zinc-100 dark:bg-zinc-900/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -148,10 +148,10 @@ export default function HowItWorks() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
-              We Don't Just Prompt. We Engineer.
+              The Technical Moat
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              Most agencies rely on generic models and template configurations. Unkommon builds proprietary, state-based architectures using advanced retrieval systems. The result is an AI that never hallucinates and follows your business rules with mathematical precision.
+              Three things make Unkommon different from every other AI agency:
             </p>
           </motion.div>
 
@@ -163,14 +163,14 @@ export default function HowItWorks() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 shadow-sm"
             >
-              <h3 className="text-2xl font-semibold text-foreground mb-3">Zero Hallucinations</h3>
-              <p className="text-sm text-muted-foreground mb-4 font-medium">RAG Architecture</p>
+              <h3 className="text-2xl font-semibold text-foreground mb-3">Private Infrastructure</h3>
+              <p className="text-sm text-muted-foreground mb-4 font-medium">Your Own AWS VPC</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                We use RAG technology to vector-embed your specific company data — PDFs, websites, price lists — into a private knowledge base. When a client asks a question, the agent retrieves the exact answer from your documents. It never invents facts.
+                Every system runs on the client's own AWS VPC (Virtual Private Cloud). Patient data, attorney-client communications, financial records — none of it ever touches a public server. You own your data. Full stop.
               </p>
               <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                <p className="text-sm text-muted-foreground italic">"It won't lie to my patients."</p>
+                <p className="text-sm text-muted-foreground italic">"My patient data never leaves my cloud."</p>
               </div>
             </motion.div>
 
@@ -181,14 +181,14 @@ export default function HowItWorks() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 shadow-sm"
             >
-              <h3 className="text-2xl font-semibold text-foreground mb-3">Rigid Logic Flows</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-3">State-Based Architecture</h3>
               <p className="text-sm text-muted-foreground mb-4 font-medium">LangGraph</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                We build agents using LangGraph to enforce strict, cyclical state machines. The conversation follows a rigid logical path (Qualify &rarr; Schedule &rarr; Confirm) and cannot be tricked into going off-script or skipping steps.
+                We build using LangGraph — the same framework used by Uber, JP Morgan, BlackRock, and LinkedIn. These aren't chatbots that improvise. They're state machines — rigid logical systems that follow your business rules exactly and cannot be tricked, confused, or jailbroken.
               </p>
               <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                <p className="text-sm text-muted-foreground italic">"It won't go rogue or say crazy things."</p>
+                <p className="text-sm text-muted-foreground italic">"It can't go off-script. Ever."</p>
               </div>
             </motion.div>
 
@@ -199,14 +199,14 @@ export default function HowItWorks() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 border border-zinc-200 dark:border-gray-800 hover:border-zinc-300 dark:hover:border-gray-700 transition-all duration-300 shadow-sm"
             >
-              <h3 className="text-2xl font-semibold text-foreground mb-3">Enterprise Reliability</h3>
-              <p className="text-sm text-muted-foreground mb-4 font-medium">AWS Cloud</p>
+              <h3 className="text-2xl font-semibold text-foreground mb-3">RAG Knowledge Base</h3>
+              <p className="text-sm text-muted-foreground mb-4 font-medium">Zero Hallucinations</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                Built on Amazon Web Services with HIPAA-compliant infrastructure. 99.9% uptime, bank-grade encryption, and the ability to scale from 10 calls to 10,000 calls instantly without latency.
+                We ingest your specific business data — FAQs, insurance accepted, appointment types, pricing — into a private knowledge base. When a patient asks a question, the AI pulls the answer from your documents. It never guesses. It never hallucinates.
               </p>
               <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                <p className="text-sm text-muted-foreground italic">"It won't crash. And my patient data is safe."</p>
+                <p className="text-sm text-muted-foreground italic">"It won't lie to my patients."</p>
               </div>
             </motion.div>
           </div>

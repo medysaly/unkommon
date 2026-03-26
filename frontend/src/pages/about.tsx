@@ -6,31 +6,7 @@ import {
   ArrowRight,
   CheckCircle,
   MapPin,
-  Shield,
-  Brain,
-  Target,
 } from "lucide-react";
-
-const unkommonStandard = [
-  {
-    icon: Shield,
-    title: "Security First",
-    description:
-      "We build on your private AWS cloud. You own your data. HIPAA-compliant. No public 'wrappers' — dedicated, isolated infrastructure that meets healthcare and legal compliance requirements.",
-  },
-  {
-    icon: Brain,
-    title: "Engineering-Led",
-    description:
-      "We are software engineers and ML specialists, not prompt engineers. RAG architecture, LangGraph state machines, AWS Textract, Bedrock — production infrastructure, not Zapier templates.",
-  },
-  {
-    icon: Target,
-    title: "Measurable ROI",
-    description:
-      "We don't focus on 'vibe-coding.' We focus on reduced no-shows, increased claim recovery, and sub-60-second lead response times. Every system ships with analytics.",
-  },
-];
 
 export default function About() {
   return (
@@ -190,9 +166,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 4: The Unkommon Standard */}
+      {/* Section 4: What We're Not */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-zinc-50 dark:bg-zinc-900/30">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -201,28 +177,41 @@ export default function About() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4">
-              The Unkommon Standard
+              What We're Not
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {unkommonStandard.map((item, i) => (
+          <div className="space-y-5 max-w-2xl mx-auto">
+            {[
+              "Not a SaaS platform you subscribe to",
+              "Not a chatbot builder with a drag-and-drop interface",
+              "Not a template agency reselling other companies' tools",
+              "Not a $99/month solution competing on price",
+              "Not a vendor you replace after 6 months",
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black text-center"
+                className="flex items-start gap-4 text-lg text-muted-foreground"
               >
-                <div className="w-12 h-12 rounded-xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-6 h-6 text-foreground" />
-                </div>
-                <h3 className="text-xl font-medium text-foreground mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">{item.description}</p>
+                <span className="text-foreground mt-1">—</span>
+                <span>{item}</span>
               </motion.div>
             ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-12 text-xl text-foreground font-medium max-w-3xl mx-auto leading-relaxed"
+          >
+            We're an engineering partner. The systems we build become infrastructure your practice runs on.
+          </motion.p>
         </div>
       </section>
 
