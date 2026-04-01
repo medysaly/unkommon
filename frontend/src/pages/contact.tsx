@@ -116,7 +116,7 @@ export default function Contact() {
 
             <div style={{ overflow: 'hidden', height: '680px', background: '#000' }}>
               <iframe
-                src="https://cal.com/mehdi-salhi-8tv8tj/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view"
+                src="https://cal.com/medysaly/30min?embed=true&theme=dark&hideEventTypeDetails=false&layout=month_view"
                 // @ts-ignore
                 allowTransparency="true"
                 style={{ width: '100%', height: '900px', border: 'none', background: '#000', colorScheme: 'dark' }}
