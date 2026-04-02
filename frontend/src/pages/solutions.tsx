@@ -108,7 +108,7 @@ const capabilities = [
   {
     icon: Bot,
     title: "Custom AI Agent Development",
-    subtitle: "$30K-$150K production systems",
+    subtitle: "Purpose-built production systems",
     description:
       "Insurance claim processing, document generation, transaction coordination — purpose-built agents for your specific business logic. Not templates. Production code.",
   },
