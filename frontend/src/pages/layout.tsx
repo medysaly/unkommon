@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin, Shield, Scale, Lock } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, Shield, Lock } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import ChatWidget from "@/components/ChatWidget";
@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 onClick={() => window.location.href = createPageUrl("Contact")}
                 className="bg-white hover:bg-zinc-100 text-black"
               >
-                Book AI Audit
+                Book a Call
               </Button>
             </div>
 
@@ -100,7 +100,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   }}
                   data-testid="button-mobile-get-started"
                 >
-                  Book AI Audit
+                  Book a Call
                 </Button>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="text-lg font-semibold">Unkommon</span>
               </div>
               <p className="text-muted-foreground mb-4 max-w-md text-sm">
-                AI systems that drive revenue, reduce overhead, and scale your operations.
+                Custom AI/ML engineering for companies that need more than off-the-shelf.
               </p>
               <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
@@ -184,10 +184,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <Shield className="w-4 h-4 flex-shrink-0" />
                 <span>Architecture aligned with <span className="text-foreground font-medium">HIPAA</span></span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Scale className="w-4 h-4 flex-shrink-0" />
-                <span>Architecture aligned with <span className="text-foreground font-medium">ABA Guidelines</span></span>
               </div>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <Lock className="w-4 h-4 flex-shrink-0" />

@@ -24,15 +24,15 @@ const steps = [
     title: "Audit",
     subtitle: "Free 30-minute efficiency audit",
     description:
-      "We identify bottlenecks, map your current workflow, and quantify the opportunity. Where are calls being missed? How fast are leads being contacted? What's sitting dormant in your CRM? We give you the numbers.",
+      "We audit your data landscape, current infrastructure, and workflow bottlenecks. What data do you have? Where are the manual steps? What does 'good' look like? We give you a clear engineering assessment.",
   },
   {
     number: "02",
     icon: PenTool,
     title: "Design",
-    subtitle: "System architecture tailored to your practice",
+    subtitle: "System architecture tailored to your problem",
     description:
-      "We define the state machine, knowledge base, and escalation protocols specific to your industry, data sources, and integration requirements. No templates — a custom blueprint for your operations.",
+      "We define the system architecture — data pipelines, model selection, agent orchestration, integration points, and deployment strategy. No templates. A custom engineering blueprint for your specific problem.",
   },
   {
     number: "03",
@@ -40,7 +40,7 @@ const steps = [
     title: "Build",
     subtitle: "Custom development on AWS",
     description:
-      "RAG knowledge base ingestion, LangGraph agent orchestration, CRM integrations, voice AI configuration. Production code deployed on your private AWS infrastructure. Not prompts — engineering.",
+      "RAG knowledge base ingestion, LangGraph agent orchestration, API integrations, evaluation pipelines. Production code deployed on your private AWS infrastructure. Not prompts — engineering.",
   },
   {
     number: "04",
@@ -166,11 +166,11 @@ export default function HowItWorks() {
               <h3 className="text-2xl font-semibold text-foreground mb-3">Private Infrastructure</h3>
               <p className="text-sm text-muted-foreground mb-4 font-medium">Your Own AWS VPC</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                Every system runs on the client's own AWS VPC (Virtual Private Cloud). Patient data, attorney-client communications, financial records — none of it ever touches a public server. You own your data. Full stop.
+                Every system runs on the client's own AWS VPC (Virtual Private Cloud). Proprietary datasets, customer records, internal documents — none of it ever touches a public server. You own your data. Full stop.
               </p>
               <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                <p className="text-sm text-muted-foreground italic">"My patient data never leaves my cloud."</p>
+                <p className="text-sm text-muted-foreground italic">"Our data never leaves our cloud."</p>
               </div>
             </motion.div>
 
@@ -202,11 +202,11 @@ export default function HowItWorks() {
               <h3 className="text-2xl font-semibold text-foreground mb-3">RAG Knowledge Base</h3>
               <p className="text-sm text-muted-foreground mb-4 font-medium">Zero Hallucinations</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                We ingest your specific business data — FAQs, insurance accepted, appointment types, pricing — into a private knowledge base. When a patient asks a question, the AI pulls the answer from your documents. It never guesses. It never hallucinates.
+                We ingest your specific business data — internal documents, product catalogs, policy manuals, technical specs — into a private knowledge base. When a user asks a question, the AI pulls the answer from your documents. It never guesses. It never hallucinates.
               </p>
               <div className="pt-4 border-t border-zinc-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground mb-2 font-semibold">Why This Wins:</p>
-                <p className="text-sm text-muted-foreground italic">"It won't lie to my patients."</p>
+                <p className="text-sm text-muted-foreground italic">"It won't make things up."</p>
               </div>
             </motion.div>
           </div>
@@ -243,7 +243,7 @@ export default function HowItWorks() {
                   How does the AI know the specifics of my business?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We use Retrieval-Augmented Generation (RAG) to build a custom Knowledge Base specific to your business. For a dental practice, we ingest your services, insurance accepted, and appointment types. For a law firm, your practice areas and intake criteria. When a client asks a question, the agent references your documents to provide an accurate answer. It does not guess.
+                  We use Retrieval-Augmented Generation (RAG) to build a custom Knowledge Base specific to your business. We ingest your product documentation, policy manuals, internal knowledge bases, and support data. When a user asks a question, the agent references your documents to provide an accurate, cited answer. It does not guess.
                 </AccordionContent>
               </AccordionItem>
 
@@ -279,7 +279,7 @@ export default function HowItWorks() {
                   Does this integrate with my existing software?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Yes. We build native API integrations into the systems you already use — Dentrix and Open Dental for dental practices, Clio and MyCase for law firms, Salesforce and HubSpot for professional services. The AI reads your real-time calendar availability and writes lead data directly into your client fields. No manual data entry required.
+                  Yes. We build native API integrations into the systems you already use — Salesforce, HubSpot, ServiceNow, Jira, Confluence, Slack, and custom internal tools. The AI reads your real-time data and writes results directly into your existing workflows. No manual data entry required.
                 </AccordionContent>
               </AccordionItem>
 
@@ -288,7 +288,7 @@ export default function HowItWorks() {
                   Is my data secure? Are you HIPAA-compliant?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Absolutely. We build on your private AWS cloud with HIPAA-compliant infrastructure, end-to-end encryption, and isolated data environments. Your proprietary business data is siloed and is never used to train public models. No third-party "wrappers" touching your patient or client data.
+                  Absolutely. We build on your private AWS cloud with HIPAA-compliant infrastructure, end-to-end encryption, and isolated data environments. Your proprietary business data is siloed and is never used to train public models. No third-party "wrappers" touching your data.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -326,7 +326,7 @@ export default function HowItWorks() {
                   What is the typical investment for an Unkommon system?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  We don't sell "off-the-shelf" bots. We engineer proprietary assets tailored to your firm's specific workflows and compliance needs. Most engagements begin with a Fixed-Scope Implementation followed by a performance-based Optimization Retainer. Investment is scoped during your AI Systems Audit based on your specific requirements and the revenue opportunity we identify.
+                  We don't sell "off-the-shelf" bots. We engineer proprietary assets tailored to your organization's specific workflows and compliance needs. Most engagements begin with a Fixed-Scope Implementation followed by a performance-based Optimization Retainer. Investment is scoped during your Architecture Review based on your specific requirements and the opportunity we identify.
                 </AccordionContent>
               </AccordionItem>
 
@@ -344,13 +344,7 @@ export default function HowItWorks() {
                   What is the expected ROI?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  <p className="mb-4">Our systems are designed to attack specific "revenue leaks":</p>
-                  <ul className="space-y-2 mb-4">
-                    <li><span className="text-foreground font-medium">Dental:</span> Recovering $3k–$7k/mo in denied insurance claims.</li>
-                    <li><span className="text-foreground font-medium">Law:</span> Capturing $10k+ in billable cases that would have gone to a competitor after-hours.</li>
-                    <li><span className="text-foreground font-medium">Real Estate:</span> Increasing lead conversion by 300% through sub-60-second response times.</li>
-                  </ul>
-                  <p>We quantify these numbers during your initial AI Systems Audit.</p>
+                  Our systems are designed to attack specific operational bottlenecks — reducing manual processing time, eliminating data entry errors, accelerating response times, and unlocking insights trapped in unstructured data. We quantify these numbers during your initial Architecture Review.
                 </AccordionContent>
               </AccordionItem>
 
@@ -359,7 +353,7 @@ export default function HowItWorks() {
                   Do I own the AI systems you build?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  Yes. Unlike SaaS platforms where you lose your data and logic if you stop paying, Unkommon builds your agents on your own AWS infrastructure. You own the knowledge base, the logic flows, and the data. We remain your engineering partners to monitor, scale, and optimize the system as your practice grows.
+                  Yes. Unlike SaaS platforms where you lose your data and logic if you stop paying, Unkommon builds your agents on your own AWS infrastructure. You own the knowledge base, the logic flows, and the data. We remain your engineering partners to monitor, scale, and optimize the system as your business grows.
                 </AccordionContent>
               </AccordionItem>
 
@@ -392,7 +386,7 @@ export default function HowItWorks() {
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-foreground tracking-tight"
             >
-              Start With a Free Audit
+              Start With a Free Architecture Review
             </motion.h2>
 
             <motion.p
@@ -402,7 +396,7 @@ export default function HowItWorks() {
               transition={{ delay: 0.4 }}
               className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              30 minutes. No pressure. We'll map your workflow bottlenecks and show you exactly what we can automate and the ROI you can expect.
+              30 minutes. No pressure. We'll assess your AI opportunity and outline a technical approach.
             </motion.p>
 
             <motion.div
@@ -418,7 +412,7 @@ export default function HowItWorks() {
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Book Your AI Audit
+                    Book an Architecture Review
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>

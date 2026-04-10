@@ -67,7 +67,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
         id: 'welcome',
         role: 'assistant',
         content:
-          "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• Voice AI Operations\n• Lead Automation\n• Revenue Recovery\n• Custom AI Systems\n• How our process works",
+          "👋 Hi! I'm the Unkommon AI assistant. How can I help you today?\n\nI can tell you about:\n• Custom RAG Systems\n• AI Agent Development\n• ML Consulting & Integration\n• AI Infrastructure & Deployment\n• How our engineering process works",
         timestamp: Date.now(),
       };
       setMessages([welcomeMessage]);

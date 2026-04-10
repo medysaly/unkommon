@@ -4,120 +4,122 @@ import {
   ArrowRight,
   CheckCircle,
   Phone,
-  Zap,
-  Calendar,
+  Database,
   Brain,
   Shield,
   Target,
-  Stethoscope,
-  Scale,
-  Briefcase,
+  Server,
   Bot,
   Workflow,
+  Cloud,
 } from "lucide-react";
-import VapiDemo from "@/components/VapiDemo";
-import SpeedToLeadDemo from "@/components/SpeedToLeadDemo";
-import ClientReactivatorDemo from "@/components/ClientReactivatorDemo";
 import "@/styles/pearl-button.css";
 
 const whatWeSolve = [
   {
-    icon: Calendar,
-    title: "Revenue Recovery",
+    icon: Database,
+    title: "Custom RAG Systems",
     description:
-      "AI agents that parse insurance denials (AWS Textract + Bedrock) and auto-draft clinical appeals. Turn rejected claims into recovered revenue without manual admin work.",
-    metrics: ["Automated denial parsing", "Clinical appeal drafting", "Claims recovery tracking"],
+      "Retrieval-augmented generation pipelines that ground LLM outputs in your proprietary data. Vector databases, embedding strategies, chunking optimization, and citation tracking — so your AI answers from your documents, never hallucinates.",
+    metrics: ["Proprietary data ingestion", "Vector search optimization", "Citation & source tracking"],
   },
   {
-    icon: Phone,
-    title: "Patient & Client Journey",
+    icon: Bot,
+    title: "AI Agent Development",
     description:
-      "Multi-agent systems that handle 24/7 voice triage, instant qualification, and CRM-integrated scheduling. Every call answered, every lead qualified, every appointment booked.",
-    metrics: ["24/7 voice triage", "Instant qualification", "CRM-integrated scheduling"],
+      "Multi-agent systems built on LangGraph that automate complex business workflows. Document processing, decision trees, state management, and human-in-the-loop escalation — production agents, not chatbot prototypes.",
+    metrics: ["Stateful workflow orchestration", "Human-in-the-loop escalation", "End-to-end process automation"],
   },
   {
-    icon: Zap,
-    title: "Operational Efficiency",
+    icon: Brain,
+    title: "ML Consulting & Integration",
     description:
-      "Custom-built agents that execute end-to-end business processes — from intake to follow-up. Reduce manual busy work by up to 70% so your team focuses on billable work.",
-    metrics: ["Up to 70% admin reduction", "End-to-end automation", "Staff redeployment to revenue"],
+      "Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. We help you choose the right models, build the right pipelines, and measure what matters.",
+    metrics: ["Model selection & benchmarking", "Evaluation framework design", "LLM integration architecture"],
+  },
+  {
+    icon: Cloud,
+    title: "AI Infrastructure & Deployment",
+    description:
+      "Production-grade deployment on AWS. Containerized services, CI/CD pipelines, observability dashboards, cost optimization, and auto-scaling — so your AI runs reliably at any scale.",
+    metrics: ["AWS-native containerization", "CI/CD & monitoring pipelines", "Auto-scaling & cost optimization"],
   },
 ];
 
 const industries = [
   {
-    icon: Stethoscope,
-    title: "Healthcare & Dental",
+    icon: Shield,
+    title: "Regulated Industries",
     description:
-      "HIPAA-compliant AI systems for patient scheduling, recall campaigns, insurance verification, and denial management. Built for practices losing revenue to no-shows and admin overhead.",
+      "HIPAA-compliant AI systems for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls built in from day one.",
     outcomes: [
-      "Automated patient recall for overdue cleanings and incomplete treatment plans",
-      "Insurance denial parsing and clinical appeal generation",
-      "24/7 patient triage — emergencies routed, routine calls handled",
-      "Integration with OpenDental, Dentrix, and practice management systems",
+      "End-to-end encryption and data isolation",
+      "HIPAA & SOC 2 aligned architecture",
+      "Audit logging and compliance reporting",
+      "BAA-ready AWS infrastructure",
     ],
   },
   {
-    icon: Scale,
-    title: "Legal",
+    icon: Database,
+    title: "Knowledge-Intensive Operations",
     description:
-      "Secure AI intake systems for law firms. Screen potential cases, match to practice areas, book consultations, and follow up — all while maintaining attorney-client privilege standards.",
+      "Custom RAG systems for organizations drowning in proprietary data — research, legal discovery, technical documentation, customer support knowledge bases.",
     outcomes: [
-      "After-hours legal intake with case screening and qualification",
-      "Practice area matching and attorney routing",
-      "Automated consultation booking and follow-up sequences",
-      "Document generation for engagement letters and intake forms",
+      "Proprietary document ingestion pipelines",
+      "Semantic search over internal knowledge",
+      "Automated report and summary generation",
+      "Continuous knowledge base updates",
     ],
   },
   {
-    icon: Briefcase,
-    title: "Professional Services",
+    icon: Workflow,
+    title: "Process-Heavy Workflows",
     description:
-      "AI systems for real estate agencies, financial advisors, and consulting firms. Capture leads at peak intent, qualify prospects, and convert inquiries into meetings in under 90 seconds.",
+      "Multi-agent systems for companies with complex, multi-step business processes that require decision logic, state management, and human oversight.",
     outcomes: [
-      "Real estate lead capture from Zillow, Realtor.com, and ad platforms",
-      "Instant buyer/seller qualification and appointment booking",
-      "Past client reactivation — market updates, home value alerts",
-      "CRM enrichment and pipeline management automation",
+      "Document processing and extraction pipelines",
+      "Decision automation with guardrails",
+      "Multi-step workflow orchestration",
+      "Integration with existing enterprise systems",
     ],
   },
 ];
 
 const capabilities = [
   {
-    icon: Phone,
-    title: "Voice AI Operations",
-    subtitle: "24/7 omnichannel communication",
+    icon: Database,
+    title: "RAG Pipeline Engineering",
+    subtitle: "Retrieval-Augmented Generation",
     description:
-      "Phone calls, SMS, WhatsApp, email — one AI system handles them all. Books appointments, answers questions, routes inquiries, and speaks 50+ languages.",
-  },
-  {
-    icon: Zap,
-    title: "Lead Automation",
-    subtitle: "Sub-60-second response times",
-    description:
-      "Instant outreach the moment a lead comes in. Automated qualification, smart routing, persistent follow-up, and CRM sync. Your strongest, most measurable capability.",
-  },
-  {
-    icon: Calendar,
-    title: "Revenue Recovery",
-    subtitle: "Zero ad spend required",
-    description:
-      "Mine your existing database for dormant revenue. Insurance denial processing, patient recall campaigns, and past client reactivation — all automated.",
+      "Custom embedding strategies, vector database selection (Pinecone, pgvector, OpenSearch), chunking optimization, hybrid search, and re-ranking pipelines.",
   },
   {
     icon: Bot,
-    title: "Custom AI Agent Development",
-    subtitle: "Purpose-built production systems",
+    title: "LangGraph Agent Orchestration",
+    subtitle: "Stateful Multi-Agent Systems",
     description:
-      "Insurance claim processing, document generation, transaction coordination — purpose-built agents for your specific business logic. Not templates. Production code.",
+      "State machines that follow your business logic exactly. Agent handoffs, conditional branching, memory management, and tool use — built on LangGraph.",
   },
   {
-    icon: Workflow,
-    title: "Agentic Workflow Automation",
-    subtitle: "Multi-agent orchestration",
+    icon: Brain,
+    title: "LLM Integration & Fine-Tuning",
+    subtitle: "Model Selection & Optimization",
     description:
-      "Multiple AI agents coordinating end-to-end: voice agent qualifies a lead, email agent follows up, booking agent schedules, CRM agent updates the pipeline.",
+      "Bedrock, OpenAI, Anthropic, and open-source model integration. Prompt engineering, fine-tuning, distillation, and evaluation pipelines.",
+  },
+  {
+    icon: Server,
+    title: "AWS Cloud Infrastructure",
+    subtitle: "Production-Grade Deployment",
+    description:
+      "ECS/EKS containerization, Lambda serverless, API Gateway, CloudWatch observability, and Infrastructure-as-Code via CDK or Terraform.",
+  },
+  {
+    icon: Target,
+    title: "Evaluation & Monitoring",
+    subtitle: "Continuous Quality Assurance",
+    description:
+      "Custom evaluation frameworks, A/B testing, drift detection, hallucination monitoring, and production observability dashboards.",
   },
 ];
 
@@ -126,19 +128,19 @@ const standards = [
     icon: Shield,
     title: "Security First",
     description:
-      "We build on your private AWS cloud. You own your data. HIPAA-compliant. No public 'wrappers' — dedicated, isolated infrastructure.",
+      "Every system deploys on your private AWS VPC. HIPAA-compliant, SOC 2-aligned infrastructure with end-to-end encryption. Your data never leaves your cloud.",
   },
   {
     icon: Brain,
     title: "Engineering-Led",
     description:
-      "We are software engineers and ML specialists, not prompt engineers. RAG architecture, LangGraph state machines, AWS cloud-native infrastructure.",
+      "Software engineers and ML specialists, not prompt engineers. RAG architecture, LangGraph state machines, AWS cloud-native — production code, not prototypes.",
   },
   {
     icon: Target,
-    title: "Measurable ROI",
+    title: "Measurable Outcomes",
     description:
-      "We don't focus on 'vibe-coding.' We focus on reduced no-shows, increased claim recovery, and sub-60-second lead response times.",
+      "Custom evaluation frameworks, latency benchmarks, accuracy metrics, and cost tracking. We don't ship and disappear — we measure what matters.",
   },
 ];
 
@@ -160,7 +162,7 @@ export default function Solutions() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight text-foreground tracking-tight"
             >
-              Agentic AI Systems for Dental & Professional Services
+              Custom AI/ML Systems for Complex Problems
             </motion.h1>
 
             <motion.p
@@ -169,7 +171,7 @@ export default function Solutions() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-xl text-muted-foreground mb-4 leading-relaxed max-w-3xl mx-auto"
             >
-              AWS & ML Architecture | HIPAA-Compliant Operations
+              AWS-Native Architecture | HIPAA & SOC 2 Aligned
             </motion.p>
 
             <motion.p
@@ -178,8 +180,8 @@ export default function Solutions() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto"
             >
-              Production-grade AI systems that recover revenue, automate patient journeys, and eliminate
-              the administrative friction costing your practice $100k+ annually.
+              Bespoke AI systems engineered for your data, your workflows, and your infrastructure.
+              When off-the-shelf tools fall short, we build what's missing.
             </motion.p>
 
             <motion.div
@@ -194,7 +196,7 @@ export default function Solutions() {
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Book Your AI Audit
+                    Book an Architecture Review
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>
@@ -204,7 +206,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* What We Solve */}
+      {/* What We Build */}
       <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -215,14 +217,14 @@ export default function Solutions() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              What We Solve
+              What We Build
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Three categories of operational waste we eliminate with production AI systems.
+              Four engineering disciplines. From data pipeline to production deployment.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {whatWeSolve.map((item, i) => (
               <motion.div
                 key={i}
@@ -249,28 +251,36 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* Live Voice Demo */}
+      {/* Experience Our Engineering */}
       <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-50 dark:bg-zinc-900/30">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Hear It. Don't Just Read About It.
+              Experience Our Engineering Firsthand
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Call our live Voice AI demo. Try to book an appointment, ask about pricing, or test it with complex questions.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12">
+              Call our AI agent to see how we build conversational systems. This is a production LangGraph agent running on our AWS infrastructure.
             </p>
+            <div className="inline-flex flex-col items-center p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
+              <Phone className="w-8 h-8 text-foreground mb-4" />
+              <a
+                href="tel:+12036809629"
+                className="text-3xl md:text-4xl font-light text-foreground tracking-tight hover:opacity-80 transition-opacity"
+              >
+                +1 (203) 680-9629
+              </a>
+              <p className="text-sm text-muted-foreground mt-2">Production AI Agent — Active 24/7</p>
+            </div>
           </motion.div>
-          <VapiDemo />
         </div>
       </section>
 
-      {/* Industry Verticals */}
+      {/* Use Cases */}
       <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -281,10 +291,10 @@ export default function Solutions() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Built for Your Industry
+              Built for Complex Environments
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We don't sell generic AI. Every system is engineered for the specific workflows, compliance requirements, and integration needs of your industry.
+              We don't sell generic AI. Every system is engineered for the specific data, compliance requirements, and integration needs of your environment.
             </p>
           </motion.div>
 
@@ -303,7 +313,7 @@ export default function Solutions() {
                     <industry.icon className="w-5 h-5 text-foreground" />
                   </div>
                   <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
-                    Industry
+                    Use Case
                   </span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4">
@@ -326,7 +336,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* Capabilities */}
+      {/* Technical Capabilities */}
       <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-50 dark:bg-zinc-900/30">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -337,10 +347,10 @@ export default function Solutions() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              Our Capabilities
+              Technical Capabilities
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From voice AI to multi-agent orchestration — production systems, not prototypes.
+              The engineering stack behind every system we ship.
             </p>
           </motion.div>
 
@@ -364,44 +374,8 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* Interactive Demos */}
-      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight mb-6">
-              See It In Action
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Interactive demos showing how our AI systems handle real business scenarios.
-            </p>
-          </motion.div>
-
-          <div className="space-y-16">
-            <div>
-              <h3 className="text-2xl font-light text-foreground tracking-tight mb-6 text-center">
-                Lead Automation Demo
-              </h3>
-              <SpeedToLeadDemo />
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-light text-foreground tracking-tight mb-6 text-center">
-                Revenue Recovery Demo
-              </h3>
-              <ClientReactivatorDemo />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* The Unkommon Standard */}
-      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-50 dark:bg-zinc-900/30">
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -423,7 +397,7 @@ export default function Solutions() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black text-center"
+                className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-center"
               >
                 <div className="w-12 h-12 rounded-xl bg-foreground/5 dark:bg-white/10 flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-6 h-6 text-foreground" />
@@ -437,7 +411,7 @@ export default function Solutions() {
       </section>
 
       {/* What We're Not */}
-      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-50 dark:bg-zinc-900/30">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -480,7 +454,7 @@ export default function Solutions() {
             transition={{ delay: 0.6 }}
             className="text-center mt-12 text-xl text-foreground font-medium max-w-3xl mx-auto leading-relaxed"
           >
-            We're an engineering partner. The systems we build become infrastructure your practice runs on.
+            We're an engineering partner. The systems we build become infrastructure your business runs on.
           </motion.p>
         </div>
       </section>
@@ -513,8 +487,8 @@ export default function Solutions() {
               transition={{ delay: 0.4 }}
               className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Let's engineer a system that actually works for your practice.
-              Start with a free 30-minute AI Systems Audit.
+              Let's engineer a system that solves what off-the-shelf tools can't.
+              Start with a free 30-minute Architecture Review.
             </motion.p>
 
             <motion.div
@@ -530,7 +504,7 @@ export default function Solutions() {
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Book Your AI Audit
+                    Book an Architecture Review
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>

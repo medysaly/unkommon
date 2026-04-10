@@ -77,7 +77,7 @@ export default function About() {
                 At <span className="text-foreground font-medium">Unkommon</span>, we don't just "do AI." We engineer production-grade, agentic systems that live inside your core business logic.
               </p>
               <p>
-                As a systems-first consultancy, we specialize in bridging the gap between "we tried ChatGPT" and "we have an AI-driven revenue engine." Leveraging AWS infrastructure and custom ML orchestration, we build high-security, HIPAA-compliant solutions for dental practices, legal firms, and professional services that are losing $100k+ annually to administrative friction.
+                As a systems-first consultancy, we specialize in bridging the gap between "we tried ChatGPT" and "we have production AI infrastructure." Leveraging AWS and custom ML orchestration, we build high-security, HIPAA-compliant systems for companies with complex data, regulated environments, and workflows that off-the-shelf tools can't handle.
               </p>
             </motion.div>
           </motion.div>
@@ -130,9 +130,9 @@ export default function About() {
                 transition={{ delay: 0.1 }}
                 className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
               >
-                <h4 className="text-lg font-semibold text-foreground mb-3">Revenue Recovery</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3">Custom RAG Systems</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  AI agents that parse insurance denials (AWS Textract + Bedrock) and auto-draft clinical appeals. Turn rejected claims into recovered revenue without manual admin work.
+                  Retrieval-augmented generation pipelines that ground AI outputs in your proprietary data. Vector databases, embedding optimization, and citation tracking — so your AI answers from your documents, never hallucinates.
                 </p>
               </motion.div>
 
@@ -143,9 +143,9 @@ export default function About() {
                 transition={{ delay: 0.2 }}
                 className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
               >
-                <h4 className="text-lg font-semibold text-foreground mb-3">Patient & Client Journey</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3">AI Agent Development</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Multi-agent systems that handle 24/7 voice triage, instant qualification, and CRM-integrated scheduling. Every call answered, every lead qualified, every appointment booked.
+                  Multi-agent systems built on LangGraph for complex workflow automation. Document processing, decision logic, state management, and human-in-the-loop escalation — production agents, not chatbot prototypes.
                 </p>
               </motion.div>
 
@@ -156,9 +156,9 @@ export default function About() {
                 transition={{ delay: 0.3 }}
                 className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
               >
-                <h4 className="text-lg font-semibold text-foreground mb-3">Operational Efficiency</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3">ML Consulting & Infrastructure</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Custom-built agents that execute end-to-end business processes — from intake to follow-up. Reduce manual busy work by up to 70% so your team focuses on billable work.
+                  Architecture design, model selection, evaluation frameworks, and production-grade AWS deployment. From proof-of-concept to scaled infrastructure.
                 </p>
               </motion.div>
             </div>
@@ -210,7 +210,7 @@ export default function About() {
             transition={{ delay: 0.6 }}
             className="text-center mt-12 text-xl text-foreground font-medium max-w-3xl mx-auto leading-relaxed"
           >
-            We're an engineering partner. The systems we build become infrastructure your practice runs on.
+            We're an engineering partner. The systems we build become infrastructure your business runs on.
           </motion.p>
         </div>
       </section>
@@ -261,13 +261,13 @@ export default function About() {
                     <div className="space-y-4 text-muted-foreground leading-relaxed">
                       <p>
                         With a background in Computer Science and a specialization in Cloud Infrastructure and ML engineering, Mehdi built{" "}
-                        <span className="text-foreground font-medium">unkommon</span> to bridge the gap between enterprise-grade AI technology and the practices that need it most.
+                        <span className="text-foreground font-medium">unkommon</span> to bridge the gap between enterprise-grade AI technology and the companies that need it most.
                       </p>
                       <p>
                         Frustrated by the fragility of off-the-shelf automation tools and the commoditization of "AI agencies," he focuses on designing production-grade, agentic systems built on AWS — with strict standards for HIPAA compliance, latency, and measurable ROI.
                       </p>
                       <p>
-                        He leads the engineering strategy, ensuring every deployed system operates with the reliability and security that dental practices, law firms, and professional services demand.
+                        He leads the engineering strategy, ensuring every deployed system operates with the reliability and security that regulated industries and complex enterprises demand.
                       </p>
                     </div>
                   </div>
@@ -295,7 +295,7 @@ export default function About() {
             </div>
 
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Engineering the future of SMB operations. We understand the nuances of the U.S. healthcare and legal markets, the importance of compliance, and the speed of business. When you hire Unkommon, you're hiring a partner within your time zone.
+              Engineering the future of SMB operations. We understand regulated industries, the importance of compliance, and the speed of enterprise AI adoption. When you hire Unkommon, you're hiring a partner within your time zone.
             </p>
           </motion.div>
         </div>
@@ -339,7 +339,7 @@ export default function About() {
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Book Your AI Audit
+                    Book an Architecture Review
                     <ArrowRight className="w-5 h-5" />
                   </p>
                 </div>

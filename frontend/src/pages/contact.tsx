@@ -32,7 +32,7 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
             >
-              Ready to see what production AI can do for your practice? Start with a free 30-minute AI Systems Audit.
+              Ready to see what production AI can do for your business? Start with a free 30-minute Architecture Review.
             </motion.p>
 
             <motion.div
@@ -43,7 +43,7 @@ export default function Contact() {
               style={{ height: '150px' }}
             >
               <CurvedLoop
-                marqueeText="Free AI Audit • Custom Systems • HIPAA-Compliant • Production-Grade • "
+                marqueeText="Free Architecture Review • Custom Systems • HIPAA-Compliant • Production-Grade • "
                 speed={2}
                 curveAmount={100}
                 direction="left"
@@ -73,7 +73,7 @@ export default function Contact() {
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              Experience our Voice AI system firsthand. Call the number below to interact with our production AI agent. Try to book an appointment, ask about pricing, or test it with complex questions.
+              Experience a production AI agent firsthand. Call the number below to interact with a LangGraph-powered conversational system running on our AWS infrastructure. Test it with complex questions.
             </p>
 
             <a href="tel:+12036809629" className="inline-block">
@@ -87,7 +87,7 @@ export default function Contact() {
             </a>
 
             <p className="text-sm text-muted-foreground uppercase tracking-wider">
-              Live Demo Agent • Active 24/7
+              Production AI Agent • Active 24/7
             </p>
           </motion.div>
         </div>
@@ -111,7 +111,7 @@ export default function Contact() {
               </h2>
             </div>
             <p className="text-muted-foreground mb-8">
-              Pick a time for your free 30-minute AI Systems Audit. We'll map your workflow bottlenecks and show you exactly what we can automate.
+              Pick a time for your free 30-minute Architecture Review. We'll assess your AI opportunity and outline a technical approach.
             </p>
 
             <div style={{ overflow: 'hidden', height: '680px', background: '#000' }}>

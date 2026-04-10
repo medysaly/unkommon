@@ -1,194 +1,39 @@
 import { createPageUrl } from "@/lib/utils";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { LogoLoop } from "@/components/LogoLoop";
 import { World } from "@/components/ui/globe";
 import type { GlobeConfig } from "@/components/ui/globe";
-import { useState } from "react";
 import "@/styles/pearl-button.css";
 import "@/styles/glass-cards.css";
 
-// Agents data - shared between desktop and mobile views
-const agents = [
+// Services data - shared between desktop and mobile views
+const services = [
   {
     id: 1,
-    title: "Lead Automation",
-    description: "A patient fills out your contact form. You respond in 60 seconds. Your competitor responds Monday morning. You win the appointment.",
+    title: "Custom RAG Systems",
+    description: "We build retrieval-augmented generation pipelines over your proprietary data — so your AI answers from your documents, not the internet.",
     link: "Solutions",
-    rotateY: 0,
-    topPosition: "58%",
-    leftPosition: "71%",
-    rotation: 8,
   },
   {
     id: 2,
-    title: "Voice AI Operations",
-    description: "24/7 call handling, appointment booking, and inquiry routing — so your team only handles what requires a human.",
+    title: "AI Agent Development",
+    description: "Multi-agent systems that automate complex workflows — document processing, decision automation, and stateful orchestration.",
     link: "Solutions",
-    rotateY: 0,
-    topPosition: "65%",
-    leftPosition: "40%",
-    rotation: 8,
   },
   {
     id: 3,
-    title: "Revenue Recovery",
-    description: "Your dormant database has thousands in unrealized revenue. We turn cold contacts into booked appointments and recovered claims.",
+    title: "ML Consulting",
+    description: "Architecture design, model selection, LLM integration, and evaluation frameworks. From proof-of-concept to production.",
     link: "Solutions",
-    rotateY: 15,
-    topPosition: "73%",
-    leftPosition: "25%",
-    rotation: 8,
+  },
+  {
+    id: 4,
+    title: "AI Infrastructure",
+    description: "Production-grade deployment on AWS. Containerization, CI/CD, monitoring, and auto-scaling.",
+    link: "Solutions",
   },
 ];
-
-// Interactive Agents Image Component
-const InteractiveAgentsImage = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.2 }}
-      className="relative max-w-7xl mx-auto"
-    >
-      <div className="relative w-full">
-        <img
-          src="/images/backgrounds/AI agents .png"
-          alt="AI Agents"
-          className="w-full h-auto"
-        />
-
-        <div className="absolute inset-0 grid grid-cols-3 gap-0">
-          {agents.map((agent) => (
-            <div
-              key={agent.id}
-              className="relative flex flex-col items-center justify-center perspective-1000"
-            >
-              {/* Agent Name Label - Sitting on table under each agent - HOVER TRIGGER */}
-              <div
-                className="absolute pointer-events-auto z-30 cursor-pointer"
-                style={{
-                  top: agent.topPosition,
-                  left: agent.leftPosition,
-                  transform: `translateX(-50%) rotate(${agent.rotation}deg)`
-                }}
-                onMouseEnter={() => setHoveredCard(agent.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/30 to-white/20 dark:from-white/10 dark:via-white/20 dark:to-white/10 blur-xl"></div>
-                  <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-xl px-5 py-2 rounded-full border border-white/40 dark:border-white/30 shadow-lg">
-                    <p className="text-xs font-semibold text-foreground tracking-wide whitespace-nowrap">
-                      {agent.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Premium Liquid Glass 3D Hover Card */}
-              <AnimatePresence mode="wait">
-                {hoveredCard === agent.id && (
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      rotateY: agent.rotateY,
-                      z: -50,
-                      scale: 0.85,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      rotateY: 0,
-                      z: 0,
-                      scale: 1,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      rotateY: agent.rotateY,
-                      z: -50,
-                      scale: 0.85,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    className="absolute inset-16 pointer-events-auto cursor-pointer z-40"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      willChange: "transform, opacity"
-                    }}
-                    onMouseEnter={() => setHoveredCard(agent.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                    onClick={() => window.location.href = createPageUrl(agent.link)}
-                  >
-                    {/* Liquid glass card with enhanced glassmorphism */}
-                    <div className="relative w-full h-full rounded-3xl p-6 flex flex-col justify-center items-center text-center backdrop-blur-xl"
-                      style={{
-                        background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)",
-                        border: "1px solid rgba(255,255,255,0.25)",
-                        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15), inset 0 1px 0 0 rgba(255,255,255,0.3)",
-                      }}
-                    >
-                      <div className="relative z-10">
-                        {/* Title with text shadow only */}
-                        <h3 className="text-3xl font-bold text-white mb-4 tracking-tight"
-                          style={{
-                            textShadow: "0 2px 20px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1)",
-                          }}
-                        >
-                          {agent.title}
-                        </h3>
-
-                        {/* Description with text shadow only */}
-                        <p className="text-base text-white font-semibold leading-relaxed mb-6"
-                          style={{
-                            textShadow: "0 2px 15px rgba(0,0,0,0.9), 0 4px 30px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1)",
-                          }}
-                        >
-                          {agent.description}
-                        </p>
-
-                        {/* Interactive Learn More Button - Subtle Glass */}
-                        <button
-                          className="group relative px-8 py-3 rounded-full font-bold text-base transition-all duration-300"
-                          style={{
-                            background: "rgba(255,255,255,0.15)",
-                            border: "1px solid rgba(255,255,255,0.3)",
-                            boxShadow: "0 2px 10px rgba(255,255,255,0.1)",
-                            color: "white",
-                            textShadow: "0 1px 3px rgba(0,0,0,0.5)"
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "rgba(255,255,255,0.25)";
-                            e.currentTarget.style.boxShadow = "0 4px 15px rgba(255,255,255,0.2)";
-                            e.currentTarget.style.transform = "translateY(-2px)";
-                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "rgba(255,255,255,0.15)";
-                            e.currentTarget.style.boxShadow = "0 2px 10px rgba(255,255,255,0.1)";
-                            e.currentTarget.style.transform = "translateY(0)";
-                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
-                          }}
-                        >
-                          <span className="relative z-10">Learn More →</span>
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const globeConfig: GlobeConfig = {
   pointSize: 4,
@@ -441,7 +286,7 @@ export default function Home() {
                 className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl"
                 data-testid="text-hero-description"
               >
-                Production-grade, agentic AI systems for dental practices, legal firms, and professional services. HIPAA-compliant. AWS-native. Engineered to recover revenue.
+                Bespoke AI/ML systems for companies that need something off-the-shelf can't handle. RAG pipelines. Multi-agent architectures. Production AWS infrastructure.
               </motion.p>
             </div>
 
@@ -476,7 +321,7 @@ export default function Home() {
             <div className="wrap">
               <p>
                 <span>✦</span>
-                Book Your AI Audit
+                Book an Architecture Review
               </p>
             </div>
           </button>
@@ -493,18 +338,18 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center text-sm text-muted-foreground mb-8 uppercase tracking-wider"
           >
-            Serving Industries Worldwide
+            Trusted Across Regulated Industries
           </motion.p>
         </div>
         <div className="w-full">
           <LogoLoop
             logos={[
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Professional Services</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Dental Practices</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Law Firms</span> },
-              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Professional Services</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Healthcare & Life Sciences</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Financial Services</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Legal & Compliance</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Enterprise SaaS</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Insurance</span> },
+              { node: <span className="text-2xl font-light text-muted-foreground tracking-tight">Government</span> },
             ]}
             speed={50}
             direction="left"
@@ -529,61 +374,38 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-light text-foreground tracking-tight leading-tight mb-8">
-              Three AI Systems. One Automated Workforce.
+              Four Engineering Disciplines. One AI Partner.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              Each system works independently or together — covering your calls, leads, and dormant revenue 24/7.
+              Each discipline works independently or together — from data pipeline to production deployment.
             </p>
           </motion.div>
 
-          {/* Desktop: Interactive AI Agents Image with 3D Hover Cards */}
-          <div className="hidden md:block">
-            <InteractiveAgentsImage />
-          </div>
-
-          {/* Mobile: Image + Buttons Below */}
-          <div className="block md:hidden">
-            {/* AI Agents Image */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="mb-8"
-            >
-              <img
-                src="/images/backgrounds/AI agents .png"
-                alt="AI Agents"
-                className="w-full h-auto rounded-2xl"
-              />
-            </motion.div>
-
-            {/* Three Agent Buttons */}
-            <div className="space-y-4 px-4">
-              {agents.map((agent, index) => (
-                <motion.button
-                  key={agent.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index }}
-                  onClick={() => window.location.href = createPageUrl(agent.link)}
-                  className="w-full text-left p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 active:scale-95"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)",
-                    border: "1px solid rgba(255,255,255,0.25)",
-                    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
-                  }}
-                >
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {agent.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {agent.description}
-                  </p>
-                </motion.button>
-              ))}
-            </div>
+          {/* Service Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service, index) => (
+              <motion.button
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 * index }}
+                onClick={() => window.location.href = createPageUrl(service.link)}
+                className="w-full text-left p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
+                }}
+              >
+                <h3 className="text-xl font-bold text-foreground mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </motion.button>
+            ))}
           </div>
 
           {/* Bottom CTA */}
@@ -595,7 +417,7 @@ export default function Home() {
             className="text-center mt-16"
           >
             <p className="text-muted-foreground text-lg mb-6">
-              Each system works independently or together as a unified AI workforce
+              Each engagement is scoped to your data, your workflows, and your infrastructure
             </p>
             <button
               className="pearl-button"
@@ -604,7 +426,7 @@ export default function Home() {
               <div className="wrap">
                 <p>
                   <span>✦</span>
-                  Schedule a System Demo
+                  Schedule an Architecture Review
                   <ArrowRight className="w-5 h-5" />
                 </p>
               </div>
@@ -623,8 +445,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">&lt;60s</h3>
-              <p className="text-muted-foreground text-sm">Lead Response Time</p>
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">&lt;4 wk</h3>
+              <p className="text-muted-foreground text-sm">Proof-to-Production</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -632,8 +454,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">70%</h3>
-              <p className="text-muted-foreground text-sm">Admin Work Reduction</p>
+              <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">100%</h3>
+              <p className="text-muted-foreground text-sm">AWS-Native Deployments</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -642,7 +464,7 @@ export default function Home() {
               transition={{ delay: 0.3 }}
             >
               <h3 className="text-4xl md:text-5xl font-light text-foreground mb-2">24/7</h3>
-              <p className="text-muted-foreground text-sm">Call Coverage</p>
+              <p className="text-muted-foreground text-sm">System Uptime SLA</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -672,7 +494,7 @@ export default function Home() {
                 We Deploy Worldwide
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                Your AI agents work everywhere, anytime. Deploy across multiple regions, languages, and time zones with seamless integration into your global operations.
+                Your AI systems deploy everywhere. Multi-region AWS infrastructure, data residency compliance, and edge-optimized inference across time zones.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
@@ -729,8 +551,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
             >
-              Let's engineer a system that actually works for your practice.
-              Start with a free 30-minute AI Systems Audit.
+              Let's engineer a system that solves what off-the-shelf tools can't.
+              Start with a free 30-minute Architecture Review.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -760,7 +582,7 @@ export default function Home() {
                 <div className="wrap">
                   <p>
                     <span>✦</span>
-                    Book Your AI Audit
+                    Book an Architecture Review
                   </p>
                 </div>
               </button>
