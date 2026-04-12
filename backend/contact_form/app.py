@@ -49,6 +49,12 @@ def lambda_handler(event, context):
     }
     """
     
+    # Dynamic CORS origin
+    _allowed = {'https://unkommon.ai', 'https://www.unkommon.ai'}
+    _req_origin = (event.get('headers', {}).get('origin', '') or
+                   event.get('headers', {}).get('Origin', ''))
+    cors_origin = _req_origin if _req_origin in _allowed else 'https://unkommon.ai'
+
     # Parse request body
     try:
         if isinstance(event.get('body'), str):
@@ -60,7 +66,7 @@ def lambda_handler(event, context):
             'statusCode': 400,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai',
+                'Access-Control-Allow-Origin': cors_origin,
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
@@ -80,7 +86,7 @@ def lambda_handler(event, context):
             'statusCode': 400,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai',
+                'Access-Control-Allow-Origin': cors_origin,
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
@@ -143,7 +149,7 @@ Respond within 24 hours for best conversion rates!
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai',
+                'Access-Control-Allow-Origin': cors_origin,
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
@@ -159,7 +165,7 @@ Respond within 24 hours for best conversion rates!
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai',
+                'Access-Control-Allow-Origin': cors_origin,
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },

@@ -12,7 +12,13 @@ from decimal import Decimal
 dynamodb = boto3.resource('dynamodb')
 leads_table = dynamodb.Table('unkommon-leads')
 
-ALLOWED_ORIGIN = 'https://unkommon.ai'
+ALLOWED_ORIGINS = {'https://unkommon.ai', 'https://www.unkommon.ai'}
+
+
+def get_cors_origin(event):
+    headers = event.get('headers', {}) if event else {}
+    origin = headers.get('origin', '') or headers.get('Origin', '')
+    return origin if origin in ALLOWED_ORIGINS else 'https://unkommon.ai'
 COGNITO_USER_POOL_ID = os.environ.get('COGNITO_USER_POOL_ID', '')
 COGNITO_REGION = os.environ.get('COGNITO_REGION', 'us-east-1')
 
@@ -90,7 +96,7 @@ def decimal_default(obj):
 def unauthorized():
     return {
         'statusCode': 401,
-        'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': ALLOWED_ORIGIN},
+        'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': get_cors_origin(event)},
         'body': json.dumps({'error': 'Unauthorized'})
     }
 
@@ -132,7 +138,7 @@ def handle_get(event):
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+                'Access-Control-Allow-Origin': get_cors_origin(event),
                 'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                 'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
             },
@@ -148,7 +154,7 @@ def handle_get(event):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': ALLOWED_ORIGIN
+                'Access-Control-Allow-Origin': get_cors_origin(event)
             },
             'body': json.dumps({'error': 'Internal server error'})
         }
@@ -167,7 +173,7 @@ def handle_delete(event):
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+                    'Access-Control-Allow-Origin': get_cors_origin(event),
                     'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                     'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
                 },
@@ -184,7 +190,7 @@ def handle_delete(event):
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+                    'Access-Control-Allow-Origin': get_cors_origin(event),
                     'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                     'Access-Control-Allow-Methods': 'GET,DELETE,OPTIONS'
                 },
@@ -197,7 +203,7 @@ def handle_delete(event):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': ALLOWED_ORIGIN
+                'Access-Control-Allow-Origin': get_cors_origin(event)
             },
             'body': json.dumps({'error': 'Internal server error'})
         }

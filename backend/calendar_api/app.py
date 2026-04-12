@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import time
 import boto3
 import requests
@@ -421,10 +422,15 @@ def lambda_handler(event, context):
     - POST /api/calendar/book { date, time, name, email, phone }
     """
 
-    # CORS headers (defined outside try so error handler can use them)
+    # Dynamic CORS origin
+    allowed_origins = {'https://unkommon.ai', 'https://www.unkommon.ai'}
+    req_origin = (event.get('headers', {}).get('origin', '') or
+                  event.get('headers', {}).get('Origin', ''))
+    cors_origin = req_origin if req_origin in allowed_origins else 'https://unkommon.ai'
+
     headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://unkommon.ai',
+        'Access-Control-Allow-Origin': cors_origin,
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
     }

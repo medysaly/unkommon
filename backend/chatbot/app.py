@@ -51,6 +51,18 @@ def check_global_budget():
     return True
 
 
+ALLOWED_ORIGINS = {'https://unkommon.ai', 'https://www.unkommon.ai'}
+
+
+def get_cors_origin(event):
+    """Return the matching CORS origin for the request, or the default."""
+    headers = event.get('headers', {}) if event else {}
+    origin = headers.get('origin', '') or headers.get('Origin', '')
+    if origin in ALLOWED_ORIGINS:
+        return origin
+    return 'https://unkommon.ai'
+
+
 # Initialize Bedrock client
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 
@@ -436,6 +448,8 @@ def lambda_handler(event, context):
     Returns: { "response": "AI response", "conversationId": "uuid", "timestamp": 123456 }
     """
     
+    cors_origin = get_cors_origin(event)
+
     try:
         # Parse request body
         body = json.loads(event['body']) if isinstance(event.get('body'), str) else event.get('body', {})
@@ -448,7 +462,7 @@ def lambda_handler(event, context):
                 'statusCode': 429,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                    'Access-Control-Allow-Origin': cors_origin
                 },
                 'body': json.dumps({'error': 'Service is temporarily busy. Please try again in a few minutes.'})
             }
@@ -459,7 +473,7 @@ def lambda_handler(event, context):
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                    'Access-Control-Allow-Origin': cors_origin
                 },
                 'body': json.dumps({
                     'response': "I'm here to help you learn about Unkommon's AI engineering services. What can I help you with?",
@@ -491,7 +505,7 @@ def lambda_handler(event, context):
                 'statusCode': 400,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                    'Access-Control-Allow-Origin': cors_origin
                 },
                 'body': json.dumps({'error': 'Message is required'})
             }
@@ -576,7 +590,7 @@ def lambda_handler(event, context):
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai',
+                'Access-Control-Allow-Origin': cors_origin,
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
@@ -593,7 +607,7 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                'Access-Control-Allow-Origin': cors_origin
             },
             'body': json.dumps({
                 'error': 'Failed to process request'
