@@ -4,11 +4,15 @@ node_modules/
 # Build outputs
 dist/
 build/
+.aws-sam/
 
 # Environment variables
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
+
+# SAM
+samconfig.toml
 
 # OS files
 .DS_Store
@@ -19,9 +23,24 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
 
 # Logs
 *.log
 
-# Misc
+# Archives
 *.tar.gz
+
+# Local
+.claude/

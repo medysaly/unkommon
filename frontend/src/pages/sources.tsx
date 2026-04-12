@@ -1,6 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ExternalLink, BookOpen, FileText, BarChart3, Search } from "lucide-react";
 import { sources, statistics, getSourcesByStatistic, type Source } from "@/data/sources";
 import { SourceModal } from "@/components/SourceModal";
@@ -9,13 +7,13 @@ import { useState } from "react";
 export default function Sources() {
   const [selectedSource, setSelectedSource] = useState<Source | null>(null);
   const groupedSources = {
-    'Lead Response & Conversion': sources.filter(s => 
+    'Lead Response & Conversion': sources.filter(s =>
       s.id.includes('lead') || s.id.includes('velocify') || s.id.includes('insidesales')
     ),
-    'AI Cost Savings & ROI': sources.filter(s => 
+    'AI Cost Savings & ROI': sources.filter(s =>
       s.id.includes('mckinsey') || s.id.includes('gartner') || s.id.includes('deloitte') || s.id.includes('roi') || s.id.includes('ibm')
     ),
-    'Customer Service Benchmarks': sources.filter(s => 
+    'Customer Service Benchmarks': sources.filter(s =>
       s.id.includes('social')
     ),
   };
@@ -27,157 +25,100 @@ export default function Sources() {
     research: Search,
   };
 
-  const typeColors = {
-    study: 'bg-card text-foreground border-border',
-    report: 'bg-card text-foreground border-border',
-    survey: 'bg-card text-foreground border-border',
-    research: 'bg-card text-foreground border-border',
-  };
-
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      {/* Hero Section */}
-      <div className="relative py-20 px-4 bg-white dark:bg-black">
-        <div className="max-w-4xl mx-auto relative">
-          <Badge variant="secondary" className="mb-4 bg-card text-foreground border-border">Research & Citations</Badge>
-          <h1 className="text-5xl font-light text-foreground tracking-tight mb-6">
+    <div>
+      {/* Hero */}
+      <section className="bg-background px-6 lg:px-10 pt-16 pb-16">
+        <div className="max-w-3xl mx-auto">
+          <Badge className="mb-4 bg-border text-secondary-foreground border-0 text-[12px]">Research & Citations</Badge>
+          <h1 className="text-[clamp(2rem,4vw,3rem)] font-normal text-foreground tracking-[-0.04em] leading-[1.1] mb-4">
             Research & Sources
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-[17px] text-secondary-foreground leading-relaxed">
             All statistics and projections on Unkommon are backed by industry research, academic studies,
-            and verified reports. We believe in transparency and providing accurate, research-based information.
+            and verified reports.
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Disclaimer */}
-      <div className="max-w-4xl mx-auto px-4 mb-12">
-        <Card className="bg-card border-yellow-500/20">
-          <CardContent className="p-6">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-yellow-400">Important:</span> While all statistics are from
+      <section className="bg-white px-6 lg:px-10 pt-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-background rounded-xl border border-border p-6">
+            <p className="text-[14px] text-secondary-foreground">
+              <span className="font-medium text-foreground">Important:</span> While all statistics are from
               verified industry sources, actual results vary by business size, industry, implementation, and
-              other factors. Projections are based on industry averages and should not be considered guaranteed outcomes.
+              other factors.
             </p>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Key Statistics Summary */}
-      <div className="max-w-4xl mx-auto px-4 mb-16">
-        <h2 className="text-3xl font-light text-foreground tracking-tight mb-8">Key Statistics</h2>
-        <div className="grid gap-4">
-          {statistics.map((stat, index) => {
-            const statSources = getSourcesByStatistic(stat.id);
-            return (
-              <Card key={stat.id} className="bg-card border-border" data-testid={`stat-card-${index}`}>
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-light text-foreground tracking-tight mb-1">{stat.claim}</h3>
-                      <div className="text-2xl font-light text-foreground tracking-tight mb-2">{stat.value}</div>
-                      {stat.context && (
-                        <p className="text-sm text-muted-foreground mb-3">{stat.context}</p>
-                      )}
-                      {stat.disclaimer && (
-                        <p className="text-xs text-yellow-400/80 italic">{stat.disclaimer}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
+      {/* Key Statistics */}
+      <section className="bg-white px-6 lg:px-10 py-12">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-normal text-foreground tracking-tight mb-8">Key Statistics</h2>
+          <div className="space-y-4">
+            {statistics.map((stat) => {
+              const statSources = getSourcesByStatistic(stat.id);
+              return (
+                <div key={stat.id} className="p-6 bg-background rounded-xl border border-border">
+                  <h3 className="text-[15px] text-foreground mb-1">{stat.claim}</h3>
+                  <div className="text-2xl font-normal text-foreground tracking-tight mb-2">{stat.value}</div>
+                  {stat.context && <p className="text-[13px] text-muted-foreground mb-3">{stat.context}</p>}
+                  {stat.disclaimer && <p className="text-[12px] text-muted-foreground/70 italic mb-3">{stat.disclaimer}</p>}
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
                     {statSources.map((source) => (
-                      <Badge 
-                        key={source.id} 
-                        variant="outline" 
-                        className="text-xs"
-                        data-testid={`source-badge-${source.id}`}
-                      >
+                      <Badge key={source.id} variant="outline" className="text-[11px] border-border text-muted-foreground">
                         {source.organization} ({source.year})
                       </Badge>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Categorized Sources */}
-      <div className="max-w-4xl mx-auto px-4 pb-20">
-        <h2 className="text-3xl font-light text-foreground tracking-tight mb-8">Source Documentation</h2>
-        {Object.entries(groupedSources).map(([category, categorySources]) => (
-          <div key={category} className="mb-12">
-            <h3 className="text-2xl font-light text-foreground tracking-tight mb-6">{category}</h3>
-            <div className="grid gap-4">
-              {categorySources.map((source, index) => {
-                const Icon = typeIcons[source.type];
-                return (
-                  <Card key={source.id} className="bg-card border-border" data-testid={`source-card-${index}`}>
-                    <CardHeader>
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <CardTitle className="text-foreground mb-2">{source.title}</CardTitle>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <span>{source.organization}</span>
-                            <span>•</span>
-                            <span>{source.year}</span>
-                          </div>
-                        </div>
-                        <Badge variant="outline" className={typeColors[source.type]}>
+      <section className="bg-white px-6 lg:px-10 pb-20">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-normal text-foreground tracking-tight mb-8">Source Documentation</h2>
+          {Object.entries(groupedSources).map(([category, categorySources]) => (
+            <div key={category} className="mb-12">
+              <h3 className="text-xl font-normal text-foreground tracking-tight mb-6">{category}</h3>
+              <div className="space-y-4">
+                {categorySources.map((source) => {
+                  const Icon = typeIcons[source.type];
+                  return (
+                    <div key={source.id} className="p-6 bg-background rounded-xl border border-border">
+                      <div className="flex items-start justify-between gap-4 mb-2">
+                        <h4 className="text-[15px] font-medium text-foreground">{source.title}</h4>
+                        <Badge className="bg-border text-secondary-foreground border-0 text-[11px] flex-shrink-0">
                           <Icon className="w-3 h-3 mr-1" />
                           {source.type}
                         </Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground mb-4">{source.description}</p>
+                      <p className="text-[13px] text-muted-foreground mb-3">{source.organization} &middot; {source.year}</p>
+                      <p className="text-[14px] text-secondary-foreground leading-relaxed mb-4">{source.description}</p>
                       {source.url && (
-                        <Button
-                          variant="outline"
-                          size="sm"
+                        <button
                           onClick={() => setSelectedSource(source)}
-                          className="gap-2"
-                          data-testid={`source-link-${source.id}`}
+                          className="text-[13px] text-foreground hover:opacity-60 transition-opacity flex items-center gap-1"
                         >
-                          View Full Source <ExternalLink className="w-4 h-4" />
-                        </Button>
+                          View Source <ExternalLink className="w-3 h-3" />
+                        </button>
                       )}
-                    </CardContent>
-                  </Card>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
-      {/* Methodology */}
-      <div className="max-w-4xl mx-auto px-4 pb-20">
-        <Card className="bg-card border-border">
-          <CardHeader>
-            <CardTitle className="text-foreground text-2xl font-light tracking-tight">Our Research Methodology</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4 text-muted-foreground">
-            <p>
-              We prioritize accuracy and transparency in all our claims. Our research process includes:
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Citing peer-reviewed academic studies (Harvard, MIT) where available</li>
-              <li>Referencing recent industry reports from recognized organizations</li>
-              <li>Using 2024-2025 data to ensure current relevance</li>
-              <li>Providing context and disclaimers for all projections</li>
-              <li>Linking to original sources for verification</li>
-              <li>Updating statistics annually as new research becomes available</li>
-            </ul>
-            <p className="pt-4 text-sm italic">
-              Last updated: November 2025. We review and update our sources quarterly to maintain accuracy.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Source Modal */}
       {selectedSource && (
         <SourceModal
           open={!!selectedSource}

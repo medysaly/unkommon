@@ -5,16 +5,17 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { ThemeProvider } from "@/components/theme-provider";
 import Layout from "@/pages/layout";
 import Home from "@/pages/home";
 import Solutions from "@/pages/solutions";
 import HowItWorks from "@/pages/how-it-works";
 import About from "@/pages/about";
-import Contact from "@/pages/contact";
+import BookACall from "@/pages/book-a-call";
 import Sources from "@/pages/sources";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
 
 function Redirect({ to }: { to: string }) {
@@ -43,10 +44,13 @@ function Router() {
                 <Route path="/solutions" component={Solutions} />
                 <Route path="/how-it-works" component={HowItWorks} />
                 <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
+                <Route path="/book-a-call" component={BookACall} />
                 <Route path="/sources" component={Sources} />
+                <Route path="/privacy" component={Privacy} />
+                <Route path="/terms" component={Terms} />
 
-                {/* Legacy redirects — old product pages → /solutions */}
+                {/* Legacy redirects */}
+                <Route path="/contact">{() => <Redirect to="/book-a-call" />}</Route>
                 <Route path="/ai-receptionist">{() => <Redirect to="/solutions" />}</Route>
                 <Route path="/speed-to-lead">{() => <Redirect to="/solutions" />}</Route>
                 <Route path="/ai-booking-system">{() => <Redirect to="/solutions" />}</Route>
@@ -65,12 +69,10 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }

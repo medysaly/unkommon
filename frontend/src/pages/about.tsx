@@ -1,187 +1,83 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import { CTAButton } from "@/components/CTAButton";
 import { createPageUrl } from "@/lib/utils";
-import "@/styles/pearl-button.css";
-import {
-  ArrowRight,
-  CheckCircle,
-  MapPin,
-} from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black -mt-20">
-      {/* Section 1: Clean Background Hero */}
-      <section
-        className="about-hero relative overflow-hidden min-h-[400px] sm:min-h-[600px] md:min-h-screen pt-20"
-        style={{
-          backgroundImage: "url('/images/backgrounds/About.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <style>{`
-          @media (max-width: 640px) {
-            .about-hero {
-              background-size: auto 300px !important;
-              background-position: top center !important;
-              min-height: 350px !important;
-            }
-          }
-        `}</style>
-      </section>
-
-      {/* Section 2: Core Identity */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+    <div>
+      {/* Hero */}
+      <section className="bg-background px-6 lg:px-10 pt-16 pb-20 md:pt-24 md:pb-28">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">i</span>
+            <span className="text-[13px] text-muted-foreground">Who I Am</span>
+          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-4xl mb-8"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-sm uppercase tracking-wider text-muted-foreground mb-6"
-            >
-              Who We Are
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-8 leading-tight"
-              data-testid="heading-page-title"
-            >
-              They sell you a chatbot. We build you an automated workforce.
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto space-y-6"
-              data-testid="text-hero-description"
-            >
-              <p>
-                Most "AI Agencies" in 2026 are just configuring third-party wrappers and Zapier templates.
-              </p>
-              <p>
-                At <span className="text-foreground font-medium">Unkommon</span>, we don't just "do AI." We engineer production-grade, agentic systems that live inside your core business logic.
-              </p>
-              <p>
-                As a systems-first consultancy, we specialize in bridging the gap between "we tried ChatGPT" and "we have production AI infrastructure." Leveraging AWS and custom ML orchestration, we build high-security, HIPAA-compliant systems for companies with complex data, regulated environments, and workflows that off-the-shelf tools can't handle.
-              </p>
-            </motion.div>
-          </motion.div>
+            They sell you a chatbot. I build you an automated workforce.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
+          >
+            Unkommon is a solo engineering studio. I don't just "do AI." I engineer production-grade, agentic systems that live inside
+            your core business logic. Leveraging AWS and custom ML orchestration, I build high-security,
+            HIPAA-compliant systems for companies with complex data and regulated environments.
+          </motion.p>
         </div>
       </section>
 
-      {/* Section 3: What We Solve */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-5xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground tracking-tight mb-8 leading-tight">
-              We are not marketers. We are systems engineers.
-            </h2>
+      {/* What I Do */}
+      <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4 max-w-3xl">
+            I'm not a marketer. I'm a systems engineer.
+          </h2>
+          <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
+            There is a gold rush in AI right now. Thousands of agencies have sprung up overnight, offering "magic"
+            solutions that are nothing more than thin wrappers around public tools. I don't write prompts; I write code.
+          </p>
 
-            <div className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto space-y-6">
-              <p>
-                There is a gold rush in Artificial Intelligence right now. Thousands of agencies have sprung up overnight, offering "magic" solutions that are nothing more than thin wrappers around public tools.
-              </p>
-              <p className="text-foreground font-medium">
-                We don't just write prompts; we write code.
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-8 bg-background rounded-xl border border-border">
+              <h3 className="text-lg font-medium text-foreground mb-3">Custom RAG Systems</h3>
+              <p className="text-[14px] text-secondary-foreground leading-relaxed">
+                Retrieval-augmented generation pipelines that ground AI outputs in your proprietary data. Vector databases,
+                embedding optimization, and citation tracking.
               </p>
             </div>
-          </motion.div>
-
-          {/* What We Solve Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-16"
-          >
-            <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-tight mb-4">
-                What We Solve
-              </h3>
+            <div className="p-8 bg-background rounded-xl border border-border">
+              <h3 className="text-lg font-medium text-foreground mb-3">AI Agent Development</h3>
+              <p className="text-[14px] text-secondary-foreground leading-relaxed">
+                Multi-agent systems built on LangGraph for complex workflow automation. Document processing,
+                decision logic, state management, and human-in-the-loop escalation.
+              </p>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
-              >
-                <h4 className="text-lg font-semibold text-foreground mb-3">Custom RAG Systems</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Retrieval-augmented generation pipelines that ground AI outputs in your proprietary data. Vector databases, embedding optimization, and citation tracking — so your AI answers from your documents, never hallucinates.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
-              >
-                <h4 className="text-lg font-semibold text-foreground mb-3">AI Agent Development</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Multi-agent systems built on LangGraph for complex workflow automation. Document processing, decision logic, state management, and human-in-the-loop escalation — production agents, not chatbot prototypes.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-foreground/30 transition-all duration-300"
-              >
-                <h4 className="text-lg font-semibold text-foreground mb-3">ML Consulting & Infrastructure</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Architecture design, model selection, evaluation frameworks, and production-grade AWS deployment. From proof-of-concept to scaled infrastructure.
-                </p>
-              </motion.div>
+            <div className="p-8 bg-background rounded-xl border border-border">
+              <h3 className="text-lg font-medium text-foreground mb-3">ML Consulting & Infrastructure</h3>
+              <p className="text-[14px] text-secondary-foreground leading-relaxed">
+                Architecture design, model selection, evaluation frameworks, and production-grade AWS deployment.
+                From proof-of-concept to scaled infrastructure.
+              </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Section 4: What We're Not */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-zinc-50 dark:bg-zinc-900/30">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight mb-4">
-              What We're Not
-            </h2>
-          </motion.div>
-
-          <div className="space-y-5 max-w-2xl mx-auto">
+      {/* What We're Not */}
+      <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-10">
+            What I'm not.
+          </h2>
+          <div className="space-y-5">
             {[
               "Not a SaaS platform you subscribe to",
               "Not a chatbot builder with a drag-and-drop interface",
@@ -194,179 +90,92 @@ export default function About() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-4 text-lg text-muted-foreground"
+                transition={{ delay: i * 0.08 }}
+                className="flex items-start gap-4 text-[17px] text-secondary-foreground"
               >
-                <span className="text-foreground mt-1">—</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2.5 flex-shrink-0" />
                 <span>{item}</span>
               </motion.div>
             ))}
           </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="text-center mt-12 text-xl text-foreground font-medium max-w-3xl mx-auto leading-relaxed"
-          >
-            We're an engineering partner. The systems we build become infrastructure your business runs on.
-          </motion.p>
+          <p className="mt-10 text-[18px] text-foreground font-medium max-w-xl leading-relaxed">
+            I'm an engineering partner. The systems I build become infrastructure your business runs on.
+          </p>
         </div>
       </section>
 
-      {/* Section 5: The Leadership */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Card className="bg-card border-border hover:shadow-2xl transition-all duration-300">
-              <CardContent className="p-8 md:p-12">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <div className="flex-shrink-0 mx-auto md:mx-0">
-                    <img
-                      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/7a75c6f87_mehdi.jpg"
-                      alt="Mehdi Salhi"
-                      className="w-40 h-40 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-300 border-4 border-foreground/10"
-                      data-testid="img-founder"
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="mb-6">
-                      <h3
-                        className="text-3xl font-light text-foreground tracking-tight mb-2"
-                        data-testid="heading-founder-name"
-                      >
-                        Mehdi Salhi
-                      </h3>
-                      <p className="text-lg text-foreground font-medium mb-4">
-                        Founder & Lead Systems Architect
-                      </p>
-                      <a
-                        href="https://www.linkedin.com/in/mehdi-salhi-work/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
-                        data-testid="link-founder-linkedin"
-                      >
-                        Connect on LinkedIn
-                      </a>
-                    </div>
-
-                    <div className="space-y-4 text-muted-foreground leading-relaxed">
-                      <p>
-                        With a background in Computer Science and a specialization in Cloud Infrastructure and ML engineering, Mehdi built{" "}
-                        <span className="text-foreground font-medium">unkommon</span> to bridge the gap between enterprise-grade AI technology and the companies that need it most.
-                      </p>
-                      <p>
-                        Frustrated by the fragility of off-the-shelf automation tools and the commoditization of "AI agencies," he focuses on designing production-grade, agentic systems built on AWS — with strict standards for HIPAA compliance, latency, and measurable ROI.
-                      </p>
-                      <p>
-                        He leads the engineering strategy, ensuring every deployed system operates with the reliability and security that regulated industries and complex enterprises demand.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section 6: Location */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-20 overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <MapPin className="w-6 h-6 text-foreground" />
-              <h2 className="text-3xl md:text-4xl font-light text-foreground tracking-tight">
-                Based in Stamford, CT.
-              </h2>
-            </div>
-
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Engineering the future of SMB operations. We understand regulated industries, the importance of compliance, and the speed of enterprise AI adoption. When you hire Unkommon, you're hiring a partner within your time zone.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section 7: Closing CTA */}
-      <section className="px-4 sm:px-6 lg:px-8 py-32 relative overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-5xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight mb-12 leading-tight"
-              data-testid="heading-cta"
-            >
-              Stop settling for off-the-shelf AI.
-              <br />
-              Let's engineer a system that works.
-            </motion.h2>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <button
-                className="pearl-button"
-                data-testid="button-book-audit"
-                onClick={() => (window.location.href = createPageUrl("Contact"))}
+      {/* Bio */}
+      <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <h3 className="text-2xl font-normal tracking-tight mb-1">Mehdi Salhi</h3>
+              <p className="text-[14px] text-white/60 mb-8">Founder & Lead Engineer</p>
+              <div className="space-y-4 text-[15px] text-white/60 leading-relaxed">
+                <p>
+                  I built Unkommon because I kept seeing the same problem: companies spending months with AI agencies
+                  and getting nothing that works in production. Chatbot demos that impressed in meetings but broke on
+                  real data. RAG systems that hallucinated. Agents that couldn't handle edge cases.
+                </p>
+                <p>
+                  So I started building the systems myself. Every RAG pipeline, every multi-agent workflow, every AWS
+                  deployment. I design, build, and ship it personally. No account managers. No junior devs learning
+                  on your project. When you work with Unkommon, you work with me.
+                </p>
+                <p className="text-white/80">
+                  Background: Computer Science (SNHU), AWS cloud infrastructure, Python/LangChain/LangGraph, production ML systems. Based in Stamford, CT.
+                </p>
+              </div>
+              <a
+                href="https://www.linkedin.com/in/mehdi-salhi-work/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[14px] text-white mt-6 hover:opacity-70 transition-opacity"
               >
-                <div className="wrap">
-                  <p>
-                    <span>✦</span>
-                    Book an Architecture Review
-                    <ArrowRight className="w-5 h-5" />
-                  </p>
-                </div>
-              </button>
-            </motion.div>
+                Connect on LinkedIn
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f71348cde45a754e241ed6/7a75c6f87_mehdi.jpg"
+                alt="Mehdi Salhi, Founder and Engineer at Unkommon"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-xl object-cover grayscale"
+                width={320}
+                height={320}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
-            >
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-foreground" />
-                <span>Free Consultation</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-foreground" />
-                <span>HIPAA-Compliant</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-foreground" />
-                <span>Stamford, CT Based</span>
-              </div>
-            </motion.div>
-          </motion.div>
+      {/* Location */}
+      <section className="bg-background px-6 lg:px-10 py-20 md:py-24">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <MapPin className="w-5 h-5 text-foreground" />
+            <h2 className="text-2xl md:text-3xl font-normal text-foreground tracking-tight">
+              Based in Stamford, CT.
+            </h2>
+          </div>
+          <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-xl mx-auto">
+            US-based. Available for remote engagements worldwide.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
+            Stop settling for off-the-shelf AI.
+            <br />
+            Let's engineer a system that works.
+          </h2>
+          <CTAButton href={createPageUrl("BookACall")} variant="light" className="mt-4">
+            Book a free 30-minute call
+          </CTAButton>
         </div>
       </section>
     </div>

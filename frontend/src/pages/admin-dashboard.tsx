@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast";
 import "@/lib/amplify-config";
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod';
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Lead {
   id: number;
@@ -45,10 +45,11 @@ export default function AdminDashboard() {
     }
   };
 
-  const getAuthToken = () => {
-    const key = import.meta.env.VITE_ADMIN_API_KEY;
-    if (!key) throw new Error("No admin API key configured");
-    return key;
+  const getAuthToken = async () => {
+    const session = await fetchAuthSession();
+    const idToken = session.tokens?.idToken?.toString();
+    if (!idToken) throw new Error("Not authenticated");
+    return idToken;
   };
 
   const fetchLeads = async () => {

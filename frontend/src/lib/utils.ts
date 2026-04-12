@@ -12,8 +12,9 @@ export function createPageUrl(pageName: string): string {
     'Solutions': '/solutions',
     'HowItWorks': '/how-it-works',
     'About': '/about',
-    'Contact': '/contact',
-    // Legacy aliases — old product pages redirect to /solutions
+    'BookACall': '/book-a-call',
+    'Contact': '/book-a-call',
+    // Legacy aliases
     'AIReceptionist': '/solutions',
     'SpeedToLead': '/solutions',
     'AIBookingSystem': '/solutions',

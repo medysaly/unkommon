@@ -1,0 +1,319 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Unkommon Backend - Serverless API for Contact Form
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: python3.13
+    Architectures:
+      - x86_64
+
+Parameters:
+  SesFromEmail:
+    Type: String
+    Description: SES verified FROM email address
+    Default: contact@unkommon.ai
+
+  SesToEmail:
+    Type: String
+    Description: SES TO email address (where leads go)
+    Default: sales@unkommon.ai
+
+  CognitoUserPoolId:
+    Type: String
+    Description: Cognito User Pool ID for admin authentication
+    NoEcho: true
+
+  VapiWebhookSecret:
+    Type: String
+    Description: Secret token for Vapi webhook validation (REQUIRED)
+    NoEcho: true
+
+  ResendApiKey:
+    Type: String
+    Description: Resend API key for sending emails
+    NoEcho: true
+
+Resources:
+  # API Gateway
+  UnkommonApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      MethodSettings:
+        - ResourcePath: '/*'
+          HttpMethod: '*'
+          ThrottlingBurstLimit: 20
+          ThrottlingRateLimit: 10
+      Cors:
+        AllowMethods: '''GET,POST,DELETE,OPTIONS'''
+        AllowHeaders: '''Content-Type,Authorization'''
+        AllowOrigin: '''https://unkommon.ai'''
+
+  # DynamoDB Table for Conversations
+  ConversationsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: unkommon-conversations
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: conversationId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: conversationId
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      Tags:
+        - Key: Project
+          Value: Unkommon
+
+  # DynamoDB Table for Leads
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: unkommon-leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: leadId
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: N
+      KeySchema:
+        - AttributeName: leadId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: CreatedAtIndex
+          KeySchema:
+            - AttributeName: createdAt
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: Unkommon
+        - Key: Environment
+          Value: Production
+
+      
+
+
+  # Contact Form Lambda Function
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: contact_form/
+      Handler: app.lambda_handler
+      Description: Contact form submission handler - sends email via SES
+      Environment:
+        Variables:
+          SES_FROM_EMAIL: !Ref SesFromEmail
+          SES_TO_EMAIL: !Ref SesToEmail
+          LEADS_TABLE_NAME: !Ref LeadsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: !Sub 'arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/*'
+      Events:
+        ContactApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/contact
+            Method: POST
+
+  # Chatbot Lambda Function
+  ChatbotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: chatbot/
+      Handler: app.lambda_handler
+      Timeout: 120
+      MemorySize: 256
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+          CONVERSATIONS_TABLE_NAME: !Ref ConversationsTable
+          CALENDAR_API_URL: https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ConversationsTable
+        - Statement:
+          - Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+              - bedrock:InvokeModelWithResponseStream
+            Resource:
+              - !Sub 'arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-*'
+              - !Sub 'arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*anthropic.claude-*'
+      Events:
+        ChatApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/chat
+            Method: POST
+
+
+  # Leads API Lambda Function
+  LeadsApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: leads_api/
+      Handler: app.lambda_handler
+      Description: Leads API - returns all leads for dashboard
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+          COGNITO_USER_POOL_ID: !Ref CognitoUserPoolId
+          COGNITO_REGION: !Ref AWS::Region
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+      Events:
+        GetLeads:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/leads
+            Method: GET
+        DeleteLeads:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/leads
+            Method: DELETE
+
+  # Vapi Webhook Function
+  VapiWebhookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: vapi_webhook/
+      Handler: app.lambda_handler
+      Environment:
+        Variables:
+          LEADS_TABLE_NAME: !Ref LeadsTable
+          VAPI_WEBHOOK_SECRET: !Ref VapiWebhookSecret
+          RESEND_API_KEY: !Ref ResendApiKey
+          CALENDAR_API_URL: https://pqg65kdk63.execute-api.us-east-1.amazonaws.com/Prod/api/calendar
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+      Events:
+        VapiWebhook:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/vapi-webhook
+            Method: POST
+  # Calendar API Function
+  CalendarApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: calendar_api/
+      Handler: app.lambda_handler
+      Timeout: 30
+      Environment:
+        Variables:
+          GOOGLE_CALENDAR_SECRET: unkommon/google-calendar
+          RESEND_API_KEY: !Ref ResendApiKey
+      Policies:
+        - Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+            Resource: !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:unkommon/google-calendar*
+      Events:
+        GetAvailability:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/calendar/availability
+            Method: GET
+        BookAppointment:
+          Type: Api
+          Properties:
+            RestApiId: !Ref UnkommonApi
+            Path: /api/calendar/book
+            Method: POST
+
+  # WAF - Per-IP Rate Limiting
+  ApiWafWebACL:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: unkommon-api-waf
+      Scope: REGIONAL
+      DefaultAction:
+        Allow: {}
+      Description: Per-IP rate limiting for Unkommon API
+      VisibilityConfig:
+        SampledRequestsEnabled: true
+        CloudWatchMetricsEnabled: true
+        MetricName: UnkommonApiWaf
+      Rules:
+        # Global per-IP rate limit: 100 requests per 5 minutes
+        - Name: PerIpRateLimit
+          Priority: 1
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              Limit: 100
+              AggregateKeyType: IP
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: PerIpRateLimit
+        # Stricter limit on chatbot endpoint: 30 requests per 5 minutes
+        - Name: ChatbotRateLimit
+          Priority: 2
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              Limit: 30
+              AggregateKeyType: IP
+              ScopeDownStatement:
+                ByteMatchStatement:
+                  SearchString: /api/chat
+                  FieldToMatch:
+                    UriPath: {}
+                  TextTransformations:
+                    - Priority: 0
+                      Type: LOWERCASE
+                  PositionalConstraint: CONTAINS
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: ChatbotRateLimit
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod
+
+  ContactFormEndpoint:
+    Description: Contact Form API endpoint
+    Value: !Sub https://${UnkommonApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/contact
+
+  ContactFormFunctionArn:
+    Description: Contact Form Lambda Function ARN
+    Value: !GetAtt ContactFormFunction.Arn
+
+  WafWebACLArn:
+    Description: WAF WebACL ARN - associate with API Gateway after deploy
+    Value: !GetAtt ApiWafWebACL.Arn
+
+  ApiStageArn:
+    Description: API Gateway Stage ARN for WAF association
+    Value: !Sub arn:aws:apigateway:${AWS::Region}::/restapis/${UnkommonApi}/stages/Prod
+

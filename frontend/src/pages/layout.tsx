@@ -1,47 +1,59 @@
 import { Link, useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin, Shield, Lock } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
+import { CTAButton } from "@/components/CTAButton";
 import ChatWidget from "@/components/ChatWidget";
-import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Home", href: createPageUrl("Home") },
     { name: "Solutions", href: createPageUrl("Solutions") },
     { name: "How It Works", href: createPageUrl("HowItWorks") },
     { name: "About", href: createPageUrl("About") },
+    { name: "Book a Call", href: createPageUrl("BookACall") },
   ];
 
   const isActive = (href: string) => location === href;
 
   return (
-    <div className="min-h-screen bg-black text-foreground">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4">
-        <nav className="max-w-7xl mx-auto">
-          <div className="flex items-center h-16 px-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-lg">
-            {/* Logo - Left */}
-            <div className="flex-1">
-              <Link href={createPageUrl("Home")} data-testid="link-logo">
-                <div className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
-                  <img src="/favicon.svg" alt="Unkommon" className="w-10 h-10 rounded-xl object-contain" />
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Skip to content */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-foreground focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:text-sm"
+      >
+        Skip to content
+      </a>
 
-                  <span className="text-xl font-black tracking-tight uppercase text-foreground">Unkommon</span>
-                </div>
-              </Link>
-            </div>
+      {/* Navigation */}
+      <header className="sticky top-0 z-50 bg-background border-b border-border">
+        <nav className="max-w-[1400px] mx-auto px-6 lg:px-10" aria-label="Main navigation">
+          <div className="flex items-center justify-between h-[68px]">
+            {/* Logo */}
+            <Link href={createPageUrl("Home")}>
+              <div className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity">
+                <img
+                  src="/new_logo.png"
+                  alt="Unkommon"
+                  className="w-7 h-7 object-contain invert"
+                  width={28}
+                  height={28}
+                />
+                <span className="text-[15px] font-semibold tracking-tight uppercase text-foreground">
+                  Unkommon
+                </span>
+              </div>
+            </Link>
 
             {/* Desktop Navigation - Center */}
-            <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
+            <div className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
-                <Link key={item.name} href={item.href} data-testid={`link-nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                <Link key={item.name} href={item.href}>
                   <span
-                    className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
+                    className={`text-[14px] font-normal transition-colors cursor-pointer hover:text-foreground ${
                       isActive(item.href) ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
@@ -49,41 +61,39 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </span>
                 </Link>
               ))}
-              <Button
-                size="sm"
-                data-testid="button-get-started"
-                onClick={() => window.location.href = createPageUrl("Contact")}
-                className="bg-white hover:bg-zinc-100 text-black"
-              >
-                Book a Call
-              </Button>
             </div>
 
-            <div className="flex-1 flex justify-end items-center gap-4">
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden p-2 rounded-md hover:bg-white/10 transition-colors text-foreground"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                data-testid="button-mobile-menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
+            {/* CTA Button */}
+            <div className="hidden md:block">
+              <CTAButton href={createPageUrl("BookACall")}>
+                Let's talk
+              </CTAButton>
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden p-2 rounded-md hover:bg-foreground/5 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-foreground" />
+              ) : (
+                <Menu className="w-5 h-5 text-foreground" />
+              )}
+            </button>
           </div>
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-2 py-4 px-6 bg-zinc-900 border border-white/10 rounded-2xl shadow-lg">
-              <div className="flex flex-col space-y-4">
+            <div className="md:hidden py-6 border-t border-border">
+              <div className="flex flex-col gap-4">
                 {navigation.map((item) => (
-                  <Link key={item.name} href={item.href} data-testid={`link-mobile-nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Link key={item.name} href={item.href}>
                     <span
-                      className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                        isActive(item.href) ? "text-primary" : "text-muted-foreground"
+                      className={`text-[15px] font-normal transition-colors cursor-pointer block ${
+                        isActive(item.href) ? "text-foreground" : "text-muted-foreground"
                       }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -91,17 +101,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </span>
                   </Link>
                 ))}
-
-                <Button
-                  className="w-full"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    window.location.href = createPageUrl("Contact");
-                  }}
-                  data-testid="button-mobile-get-started"
-                >
-                  Book a Call
-                </Button>
+                <div className="mt-2" onClick={() => setMobileMenuOpen(false)}>
+                  <CTAButton href={createPageUrl("BookACall")}>
+                    Let's talk
+                  </CTAButton>
+                </div>
               </div>
             </div>
           )}
@@ -109,99 +113,126 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Main Content */}
-      <main className="pt-16">{children}</main>
+      <main id="main">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t border-border mt-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Company Info */}
-            <div className="col-span-1 md:col-span-2">
-              <div className="mb-3">
-                <span className="text-lg font-semibold">Unkommon</span>
-              </div>
-              <p className="text-muted-foreground mb-4 max-w-md text-sm">
-                Custom AI/ML engineering for companies that need more than off-the-shelf.
-              </p>
-              <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4" />
-                  <span>+1 (203) 680-9629</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4" />
-                  <span>contact@unkommon.ai</span>
-                </div>
-              </div>
+      <footer className="bg-black text-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {/* Left Side - CTA */}
+            <div>
+              <p className="text-white/60 text-sm mb-2">Work with us</p>
+              <h3 className="text-2xl md:text-3xl font-normal tracking-tight leading-snug mb-8">
+                Start with a free, thirty minute
+                <br />
+                architecture review call.
+              </h3>
+              <CTAButton href={createPageUrl("BookACall")} variant="light">
+                Let's talk
+              </CTAButton>
             </div>
 
-            {/* Solutions */}
-            <div>
-              <h3 className="font-semibold mb-3 text-sm">Solutions</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href={createPageUrl("Solutions")} data-testid="link-footer-solutions">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      All Solutions
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={createPageUrl("HowItWorks")} data-testid="link-footer-how-it-works">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      How It Works
-                    </span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div>
-              <h3 className="font-semibold mb-3 text-sm">Company</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href={createPageUrl("About")} data-testid="link-footer-about">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      About Us
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={createPageUrl("Contact")} data-testid="link-footer-contact">
-                    <span className="hover:text-primary transition-colors cursor-pointer">
-                      Contact
-                    </span>
-                  </Link>
-                </li>
-              </ul>
+            {/* Right Side - Links */}
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 mb-4">
+                  Social
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/unkommon-ai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/unkommon.ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:contact@unkommon.ai"
+                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      Email
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 mb-4">
+                  Company
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link href={createPageUrl("About")}>
+                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
+                        About
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={createPageUrl("BookACall")}>
+                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
+                        Book a Call
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/sources">
+                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
+                        Sources
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/privacy">
+                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
+                        Privacy Policy
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/terms">
+                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
+                        Terms of Service
+                      </span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          {/* Compliance Bar */}
-          <div className="border-t border-border mt-8 pt-6">
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-6">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Shield className="w-4 h-4 flex-shrink-0" />
-                <span>Architecture aligned with <span className="text-foreground font-medium">HIPAA</span></span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Lock className="w-4 h-4 flex-shrink-0" />
-                <span>Architecture aligned with <span className="text-foreground font-medium">SOC 2</span></span>
-              </div>
+          {/* Bottom Bar */}
+          <div className="mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <img
+                src="/new_logo.png"
+                alt="Unkommon"
+                className="w-10 h-10 object-contain"
+                width={40}
+                height={40}
+              />
             </div>
-          </div>
-
-          <div className="border-t border-border pt-6 text-center">
-            <div className="flex justify-center mb-6">
-              <SocialMediaIcons />
-            </div>
-            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Unkommon. All rights reserved.</p>
+            <p className="text-[13px] text-white/40">
+              &copy; {new Date().getFullYear()} Unkommon. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
 
-      {/* AI Chatbot Widget - Appears on all pages */}
+      {/* AI Chatbot Widget */}
       <ChatWidget />
     </div>
   );
