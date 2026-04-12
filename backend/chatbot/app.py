@@ -1,5 +1,6 @@
 import json
 import re
+import time
 import boto3
 import os
 import uuid
@@ -7,6 +8,47 @@ import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from boto3.dynamodb.conditions import Attr
+
+
+# Prompt injection detection patterns
+INJECTION_PATTERNS = [
+    r'ignore\s+(all\s+)?(previous|prior|above|earlier)\s+(instructions|prompts|rules)',
+    r'disregard\s+(your|all|any)\s+(instructions|rules|guidelines|prompt)',
+    r'(you\s+are|act\s+as|pretend\s+(to\s+be|you\'?re)|role\s*-?\s*play\s+as)\s+(DAN|evil|unfiltered|jailbreak)',
+    r'(reveal|show|output|print|display|repeat|echo)\s+(your|the)\s+(system\s+)?(prompt|instructions|rules)',
+    r'translate\s+(your|the)\s+(system\s+)?(prompt|instructions)\s+(to|into)',
+    r'(what|tell\s+me)\s+(are|were)\s+your\s+(initial|system|original)\s+(instructions|prompt|rules)',
+    r'(encode|base64|hex|rot13|reverse)\s+(your|the)\s+(prompt|instructions)',
+    r'\bsystem\s*:\s*',
+    r'\b(ADMIN|OVERRIDE|SUDO|ROOT)\s*(MODE|ACCESS|COMMAND)',
+]
+_compiled_injection_patterns = [re.compile(p, re.IGNORECASE) for p in INJECTION_PATTERNS]
+
+
+def check_prompt_injection(message):
+    """Return True if the message contains prompt injection patterns."""
+    for pattern in _compiled_injection_patterns:
+        if pattern.search(message):
+            return True
+    return False
+
+
+# Global hourly request budget (prevents multi-IP cost abuse)
+HOURLY_REQUEST_BUDGET = 200  # max total chatbot requests per hour across all users
+_request_counter = {'count': 0, 'window_start': 0}
+
+
+def check_global_budget():
+    """Return True if within budget, False if hourly budget is exceeded."""
+    now = time.time()
+    window = 3600  # 1 hour
+    if now - _request_counter['window_start'] > window:
+        _request_counter['count'] = 0
+        _request_counter['window_start'] = now
+    if _request_counter['count'] >= HOURLY_REQUEST_BUDGET:
+        return False
+    _request_counter['count'] += 1
+    return True
 
 
 # Initialize Bedrock client
@@ -399,6 +441,32 @@ def lambda_handler(event, context):
         body = json.loads(event['body']) if isinstance(event.get('body'), str) else event.get('body', {})
         
         user_message = body.get('message', '').strip()[:2000]
+
+        # Global hourly budget check (prevents multi-IP cost abuse)
+        if not check_global_budget():
+            return {
+                'statusCode': 429,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                },
+                'body': json.dumps({'error': 'Service is temporarily busy. Please try again in a few minutes.'})
+            }
+
+        # Prompt injection detection
+        if check_prompt_injection(user_message):
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'https://unkommon.ai'
+                },
+                'body': json.dumps({
+                    'response': "I'm here to help you learn about Unkommon's AI engineering services. What can I help you with?",
+                    'conversationId': body.get('conversationId', str(uuid.uuid4())),
+                    'timestamp': int(datetime.now().timestamp() * 1000)
+                })
+            }
 
         # Validate conversationId is a valid UUID format
         raw_cid = body.get('conversationId', '')
