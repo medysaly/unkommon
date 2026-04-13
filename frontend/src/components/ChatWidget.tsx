@@ -343,7 +343,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
                     placeholder="Type your message..."
                     disabled={isLoading}
                     rows={1}
-                    className="flex-1 bg-background text-foreground placeholder-muted-foreground border border-border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 transition-colors text-[13px] resize-none overflow-y-auto"
+                    className="flex-1 min-w-0 bg-background text-foreground placeholder-muted-foreground border border-border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 transition-colors text-[13px] resize-none overflow-y-auto break-words"
                     style={{ maxHeight: 120 }}
                     aria-label="Type your message"
                   />
