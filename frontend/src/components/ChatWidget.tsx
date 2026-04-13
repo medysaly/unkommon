@@ -22,7 +22,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
   const [conversationId, setConversationId] = useState<string | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const API_URL = apiEndpoint || import.meta.env.VITE_API_URL;
@@ -97,6 +97,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
 
     setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
+    if (inputRef.current) inputRef.current.style.height = 'auto';
     setIsLoading(true);
 
     try {
@@ -324,20 +325,26 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
               {/* Input */}
               <div className="p-4 border-t border-border pb-[calc(1rem+env(safe-area-inset-bottom))]">
                 <div className="flex gap-2 items-end">
-                  <input
+                  <textarea
                     ref={inputRef}
-                    type="text"
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                      e.target.style.height = 'auto';
+                      e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
                         handleSend();
+                        if (inputRef.current) inputRef.current.style.height = 'auto';
                       }
                     }}
                     placeholder="Type your message..."
                     disabled={isLoading}
-                    className="flex-1 bg-background text-foreground placeholder-muted-foreground border border-border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 transition-colors text-[13px]"
+                    rows={1}
+                    className="flex-1 bg-background text-foreground placeholder-muted-foreground border border-border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 transition-colors text-[13px] resize-none overflow-y-auto"
+                    style={{ maxHeight: 120 }}
                     aria-label="Type your message"
                   />
                   <button
