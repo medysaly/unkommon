@@ -1,6 +1,6 @@
 # Unkommon
 
-Custom AI/ML engineering studio — production-grade AI systems on AWS.
+Custom AI/ML engineering studio. Production-grade AI systems on AWS.
 
 ![React](https://img.shields.io/badge/React_18-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -14,18 +14,18 @@ Custom AI/ML engineering studio — production-grade AI systems on AWS.
 
 ```
 Browser
-  │
-  ├── React SPA (AWS Amplify)
-  │     ├── AI Chatbot with streaming SSE
-  │     ├── Voice AI demo (Vapi)
-  │     └── Admin dashboard (Cognito auth)
-  │
-  └── API Gateway (WAF rate-limited)
-        ├── POST /api/chat ──────── Claude on Bedrock (tool-calling)
-        ├── GET/POST /api/calendar ─ Google Calendar API
-        ├── GET/DELETE /api/leads ── DynamoDB (Cognito-protected)
-        ├── POST /api/vapi-webhook ─ HMAC-verified voice webhooks
-        └── POST /api/contact ───── SES transactional email
+  |
+  |-- React SPA (AWS Amplify)
+  |     |-- AI Chatbot with tool-calling
+  |     |-- Calendar booking integration
+  |     +-- Admin dashboard (Cognito auth)
+  |
+  +-- API Gateway (WAF rate-limited)
+        |-- POST /api/chat -------- Claude on Bedrock (tool-calling)
+        |-- GET/POST /api/calendar - Google Calendar API
+        |-- GET/DELETE /api/leads -- DynamoDB (Cognito-protected)
+        |-- POST /api/vapi-webhook - HMAC-verified voice webhooks
+        +-- POST /api/contact ----- SES transactional email
 ```
 
 ```mermaid
@@ -35,26 +35,24 @@ graph LR
     C --> D[Chatbot Lambda]
     C --> E[Calendar Lambda]
     C --> F[Leads Lambda]
-    C --> G[Vapi Webhook Lambda]
+    C --> G[Webhook Lambda]
     D --> H[AWS Bedrock - Claude]
     D --> I[DynamoDB]
     E --> J[Google Calendar]
     F --> I
     G --> I
     D -->|tool calls| E
-    B --> K[Lambda Function URL]
-    K --> D
 ```
 
 ## Features
 
-**AI Chatbot** — Conversational assistant powered by Claude (Sonnet 4.5 / Haiku 4.5) on AWS Bedrock. Supports multi-turn conversations with DynamoDB persistence (24h TTL), real-time streaming via SSE through Lambda Function URLs, and tool-calling for calendar availability checks and appointment booking.
+**AI Chatbot.** Conversational assistant powered by Claude (Sonnet 4.5 / Haiku 4.5) on AWS Bedrock. Supports multi-turn conversations with DynamoDB persistence (24h TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global request budget to cap Bedrock costs.
 
-**Voice AI** — Inbound phone receptionist via Vapi with HMAC-verified webhooks, automatic lead capture, and calendar integration. Processes end-of-call reports to extract structured data (name, email, phone) and book follow-up appointments.
+**Calendar Integration.** Google Calendar API with service account domain-wide delegation. Checks real-time availability, books appointments with conflict detection, generates Google Meet links, and sends branded HTML confirmation emails via Resend.
 
-**Calendar Integration** — Google Calendar API with service account domain-wide delegation. Checks real-time availability, books appointments with conflict detection, generates Google Meet links, and sends branded HTML confirmation emails via Resend.
+**Admin Dashboard.** Cognito-authenticated leads management interface. JWT validation at the Lambda level. Full CRUD on lead data with stats aggregation.
 
-**Admin Dashboard** — Cognito-authenticated leads management interface. JWT validation at the Lambda level. Full CRUD on lead data with stats aggregation.
+**Webhook Processing.** Inbound voice call webhook handler with HMAC signature verification (fail-closed). Extracts structured data from call reports (name, email, phone), saves leads, and triggers follow-up emails.
 
 ## Tech Stack
 
@@ -65,8 +63,8 @@ graph LR
 | Tailwind CSS | AWS Bedrock (Claude) | DynamoDB (2 tables) |
 | Framer Motion | Google Calendar API | AWS Cognito |
 | Radix UI / shadcn | Resend (email) | AWS Secrets Manager |
-| Wouter (routing) | Vapi AI (voice) | AWS Amplify (hosting) |
-| Three.js (globe) | boto3 / requests | SES (transactional email) |
+| Wouter (routing) | boto3 / requests | AWS Amplify (hosting) |
+| Three.js (globe) | | SES (transactional email) |
 
 ## Project Structure
 
@@ -83,11 +81,11 @@ graph LR
 │
 ├── backend/                 AWS SAM serverless API
 │   ├── chatbot/             AI chatbot (Bedrock + tool-calling)
-│   │   ├── app.py           Standard request handler
+│   │   ├── app.py           Request handler with injection detection
 │   │   └── stream.py        SSE streaming handler
 │   ├── calendar_api/        Google Calendar integration
 │   ├── leads_api/           Admin dashboard API (Cognito JWT auth)
-│   ├── vapi_webhook/        Voice call webhook processor
+│   ├── vapi_webhook/        Webhook processor (HMAC-verified)
 │   ├── contact_form/        Contact form handler
 │   └── template.yaml        SAM infrastructure definition
 │
@@ -128,13 +126,14 @@ Required SAM parameters: `VapiWebhookSecret`, `ResendApiKey`, `CognitoUserPoolId
 
 This project implements defense-in-depth:
 
-- **Authentication** — Cognito JWT validation on admin endpoints, HMAC signature verification on webhooks
-- **Rate limiting** — AWS WAF per-IP rules (100 req/5min global, 30 req/5min on chatbot), plus application-level rate limiting on booking
-- **Input validation** — Server-side tool parameter validation independent of LLM output, UUID format enforcement, email/date/phone regex validation
-- **CORS** — Restricted to production origin (not wildcard)
-- **Headers** — HSTS, CSP, X-Frame-Options: DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy
-- **Secrets** — AWS Secrets Manager for credentials, SAM NoEcho parameters, no hardcoded secrets
-- **Data** — DynamoDB parameterized queries, HTML escaping in email templates, 24h TTL on conversation data
+- **Authentication.** Cognito JWT validation on admin endpoints, HMAC signature verification on webhooks
+- **Rate limiting.** AWS WAF per-IP rules (100 req/5min global, 30 req/5min on chatbot), plus application-level rate limiting on booking and a global hourly request budget
+- **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, hardened system prompt with anti-injection rules
+- **Input validation.** UUID format enforcement, email/date/phone regex validation, message length limits
+- **CORS.** Dynamic origin matching for production domains (not wildcard)
+- **Headers.** HSTS, CSP, X-Frame-Options: DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy
+- **Secrets.** AWS Secrets Manager for credentials, SAM NoEcho parameters, no hardcoded secrets
+- **Data.** DynamoDB parameterized queries, HTML escaping in email templates, 24h TTL on conversation data
 
 ## Deployment
 
