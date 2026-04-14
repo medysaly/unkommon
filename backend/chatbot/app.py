@@ -519,7 +519,17 @@ def lambda_handler(event, context):
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": 1000,
-            "system": f"Today is {today}.\n\nCALENDAR REFERENCE (use for date conversion):\n{calendar_reference}\n\n{SYSTEM_PROMPT}",
+            "system": [
+                {
+                    "type": "text",
+                    "text": SYSTEM_PROMPT,
+                    "cache_control": {"type": "ephemeral"}
+                },
+                {
+                    "type": "text",
+                    "text": f"Today is {today}.\n\nCALENDAR REFERENCE (use for date conversion):\n{calendar_reference}"
+                }
+            ],
             "messages": messages,
             "tools": TOOLS,
             "temperature": 0.7
