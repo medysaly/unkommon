@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { createPageUrl } from "@/lib/utils";
 
 const services = [
   {
+    slug: "rag-systems",
     title: "AI That Knows Your Business",
     subtitle: "Custom RAG Systems",
     description:
@@ -13,6 +16,7 @@ const services = [
     outcome: "Stop paying employees to dig through documents. Your team and customers get instant answers from your data.",
   },
   {
+    slug: "ai-agents",
     title: "Agents That Do The Work",
     subtitle: "AI Agent Development",
     description:
@@ -22,6 +26,7 @@ const services = [
     outcome: "Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.",
   },
   {
+    slug: "ml-consulting",
     title: "Know Where AI Actually Fits",
     subtitle: "ML Consulting & Strategy",
     description:
@@ -31,6 +36,7 @@ const services = [
     outcome: "Know exactly where AI saves money in your business before you spend a dollar building.",
   },
   {
+    slug: "ai-infrastructure",
     title: "Ship AI Without Breaking Production",
     subtitle: "AI Infrastructure & Deployment",
     description:
@@ -40,6 +46,7 @@ const services = [
     outcome: "Ship with confidence. We handle the infrastructure so you don't wake up to 3am outages.",
   },
   {
+    slug: "voice-ai",
     title: "Answer Every Customer, 24/7",
     subtitle: "Chatbots & Voice AI",
     description:
@@ -49,6 +56,7 @@ const services = [
     outcome: "Never miss a lead or a customer question again — without adding a single hire.",
   },
   {
+    slug: "fine-tuning",
     title: "AI That Speaks Your Industry",
     subtitle: "Fine-tuning & Domain Models",
     description:
@@ -196,6 +204,13 @@ export default function Solutions() {
                     ))}
                   </ul>
                 </div>
+                <Link
+                  href={`/solutions/${service.slug}`}
+                  className="mt-6 inline-flex items-center gap-1.5 text-[14px] text-foreground font-medium hover:opacity-60 transition-opacity"
+                >
+                  Learn more about {service.subtitle}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </motion.div>
             ))}
           </div>

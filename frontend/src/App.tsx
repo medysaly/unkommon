@@ -8,6 +8,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import Layout from "@/pages/layout";
 import Home from "@/pages/home";
 import Solutions from "@/pages/solutions";
+import ServiceDetail from "@/pages/service-detail";
 import HowItWorks from "@/pages/how-it-works";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
@@ -42,6 +43,7 @@ function Router() {
               <Switch>
                 <Route path="/" component={Home} />
                 <Route path="/solutions" component={Solutions} />
+                <Route path="/solutions/:slug" component={ServiceDetail} />
                 <Route path="/how-it-works" component={HowItWorks} />
                 <Route path="/about" component={About} />
                 <Route path="/book-a-call" component={BookACall} />

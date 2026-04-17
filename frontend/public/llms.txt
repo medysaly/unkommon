@@ -6,12 +6,12 @@ Unkommon helps businesses save time, cut costs, and scale their operations by bu
 
 ## Services
 
-- [AI That Knows Your Business (Custom RAG Systems)](https://unkommon.ai/solutions): Production RAG systems that turn documents into a searchable, conversational knowledge base. Answers are sourced, cited, and traceable.
-- [Agents That Do The Work (AI Agent Development)](https://unkommon.ai/solutions): Multi-agent systems built on LangChain/LangGraph that automate manual business workflows end-to-end — lead qualification, data processing, scheduling.
-- [Know Where AI Actually Fits (ML Consulting & Strategy)](https://unkommon.ai/solutions): Architecture design, model selection, fine-tuning strategy, and evaluation frameworks across Bedrock, OpenAI, Anthropic, and open-source models.
-- [Ship AI Without Breaking Production (AI Infrastructure & Deployment)](https://unkommon.ai/solutions): Production-grade AWS deployment with ECS/EKS, Lambda, API Gateway, CI/CD, CloudWatch monitoring, and IaC.
-- [Answer Every Customer, 24/7 (Chatbots & Voice AI)](https://unkommon.ai/solutions): AI chatbots and voice agents for web, phone, Telegram, WhatsApp, and SMS. Handles customer questions, bookings, and lead capture around the clock.
-- [AI That Speaks Your Industry (Fine-tuning & Domain Models)](https://unkommon.ai/solutions): Fine-tuned LLMs trained on domain data for dental, legal, real estate, finance, and healthcare verticals.
+- [Custom RAG Systems](https://unkommon.ai/solutions/rag-systems): Production RAG systems that turn documents into a searchable, conversational knowledge base. Answers are sourced, cited, and traceable.
+- [AI Agent Development](https://unkommon.ai/solutions/ai-agents): Multi-agent systems built on LangChain/LangGraph that automate manual business workflows end-to-end — lead qualification, data processing, scheduling.
+- [ML Consulting & Strategy](https://unkommon.ai/solutions/ml-consulting): Architecture design, model selection, fine-tuning strategy, and evaluation frameworks across Bedrock, OpenAI, Anthropic, and open-source models.
+- [AI Infrastructure & Deployment](https://unkommon.ai/solutions/ai-infrastructure): Production-grade AWS deployment with ECS/EKS, Lambda, API Gateway, CI/CD, CloudWatch monitoring, and IaC.
+- [Chatbots & Voice AI](https://unkommon.ai/solutions/voice-ai): AI chatbots and voice agents for web, phone, Telegram, WhatsApp, and SMS. Handles customer questions, bookings, and lead capture around the clock.
+- [Fine-tuning & Domain Models](https://unkommon.ai/solutions/fine-tuning): Fine-tuned LLMs trained on domain data for dental, legal, real estate, finance, and healthcare verticals.
 
 ## Industries
 
@@ -52,7 +52,13 @@ Pricing depends on the complexity of the system being built — data volume, int
 ## Pages
 
 - [Home](https://unkommon.ai/): Overview of services and positioning.
-- [Solutions](https://unkommon.ai/solutions): Detailed breakdown of all six services with capabilities and deliverables.
+- [Solutions](https://unkommon.ai/solutions): Overview of all six services with capabilities and deliverables.
+- [Custom RAG Systems](https://unkommon.ai/solutions/rag-systems): Detailed page on RAG system architecture, tech stack, and industries.
+- [AI Agent Development](https://unkommon.ai/solutions/ai-agents): Detailed page on multi-agent systems and workflow automation.
+- [ML Consulting & Strategy](https://unkommon.ai/solutions/ml-consulting): Detailed page on AI opportunity assessment and architecture.
+- [AI Infrastructure & Deployment](https://unkommon.ai/solutions/ai-infrastructure): Detailed page on AWS MLOps and production deployment.
+- [Chatbots & Voice AI](https://unkommon.ai/solutions/voice-ai): Detailed page on customer-facing AI for web, phone, and messaging.
+- [Fine-tuning & Domain Models](https://unkommon.ai/solutions/fine-tuning): Detailed page on industry-specific LLM fine-tuning.
 - [How It Works](https://unkommon.ai/how-it-works): Five-step engineering process, differentiators, and FAQ.
 - [About](https://unkommon.ai/about): Company positioning and founder background.
 - [Book a Call](https://unkommon.ai/book-a-call): Free 30-minute consultation booking.

@@ -7,6 +7,7 @@ import { HeroBackground } from "@/components/HeroBackground";
 
 const services = [
   {
+    slug: "rag-systems",
     title: "AI That Knows Your Business",
     subtitle: "Custom RAG Systems",
     description: "Retrieval-augmented generation pipelines over your proprietary data. Answers are sourced, cited, and traceable back to your documents.",
@@ -14,6 +15,7 @@ const services = [
     tags: ["Document Ingestion", "Vector Search", "Citation Tracking"],
   },
   {
+    slug: "ai-agents",
     title: "Agents That Do The Work",
     subtitle: "AI Agent Development",
     description: "Multi-agent systems that automate complex workflows. Stateful orchestration, decision logic, and human-in-the-loop escalation.",
@@ -21,6 +23,7 @@ const services = [
     tags: ["LangGraph", "Workflow Orchestration", "Stateful Agents"],
   },
   {
+    slug: "ml-consulting",
     title: "Know Where AI Actually Fits",
     subtitle: "ML Consulting & Strategy",
     description: "Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. From proof-of-concept to production.",
@@ -28,6 +31,7 @@ const services = [
     tags: ["Model Selection", "Architecture Design", "Evaluation"],
   },
   {
+    slug: "ai-infrastructure",
     title: "Ship AI Without Breaking Production",
     subtitle: "AI Infrastructure & Deployment",
     description: "Production-grade deployment on AWS. Containerization, CI/CD, monitoring, auto-scaling, and cost optimization.",
@@ -35,6 +39,7 @@ const services = [
     tags: ["AWS Deployment", "CI/CD", "Auto-Scaling"],
   },
   {
+    slug: "voice-ai",
     title: "Answer Every Customer, 24/7",
     subtitle: "Chatbots & Voice AI",
     description: "AI chatbots and voice agents that handle customer questions, bookings, and lead capture. Web chat, phone answering, or messaging channels.",
@@ -42,6 +47,7 @@ const services = [
     tags: ["Voice AI", "Phone Answering", "Omnichannel"],
   },
   {
+    slug: "fine-tuning",
     title: "AI That Speaks Your Industry",
     subtitle: "Fine-tuning & Domain Models",
     description: "Fine-tuned LLMs trained on your domain data. Dental, legal, real estate, finance, healthcare.",
@@ -89,7 +95,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-4">
             {services.map((service, i) => (
-              <Link key={service.title} href={createPageUrl("Solutions")}>
+              <Link key={service.title} href={`/solutions/${service.slug}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
