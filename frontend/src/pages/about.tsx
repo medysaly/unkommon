@@ -34,43 +34,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* What I Do */}
-      <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4 max-w-3xl">
-            What we do, in three disciplines.
-          </h2>
-          <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            Production AI built on real code, not templates. We ship systems that run in production, handle real users,
-            and solve real business problems.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-8 bg-background rounded-xl border border-border">
-              <h3 className="text-lg font-medium text-foreground mb-3">Custom RAG Systems</h3>
-              <p className="text-[14px] text-secondary-foreground leading-relaxed">
-                Retrieval-augmented generation pipelines that ground AI outputs in your proprietary data. Vector databases,
-                embedding optimization, and citation tracking.
-              </p>
-            </div>
-            <div className="p-8 bg-background rounded-xl border border-border">
-              <h3 className="text-lg font-medium text-foreground mb-3">AI Agent Development</h3>
-              <p className="text-[14px] text-secondary-foreground leading-relaxed">
-                Multi-agent systems built on LangGraph for complex workflow automation. Document processing,
-                decision logic, state management, and human-in-the-loop escalation.
-              </p>
-            </div>
-            <div className="p-8 bg-background rounded-xl border border-border">
-              <h3 className="text-lg font-medium text-foreground mb-3">ML Consulting & Infrastructure</h3>
-              <p className="text-[14px] text-secondary-foreground leading-relaxed">
-                Architecture design, model selection, evaluation frameworks, and production-grade AWS deployment.
-                From proof-of-concept to scaled infrastructure.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* What We're Not */}
       <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto">
