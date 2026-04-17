@@ -4,58 +4,58 @@ import { createPageUrl } from "@/lib/utils";
 
 const services = [
   {
-    title: "Custom RAG Systems",
-    subtitle: "Conversational Knowledge Bases",
+    title: "AI That Knows Your Business",
+    subtitle: "Custom RAG Systems",
     description:
-      "We build production RAG systems that turn your documents into a searchable, conversational AI knowledge base. Your team or customers ask questions in plain language and get accurate, cited answers pulled directly from your data. No hallucinations. No generic responses.",
+      "We build production RAG systems that turn your documents into a searchable, conversational AI knowledge base. Your team or customers ask questions in plain language and get accurate answers pulled directly from your data. Every answer is sourced, cited, and traceable.",
     capabilities: ["Plain-language search across all your documents", "Every answer cited to the source", "Deployed as chat interface or API"],
     deliverables: ["Ingestion pipeline for PDFs, docs, web pages, and databases", "Vector database with embeddings tuned for your domain (Pinecone, pgvector, or ChromaDB)", "Hybrid search with reranking for retrieval accuracy", "Chat UI or API endpoint (your choice)", "Citation tracking on every response"],
-    outcome: "Your team gets accurate answers in seconds, not hours of searching.",
+    outcome: "Stop paying employees to dig through documents. Your team and customers get instant answers from your data.",
   },
   {
-    title: "AI Agent Development",
-    subtitle: "Autonomous Workflow Agents",
+    title: "Agents That Do The Work",
+    subtitle: "AI Agent Development",
     description:
-      "We build AI agents and multi-agent systems that automate your manual business workflows end-to-end. Lead qualification, data processing, scheduling. Your agent reasons, makes decisions, calls APIs, and takes action on your behalf. Not a chatbot. A real agent.",
+      "We build AI agents and multi-agent systems that automate your manual business workflows end-to-end. Lead qualification, data processing, scheduling. Your agent reasons, makes decisions, calls APIs, and takes action on your behalf.",
     capabilities: ["Autonomous decision-making with edge-case handling", "API integrations with your existing tools", "24/7 production deployment on AWS"],
     deliverables: ["Custom agent built for your specific workflow (Python + LangChain/LangGraph)", "Integrations with CRM, email, calendar, and databases", "Encrypted storage, role-based access, full audit logging", "HIPAA-compliant architecture available for healthcare", "Deployed on AWS (EC2, Lambda, RDS) with monitoring"],
-    outcome: "Replace the manual workflows costing you 20+ hours per week.",
+    outcome: "Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.",
   },
   {
-    title: "ML Consulting & Integration",
-    subtitle: "Model Selection & Optimization",
+    title: "Know Where AI Actually Fits",
+    subtitle: "ML Consulting & Strategy",
     description:
-      "Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. Bedrock, OpenAI, Anthropic, and open-source model integration.",
+      "Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. Bedrock, OpenAI, Anthropic, and open-source model integration. We tell you where AI pays off and where it doesn't.",
     capabilities: ["Model selection & benchmarking", "Evaluation framework design", "LLM integration architecture"],
     deliverables: ["Architecture decision document", "Model benchmark report", "Evaluation framework & test suite", "Integration runbook"],
-    outcome: "Know exactly what to build before you spend a dollar building it.",
+    outcome: "Know exactly where AI saves money in your business before you spend a dollar building.",
   },
   {
-    title: "AI Infrastructure & Deployment",
-    subtitle: "Production-Grade on AWS",
+    title: "Ship AI Without Breaking Production",
+    subtitle: "AI Infrastructure & Deployment",
     description:
-      "ECS/EKS containerization, Lambda serverless, API Gateway, CloudWatch observability, and Infrastructure-as-Code via CDK or Terraform.",
+      "ECS/EKS containerization, Lambda serverless, API Gateway, CloudWatch observability, and Infrastructure-as-Code via CDK or Terraform. Your AI runs like the rest of your stack.",
     capabilities: ["AWS-native containerization", "CI/CD & monitoring pipelines", "Auto-scaling & cost optimization"],
     deliverables: ["IaC templates (CDK/Terraform)", "CI/CD pipeline", "CloudWatch dashboards & alerts", "Cost optimization report"],
-    outcome: "Your system runs reliably at scale, not just in a demo.",
+    outcome: "Ship with confidence. We handle the infrastructure so you don't wake up to 3am outages.",
   },
   {
-    title: "Chatbots & Voice AI",
-    subtitle: "Customer-Facing AI Assistants",
+    title: "Answer Every Customer, 24/7",
+    subtitle: "Chatbots & Voice AI",
     description:
       "We build AI chatbots and voice agents that handle customer questions, bookings, and lead capture 24/7. Web chat, phone answering, or embedded in Telegram, WhatsApp, and SMS. Grounded in your knowledge base. Connected to your booking system.",
     capabilities: ["Voice AI for phone answering", "Omnichannel deployment (web, phone, messaging)", "24/7 autonomous operation"],
-    deliverables: ["Web chatbot or voice agent (Vapi, ElevenLabs, Twilio)", "Knowledge base grounding (no hallucinations)", "Booking and lead capture integration", "Human escalation with transcript handoff", "Analytics dashboard for conversation review"],
-    outcome: "Your business answers customers around the clock, books appointments, and captures leads without adding support staff.",
+    deliverables: ["Web chatbot or voice agent (Vapi, ElevenLabs, Twilio)", "Knowledge base grounding with cited sources", "Booking and lead capture integration", "Human escalation with transcript handoff", "Analytics dashboard for conversation review"],
+    outcome: "Never miss a lead or a customer question again — without adding a single hire.",
   },
   {
-    title: "Fine-tuning & Domain Models",
-    subtitle: "Custom LLMs for Your Industry",
+    title: "AI That Speaks Your Industry",
+    subtitle: "Fine-tuning & Domain Models",
     description:
-      "Off-the-shelf models give generic answers. We fine-tune LLMs on your domain data. Dental, legal, real estate, finance, healthcare. So they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.",
+      "Generic models give generic answers. We fine-tune LLMs on your domain data — dental, legal, real estate, finance, healthcare — so they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.",
     capabilities: ["Industry-specific model tuning", "Dataset curation and annotation", "Evaluation against domain benchmarks"],
     deliverables: ["Fine-tuning dataset built from your domain data", "Custom model (LoRA adapter on Claude, GPT-4, or open-source)", "Evaluation suite measuring accuracy on your use cases", "Production deployment with versioning and rollback", "Retraining pipeline for continuous improvement"],
-    outcome: "An AI that actually understands your industry, not one that guesses like a generalist.",
+    outcome: "An AI that actually understands your work, not one that guesses like a generalist.",
   },
 ];
 
@@ -92,7 +92,7 @@ export default function Solutions() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,7vw,5.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-[900px] mb-6"
           >
-            Custom AI/ML Systems for Complex Problems
+            AI that cuts costs, saves hours, and scales with you.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -100,8 +100,7 @@ export default function Solutions() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-muted-foreground mb-10 max-w-2xl leading-relaxed"
           >
-            Bespoke AI systems engineered for your data, your workflows, and your infrastructure.
-            When off-the-shelf tools fall short, we build what's missing.
+            Custom-built AI for your workflows, your data, and your team. From first call to 24/7 production.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -115,67 +114,15 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* What We Build */}
-      <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">1</span>
-            <span className="text-[13px] text-muted-foreground">What We Build</span>
-          </div>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4">
-            Four engineering disciplines.
-          </h2>
-          <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            Each discipline works independently or together, from data pipeline to production deployment.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {services.map((service, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 bg-background rounded-xl border border-border"
-              >
-                <p className="text-[12px] text-muted-foreground uppercase tracking-wider mb-2">{service.subtitle}</p>
-                <h3 className="text-xl font-medium text-foreground mb-3">{service.title}</h3>
-                <p className="text-[15px] text-secondary-foreground leading-relaxed mb-3">{service.description}</p>
-                <p className="text-[15px] text-foreground font-medium mb-6">{service.outcome}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {service.capabilities.map((cap) => (
-                    <span key={cap} className="text-[12px] text-muted-foreground bg-white px-3 py-1 rounded-full border border-border">
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-5 border-t border-border">
-                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium mb-3">Deliverables</p>
-                  <ul className="space-y-1.5">
-                    {service.deliverables.map((d) => (
-                      <li key={d} className="text-[13px] text-secondary-foreground flex items-start gap-2">
-                        <span className="text-foreground mt-0.5">-</span>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases */}
+      {/* Use Cases — moved above services so buyers self-identify first */}
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-black text-[10px]" aria-hidden="true">2</span>
-            <span className="text-[13px] text-white/60">Use Cases</span>
+            <span className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-black text-[10px]" aria-hidden="true">1</span>
+            <span className="text-[13px] text-white/60">Who We Work With</span>
           </div>
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-12 max-w-3xl">
-            Designed for environments where off-the-shelf fails.
+            Does this sound like you?
           </h2>
 
           <div className="space-y-6">
@@ -203,15 +150,66 @@ export default function Solutions() {
         </div>
       </section>
 
+      {/* What We Build */}
+      <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">2</span>
+            <span className="text-[13px] text-muted-foreground">What We Build</span>
+          </div>
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4">
+            How we move your business forward.
+          </h2>
+          <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
+            Six ways we cut costs, save hours, and turn your operations into autopilot. Each one works on its own or combined with the others.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 bg-background rounded-xl border border-border"
+              >
+                <h3 className="text-xl font-medium text-foreground mb-1">{service.title}</h3>
+                <p className="text-[12px] text-muted-foreground uppercase tracking-wider mb-4">{service.subtitle}</p>
+                <p className="text-[15px] text-secondary-foreground leading-relaxed mb-3">{service.description}</p>
+                <p className="text-[15px] text-foreground font-medium mb-6">{service.outcome}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {service.capabilities.map((cap) => (
+                    <span key={cap} className="text-[12px] text-muted-foreground bg-white px-3 py-1 rounded-full border border-border">
+                      {cap}
+                    </span>
+                  ))}
+                </div>
+                <div className="pt-5 border-t border-border">
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium mb-3">Deliverables</p>
+                  <ul className="space-y-1.5">
+                    {service.deliverables.map((d) => (
+                      <li key={d} className="text-[13px] text-secondary-foreground flex items-start gap-2">
+                        <span className="text-foreground mt-0.5">-</span>
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Stop settling for off-the-shelf AI.
+            Find where AI pays off in your business.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Let's engineer a system that solves what off-the-shelf tools can't.
-            Start with a free 30-minute Architecture Review.
+            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue — no pitch, no obligation.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Book a free 30-minute call

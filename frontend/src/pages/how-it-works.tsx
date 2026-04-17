@@ -159,10 +159,10 @@ export default function HowItWorks() {
         <div className="max-w-[1400px] mx-auto">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">!</span>
-            <span className="text-[13px] text-muted-foreground">The Technical Moat</span>
+            <span className="text-[13px] text-muted-foreground">Why This Is Different</span>
           </div>
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-12 max-w-3xl">
-            Three things that make Unkommon different.
+            What you're actually getting.
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">

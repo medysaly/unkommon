@@ -11,7 +11,7 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">i</span>
-            <span className="text-[13px] text-muted-foreground">Who I Am</span>
+            <span className="text-[13px] text-muted-foreground">Who We Are</span>
           </div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -19,7 +19,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-4xl mb-8"
           >
-            They sell you a chatbot. I build you an automated workforce.
+            We build AI that runs your business, not the other way around.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,9 +27,9 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            Unkommon is a solo engineering studio. I don't just "do AI." I engineer production-grade, agentic systems that live inside
-            your core business logic. Leveraging AWS and custom ML orchestration, I build high-security,
-            HIPAA-compliant systems for companies with complex data and regulated environments.
+            Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster.
+            From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build,
+            and deploy AI that does real work. HIPAA-compliant architecture available for healthcare and regulated industries.
           </motion.p>
         </div>
       </section>
@@ -38,11 +38,11 @@ export default function About() {
       <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4 max-w-3xl">
-            I'm not a marketer. I'm a systems engineer.
+            What we do, in three disciplines.
           </h2>
           <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            There is a gold rush in AI right now. Thousands of agencies have sprung up overnight, offering "magic"
-            solutions that are nothing more than thin wrappers around public tools. I don't write prompts; I write code.
+            Production AI built on real code, not templates. We ship systems that run in production, handle real users,
+            and solve real business problems.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -75,7 +75,7 @@ export default function About() {
       <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-10">
-            What I'm not.
+            What we're not.
           </h2>
           <div className="space-y-5">
             {[
@@ -99,7 +99,7 @@ export default function About() {
             ))}
           </div>
           <p className="mt-10 text-[18px] text-foreground font-medium max-w-xl leading-relaxed">
-            I'm an engineering partner. The systems I build become infrastructure your business runs on.
+            We're an engineering partner. The systems we build become infrastructure your business runs on.
           </p>
         </div>
       </section>
@@ -113,17 +113,17 @@ export default function About() {
               <p className="text-[14px] text-white/60 mb-8">Founder & Lead Engineer</p>
               <div className="space-y-4 text-[15px] text-white/60 leading-relaxed">
                 <p>
-                  I built Unkommon because I kept seeing the same problem: companies spending months with AI agencies
+                  Unkommon was founded to fix a recurring problem: companies spending months with AI agencies
                   and getting nothing that works in production. Chatbot demos that impressed in meetings but broke on
-                  real data. RAG systems that hallucinated. Agents that couldn't handle edge cases.
+                  real data. RAG systems that gave wrong answers. Agents that couldn't handle edge cases.
                 </p>
                 <p>
-                  So I started building the systems myself. Every RAG pipeline, every multi-agent workflow, every AWS
-                  deployment. I design, build, and ship it personally. No account managers. No junior devs learning
-                  on your project. When you work with Unkommon, you work with me.
+                  We build production AI systems end-to-end. Every RAG pipeline, every multi-agent workflow, every AWS
+                  deployment is designed, built, and shipped by engineers who write code — not account managers reselling
+                  other people's tools.
                 </p>
                 <p className="text-white/80">
-                  Background: Computer Science (SNHU), AWS cloud infrastructure, Python/LangChain/LangGraph, production ML systems. Based in Stamford, CT.
+                  Based in Stamford, CT. Working with clients across the US and internationally.
                 </p>
               </div>
               <a
@@ -169,9 +169,7 @@ export default function About() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Stop settling for off-the-shelf AI.
-            <br />
-            Let's engineer a system that works.
+            Let's see where AI fits in your business.
           </h2>
           <CTAButton href={createPageUrl("BookACall")} variant="light" className="mt-4">
             Book a free 30-minute call

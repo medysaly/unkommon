@@ -16,7 +16,7 @@ export default function BookACall() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground mb-6"
           >
-            Book a call.
+            Let's see where AI fits in your business.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function BookACall() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="text-[17px] text-muted-foreground max-w-lg mx-auto leading-relaxed"
           >
-            Pick a time for a free 30-minute architecture review. We'll assess your AI opportunity and outline a technical approach.
+            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business — no pitch, no obligation.
           </motion.p>
         </div>
       </section>
@@ -57,6 +57,9 @@ export default function BookACall() {
               onLoad={() => setIframeLoaded(true)}
             />
           </div>
+          <p className="text-[13px] text-muted-foreground text-center mt-6 max-w-xl mx-auto leading-relaxed">
+            You'll get a calendar invite with a Zoom link and a short pre-call questionnaire so we can hit the ground running.
+          </p>
         </div>
       </section>
 
