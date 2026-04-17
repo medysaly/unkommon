@@ -15,7 +15,7 @@ Unkommon helps businesses save time, cut costs, and scale their operations by bu
 
 ## Industries
 
-- Regulated Industries: HIPAA-compliant AI for healthcare, insurance, and financial services with private infrastructure and audit trails.
+- Regulated Industries: HIPAA-aware AI on HIPAA-eligible AWS services (BAA-ready) for healthcare, insurance, and financial services, with private infrastructure and audit trails.
 - Knowledge-Intensive Operations: RAG systems for research firms, legal teams, technical documentation, and customer support knowledge bases.
 - Process-Heavy Workflows: Multi-step automation with decision logic and human oversight.
 

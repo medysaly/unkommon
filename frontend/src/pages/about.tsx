@@ -29,7 +29,7 @@ export default function About() {
           >
             Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster.
             From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build,
-            and deploy AI that does real work. HIPAA-compliant architecture available for healthcare and regulated industries.
+            and deploy AI that does real work. HIPAA-aware architecture built on HIPAA-eligible AWS services. BAA-ready for healthcare and regulated industries.
           </motion.p>
         </div>
       </section>

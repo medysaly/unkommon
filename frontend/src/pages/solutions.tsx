@@ -18,7 +18,7 @@ const services = [
     description:
       "We build AI agents and multi-agent systems that automate your manual business workflows end-to-end. Lead qualification, data processing, scheduling. Your agent reasons, makes decisions, calls APIs, and takes action on your behalf.",
     capabilities: ["Autonomous decision-making with edge-case handling", "API integrations with your existing tools", "24/7 production deployment on AWS"],
-    deliverables: ["Custom agent built for your specific workflow (Python + LangChain/LangGraph)", "Integrations with CRM, email, calendar, and databases", "Encrypted storage, role-based access, full audit logging", "HIPAA-compliant architecture available for healthcare", "Deployed on AWS (EC2, Lambda, RDS) with monitoring"],
+    deliverables: ["Custom agent built for your specific workflow (Python + LangChain/LangGraph)", "Integrations with CRM, email, calendar, and databases", "Encrypted storage, role-based access, full audit logging", "HIPAA-aware architecture on HIPAA-eligible AWS services (BAA-ready) for healthcare", "Deployed on AWS (EC2, Lambda, RDS) with monitoring"],
     outcome: "Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.",
   },
   {
@@ -63,8 +63,8 @@ const useCases = [
   {
     title: "Regulated Industries",
     description:
-      "We build HIPAA-compliant AI systems for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls baked in from day one.",
-    outcomes: ["End-to-end encryption", "HIPAA & SOC 2 architecture", "Audit logging", "BAA-ready AWS infra"],
+      "We build HIPAA-aware AI systems on HIPAA-eligible AWS services for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls baked in from day one. BAA-ready deployments.",
+    outcomes: ["End-to-end encryption", "HIPAA-aware & SOC 2-aligned", "Audit logging", "BAA-ready AWS infra"],
   },
   {
     title: "Knowledge-Intensive Operations",

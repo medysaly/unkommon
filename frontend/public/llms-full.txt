@@ -53,7 +53,7 @@ Custom-built AI for your workflows, your data, and your team. From first call to
 ### Does this sound like you? (Who We Work With)
 
 **Regulated Industries**
-We build HIPAA-compliant AI systems for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls baked in from day one. Features: end-to-end encryption, HIPAA & SOC 2 architecture, audit logging, BAA-ready AWS infrastructure.
+We build HIPAA-aware AI systems on HIPAA-eligible AWS services (BAA-ready) for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls baked in from day one. Features: end-to-end encryption, HIPAA-aware & SOC 2-aligned architecture, audit logging, BAA-ready AWS infrastructure.
 
 **Knowledge-Intensive Operations**
 Organizations drowning in proprietary data — research firms, legal teams, technical documentation, customer support knowledge bases — need AI that answers from their documents, not the internet. Features: document ingestion pipelines, semantic search, automated summaries, continuous updates.
@@ -94,7 +94,7 @@ Deliverables:
 - Custom agent built for your specific workflow (Python + LangChain/LangGraph)
 - Integrations with CRM, email, calendar, and databases
 - Encrypted storage, role-based access, full audit logging
-- HIPAA-compliant architecture available for healthcare
+- HIPAA-aware architecture on HIPAA-eligible AWS services (BAA-ready) for healthcare
 - Deployed on AWS (EC2, Lambda, RDS) with monitoring
 
 Outcome: Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.
@@ -207,8 +207,8 @@ A: Yes. A lot of our clients are business owners, not engineers. We translate AI
 **Q: What industries do you work with?**
 A: Healthcare, legal, real estate, finance, dental, insurance, and knowledge-intensive operations like research firms and technical documentation teams.
 
-**Q: Is this HIPAA-compliant?**
-A: We build HIPAA-compliant architectures for healthcare clients — end-to-end encryption, audit logging, private AWS infrastructure, BAA-ready deployments.
+**Q: Do you support HIPAA-regulated workloads?**
+A: We build HIPAA-aware architectures on HIPAA-eligible AWS services for healthcare clients — end-to-end encryption, audit logging, private AWS infrastructure, BAA-ready deployments. Final compliance depends on your policies, operations, and BAA coverage; we deliver the technical architecture that supports it.
 
 ---
 
@@ -216,7 +216,7 @@ A: We build HIPAA-compliant architectures for healthcare clients — end-to-end 
 
 ### We build AI that runs your business, not the other way around.
 
-Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster. From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build, and deploy AI that does real work. HIPAA-compliant architecture available for healthcare and regulated industries.
+Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster. From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build, and deploy AI that does real work. HIPAA-aware architecture built on HIPAA-eligible AWS services. BAA-ready for healthcare and regulated industries.
 
 ### What we're not
 
