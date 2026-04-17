@@ -39,6 +39,24 @@ const services = [
     deliverables: ["IaC templates (CDK/Terraform)", "CI/CD pipeline", "CloudWatch dashboards & alerts", "Cost optimization report"],
     outcome: "Your system runs reliably at scale, not just in a demo.",
   },
+  {
+    title: "Chatbots & Voice AI",
+    subtitle: "Customer-Facing AI Assistants",
+    description:
+      "We build AI chatbots and voice agents that handle customer questions, bookings, and lead capture 24/7. Web chat, phone answering, or embedded in Telegram, WhatsApp, and SMS. Grounded in your knowledge base. Connected to your booking system.",
+    capabilities: ["Voice AI for phone answering", "Omnichannel deployment (web, phone, messaging)", "24/7 autonomous operation"],
+    deliverables: ["Web chatbot or voice agent (Vapi, ElevenLabs, Twilio)", "Knowledge base grounding (no hallucinations)", "Booking and lead capture integration", "Human escalation with transcript handoff", "Analytics dashboard for conversation review"],
+    outcome: "Your business answers customers around the clock, books appointments, and captures leads without adding support staff.",
+  },
+  {
+    title: "Fine-tuning & Domain Models",
+    subtitle: "Custom LLMs for Your Industry",
+    description:
+      "Off-the-shelf models give generic answers. We fine-tune LLMs on your domain data. Dental, legal, real estate, finance, healthcare. So they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.",
+    capabilities: ["Industry-specific model tuning", "Dataset curation and annotation", "Evaluation against domain benchmarks"],
+    deliverables: ["Fine-tuning dataset built from your domain data", "Custom model (LoRA adapter on Claude, GPT-4, or open-source)", "Evaluation suite measuring accuracy on your use cases", "Production deployment with versioning and rollback", "Retraining pipeline for continuous improvement"],
+    outcome: "An AI that actually understands your industry, not one that guesses like a generalist.",
+  },
 ];
 
 const useCases = [
