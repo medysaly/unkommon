@@ -14,11 +14,11 @@ const services = [
   },
   {
     title: "AI Agent Development",
-    subtitle: "Stateful Multi-Agent Systems",
+    subtitle: "Autonomous Workflow Agents",
     description:
-      "Multi-agent systems built on LangGraph that automate complex business workflows. State machines that follow your business logic exactly: agent handoffs, conditional branching, memory management, and tool use.",
-    capabilities: ["Stateful workflow orchestration", "Human-in-the-loop escalation", "End-to-end process automation"],
-    deliverables: ["LangGraph state machine deployed on ECS", "Tool integrations (CRM, email, calendar)", "Escalation & fallback logic", "Conversation analytics dashboard"],
+      "We build AI agents and multi-agent systems that automate your manual business workflows end-to-end. Lead qualification, data processing, scheduling. Your agent reasons, makes decisions, calls APIs, and takes action on your behalf. Not a chatbot. A real agent.",
+    capabilities: ["Autonomous decision-making with edge-case handling", "API integrations with your existing tools", "24/7 production deployment on AWS"],
+    deliverables: ["Custom agent built for your specific workflow (Python + LangChain/LangGraph)", "Integrations with CRM, email, calendar, and databases", "Encrypted storage, role-based access, full audit logging", "HIPAA-compliant architecture available for healthcare", "Deployed on AWS (EC2, Lambda, RDS) with monitoring"],
     outcome: "Replace the manual workflows costing you 20+ hours per week.",
   },
   {
