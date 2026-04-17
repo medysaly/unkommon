@@ -93,7 +93,7 @@ const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "Engagements typically start at $5,000 for a focused build. We scope every project individually after the free audit. You'll know the exact cost before any work begins. No hourly billing, no surprise invoices.",
+    a: "Every project is scoped individually because pricing depends on the system — its complexity, integrations, data volume, and infrastructure needs. After the free 30-minute call, we'll give you a fixed scope and a fixed price before any work begins. No hourly billing, no surprise invoices.",
   },
 ];
 
