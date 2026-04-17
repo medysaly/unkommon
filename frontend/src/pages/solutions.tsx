@@ -5,11 +5,11 @@ import { createPageUrl } from "@/lib/utils";
 const services = [
   {
     title: "Custom RAG Systems",
-    subtitle: "Retrieval-Augmented Generation",
+    subtitle: "Conversational Knowledge Bases",
     description:
-      "Custom embedding strategies, vector database selection, chunking optimization, hybrid search, and re-ranking pipelines. Your AI answers from your documents, never hallucinates.",
-    capabilities: ["Proprietary data ingestion", "Vector search optimization", "Citation & source tracking"],
-    deliverables: ["Private vector database on your AWS", "Embedding & chunking pipeline", "Query API with citation tracking", "Evaluation dashboard"],
+      "We build production RAG systems that turn your documents into a searchable, conversational AI knowledge base. Your team or customers ask questions in plain language and get accurate, cited answers pulled directly from your data. No hallucinations. No generic responses.",
+    capabilities: ["Plain-language search across all your documents", "Every answer cited to the source", "Deployed as chat interface or API"],
+    deliverables: ["Ingestion pipeline for PDFs, docs, web pages, and databases", "Vector database with embeddings tuned for your domain (Pinecone, pgvector, or ChromaDB)", "Hybrid search with reranking for retrieval accuracy", "Chat UI or API endpoint (your choice)", "Citation tracking on every response"],
     outcome: "Your team gets accurate answers in seconds, not hours of searching.",
   },
   {
