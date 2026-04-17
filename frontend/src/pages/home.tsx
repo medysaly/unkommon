@@ -1,5 +1,4 @@
 import { createPageUrl } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { CTAButton } from "@/components/CTAButton";
@@ -122,15 +121,6 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Link
-              href={createPageUrl("Solutions")}
-              className="text-[14px] text-foreground font-medium hover:opacity-60 transition-opacity inline-flex items-center gap-1.5"
-            >
-              See all solutions
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
         </div>
       </section>
 

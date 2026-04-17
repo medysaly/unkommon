@@ -158,58 +158,40 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* What We Build */}
+      {/* Which Service Fits */}
       <section className="bg-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center text-white text-[10px]" aria-hidden="true">2</span>
-            <span className="text-[13px] text-muted-foreground">What We Build</span>
+            <span className="text-[13px] text-muted-foreground">Which Service Fits</span>
           </div>
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4">
-            How we move your business forward.
+            Pick where you want to start.
           </h2>
           <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            Six ways we cut costs, save hours, and turn your operations into autopilot. Each one works on its own or combined with the others.
+            Six ways we cut costs, save hours, and turn your operations into autopilot. Click any service for deliverables, tech stack, and industries we serve.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((service, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 bg-background rounded-xl border border-border"
+                transition={{ delay: i * 0.06 }}
               >
-                <h3 className="text-xl font-medium text-foreground mb-1">{service.title}</h3>
-                <p className="text-[12px] text-muted-foreground uppercase tracking-wider mb-4">{service.subtitle}</p>
-                <p className="text-[15px] text-secondary-foreground leading-relaxed mb-3">{service.description}</p>
-                <p className="text-[15px] text-foreground font-medium mb-6">{service.outcome}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {service.capabilities.map((cap) => (
-                    <span key={cap} className="text-[12px] text-muted-foreground bg-white px-3 py-1 rounded-full border border-border">
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-5 border-t border-border">
-                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium mb-3">Deliverables</p>
-                  <ul className="space-y-1.5">
-                    {service.deliverables.map((d) => (
-                      <li key={d} className="text-[13px] text-secondary-foreground flex items-start gap-2">
-                        <span className="text-foreground mt-0.5">-</span>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
                 <Link
                   href={`/solutions/${service.slug}`}
-                  className="mt-6 inline-flex items-center gap-1.5 text-[14px] text-foreground font-medium hover:opacity-60 transition-opacity"
+                  className="group block p-7 bg-background rounded-xl border border-border hover:border-foreground/30 hover:shadow-sm transition-all h-full"
                 >
-                  Learn more about {service.subtitle}
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider mb-3">{service.subtitle}</p>
+                  <h3 className="text-[19px] font-medium text-foreground mb-3 leading-snug">{service.title}</h3>
+                  <p className="text-[14px] text-secondary-foreground leading-relaxed mb-5">{service.outcome}</p>
+                  <span className="inline-flex items-center gap-1.5 text-[13px] text-foreground font-medium group-hover:gap-2 transition-all">
+                    Learn more
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </Link>
               </motion.div>
             ))}
