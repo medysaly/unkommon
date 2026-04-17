@@ -82,7 +82,7 @@ export default function About() {
                 </p>
                 <p>
                   We build production AI systems end-to-end. Every RAG pipeline, every multi-agent workflow, every AWS
-                  deployment is designed, built, and shipped by engineers who write code — not account managers reselling
+                  deployment is designed, built, and shipped by engineers who write code, not account managers reselling
                   other people's tools.
                 </p>
                 <p className="text-white/80">

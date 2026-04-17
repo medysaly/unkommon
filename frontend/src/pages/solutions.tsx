@@ -53,14 +53,14 @@ const services = [
       "We build AI chatbots and voice agents that handle customer questions, bookings, and lead capture 24/7. Web chat, phone answering, or embedded in Telegram, WhatsApp, and SMS. Grounded in your knowledge base. Connected to your booking system.",
     capabilities: ["Voice AI for phone answering", "Omnichannel deployment (web, phone, messaging)", "24/7 autonomous operation"],
     deliverables: ["Web chatbot or voice agent (Vapi, ElevenLabs, Twilio)", "Knowledge base grounding with cited sources", "Booking and lead capture integration", "Human escalation with transcript handoff", "Analytics dashboard for conversation review"],
-    outcome: "Never miss a lead or a customer question again — without adding a single hire.",
+    outcome: "Never miss a lead or a customer question again, without adding a single hire.",
   },
   {
     slug: "fine-tuning",
     title: "AI That Speaks Your Industry",
     subtitle: "Fine-tuning & Domain Models",
     description:
-      "Generic models give generic answers. We fine-tune LLMs on your domain data — dental, legal, real estate, finance, healthcare — so they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.",
+      "Generic models give generic answers. We fine-tune LLMs on your domain data, dental, legal, real estate, finance, healthcare, so they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.",
     capabilities: ["Industry-specific model tuning", "Dataset curation and annotation", "Evaluation against domain benchmarks"],
     deliverables: ["Fine-tuning dataset built from your domain data", "Custom model (LoRA adapter on Claude, GPT-4, or open-source)", "Evaluation suite measuring accuracy on your use cases", "Production deployment with versioning and rollback", "Retraining pipeline for continuous improvement"],
     outcome: "An AI that actually understands your work, not one that guesses like a generalist.",
@@ -122,7 +122,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* Use Cases — moved above services so buyers self-identify first */}
+      {/* Use Cases moved above services so buyers self-identify first */}
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <div className="inline-flex items-center gap-2 mb-6">
@@ -206,7 +206,7 @@ export default function Solutions() {
             Find where AI pays off in your business.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue — no pitch, no obligation.
+            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue, no pitch, no obligation.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Book a free 30-minute call

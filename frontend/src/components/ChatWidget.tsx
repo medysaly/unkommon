@@ -125,7 +125,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
       setIsLoading(false);
       setConversationId(data.conversationId);
 
-      // Batched typing animation — 3 words per frame at 50ms
+      // Batched typing animation, 3 words per frame at 50ms
       const words = fullText.split(' ');
       let wordIndex = 0;
       let displayed = '';

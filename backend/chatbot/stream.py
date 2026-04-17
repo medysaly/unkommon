@@ -28,7 +28,7 @@ def handler(event, response_stream, context):
     response_stream.content_type = "text/event-stream"
 
     try:
-        # Origin validation — only allow requests from the frontend
+        # Origin validation: only allow requests from the frontend
         headers = event.get('headers', {})
         origin = headers.get('origin', '') or headers.get('Origin', '')
         if not origin or origin not in ALLOWED_ORIGINS:

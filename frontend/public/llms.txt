@@ -1,13 +1,13 @@
 # Unkommon
 
-> Unkommon is a custom AI/ML engineering studio that builds production AI systems for small and mid-sized businesses. We design, build, and deploy custom RAG systems, AI agents, chatbots, voice AI, and fine-tuned domain models — all production-grade, running 24/7 on AWS.
+> Unkommon is a custom AI/ML engineering studio that builds production AI systems for small and mid-sized businesses. We design, build, and deploy custom RAG systems, AI agents, chatbots, voice AI, and fine-tuned domain models, all production-grade, running 24/7 on AWS.
 
-Unkommon helps businesses save time, cut costs, and scale their operations by building AI systems that actually work in production — not prototypes, not demos. Every system is custom-engineered for the client's data, workflows, and infrastructure.
+Unkommon helps businesses save time, cut costs, and scale their operations by building AI systems that actually work in production, , not prototypes, not demos. Every system is custom-engineered for the client's data, workflows, and infrastructure.
 
 ## Services
 
 - [Custom RAG Systems](https://unkommon.ai/solutions/rag-systems): Production RAG systems that turn documents into a searchable, conversational knowledge base. Answers are sourced, cited, and traceable.
-- [AI Agent Development](https://unkommon.ai/solutions/ai-agents): Multi-agent systems built on LangChain/LangGraph that automate manual business workflows end-to-end — lead qualification, data processing, scheduling.
+- [AI Agent Development](https://unkommon.ai/solutions/ai-agents): Multi-agent systems built on LangChain/LangGraph that automate manual business workflows end-to-end, lead qualification, data processing, scheduling.
 - [ML Consulting & Strategy](https://unkommon.ai/solutions/ml-consulting): Architecture design, model selection, fine-tuning strategy, and evaluation frameworks across Bedrock, OpenAI, Anthropic, and open-source models.
 - [AI Infrastructure & Deployment](https://unkommon.ai/solutions/ai-infrastructure): Production-grade AWS deployment with ECS/EKS, Lambda, API Gateway, CI/CD, CloudWatch monitoring, and IaC.
 - [Chatbots & Voice AI](https://unkommon.ai/solutions/voice-ai): AI chatbots and voice agents for web, phone, Telegram, WhatsApp, and SMS. Handles customer questions, bookings, and lead capture around the clock.
@@ -31,14 +31,14 @@ Unkommon helps businesses save time, cut costs, and scale their operations by bu
 ## Process
 
 1. **Audit**: Free 30-minute call to map your workflows and identify where AI fits.
-2. **Scope**: Fixed-scope, fixed-price proposal — no hourly billing, no surprise invoices.
+2. **Scope**: Fixed-scope, fixed-price proposal, no hourly billing, no surprise invoices.
 3. **Build**: End-to-end engineering. Systems typically ship in 4-8 weeks.
 4. **Deploy**: Production deployment on AWS with monitoring, CI/CD, and documentation.
 5. **Maintain**: Optional ongoing maintenance and retraining.
 
 ## Pricing
 
-Pricing depends on the complexity of the system being built — data volume, integrations, infrastructure requirements. Every project is scoped individually after the free call. Clients receive a fixed scope and fixed price before any work begins.
+Pricing depends on the complexity of the system being built: data volume, integrations, infrastructure requirements. Every project is scoped individually after the free call. Clients receive a fixed scope and fixed price before any work begins.
 
 ## Contact
 

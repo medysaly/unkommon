@@ -28,7 +28,7 @@ export const services: Service[] = [
     heroSubhead: "Custom RAG systems that turn your documents into a searchable, conversational knowledge base. Every answer cited. Every source traceable.",
     problemLabel: "The problem",
     problem: "Your team spends hours digging through PDFs, wikis, CRMs, and ticketing systems looking for answers that already exist somewhere in your data. Off-the-shelf chatbots give generic answers and confidently hallucinate. Your customers wait. Your team burns out.",
-    solution: "We build production RAG (retrieval-augmented generation) systems that ingest your documents — PDFs, web pages, databases, Notion, Confluence — into a custom vector database. When a question comes in, the system retrieves the most relevant passages and generates an answer grounded in your actual content, with source citations on every response.",
+    solution: "We build production RAG (retrieval-augmented generation) systems that ingest your documents (PDFs, web pages, databases, Notion, Confluence) into a custom vector database. When a question comes in, the system retrieves the most relevant passages and generates an answer grounded in your actual content, with source citations on every response.",
     capabilities: [
       "Plain-language search across all your documents",
       "Every answer cited back to its source passage",
@@ -40,7 +40,7 @@ export const services: Service[] = [
       "Ingestion pipeline for PDFs, Word docs, web pages, databases, and knowledge management tools",
       "Vector database with embeddings tuned for your domain (Pinecone, pgvector, ChromaDB, or FAISS)",
       "Hybrid search with reranking and chunking strategy optimized for your content",
-      "Chat UI, REST API, or embedded widget — your choice",
+      "Chat UI, REST API, or embedded widget: your choice",
       "Citation tracking with passage-level source attribution",
       "Monitoring dashboard with query logs and accuracy metrics",
     ],
@@ -53,11 +53,11 @@ export const services: Service[] = [
       "CloudWatch monitoring",
     ],
     industries: [
-      "Legal firms — case law, precedents, internal memos",
-      "Healthcare — clinical protocols, patient records (HIPAA-aware architecture)",
-      "Financial services — compliance docs, product guides",
-      "Technical support — product documentation, runbooks",
-      "Research organizations — papers, reports, internal studies",
+      "Legal firms: case law, precedents, internal memos",
+      "Healthcare: clinical protocols, patient records (HIPAA-aware architecture)",
+      "Financial services: compliance docs, product guides",
+      "Technical support: product documentation, runbooks",
+      "Research organizations: papers, reports, internal studies",
     ],
     outcome: "Stop paying employees to dig through documents. Your team and customers get instant, accurate, cited answers from your data.",
     faqs: [
@@ -74,7 +74,7 @@ export const services: Service[] = [
         a: "Most projects ship in 4-6 weeks depending on data volume, document formats, and integrations. You'll get a fixed scope and timeline after the free 30-minute call."
       },
     ],
-    metaTitle: "Custom RAG Systems | Unkommon — AI That Knows Your Business",
+    metaTitle: "Custom RAG Systems | Unkommon | AI That Knows Your Business",
     metaDescription: "Production RAG systems with cited, sourced answers from your documents. Vector databases, hybrid search, and reranking for enterprise accuracy. Built on AWS.",
   },
   {
@@ -83,7 +83,7 @@ export const services: Service[] = [
     subtitle: "AI Agent Development",
     shortDescription: "Multi-agent systems that automate complex workflows. Stateful orchestration, decision logic, and human-in-the-loop escalation.",
     heroHeadline: "Agents that don't just chat. They work.",
-    heroSubhead: "Multi-agent systems built on LangGraph that automate your manual workflows end-to-end. Lead qualification, data processing, scheduling — handled autonomously.",
+    heroSubhead: "Multi-agent systems built on LangGraph that automate your manual workflows end-to-end. Lead qualification, data processing, scheduling, handled autonomously.",
     problemLabel: "The problem",
     problem: "Your team spends 20+ hours a week on repetitive, rule-based work: qualifying inbound leads, processing documents, routing tickets, updating CRM records, following up on quotes. Every hour spent on this is an hour not spent growing the business. Off-the-shelf 'AI agents' either break on edge cases or require so much babysitting they're slower than doing it manually.",
     solution: "We build production AI agents that reason, call APIs, and take action autonomously. Built with Python, LangChain, and LangGraph for stateful orchestration. Connected to your CRM, email, calendar, and databases. With human-in-the-loop escalation for the 5% of cases that need a person.",
@@ -112,11 +112,11 @@ export const services: Service[] = [
       "Temporal or Step Functions for long-running workflows",
     ],
     industries: [
-      "B2B sales teams — lead qualification, enrichment, and routing",
-      "Operations teams — document processing, ticket routing",
-      "Healthcare — patient intake, scheduling, insurance verification",
-      "Real estate — lead qualification, showing scheduling",
-      "Finance — loan processing, document extraction",
+      "B2B sales teams: lead qualification, enrichment, and routing",
+      "Operations teams: document processing, ticket routing",
+      "Healthcare: patient intake, scheduling, insurance verification",
+      "Real estate: lead qualification, showing scheduling",
+      "Finance: loan processing, document extraction",
     ],
     outcome: "Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.",
     faqs: [
@@ -133,7 +133,7 @@ export const services: Service[] = [
         a: "Every agent we build has escalation paths. When confidence drops below a threshold or the situation falls outside defined rules, the agent hands off to a human with full context, transcript, and recommended action."
       },
     ],
-    metaTitle: "AI Agent Development | Unkommon — Multi-Agent Business Automation",
+    metaTitle: "AI Agent Development | Unkommon | Multi-Agent Business Automation",
     metaDescription: "Production AI agents that automate business workflows end-to-end. LangChain, LangGraph, CRM integrations, human-in-the-loop escalation. Deployed on AWS.",
   },
   {
@@ -178,7 +178,7 @@ export const services: Service[] = [
     outcome: "Know exactly where AI saves money in your business before you spend a dollar building.",
     faqs: [
       {
-        q: "What's the deliverable — a PowerPoint or something real?",
+        q: "What's the deliverable: a PowerPoint or something real?",
         a: "Real. You get a written architecture decision document with diagrams, a model benchmark report with actual numbers, an evaluation framework, a cost model, and a roadmap. Nothing generic, everything specific to your business."
       },
       {
@@ -190,8 +190,8 @@ export const services: Service[] = [
         a: "Yes. Many clients start with consulting and move to a build engagement once the roadmap is clear. The consulting work becomes the foundation of the build."
       },
     ],
-    metaTitle: "AI/ML Consulting & Strategy | Unkommon — Know Where AI Pays Off",
-    metaDescription: "AI opportunity assessment, model selection, and evaluation frameworks. Architecture decisions, cost modeling, and build roadmaps. Not generic consulting — technical.",
+    metaTitle: "AI/ML Consulting & Strategy | Unkommon | Know Where AI Pays Off",
+    metaDescription: "AI opportunity assessment, model selection, and evaluation frameworks. Architecture decisions, cost modeling, and build roadmaps. Not generic consulting, technical.",
   },
   {
     slug: "ai-infrastructure",
@@ -201,8 +201,8 @@ export const services: Service[] = [
     heroHeadline: "Ship AI to production without breaking it.",
     heroSubhead: "Production-grade AWS infrastructure for AI workloads. Containerization, CI/CD, monitoring, auto-scaling, and cost controls built in.",
     problemLabel: "The problem",
-    problem: "Your AI prototype works in a notebook. But production is different: concurrent users, latency SLAs, cost spikes, model versioning, rollbacks, monitoring, security. Most AI projects die here — not because the model doesn't work, but because there's no one who can deploy it like real infrastructure.",
-    solution: "We build the infrastructure around your AI model. AWS-native deployment with ECS, Lambda, API Gateway, and IaC. CI/CD pipelines for model updates. CloudWatch dashboards and alerts. Cost optimization with auto-scaling and caching. Your AI runs like the rest of your stack — reliable, observable, and cost-predictable.",
+    problem: "Your AI prototype works in a notebook. But production is different: concurrent users, latency SLAs, cost spikes, model versioning, rollbacks, monitoring, security. Most AI projects die here, not because the model doesn't work, but because there's no one who can deploy it like real infrastructure.",
+    solution: "We build the infrastructure around your AI model. AWS-native deployment with ECS, Lambda, API Gateway, and IaC. CI/CD pipelines for model updates. CloudWatch dashboards and alerts. Cost optimization with auto-scaling and caching. Your AI runs like the rest of your stack, reliable, observable, and cost-predictable.",
     capabilities: [
       "AWS-native containerization (ECS, EKS, Lambda)",
       "CI/CD pipelines for model and code deployment",
@@ -249,7 +249,7 @@ export const services: Service[] = [
         a: "AWS is our deepest expertise. We can work with GCP or Azure if required, but AWS is where we get the best results fastest."
       },
     ],
-    metaTitle: "AI Infrastructure & Deployment on AWS | Unkommon — Production MLOps",
+    metaTitle: "AI Infrastructure & Deployment on AWS | Unkommon | Production MLOps",
     metaDescription: "Production-grade AWS infrastructure for AI: ECS, Lambda, CI/CD, monitoring, auto-scaling, cost optimization. IaC with CDK or Terraform. Ship AI reliably.",
   },
   {
@@ -287,14 +287,14 @@ export const services: Service[] = [
       "DynamoDB for conversation state",
     ],
     industries: [
-      "Dental and medical practices — appointment booking, insurance questions",
-      "Legal firms — client intake, consultation scheduling",
-      "Real estate — property inquiries, showing scheduling",
-      "Home services — quote requests, appointment booking",
-      "E-commerce — product questions, order support",
+      "Dental and medical practices: appointment booking, insurance questions",
+      "Legal firms: client intake, consultation scheduling",
+      "Real estate: property inquiries, showing scheduling",
+      "Home services: quote requests, appointment booking",
+      "E-commerce: product questions, order support",
       "Any SMB missing calls after 5pm",
     ],
-    outcome: "Never miss a lead or a customer question again — without adding a single hire.",
+    outcome: "Never miss a lead or a customer question again, without adding a single hire.",
     faqs: [
       {
         q: "Will customers know it's AI?",
@@ -309,7 +309,7 @@ export const services: Service[] = [
         a: "Every agent has escalation paths: 'Let me connect you with a human' or 'I'll have someone follow up within 1 business hour.' The agent hands off with full context so your team doesn't start from zero."
       },
     ],
-    metaTitle: "AI Chatbots & Voice AI | Unkommon — 24/7 Customer Answering",
+    metaTitle: "AI Chatbots & Voice AI | Unkommon | 24/7 Customer Answering",
     metaDescription: "AI voice agents and chatbots for web, phone, WhatsApp, and SMS. Handles customer questions, books appointments, captures leads 24/7. Powered by Vapi and Claude.",
   },
   {
@@ -318,10 +318,10 @@ export const services: Service[] = [
     subtitle: "Fine-tuning & Domain Models",
     shortDescription: "Fine-tuned LLMs trained on your domain data. Dental, legal, real estate, finance, healthcare.",
     heroHeadline: "AI that actually understands your work.",
-    heroSubhead: "Fine-tuned LLMs trained on your domain data. Dental, legal, real estate, finance, healthcare — so the AI speaks your industry's language.",
+    heroSubhead: "Fine-tuned LLMs trained on your domain data. Dental, legal, real estate, finance, healthcare, so the AI speaks your industry's language.",
     problemLabel: "The problem",
-    problem: "Generic models give generic answers. When a dental practice asks about crown preparation, GPT gives a Wikipedia summary. When a lawyer needs a brief, Claude writes like a law student. When a real estate agent drafts a listing, the output sounds like every other AI listing. Your industry has specific vocabulary, compliance rules, and output formats — generic AI gets them wrong.",
-    solution: "We fine-tune open-source or frontier LLMs on your domain data so the model learns your industry's language, rules, and output patterns. Dental, legal, real estate, finance, healthcare — or any vertical with specialized knowledge. The result: an AI that reads like someone who actually works in your field.",
+    problem: "Generic models give generic answers. When a dental practice asks about crown preparation, GPT gives a Wikipedia summary. When a lawyer needs a brief, Claude writes like a law student. When a real estate agent drafts a listing, the output sounds like every other AI listing. Your industry has specific vocabulary, compliance rules, and output formats, and generic AI gets them wrong.",
+    solution: "We fine-tune open-source or frontier LLMs on your domain data so the model learns your industry's language, rules, and output patterns. Dental, legal, real estate, finance, healthcare, or any vertical with specialized knowledge. The result: an AI that reads like someone who actually works in your field.",
     capabilities: [
       "Industry-specific model fine-tuning",
       "Dataset curation and annotation",
@@ -346,18 +346,18 @@ export const services: Service[] = [
       "AWS SageMaker or self-hosted GPUs",
     ],
     industries: [
-      "Dental practices — clinical notes, patient communications, insurance coding",
-      "Legal firms — briefs, contracts, compliance memos in firm voice",
-      "Real estate — listings, buyer communications, market analysis",
-      "Financial services — advisor notes, compliance-aware outputs",
-      "Healthcare — clinical documentation (HIPAA-aware)",
+      "Dental practices: clinical notes, patient communications, insurance coding",
+      "Legal firms: briefs, contracts, compliance memos in firm voice",
+      "Real estate: listings, buyer communications, market analysis",
+      "Financial services: advisor notes, compliance-aware outputs",
+      "Healthcare: clinical documentation (HIPAA-aware)",
       "Any vertical with compliance or style requirements generic models miss",
     ],
     outcome: "An AI that actually understands your work, not one that guesses like a generalist.",
     faqs: [
       {
         q: "Do I need fine-tuning or is RAG enough?",
-        a: "RAG is usually the right first step — it's faster, cheaper, and more flexible. Fine-tuning matters when you need the model to adopt a specific tone, follow complex domain rules, or produce outputs in a specialized format. We recommend the right approach after the audit."
+        a: "RAG is usually the right first step, it's faster, cheaper, and more flexible. Fine-tuning matters when you need the model to adopt a specific tone, follow complex domain rules, or produce outputs in a specialized format. We recommend the right approach after the audit."
       },
       {
         q: "How much data do I need for fine-tuning?",
@@ -368,7 +368,7 @@ export const services: Service[] = [
         a: "Yes. Llama, Mistral, and DeepSeek models can be fine-tuned and self-hosted for cost and data residency control. Often a better fit than frontier APIs for regulated or cost-sensitive industries."
       },
     ],
-    metaTitle: "LLM Fine-tuning & Domain Models | Unkommon — AI For Your Industry",
+    metaTitle: "LLM Fine-tuning & Domain Models | Unkommon | AI For Your Industry",
     metaDescription: "Fine-tune LLMs on your domain data. Dental, legal, real estate, finance, healthcare. LoRA adapters, evaluation frameworks, production deployment.",
   },
 ];

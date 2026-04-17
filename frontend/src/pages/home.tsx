@@ -10,7 +10,7 @@ const services = [
     title: "AI That Knows Your Business",
     subtitle: "Custom RAG Systems",
     description: "Retrieval-augmented generation pipelines over your proprietary data. Answers are sourced, cited, and traceable back to your documents.",
-    outcome: "Your team and customers get instant answers from your data — no more digging through documents.",
+    outcome: "Your team and customers get instant answers from your data, no more digging through documents.",
     tags: ["Document Ingestion", "Vector Search", "Citation Tracking"],
   },
   {
@@ -42,7 +42,7 @@ const services = [
     title: "Answer Every Customer, 24/7",
     subtitle: "Chatbots & Voice AI",
     description: "AI chatbots and voice agents that handle customer questions, bookings, and lead capture. Web chat, phone answering, or messaging channels.",
-    outcome: "Never miss a lead or a customer question again — without adding support staff.",
+    outcome: "Never miss a lead or a customer question again, without adding support staff.",
     tags: ["Voice AI", "Phone Answering", "Omnichannel"],
   },
   {
@@ -131,7 +131,7 @@ export default function Home() {
             See where AI fits in your business.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business — no pitch, no obligation.
+            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business, no pitch, no obligation.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Book a free 30-minute call

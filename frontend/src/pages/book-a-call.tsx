@@ -7,7 +7,7 @@ export default function BookACall() {
 
   return (
     <div>
-      {/* Hero — Single focused CTA */}
+      {/* Hero: single focused CTA */}
       <section className="bg-background px-6 lg:px-10 pt-16 pb-10 md:pt-24 md:pb-14">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h1
@@ -24,7 +24,7 @@ export default function BookACall() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="text-[17px] text-muted-foreground max-w-lg mx-auto leading-relaxed"
           >
-            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business — no pitch, no obligation.
+            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business, no pitch, no obligation.
           </motion.p>
         </div>
       </section>

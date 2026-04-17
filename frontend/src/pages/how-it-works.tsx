@@ -93,7 +93,7 @@ const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "Every project is scoped individually because pricing depends on the system — its complexity, integrations, data volume, and infrastructure needs. After the free 30-minute call, we'll give you a fixed scope and a fixed price before any work begins. No hourly billing, no surprise invoices.",
+    a: "Every project is scoped individually because pricing depends on the system: its complexity, integrations, data volume, and infrastructure needs. After the free 30-minute call, we'll give you a fixed scope and a fixed price before any work begins. No hourly billing, no surprise invoices.",
   },
 ];
 
