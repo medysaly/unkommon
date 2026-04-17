@@ -1,0 +1,58 @@
+# Unkommon
+
+> Unkommon is a custom AI/ML engineering studio that builds production AI systems for small and mid-sized businesses. We design, build, and deploy custom RAG systems, AI agents, chatbots, voice AI, and fine-tuned domain models — all production-grade, running 24/7 on AWS.
+
+Unkommon helps businesses save time, cut costs, and scale their operations by building AI systems that actually work in production — not prototypes, not demos. Every system is custom-engineered for the client's data, workflows, and infrastructure.
+
+## Services
+
+- [AI That Knows Your Business (Custom RAG Systems)](https://unkommon.ai/solutions): Production RAG systems that turn documents into a searchable, conversational knowledge base. Answers are sourced, cited, and traceable.
+- [Agents That Do The Work (AI Agent Development)](https://unkommon.ai/solutions): Multi-agent systems built on LangChain/LangGraph that automate manual business workflows end-to-end — lead qualification, data processing, scheduling.
+- [Know Where AI Actually Fits (ML Consulting & Strategy)](https://unkommon.ai/solutions): Architecture design, model selection, fine-tuning strategy, and evaluation frameworks across Bedrock, OpenAI, Anthropic, and open-source models.
+- [Ship AI Without Breaking Production (AI Infrastructure & Deployment)](https://unkommon.ai/solutions): Production-grade AWS deployment with ECS/EKS, Lambda, API Gateway, CI/CD, CloudWatch monitoring, and IaC.
+- [Answer Every Customer, 24/7 (Chatbots & Voice AI)](https://unkommon.ai/solutions): AI chatbots and voice agents for web, phone, Telegram, WhatsApp, and SMS. Handles customer questions, bookings, and lead capture around the clock.
+- [AI That Speaks Your Industry (Fine-tuning & Domain Models)](https://unkommon.ai/solutions): Fine-tuned LLMs trained on domain data for dental, legal, real estate, finance, and healthcare verticals.
+
+## Industries
+
+- Regulated Industries: HIPAA-compliant AI for healthcare, insurance, and financial services with private infrastructure and audit trails.
+- Knowledge-Intensive Operations: RAG systems for research firms, legal teams, technical documentation, and customer support knowledge bases.
+- Process-Heavy Workflows: Multi-step automation with decision logic and human oversight.
+
+## Tech Stack
+
+- **AI/ML**: Claude (Anthropic), GPT-4 (OpenAI), LangChain, LangGraph, Hugging Face, PyTorch, TensorFlow
+- **Languages**: Python, TypeScript, JavaScript
+- **Frameworks**: React, Next.js, FastAPI, Express
+- **Cloud**: AWS (Bedrock, Lambda, ECS, EC2, API Gateway, DynamoDB, S3, Amplify, SES, Cognito, Secrets Manager)
+- **Databases**: PostgreSQL, DynamoDB, Vector DBs (Pinecone, ChromaDB, pgvector, FAISS)
+- **Voice/Phone**: Vapi, Twilio, ElevenLabs
+
+## Process
+
+1. **Audit**: Free 30-minute call to map your workflows and identify where AI fits.
+2. **Scope**: Fixed-scope, fixed-price proposal — no hourly billing, no surprise invoices.
+3. **Build**: End-to-end engineering. Systems typically ship in 4-8 weeks.
+4. **Deploy**: Production deployment on AWS with monitoring, CI/CD, and documentation.
+5. **Maintain**: Optional ongoing maintenance and retraining.
+
+## Pricing
+
+Pricing depends on the complexity of the system being built — data volume, integrations, infrastructure requirements. Every project is scoped individually after the free call. Clients receive a fixed scope and fixed price before any work begins.
+
+## Contact
+
+- **Website**: https://unkommon.ai
+- **Email**: contact@unkommon.ai
+- **Phone**: +1 (203) 680-9629
+- **Location**: Stamford, CT, USA
+- **Book a call**: https://unkommon.ai/book-a-call
+- **Founder**: Mehdi Salhi (https://www.linkedin.com/in/mehdi-salhi-work/)
+
+## Pages
+
+- [Home](https://unkommon.ai/): Overview of services and positioning.
+- [Solutions](https://unkommon.ai/solutions): Detailed breakdown of all six services with capabilities and deliverables.
+- [How It Works](https://unkommon.ai/how-it-works): Five-step engineering process, differentiators, and FAQ.
+- [About](https://unkommon.ai/about): Company positioning and founder background.
+- [Book a Call](https://unkommon.ai/book-a-call): Free 30-minute consultation booking.

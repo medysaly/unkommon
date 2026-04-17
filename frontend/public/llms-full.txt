@@ -1,0 +1,254 @@
+# Unkommon — Custom AI/ML Engineering Studio
+
+> Full content dump for AI crawlers and search engines.
+
+---
+
+## Home
+
+### The AI partner for small and mid-sized businesses.
+
+Unkommon helps businesses save time, cut costs, and scale their operations with custom AI systems that actually work in production.
+
+### How we move your business forward
+
+Six ways we cut costs, save hours, and turn operations into autopilot. Each works on its own or combined with the others.
+
+**AI That Knows Your Business (Custom RAG Systems)**
+Retrieval-augmented generation pipelines over your proprietary data. Answers are sourced, cited, and traceable back to your documents.
+Your team and customers get instant answers from your data — no more digging through documents.
+
+**Agents That Do The Work (AI Agent Development)**
+Multi-agent systems that automate complex workflows. Stateful orchestration, decision logic, and human-in-the-loop escalation.
+Replace 20+ hours per week of manual work so your team focuses on what actually grows revenue.
+
+**Know Where AI Actually Fits (ML Consulting & Strategy)**
+Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. From proof-of-concept to production.
+Know exactly where AI pays off before you spend a dollar building.
+
+**Ship AI Without Breaking Production (AI Infrastructure & Deployment)**
+Production-grade deployment on AWS. Containerization, CI/CD, monitoring, auto-scaling, and cost optimization.
+Ship with confidence. We handle the infrastructure so you don't wake up to 3am outages.
+
+**Answer Every Customer, 24/7 (Chatbots & Voice AI)**
+AI chatbots and voice agents that handle customer questions, bookings, and lead capture. Web chat, phone answering, or messaging channels.
+Never miss a lead or a customer question again — without adding support staff.
+
+**AI That Speaks Your Industry (Fine-tuning & Domain Models)**
+Fine-tuned LLMs trained on your domain data — dental, legal, real estate, finance, healthcare.
+An AI that actually understands your work, not one that guesses like a generalist.
+
+### See where AI fits in your business
+
+Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business — no pitch, no obligation.
+
+---
+
+## Solutions
+
+### AI that cuts costs, saves hours, and scales with you.
+
+Custom-built AI for your workflows, your data, and your team. From first call to 24/7 production.
+
+### Does this sound like you? (Who We Work With)
+
+**Regulated Industries**
+We build HIPAA-compliant AI systems for healthcare, insurance, and financial services. Private infrastructure, audit trails, and data residency controls baked in from day one. Features: end-to-end encryption, HIPAA & SOC 2 architecture, audit logging, BAA-ready AWS infrastructure.
+
+**Knowledge-Intensive Operations**
+Organizations drowning in proprietary data — research firms, legal teams, technical documentation, customer support knowledge bases — need AI that answers from their documents, not the internet. Features: document ingestion pipelines, semantic search, automated summaries, continuous updates.
+
+**Process-Heavy Workflows**
+Businesses with complex, multi-step processes that require decision logic, state management, and human oversight need agents that follow rules exactly, not chatbots that improvise. Features: document extraction, decision automation, multi-step orchestration, enterprise integrations.
+
+### How we move your business forward (Six Services)
+
+**1. AI That Knows Your Business — Custom RAG Systems**
+
+We build production RAG systems that turn your documents into a searchable, conversational AI knowledge base. Your team or customers ask questions in plain language and get accurate answers pulled directly from your data. Every answer is sourced, cited, and traceable.
+
+Capabilities:
+- Plain-language search across all your documents
+- Every answer cited to the source
+- Deployed as chat interface or API
+
+Deliverables:
+- Ingestion pipeline for PDFs, docs, web pages, and databases
+- Vector database with embeddings tuned for your domain (Pinecone, pgvector, or ChromaDB)
+- Hybrid search with reranking for retrieval accuracy
+- Chat UI or API endpoint (your choice)
+- Citation tracking on every response
+
+Outcome: Stop paying employees to dig through documents. Your team and customers get instant answers from your data.
+
+**2. Agents That Do The Work — AI Agent Development**
+
+We build AI agents and multi-agent systems that automate manual business workflows end-to-end. Lead qualification, data processing, scheduling. Your agent reasons, makes decisions, calls APIs, and takes action on your behalf.
+
+Capabilities:
+- Autonomous decision-making with edge-case handling
+- API integrations with your existing tools
+- 24/7 production deployment on AWS
+
+Deliverables:
+- Custom agent built for your specific workflow (Python + LangChain/LangGraph)
+- Integrations with CRM, email, calendar, and databases
+- Encrypted storage, role-based access, full audit logging
+- HIPAA-compliant architecture available for healthcare
+- Deployed on AWS (EC2, Lambda, RDS) with monitoring
+
+Outcome: Replace 20+ hours a week of manual work so your team focuses on what actually grows the business.
+
+**3. Know Where AI Actually Fits — ML Consulting & Strategy**
+
+Architecture design, model selection, fine-tuning strategy, and evaluation frameworks. Bedrock, OpenAI, Anthropic, and open-source model integration. We tell you where AI pays off and where it doesn't.
+
+Capabilities:
+- Model selection & benchmarking
+- Evaluation framework design
+- LLM integration architecture
+
+Deliverables:
+- Architecture decision document
+- Model benchmark report
+- Evaluation framework & test suite
+- Integration runbook
+
+Outcome: Know exactly where AI saves money in your business before you spend a dollar building.
+
+**4. Ship AI Without Breaking Production — AI Infrastructure & Deployment**
+
+ECS/EKS containerization, Lambda serverless, API Gateway, CloudWatch observability, and Infrastructure-as-Code via CDK or Terraform. Your AI runs like the rest of your stack.
+
+Capabilities:
+- AWS-native containerization
+- CI/CD & monitoring pipelines
+- Auto-scaling & cost optimization
+
+Deliverables:
+- IaC templates (CDK/Terraform)
+- CI/CD pipeline
+- CloudWatch dashboards & alerts
+- Cost optimization report
+
+Outcome: Ship with confidence. We handle the infrastructure so you don't wake up to 3am outages.
+
+**5. Answer Every Customer, 24/7 — Chatbots & Voice AI**
+
+We build AI chatbots and voice agents that handle customer questions, bookings, and lead capture 24/7. Web chat, phone answering, or embedded in Telegram, WhatsApp, and SMS. Grounded in your knowledge base. Connected to your booking system.
+
+Capabilities:
+- Voice AI for phone answering
+- Omnichannel deployment (web, phone, messaging)
+- 24/7 autonomous operation
+
+Deliverables:
+- Web chatbot or voice agent (Vapi, ElevenLabs, Twilio)
+- Knowledge base grounding with cited sources
+- Booking and lead capture integration
+- Human escalation with transcript handoff
+- Analytics dashboard for conversation review
+
+Outcome: Never miss a lead or a customer question again — without adding a single hire.
+
+**6. AI That Speaks Your Industry — Fine-tuning & Domain Models**
+
+Generic models give generic answers. We fine-tune LLMs on your domain data — dental, legal, real estate, finance, healthcare — so they speak your industry's language, follow your compliance rules, and produce outputs specific to your workflows.
+
+Capabilities:
+- Industry-specific model tuning
+- Dataset curation and annotation
+- Evaluation against domain benchmarks
+
+Deliverables:
+- Fine-tuning dataset built from your domain data
+- Custom model (LoRA adapter on Claude, GPT-4, or open-source)
+- Evaluation suite measuring accuracy on your use cases
+- Production deployment with versioning and rollback
+- Retraining pipeline for continuous improvement
+
+Outcome: An AI that actually understands your work, not one that guesses like a generalist.
+
+---
+
+## How It Works
+
+### From problem to production in weeks.
+
+A clear engineering process so you know exactly what you're getting, when it ships, and what it costs.
+
+### Five-Step Process
+
+1. **Audit** — Free 30-minute call. We map your workflows, identify where AI fits, and assess what's buildable.
+2. **Scope** — Fixed scope, fixed price. No hourly billing, no surprise invoices. You know the exact cost before work begins.
+3. **Build** — End-to-end engineering. Most projects ship in 4-8 weeks.
+4. **Deploy** — Production deployment on AWS with monitoring, CI/CD, and documentation.
+5. **Maintain** — Optional ongoing maintenance, tuning, and retraining.
+
+### Why This Is Different (What you're actually getting)
+
+**Real code, not prompts.** We write production code in Python and TypeScript, not Zapier workflows or prompt templates. Systems run on your infrastructure, not someone else's dashboard.
+
+**End-to-end ownership.** One partner from architecture through deployment. No handoffs to offshore teams. No "we'll get back to you" after the contract is signed.
+
+**Built for your stack.** We integrate with what you already use — CRMs, databases, email, calendars, phone systems. AI that fits into your operations, not the other way around.
+
+### FAQ
+
+**Q: What does it cost?**
+A: Every project is scoped individually because pricing depends on the system — its complexity, integrations, data volume, and infrastructure needs. After the free 30-minute call, we'll give you a fixed scope and a fixed price before any work begins. No hourly billing, no surprise invoices.
+
+**Q: How long does a typical project take?**
+A: Most projects ship in 4-8 weeks from kickoff. Complex multi-agent systems or fine-tuning projects can take longer. We give you a timeline in the scoping phase.
+
+**Q: Do you work with non-technical founders?**
+A: Yes. A lot of our clients are business owners, not engineers. We translate AI into business outcomes and handle all the technical work.
+
+**Q: What industries do you work with?**
+A: Healthcare, legal, real estate, finance, dental, insurance, and knowledge-intensive operations like research firms and technical documentation teams.
+
+**Q: Is this HIPAA-compliant?**
+A: We build HIPAA-compliant architectures for healthcare clients — end-to-end encryption, audit logging, private AWS infrastructure, BAA-ready deployments.
+
+---
+
+## About
+
+### We build AI that runs your business, not the other way around.
+
+Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster. From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build, and deploy AI that does real work. HIPAA-compliant architecture available for healthcare and regulated industries.
+
+### What we're not
+
+- We're not a generalist marketing agency.
+- We're not a no-code Zapier integration shop.
+- We're not an offshore contractor with account managers.
+- We're not selling prompt wrappers or ChatGPT dashboards.
+
+We're an engineering partner. The systems we build become infrastructure your business runs on.
+
+### Founder
+
+**Mehdi Salhi — Founder & Lead Engineer**
+
+Unkommon was founded to fix a recurring problem: companies spending months with AI agencies and getting nothing that works in production. Chatbot demos that impressed in meetings but broke on real data. RAG systems that gave wrong answers. Agents that couldn't handle edge cases.
+
+We build production AI systems end-to-end. Every RAG pipeline, every multi-agent workflow, every AWS deployment is designed, built, and shipped by engineers who write code — not account managers reselling other people's tools.
+
+Based in Stamford, CT. Working with clients across the US and internationally.
+Languages: English, Arabic, French.
+LinkedIn: https://www.linkedin.com/in/mehdi-salhi-work/
+
+---
+
+## Book a Call
+
+### Let's see where AI fits in your business.
+
+Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business — no pitch, no obligation.
+
+You'll get a calendar invite with a Zoom link and a short pre-call questionnaire so we can hit the ground running.
+
+**Book online**: https://cal.com/medysaly/30min
+**Phone**: +1 (203) 680-9629 (AI agent, 24/7)
+**Email**: contact@unkommon.ai
