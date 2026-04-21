@@ -7,7 +7,6 @@ import uuid
 import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-from boto3.dynamodb.conditions import Attr
 
 
 # Prompt injection detection patterns
@@ -69,11 +68,39 @@ bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
-leads_table = dynamodb.Table('unkommon-leads')
 conversations_table = dynamodb.Table('unkommon-conversations')
 
-# Environment variable for calendar API
+# Environment
 CALENDAR_API_URL = os.environ['CALENDAR_API_URL']
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
+LEADS_NOTIFICATION_EMAIL = os.environ.get('LEADS_NOTIFICATION_EMAIL', 'sales@unkommon.ai')
+
+
+def send_lead_email(subject, body):
+    """Send a plain-text lead notification email via Resend."""
+    if not RESEND_API_KEY:
+        print("RESEND_API_KEY not configured, skipping lead email")
+        return False
+    try:
+        resp = requests.post(
+            'https://api.resend.com/emails',
+            headers={
+                'Authorization': f'Bearer {RESEND_API_KEY}',
+                'Content-Type': 'application/json',
+            },
+            json={
+                'from': 'Unkommon <info@unkommon.ai>',
+                'to': [LEADS_NOTIFICATION_EMAIL],
+                'subject': subject,
+                'text': body,
+            },
+            timeout=10,
+        )
+        resp.raise_for_status()
+        return True
+    except Exception as e:
+        print(f"Lead email failed: status={getattr(getattr(e, 'response', None), 'status_code', 'unknown')}")
+        return False
 
 
 # System prompt with company knowledge
@@ -329,10 +356,12 @@ def save_conversation_history(conversation_id, messages):
 
 
 
-# Save lead to DynamoDB
+# Track conversations we've already notified about to avoid duplicate emails
+_notified_conversations = set()
+
 
 def format_phone(phone):
-    """Format phone number to XXX-XXX-XXXX"""
+    """Format phone number to XXX-XXX-XXXX."""
     digits = re.sub(r'\D', '', phone)
     if len(digits) == 11 and digits[0] == '1':
         digits = digits[1:]
@@ -340,109 +369,40 @@ def format_phone(phone):
         return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
     return phone
 
-def find_existing_lead(conversation_id):
-    """Find an existing lead for this conversation"""
-    try:
-        response = leads_table.scan(
-            FilterExpression=Attr('metadata.conversationId').eq(conversation_id) & Attr('source').eq('chatbot')
-        )
-        items = response.get('Items', [])
-        return items[0] if items else None
-    except Exception as e:
-        print(f"Error finding existing lead: {e}")
-        return None
 
+def notify_chatbot_lead(user_message, ai_response, conversation_id):
+    """Email a lead notification to sales when the chatbot detects contact info or interest.
+    One email per conversation (in-memory dedupe within warm Lambda instance)."""
 
-def save_chatbot_lead(user_message, ai_response, conversation_id):
-    """
-    Save or update chatbot lead in DynamoDB.
-    One conversation = one lead. Updates existing lead with new info.
-    """
+    if conversation_id in _notified_conversations:
+        return
 
-    # Extract email using regex
     email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     email_match = re.search(email_pattern, user_message)
     email = email_match.group(0) if email_match else None
 
-    # Extract phone using regex (various formats)
     phone_pattern = r'[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}'
     phone_match = re.search(phone_pattern, user_message)
     phone = format_phone(phone_match.group(0)) if phone_match else None
 
-    # Check for interest keywords
     interest_keywords = [
         'book', 'schedule', 'appointment', 'call me', 'contact me',
         'interested', 'sign up', 'demo', 'trial', 'pricing',
         'more info', 'tell me more', 'learn more', 'get started'
     ]
-    message_lower = user_message.lower()
-    is_interested = any(keyword in message_lower for keyword in interest_keywords)
+    if not (email or phone or any(k in user_message.lower() for k in interest_keywords)):
+        return
 
-    # Only proceed if we have contact info OR user shows interest
-    if not (email or phone or is_interested):
-        return None
-
-    # Check if a lead already exists for this conversation
-    existing = find_existing_lead(conversation_id)
-
-    if existing:
-        # Update existing lead with new info
-        update_parts = []
-        expr_values = {}
-
-        if email and existing.get('email') in ('pending', None):
-            update_parts.append('email = :email')
-            expr_values[':email'] = email
-
-        if phone and existing.get('phone') in ('N/A', None):
-            update_parts.append('phone = :phone')
-            expr_values[':phone'] = phone
-
-        if not update_parts:
-            return existing['leadId']
-
-        try:
-            leads_table.update_item(
-                Key={'leadId': existing['leadId']},
-                UpdateExpression='SET ' + ', '.join(update_parts),
-                ExpressionAttributeValues=expr_values
-            )
-            print(f"Lead updated: {existing['leadId']}")
-            return existing['leadId']
-        except Exception as e:
-            print(f"Failed to update lead: {e}")
-            return None
-    else:
-        # Create new lead
-        lead_id = str(uuid.uuid4())
-        timestamp = int(datetime.now().timestamp())
-
-        item = {
-            'leadId': lead_id,
-            'createdAt': timestamp,
-            'name': 'Chatbot User',
-            'email': email if email else 'pending',
-            'phone': phone if phone else 'N/A',
-            'message': '' if (email or phone) and len(user_message.split()) <= 5 else user_message,
-            'primaryBottleneck': 'N/A',
-            'source': 'chatbot',
-            'appointmentBooked': False,
-            'appointmentTime': None,
-            'metadata': {
-                'conversationId': conversation_id,
-                'aiResponse': ai_response,
-                'hasEmail': bool(email),
-                'hasPhone': bool(phone)
-            }
-        }
-
-        try:
-            leads_table.put_item(Item=item)
-            print(f"Chatbot lead captured: {lead_id}")
-            return lead_id
-        except Exception as e:
-            print(f"Failed to save chatbot lead: {e}")
-            return None
+    body = (
+        "New chatbot lead captured.\n\n"
+        f"Email:  {email or 'not provided'}\n"
+        f"Phone:  {phone or 'not provided'}\n"
+        f"Conversation ID: {conversation_id}\n\n"
+        f"Last user message:\n{user_message[:500]}\n\n"
+        f"Assistant response:\n{ai_response[:500]}\n"
+    )
+    send_lead_email(f"Chatbot lead: {email or phone or 'interested visitor'}", body)
+    _notified_conversations.add(conversation_id)
 
 
 # Lambda handler
@@ -596,7 +556,7 @@ def lambda_handler(event, context):
         save_conversation_history(conversation_id, messages)
 
         # Try to capture lead if user shows interest
-        save_chatbot_lead(user_message, ai_response, conversation_id)
+        notify_chatbot_lead(user_message, ai_response, conversation_id)
 
 
 

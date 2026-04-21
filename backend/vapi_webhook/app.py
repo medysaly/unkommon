@@ -2,19 +2,15 @@ import json
 import os
 import re
 import hmac
-import boto3
 import uuid
 import requests
 from datetime import datetime
 from html import escape as html_escape
 
-# Initialize DynamoDB
-dynamodb = boto3.resource('dynamodb')
-leads_table = dynamodb.Table('unkommon-leads')
-
 VAPI_WEBHOOK_SECRET = os.environ.get('VAPI_WEBHOOK_SECRET', '')
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 CALENDAR_API_URL = os.environ.get('CALENDAR_API_URL', '')
+LEADS_NOTIFICATION_EMAIL = os.environ.get('LEADS_NOTIFICATION_EMAIL', 'sales@unkommon.ai')
 
 CORS_HEADERS = {'Content-Type': 'application/json'}
 
@@ -487,31 +483,9 @@ def handle_end_of_call(body):
         if not caller_name and booking.get('name'):
             caller_name = booking['name']
 
-    # Save to DynamoDB
     lead_id = str(uuid.uuid4())
-    timestamp = int(datetime.now().timestamp())
 
-    item = {
-        'leadId': lead_id,
-        'createdAt': timestamp,
-        'name': caller_name if caller_name else 'Phone Caller',
-        'email': caller_email if caller_email else 'N/A (phone call)',
-        'phone': phone_number,
-        'message': call_summary,
-        'primaryBottleneck': 'N/A',
-        'source': 'vapi',
-        'appointmentBooked': appointment_booked,
-        'appointmentTime': f"{booking['date']} {booking['time']}" if booking else None,
-        'metadata': {
-            'callDuration': call_duration,
-            'transcript': transcript[:1000] if transcript else '',
-            'vapiCallId': call_data.get('id', ''),
-        },
-    }
-
-    leads_table.put_item(Item=item)
-
-    # Send branded confirmation email if appointment was booked
+    # Send branded confirmation email to caller if they booked an appointment
     if booking and booking.get('email'):
         try:
             send_confirmation_email(
@@ -522,20 +496,28 @@ def handle_end_of_call(body):
                 booking.get('meet_link', ''),
             )
         except Exception as conf_err:
-            print(f"⚠️ Confirmation email failed: {conf_err}")
-    else:
-        # Send internal notification only (no booking)
-        try:
-            send_email(
-                'sales@unkommon.ai',
-                f'New Call Lead: {phone_number}',
-                f"New phone call received:\n\nPhone: {phone_number}\nDuration: {call_duration} seconds\n\nSummary:\n{call_summary}",
-            )
-            print(f"Email notification sent for lead: {lead_id}")
-        except Exception as email_err:
-            print(f"⚠️ Email notification failed: {email_err}")
+            print(f"Confirmation email failed: {conf_err}")
 
-    print(f"Vapi lead saved: {lead_id} | Booked: {appointment_booked}")
+    # Send internal lead notification to sales
+    try:
+        subject = (
+            f"New Call Lead (booked {booking['date']} {booking['time']}): {phone_number}"
+            if appointment_booked else f"New Call Lead: {phone_number}"
+        )
+        body = (
+            f"Phone: {phone_number}\n"
+            f"Name: {caller_name or 'not provided'}\n"
+            f"Email: {caller_email or 'not provided'}\n"
+            f"Duration: {call_duration} seconds\n"
+            f"Appointment booked: {'yes' if appointment_booked else 'no'}\n"
+            f"Vapi call ID: {call_data.get('id', '')}\n\n"
+            f"Summary:\n{call_summary}\n\n"
+            f"Transcript:\n{(transcript or '')[:2000]}"
+        )
+        send_email(LEADS_NOTIFICATION_EMAIL, subject, body)
+        print(f"Email notification sent for lead: {lead_id}")
+    except Exception as email_err:
+        print(f"Email notification failed: {email_err}")
 
     return {
         'statusCode': 200,

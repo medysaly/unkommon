@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 from app import (
     SYSTEM_PROMPT, TOOLS, execute_tool,
     get_conversation_history, save_conversation_history,
-    save_chatbot_lead
+    notify_chatbot_lead
 )
 
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
@@ -147,7 +147,7 @@ def handler(event, response_stream, context):
         save_conversation_history(conversation_id, messages)
 
         # Capture leads
-        save_chatbot_lead(user_message, ai_response, conversation_id)
+        notify_chatbot_lead(user_message, ai_response, conversation_id)
 
         # Send done signal
         response_stream.write(f"data: {json.dumps({'done': True, 'conversationId': conversation_id})}\n\n".encode())

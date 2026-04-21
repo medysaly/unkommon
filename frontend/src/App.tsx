@@ -13,8 +13,6 @@ import HowItWorks from "@/pages/how-it-works";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
 import Sources from "@/pages/sources";
-import AdminLogin from "@/pages/admin-login";
-import AdminDashboard from "@/pages/admin-dashboard";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
@@ -32,11 +30,6 @@ function Router() {
     <>
       <ScrollToTop />
       <Switch>
-        {/* Admin routes (no layout) */}
-        <Route path="/admin/login" component={AdminLogin} />
-        <Route path="/admin/dashboard" component={AdminDashboard} />
-
-        {/* Public routes (with layout) */}
         <Route>
           {() => (
             <Layout>
