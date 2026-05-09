@@ -17,15 +17,13 @@ Browser
   |
   |-- React SPA (AWS Amplify)
   |     |-- AI Chatbot with tool-calling
-  |     |-- Calendar booking integration
-  |     +-- Admin dashboard (Cognito auth)
+  |     +-- Calendar booking integration
   |
   +-- API Gateway (WAF rate-limited)
-        |-- POST /api/chat -------- Claude on Bedrock (tool-calling)
-        |-- GET/POST /api/calendar - Google Calendar API
-        |-- GET/DELETE /api/leads -- DynamoDB (Cognito-protected)
-        |-- POST /api/vapi-webhook - HMAC-verified voice webhooks
-        +-- POST /api/contact ----- SES transactional email
+        |-- POST /api/chat ----------- Claude on Bedrock (tool-calling)
+        |-- GET  /api/calendar/availability  Google Calendar API
+        |-- POST /api/calendar/book ----------- Google Calendar API
+        +-- POST /api/vapi-webhook --- HMAC-verified voice webhooks
 ```
 
 ```mermaid
@@ -34,37 +32,34 @@ graph LR
     B --> C[API Gateway + WAF]
     C --> D[Chatbot Lambda]
     C --> E[Calendar Lambda]
-    C --> F[Leads Lambda]
-    C --> G[Webhook Lambda]
+    C --> G[Vapi Webhook Lambda]
     D --> H[AWS Bedrock - Claude]
-    D --> I[DynamoDB]
+    D --> I[DynamoDB conversations]
     E --> J[Google Calendar]
-    F --> I
-    G --> I
     D -->|tool calls| E
+    G -->|notification| K[Resend Email API]
+    D -->|notification| K
 ```
 
 ## Features
 
-**AI Chatbot.** Conversational assistant powered by Claude (Sonnet 4.5 / Haiku 4.5) on AWS Bedrock. Supports multi-turn conversations with DynamoDB persistence (24h TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global request budget to cap Bedrock costs.
+**AI Chatbot.** Conversational assistant powered by Claude (Sonnet 4.5 / Haiku 4.5) on AWS Bedrock. Supports multi-turn conversations with DynamoDB persistence (24 hour TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global hourly request budget to cap Bedrock costs.
 
 **Calendar Integration.** Google Calendar API with service account domain-wide delegation. Checks real-time availability, books appointments with conflict detection, generates Google Meet links, and sends branded HTML confirmation emails via Resend.
 
-**Admin Dashboard.** Cognito-authenticated leads management interface. JWT validation at the Lambda level. Full CRUD on lead data with stats aggregation.
-
-**Webhook Processing.** Inbound voice call webhook handler with HMAC signature verification (fail-closed). Extracts structured data from call reports (name, email, phone), saves leads, and triggers follow-up emails.
+**Voice Webhook Processing.** Inbound voice call webhook handler with HMAC signature verification (fail-closed). Extracts structured data from Vapi call reports (name, email, phone) and triggers lead notification emails to the sales team via Resend.
 
 ## Tech Stack
 
 | Frontend | Backend | Infrastructure |
 |----------|---------|----------------|
 | React 18 + TypeScript | Python 3.13 | AWS SAM (IaC) |
-| Vite | AWS Lambda (5 functions) | API Gateway + WAF |
-| Tailwind CSS | AWS Bedrock (Claude) | DynamoDB (2 tables) |
-| Framer Motion | Google Calendar API | AWS Cognito |
-| Radix UI / shadcn | Resend (email) | AWS Secrets Manager |
-| Wouter (routing) | boto3 / requests | AWS Amplify (hosting) |
-| Three.js (globe) | | SES (transactional email) |
+| Vite | AWS Lambda (3 functions) | API Gateway + WAFv2 |
+| Tailwind CSS | AWS Bedrock (Claude) | DynamoDB (1 table) |
+| Framer Motion | Google Calendar API | AWS Secrets Manager |
+| Radix UI / shadcn | Resend (email) | AWS Amplify (hosting) |
+| Wouter (routing) | boto3 / requests | |
+| Three.js (globe) | | |
 
 ## Project Structure
 
@@ -73,7 +68,7 @@ graph LR
 ├── frontend/                React SPA
 │   ├── src/
 │   │   ├── components/      UI components (ChatWidget, HeroBackground, etc.)
-│   │   ├── pages/           Route pages (home, solutions, contact, admin)
+│   │   ├── pages/           Route pages (home, solutions, about, etc.)
 │   │   ├── hooks/           Custom hooks
 │   │   └── lib/             Utilities and config
 │   ├── public/              Static assets
@@ -84,9 +79,9 @@ graph LR
 │   │   ├── app.py           Request handler with injection detection
 │   │   └── stream.py        SSE streaming handler
 │   ├── calendar_api/        Google Calendar integration
-│   ├── leads_api/           Admin dashboard API (Cognito JWT auth)
-│   ├── vapi_webhook/        Webhook processor (HMAC-verified)
-│   ├── contact_form/        Contact form handler
+│   ├── vapi_webhook/        Voice webhook processor (HMAC-verified)
+│   ├── tests/               Test suite
+│   ├── events/              Sample invocation events
 │   └── template.yaml        SAM infrastructure definition
 │
 ├── amplify.yml              Amplify build config + security headers
@@ -101,7 +96,7 @@ graph LR
 - Node.js 18+
 - Python 3.13
 - AWS SAM CLI
-- AWS account with Bedrock access
+- AWS account with Bedrock access (Claude Sonnet 4.5 / Haiku 4.5 model access enabled)
 
 ### Frontend
 
@@ -120,20 +115,20 @@ sam build
 sam deploy --guided        # First deploy (creates resources + prompts for parameters)
 ```
 
-Required SAM parameters: `VapiWebhookSecret`, `ResendApiKey`, `CognitoUserPoolId`.
+Required SAM parameters: `VapiWebhookSecret`, `ResendApiKey`, `LeadsNotificationEmail`.
 
 ## Security
 
 This project implements defense-in-depth:
 
-- **Authentication.** Cognito JWT validation on admin endpoints, HMAC signature verification on webhooks
-- **Rate limiting.** AWS WAF per-IP rules (100 req/5min global, 30 req/5min on chatbot), plus application-level rate limiting on booking and a global hourly request budget
-- **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, hardened system prompt with anti-injection rules
-- **Input validation.** UUID format enforcement, email/date/phone regex validation, message length limits
-- **CORS.** Dynamic origin matching for production domains (not wildcard)
-- **Headers.** HSTS, CSP, X-Frame-Options: DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy
-- **Secrets.** AWS Secrets Manager for credentials, SAM NoEcho parameters, no hardcoded secrets
-- **Data.** DynamoDB parameterized queries, HTML escaping in email templates, 24h TTL on conversation data
+- **Authentication.** HMAC signature verification on Vapi webhooks (fail-closed).
+- **Rate limiting.** AWS WAFv2 per-IP rules (100 requests / 5 minutes global, 30 requests / 5 minutes on the chatbot endpoint), plus application-level booking rate limits and a global hourly request budget.
+- **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, and a hardened system prompt with anti-injection rules.
+- **Input validation.** UUID format enforcement, email and date and phone regex validation, message length limits.
+- **CORS.** Dynamic origin matching for production domains, not wildcard.
+- **Headers.** HSTS, CSP, X-Frame-Options DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy.
+- **Secrets.** AWS Secrets Manager for Google Calendar credentials, SAM NoEcho parameters for runtime secrets, no hardcoded secrets in the repository.
+- **Data.** DynamoDB parameterized queries, HTML escaping in email templates, 24 hour TTL on conversation data.
 
 ## Deployment
 
@@ -142,6 +137,18 @@ This project implements defense-in-depth:
 | Frontend | AWS Amplify | Git push to `main` |
 | Backend | AWS SAM | `sam build && sam deploy` |
 | WAF | AWS WAFv2 | Attached via CLI post-deploy |
+
+## Roadmap
+
+Planned additions for the next iteration:
+
+- **Admin dashboard.** Cognito-authenticated leads management interface with JWT validation at the Lambda level. Will introduce a new `leads_api` Lambda and a Cognito User Pool.
+- **Lead persistence.** New DynamoDB table for lead records, currently sent only by email. Will support querying by date and customer.
+- **Appointment cache.** New DynamoDB table for booked appointments to avoid round-trips to Google Calendar for common reads.
+- **Contact form endpoint.** New `contact_form` Lambda for direct contact submissions.
+- **CI/CD pipeline.** GitHub Actions with OpenID Connect federation to AWS, replacing manual `sam deploy` runs.
+- **Layered backend refactor.** Split each Lambda into API, service, and data access layers for testability.
+- **Analytics layer.** DynamoDB Streams to S3 in Parquet format with Athena queries for trend analysis.
 
 ## License
 
