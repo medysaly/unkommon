@@ -13,6 +13,7 @@ import os
 os.environ.setdefault('CALENDAR_API_URL', 'http://test-calendar-api.invalid')
 os.environ.setdefault('RESEND_API_KEY', 'test-resend-key')
 os.environ.setdefault('LEADS_NOTIFICATION_EMAIL', 'test@example.com')
+os.environ.setdefault('AWS_DEFAULT_REGION', 'us-east-1')
 
 import pytest
 
