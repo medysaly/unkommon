@@ -1,0 +1,131 @@
+"""Tests for the chat service business logic.
+
+Five tests covering the highest-value behaviors of services/chat_service.py:
+- Normal message flow (happy path)
+- Tool-calling flow (multi-turn)
+- Booking limit enforcement (business rule)
+- Lead notification deduplication (business rule)
+- Tool parameter validation (input validation)
+
+All external dependencies (Bedrock, DynamoDB, calendar API, Resend) are mocked
+via fixtures in conftest.py. These tests exercise only the service-layer logic.
+"""
+
+from services import chat_service
+
+
+def test_process_chat_message_returns_response(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_send_lead_email,
+):
+    """Happy path: Bedrock returns plain text, service returns it and saves the conversation."""
+    # ARRANGE
+    mock_invoke_chat_model.return_value = {
+        'stop_reason': 'end_turn',
+        'content': [{'type': 'text', 'text': 'Hello! How can I help?'}],
+    }
+
+    # ACT
+    result = chat_service.process_chat_message(
+        user_message="hi",
+        conversation_id="11111111-1111-1111-1111-111111111111",
+    )
+
+    # ASSERT
+    assert result == 'Hello! How can I help?'
+    mock_invoke_chat_model.assert_called_once()
+    mock_save_conversation_history.assert_called_once()
+
+
+def test_process_chat_message_handles_tool_call(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_check_availability,
+    mock_send_lead_email,
+):
+    """Bedrock returns tool_use, service executes the tool, Bedrock returns final text."""
+    # ARRANGE: first Bedrock call returns tool_use, second returns end_turn
+    mock_invoke_chat_model.side_effect = [
+        {
+            'stop_reason': 'tool_use',
+            'content': [
+                {
+                    'type': 'tool_use',
+                    'id': 'tool-call-1',
+                    'name': 'check_availability',
+                    'input': {'date': '2026-06-15'},
+                },
+            ],
+        },
+        {
+            'stop_reason': 'end_turn',
+            'content': [{'type': 'text', 'text': 'I have 10am and 2pm open. Which works?'}],
+        },
+    ]
+    mock_check_availability.return_value = ['10:00', '14:00']
+
+    # ACT
+    result = chat_service.process_chat_message(
+        user_message="when can I meet?",
+        conversation_id="22222222-2222-2222-2222-222222222222",
+    )
+
+    # ASSERT
+    assert result == 'I have 10am and 2pm open. Which works?'
+    assert mock_invoke_chat_model.call_count == 2
+    mock_check_availability.assert_called_once_with('2026-06-15')
+
+
+def test_execute_tool_enforces_booking_limit(mock_book_appointment):
+    """Second booking attempt in the same conversation is blocked before any API call."""
+    # ARRANGE: simulate a previous successful booking for this conversation
+    conversation_id = "33333333-3333-3333-3333-333333333333"
+    chat_service._conversation_bookings[conversation_id] = 1
+
+    booking_input = {
+        'date': '2026-06-15',
+        'time': '10:00',
+        'name': 'Jane Doe',
+        'email': 'jane@example.com',
+        'phone': '203-555-1212',
+    }
+
+    # ACT
+    result = chat_service.execute_tool('book_appointment', booking_input, conversation_id)
+
+    # ASSERT
+    assert 'already have an appointment booked' in result
+    mock_book_appointment.assert_not_called()
+
+
+def test_notify_chatbot_lead_dedupes_per_conversation(mock_send_lead_email):
+    """A second lead notification for the same conversation does not send another email."""
+    # ARRANGE
+    user_message = "interested! my email is jane@example.com"
+    ai_response = "Great, let's set up a call."
+    conversation_id = "44444444-4444-4444-4444-444444444444"
+
+    # ACT: call twice
+    chat_service.notify_chatbot_lead(user_message, ai_response, conversation_id)
+    chat_service.notify_chatbot_lead(user_message, ai_response, conversation_id)
+
+    # ASSERT: only one email sent total
+    mock_send_lead_email.assert_called_once()
+
+
+def test_validate_tool_params_rejects_invalid_email():
+    """Booking with a malformed email is rejected before any tool runs."""
+    invalid_input = {
+        'date': '2026-06-15',
+        'time': '10:00',
+        'name': 'Jane Doe',
+        'email': 'not-a-real-email',
+        'phone': '203-555-1212',
+    }
+
+    result = chat_service.validate_tool_params('book_appointment', invalid_input)
+
+    assert result == 'Invalid email address.'

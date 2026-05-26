@@ -44,3 +44,5 @@ ENV/
 
 # Local
 .claude/
+.venv/
+.pytest_cache/
