@@ -129,3 +129,46 @@ def test_validate_tool_params_rejects_invalid_email():
     result = chat_service.validate_tool_params('book_appointment', invalid_input)
 
     assert result == 'Invalid email address.'
+
+def test_non_faq_message_uses_bedrock(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_send_lead_email,
+):
+    """A message with no FAQ match falls through to the Bedrock path."""
+    # ARRANGE
+    mock_invoke_chat_model.return_value = {
+        'stop_reason': 'end_turn',
+        'content': [{'type': 'text', 'text': 'Sure, here is how we would approach that.'}],
+    }
+
+    # ACT
+    result = chat_service.process_chat_message(
+        user_message="can you migrate my postgres database to AWS?",
+        conversation_id="66666666-6666-6666-6666-666666666666",
+    )
+
+    # ASSERT: Bedrock handled it
+    assert result == 'Sure, here is how we would approach that.'
+    mock_invoke_chat_model.assert_called_once()
+
+
+
+def test_faq_message_skips_bedrock(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_send_lead_email,
+):
+    """An FAQ message is answered from the Trie and never calls Bedrock."""
+    # ACT
+    result = chat_service.process_chat_message(
+        user_message="where are you based?",
+        conversation_id="55555555-5555-5555-5555-555555555555",
+    )
+
+    # ASSERT: answered from the Trie, Bedrock was never called, turn was saved
+    assert "Stamford" in result
+    mock_invoke_chat_model.assert_not_called()
+    mock_save_conversation_history.assert_called_once()

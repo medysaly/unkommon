@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 
 from domain.system_prompt import SYSTEM_PROMPT
 from domain.tools import TOOLS
+from domain.intent_trie import build_intent_trie
 from data.conversations_repo import get_conversation_history, save_conversation_history
 from data.bedrock_client import invoke_chat_model
 from data.calendar_client import check_availability, book_appointment
@@ -27,6 +28,9 @@ from data.email_client import send_lead_email
 # Track bookings per conversation to prevent abuse via chatbot
 _conversation_bookings = {}  # conversation_id -> count
 MAX_BOOKINGS_PER_CONVERSATION = 1
+
+# Build the FAQ intent Trie once per warm Lambda instance, reused across requests
+_intent_trie  = build_intent_trie()
 
 # Track conversations we've already notified about to avoid duplicate emails
 _notified_conversations = set()
@@ -158,6 +162,21 @@ def process_chat_message(user_message, conversation_id):
     Returns:
         str: the AI's text response
     """
+    # Load conversation history from DynamoDB and append the new user message
+    messages = get_conversation_history(conversation_id)
+    messages.append({"role": "user", "content": user_message})
+
+    # FAQ fast path: if the message matches a known intent, answer it from the
+    # Trie and skip the Bedrock call entirely. We still persist the turn and run
+    # lead capture, so conversation state and sales notifications are unchanged.
+
+    faq_response = _intent_trie.match(user_message)
+    if faq_response is not None:
+        messages.append({"role": "assistant", "content": faq_response})
+        save_conversation_history(conversation_id, messages)
+        notify_chatbot_lead(user_message, faq_response, conversation_id)
+        return faq_response
+
     # Generate calendar reference for the next 14 days so Claude can convert
     # relative dates like "next Friday" into YYYY-MM-DD format
     now_et = datetime.now(ZoneInfo('America/New_York'))
@@ -169,9 +188,6 @@ def process_chat_message(user_message, conversation_id):
         calendar_lines.append(f"{day.strftime('%A')} = {day.strftime('%Y-%m-%d')}{label}")
     calendar_reference = "\n".join(calendar_lines)
 
-    # Load conversation history from DynamoDB and append the new user message
-    messages = get_conversation_history(conversation_id)
-    messages.append({"role": "user", "content": user_message})
 
     # Build the Bedrock request body (system prompt + calendar context + history + tools)
     request_body = {
