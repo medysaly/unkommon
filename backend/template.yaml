@@ -60,6 +60,75 @@ Resources:
         - Key: Project
           Value: Unkommon
 
+    # DynamoDB Table for Leads
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: unkommon-leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: leadId
+          AttributeType: S
+        - AttributeName: entityType
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: leadId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: LeadsByDate
+          KeySchema:
+            - AttributeName: entityType
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: Unkommon
+
+  # DynamoDB Table for Appointments
+  AppointmentsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: unkommon-appointments
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: appointmentId
+          AttributeType: S
+        - AttributeName: customerEmail
+          AttributeType: S
+        - AttributeName: appointmentDate
+          AttributeType: S
+        - AttributeName: entityType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: appointmentId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: ByCustomerEmail
+          KeySchema:
+            - AttributeName: customerEmail
+              KeyType: HASH
+            - AttributeName: appointmentDate
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: ByDate
+          KeySchema:
+            - AttributeName: entityType
+              KeyType: HASH
+            - AttributeName: appointmentDate
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: Unkommon
+
+
   # Chatbot Lambda Function
   ChatbotFunction:
     Type: AWS::Serverless::Function
@@ -77,6 +146,10 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ConversationsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AppointmentsTable
         - Statement:
           - Effect: Allow
             Action:

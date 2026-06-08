@@ -101,7 +101,8 @@ def test_execute_tool_enforces_booking_limit(mock_book_appointment):
     mock_book_appointment.assert_not_called()
 
 
-def test_notify_chatbot_lead_dedupes_per_conversation(mock_send_lead_email):
+def test_notify_chatbot_lead_dedupes_per_conversation(mock_send_lead_email, mock_save_lead):
+
     """A second lead notification for the same conversation does not send another email."""
     # ARRANGE
     user_message = "interested! my email is jane@example.com"
@@ -172,3 +173,74 @@ def test_faq_message_skips_bedrock(
     assert "Stamford" in result
     mock_invoke_chat_model.assert_not_called()
     mock_save_conversation_history.assert_called_once()
+
+
+
+def test_lead_message_is_saved(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_send_lead_email,
+    mock_save_lead,
+):
+    """A message containing contact info is persisted to the leads table."""
+    # ARRANGE
+    mock_invoke_chat_model.return_value = {
+        'stop_reason': 'end_turn',
+        'content': [{'type': 'text', 'text': 'Thanks, we will reach out.'}],
+    }
+
+    # ACT
+    chat_service.process_chat_message(
+        user_message="I'm interested, my email is jane@example.com",
+        conversation_id="77777777-7777-7777-7777-777777777777",
+    )
+
+    # ASSERT: the lead was saved, with the captured email
+    mock_save_lead.assert_called_once()
+    assert mock_save_lead.call_args.kwargs['email'] == 'jane@example.com'
+
+
+def test_successful_booking_is_saved(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+    mock_book_appointment,
+    mock_send_lead_email,
+    mock_save_lead,
+    mock_save_appointment,
+):
+    """A successful booking is persisted to the appointments table."""
+    # ARRANGE: Bedrock asks to book, the booking succeeds, then Bedrock replies
+    mock_invoke_chat_model.side_effect = [
+        {
+            'stop_reason': 'tool_use',
+            'content': [{
+                'type': 'tool_use',
+                'id': 'tool-1',
+                'name': 'book_appointment',
+                'input': {
+                    'date': '2026-06-20',
+                    'time': '14:00',
+                    'name': 'Jane Doe',
+                    'email': 'jane@example.com',
+                    'phone': '203-555-1212',
+                },
+            }],
+        },
+        {
+            'stop_reason': 'end_turn',
+            'content': [{'type': 'text', 'text': 'You are booked.'}],
+        },
+    ]
+    mock_book_appointment.return_value = {'success': True, 'emailSent': True}
+
+    # ACT
+    chat_service.process_chat_message(
+        user_message="book me for June 20 at 2pm",
+        conversation_id="88888888-8888-8888-8888-888888888888",
+    )
+
+    # ASSERT: the appointment was saved, with the booked date
+    mock_save_appointment.assert_called_once()
+    assert mock_save_appointment.call_args.kwargs['date'] == '2026-06-20'

@@ -23,6 +23,12 @@ from data.conversations_repo import get_conversation_history, save_conversation_
 from data.bedrock_client import invoke_chat_model
 from data.calendar_client import check_availability, book_appointment
 from data.email_client import send_lead_email
+from data.calendar_client import check_availability, book_appointment
+from data.email_client import send_lead_email
+from data.leads_repo import save_lead
+from data.appointments_repo import save_appointment
+
+
 
 
 # Track bookings per conversation to prevent abuse via chatbot
@@ -95,6 +101,17 @@ def execute_tool(tool_name, tool_input, conversation_id=None):
                 # Track successful booking
                 if conversation_id:
                     _conversation_bookings[conversation_id] = _conversation_bookings.get(conversation_id, 0) + 1
+                # Persist the appointment to DynamoDB for querying and auditing,
+                # in addition to creating it in Google Calendar.
+                save_appointment(
+                    name=tool_input['name'],
+                    email=tool_input['email'],
+                    phone=tool_input.get('phone', ''),
+                    date=tool_input['date'],
+                    time=tool_input['time'],
+                    conversation_id=conversation_id or 'unknown',
+                    source="chatbot",
+                )   
                 email_status = "Confirmation email sent." if data.get("emailSent") else "Note: confirmation email could not be sent."
                 return f"Appointment booked successfully for {tool_input['name']} on {tool_input['date']} at {tool_input['time']}. {email_status}"
             return f"Failed to book: {data.get('error', 'Unknown error')}"
@@ -144,8 +161,20 @@ def notify_chatbot_lead(user_message, ai_response, conversation_id):
         f"Last user message:\n{user_message[:500]}\n\n"
         f"Assistant response:\n{ai_response[:500]}\n"
     )
+
+    # Persist the lead to DynamoDB so sales can query leads later,
+    # not just rely on the email notification.
+    save_lead(
+        email=email,
+        phone=phone,
+        conversation_id=conversation_id,
+        source="chatbot",
+        last_user_message=user_message,
+        assistant_response=ai_response,
+    )
     send_lead_email(f"Chatbot lead: {email or phone or 'interested visitor'}", body)
     _notified_conversations.add(conversation_id)
+
 
 
 

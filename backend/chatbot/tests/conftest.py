@@ -82,3 +82,16 @@ def mock_send_lead_email(mocker):
     mock = mocker.patch('services.chat_service.send_lead_email')
     mock.return_value = True
     return mock
+
+
+
+@pytest.fixture
+def mock_save_lead(mocker):
+    """Replace the leads-table write with a no-op mock."""
+    return mocker.patch('services.chat_service.save_lead')
+
+
+@pytest.fixture
+def mock_save_appointment(mocker):
+    """Replace the appointments-table write with a no-op mock."""
+    return mocker.patch('services.chat_service.save_appointment')
