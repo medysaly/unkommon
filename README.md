@@ -20,7 +20,7 @@ Browser
   |     +-- Calendar booking integration
   |
   +-- API Gateway (WAF rate-limited)
-        |-- POST /api/chat ----------- Claude on Bedrock (tool-calling)
+        |-- POST /api/chat ----------- Intent Trie fast-path, else Claude on Bedrock
         |-- GET  /api/calendar/availability  Google Calendar API
         |-- POST /api/calendar/book ----------- Google Calendar API
         +-- POST /api/vapi-webhook --- HMAC-verified voice webhooks
@@ -33,17 +33,24 @@ graph LR
     C --> D[Chatbot Lambda]
     C --> E[Calendar Lambda]
     C --> G[Vapi Webhook Lambda]
-    D --> H[AWS Bedrock - Claude]
-    D --> I[DynamoDB conversations]
+    D --> T{Intent Trie}
+    T -->|FAQ match| R[Precomputed reply]
+    T -->|miss| H[AWS Bedrock - Claude]
+    D --> I[(DynamoDB: conversations)]
+    D --> L[(DynamoDB: leads)]
+    D --> M[(DynamoDB: appointments)]
     E --> J[Google Calendar]
-    D -->|tool calls| E
     G -->|notification| K[Resend Email API]
     D -->|notification| K
 ```
 
 ## Features
 
-**AI Chatbot.** Conversational assistant powered by Claude (Sonnet 4.5 / Haiku 4.5) on AWS Bedrock. Supports multi-turn conversations with DynamoDB persistence (24 hour TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global hourly request budget to cap Bedrock costs.
+**AI Chatbot.** Conversational assistant powered by Claude on AWS Bedrock. Multi-turn conversations with DynamoDB persistence (24 hour TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global hourly request budget to cap Bedrock costs.
+
+**Intent classifier (Trie fast-path).** A Trie (prefix tree) runs before the Bedrock call and answers common FAQ questions from precomputed responses in O(m) time, where m is the number of words in the message. Only messages that do not match fall through to the language model, which cuts latency and per-token cost for common questions and keeps those answers deterministic.
+
+**Lead and appointment persistence.** Captured leads and booked appointments are stored in DynamoDB with Global Secondary Indexes for the access patterns the business needs: recent leads by date, appointments by customer, and appointments by date range.
 
 **Calendar Integration.** Google Calendar API with service account domain-wide delegation. Checks real-time availability, books appointments with conflict detection, generates Google Meet links, and sends branded HTML confirmation emails via Resend.
 
@@ -55,10 +62,10 @@ graph LR
 |----------|---------|----------------|
 | React 18 + TypeScript | Python 3.13 | AWS SAM (IaC) |
 | Vite | AWS Lambda (3 functions) | API Gateway + WAFv2 |
-| Tailwind CSS | AWS Bedrock (Claude) | DynamoDB (1 table) |
+| Tailwind CSS | AWS Bedrock (Claude) | DynamoDB (3 tables) |
 | Framer Motion | Google Calendar API | AWS Secrets Manager |
 | Radix UI / shadcn | Resend (email) | AWS Amplify (hosting) |
-| Wouter (routing) | boto3 / requests | |
+| Wouter (routing) | boto3 / requests | pytest + GitHub Actions CI |
 | Three.js (globe) | | |
 
 ## Project Structure
@@ -75,19 +82,29 @@ graph LR
 │   └── package.json
 │
 ├── backend/                 AWS SAM serverless API
-│   ├── chatbot/             AI chatbot (Bedrock + tool-calling)
-│   │   ├── app.py           Request handler with injection detection
-│   │   └── stream.py        SSE streaming handler
+│   ├── chatbot/             AI chatbot (layered architecture)
+│   │   ├── app.py           Lambda entry shim
+│   │   ├── handlers/        HTTP handler + request guards
+│   │   ├── services/        chat_service (tool-calling loop + Trie fast-path)
+│   │   ├── domain/          system_prompt, tools, intent_trie (FAQ Trie)
+│   │   ├── data/            DynamoDB, Bedrock, calendar, email, leads, appointments wrappers
+│   │   ├── tests/           pytest suite (mocked AWS dependencies)
+│   │   └── benchmark_intent_trie.py   Trie performance benchmark
 │   ├── calendar_api/        Google Calendar integration
 │   ├── vapi_webhook/        Voice webhook processor (HMAC-verified)
-│   ├── tests/               Test suite
 │   ├── events/              Sample invocation events
 │   └── template.yaml        SAM infrastructure definition
 │
+├── .github/workflows/       GitHub Actions CI (runs the chatbot tests)
 ├── amplify.yml              Amplify build config + security headers
 ├── CLAUDE.md                AI assistant project context
 └── LICENSE
 ```
+
+## Testing
+
+- **pytest** suite for the chatbot, with every external dependency (Bedrock, DynamoDB, calendar, email) mocked, so tests run fast and offline.
+- **GitHub Actions** runs the test suite on every push.
 
 ## Getting Started
 
@@ -96,7 +113,7 @@ graph LR
 - Node.js 18+
 - Python 3.13
 - AWS SAM CLI
-- AWS account with Bedrock access (Claude Sonnet 4.5 / Haiku 4.5 model access enabled)
+- AWS account with Bedrock access (Claude model access enabled)
 
 ### Frontend
 
@@ -117,13 +134,21 @@ sam deploy --guided        # First deploy (creates resources + prompts for param
 
 Required SAM parameters: `VapiWebhookSecret`, `ResendApiKey`, `LeadsNotificationEmail`.
 
+### Tests
+
+```bash
+cd backend/chatbot
+python -m pytest -q
+```
+
 ## Security
 
 This project implements defense-in-depth:
 
 - **Authentication.** HMAC signature verification on Vapi webhooks (fail-closed).
+- **Least-privilege IAM.** Each Lambda is granted access only to the specific DynamoDB tables and services it needs, via per-table SAM policies, not blanket access.
 - **Rate limiting.** AWS WAFv2 per-IP rules (100 requests / 5 minutes global, 30 requests / 5 minutes on the chatbot endpoint), plus application-level booking rate limits and a global hourly request budget.
-- **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, and a hardened system prompt with anti-injection rules.
+- **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, and a hardened system prompt with anti-injection rules. The Trie fast-path also removes the model from FAQ traffic entirely.
 - **Input validation.** UUID format enforcement, email and date and phone regex validation, message length limits.
 - **CORS.** Dynamic origin matching for production domains, not wildcard.
 - **Headers.** HSTS, CSP, X-Frame-Options DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy.
@@ -142,13 +167,10 @@ This project implements defense-in-depth:
 
 Planned additions for the next iteration:
 
-- **Admin dashboard.** Cognito-authenticated leads management interface with JWT validation at the Lambda level. Will introduce a new `leads_api` Lambda and a Cognito User Pool.
-- **Lead persistence.** New DynamoDB table for lead records, currently sent only by email. Will support querying by date and customer.
-- **Appointment cache.** New DynamoDB table for booked appointments to avoid round-trips to Google Calendar for common reads.
-- **Contact form endpoint.** New `contact_form` Lambda for direct contact submissions.
-- **CI/CD pipeline.** GitHub Actions with OpenID Connect federation to AWS, replacing manual `sam deploy` runs.
-- **Layered backend refactor.** Split each Lambda into API, service, and data access layers for testability.
-- **Analytics layer.** DynamoDB Streams to S3 in Parquet format with Athena queries for trend analysis.
+- **CI/CD deploy pipeline.** Add a GitHub Actions deploy job using OpenID Connect federation to AWS, so a push deploys without static credentials (tests already run in CI).
+- **Analytics layer.** DynamoDB Streams to S3 in Parquet format with Athena queries for trend analysis on leads and appointments.
+- **Admin dashboard.** Cognito-authenticated leads management interface with JWT validation, introducing a `leads_api` Lambda and a Cognito User Pool.
+- **Contact form endpoint.** A `contact_form` Lambda for direct contact submissions.
 
 ## License
 
