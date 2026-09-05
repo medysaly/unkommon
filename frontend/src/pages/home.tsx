@@ -54,7 +54,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 md:grid-rows-[auto_auto_1fr] gap-4">
             {pillars.map((pillar, i) => {
               const items = services.filter((s) => s.pillar === pillar.id);
               return (
@@ -64,14 +64,14 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="text-left p-8 bg-white rounded-xl border border-border h-full flex flex-col"
+                  className="text-left p-8 bg-white rounded-xl border border-border flex flex-col gap-y-3 md:grid md:row-span-3 md:grid-rows-subgrid md:gap-y-4"
                 >
-                  <div className="flex items-baseline gap-3 mb-3">
+                  <div className="flex items-baseline gap-3">
                     <span className="text-[12px] font-mono text-muted-foreground tabular-nums">{pillar.number}</span>
                     <h3 className="text-[20px] font-medium text-foreground">{pillar.name}</h3>
                   </div>
-                  <p className="text-[14px] text-secondary-foreground leading-relaxed mb-6">{pillar.promise}</p>
-                  <ul className="mt-auto flex flex-col gap-2">
+                  <p className="text-[14px] text-secondary-foreground leading-relaxed">{pillar.promise}</p>
+                  <ul className="flex flex-col gap-2">
                     {items.map((service) => (
                       <li key={service.slug}>
                         <Link
