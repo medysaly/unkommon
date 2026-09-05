@@ -38,7 +38,7 @@ export default function Solutions() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,7vw,5.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-[900px] mb-6"
           >
-            Get found. Get answered. Get it running.
+            Get built. Get found. Get running.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

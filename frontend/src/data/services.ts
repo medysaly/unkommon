@@ -1,4 +1,4 @@
-export type PillarId = "foundation" | "found" | "respond" | "run";
+export type PillarId = "built" | "found" | "run";
 
 export interface Pillar {
   id: PillarId;
@@ -9,28 +9,22 @@ export interface Pillar {
 
 export const pillars: Pillar[] = [
   {
-    id: "foundation",
-    number: "00",
-    name: "The Foundation",
-    promise: "The site everything else runs on. Built so search engines, AI assistants, and buyers can all read it.",
+    id: "built",
+    number: "01",
+    name: "Get Built",
+    promise: "High-converting websites and apps, built so buyers, search engines, and AI assistants can all read them.",
   },
   {
     id: "found",
-    number: "01",
-    name: "Get Found",
-    promise: "Rank in Google and get cited by ChatGPT, AI Overviews, and Perplexity. Same discipline, two audiences.",
-  },
-  {
-    id: "respond",
     number: "02",
-    name: "Get Responded To",
-    promise: "Answer every call, chat, and form in seconds. Most businesses lose the deal before anyone reads the enquiry.",
+    name: "Get Found",
+    promise: "Rank across Google and AI search. Same discipline, two audiences, and both decide who gets shortlisted.",
   },
   {
     id: "run",
     number: "03",
-    name: "Get It Running",
-    promise: "The automation behind the front end, wired into the tools you already use and kept in production.",
+    name: "Get Running",
+    promise: "Answer every enquiry in seconds and turn manual workflows into automated systems, wired into the tools you already use.",
   },
 ];
 
@@ -56,10 +50,10 @@ export interface Service {
 }
 
 export const services: Service[] = [
-  // ─────────────────────────── 00 · Foundation ───────────────────────────
+  // ─────────────────────────── 01 · Get Built ───────────────────────────
   {
     slug: "web-development",
-    pillar: "foundation",
+    pillar: "built",
     title: "A Site Built To Be Found",
     subtitle: "Website Design & Development",
     shortDescription: "Fast, conversion-focused websites that ship with structured data, server-rendered content, and tracking wired in from day one.",
@@ -118,7 +112,7 @@ export const services: Service[] = [
     metaDescription: "Conversion-focused websites built with server-rendered content, structured data, and tracking from day one. Readable by Google and by AI assistants.",
   },
 
-  // ─────────────────────────── 01 · Get Found ───────────────────────────
+  // ─────────────────────────── 02 · Get Found ───────────────────────────
   {
     slug: "ai-search-optimization",
     pillar: "found",
@@ -297,10 +291,10 @@ export const services: Service[] = [
     metaDescription: "Google Business Profile optimization, review generation, citation cleanup, and location pages with local schema. Geo-grid rank tracking across your service area.",
   },
 
-  // ─────────────────────────── 02 · Get Responded To ───────────────────────────
+  // ─────────────────────────── 03 · Get Running (response) ───────────────────────────
   {
     slug: "ai-receptionist",
-    pillar: "respond",
+    pillar: "run",
     title: "Answer Every Call, 24/7",
     subtitle: "AI Receptionist & Voice Agents",
     shortDescription: "AI voice and chat agents that answer the phone, qualify the caller, and book the appointment on your real calendar.",
@@ -359,7 +353,7 @@ export const services: Service[] = [
   },
   {
     slug: "speed-to-lead",
-    pillar: "respond",
+    pillar: "run",
     title: "Reply Before They Move On",
     subtitle: "Speed to Lead & Follow-Up",
     shortDescription: "Automated first response, qualification, and follow-up across every channel a lead can arrive on, in seconds instead of days.",
@@ -417,7 +411,7 @@ export const services: Service[] = [
     metaDescription: "Reply to every inbound lead in seconds across call, form, chat, and social. Automatic qualification, routing, and multi-touch follow-up until they respond.",
   },
 
-  // ─────────────────────────── 03 · Get It Running ───────────────────────────
+  // ─────────────────────────── 03 · Get Running (operations) ───────────────────────────
   {
     slug: "workflow-automation",
     pillar: "run",

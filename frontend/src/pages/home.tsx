@@ -19,7 +19,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-[clamp(2.5rem,7vw,5.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-[900px] mb-8"
           >
-            We build the website, win the search, and answer every call.
+            Modernizing how businesses market, build, and operate.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.22 }}
             className="text-[17px] text-muted-foreground leading-relaxed max-w-2xl mb-10"
           >
-            A growth studio for businesses that need to be found by Google and by AI, respond to every enquiry in seconds, and stop paying people to do work a system should be doing.
+            We build high-converting websites and apps, drive rank across Google and AI search, and deploy smart automations to turn manual workflows into instant, automated systems.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,13 +45,13 @@ export default function Home() {
       <section className="bg-background px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4">
-            How we move your business forward.
+            Most agencies can't build. Most developers can't rank.
           </h2>
           <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            Buyers find you through AI now, and expect an answer the moment they reach out. We handle the discovery layer, the response layer, and the operations behind both.
+            Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             {pillars.map((pillar, i) => {
               const items = services.filter((s) => s.pillar === pillar.id);
               return (
