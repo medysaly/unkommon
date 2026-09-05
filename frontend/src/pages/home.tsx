@@ -94,14 +94,11 @@ export default function Home() {
       {/* Why one team */}
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6 max-w-3xl">
-            Most agencies can't build. Most developers can't rank.
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.04em] mb-6">
+            Our Mission
           </h2>
-          <p className="text-[17px] text-white/60 leading-relaxed max-w-2xl mb-4">
-            Marketing and engineering keep getting sold as separate things, so you end up with a fast site nobody can find, or good rankings on a site that can't take a booking. The two problems share the same root: whether machines can read your business correctly.
-          </p>
-          <p className="text-[17px] text-white/60 leading-relaxed max-w-2xl">
-            We do both. The person writing your content and the person shipping the code work in the same room, which means the recommendation and the implementation never get lost between two vendors.
+          <p className="text-[19px] md:text-[22px] text-white/70 leading-relaxed max-w-3xl">
+            To empower SMBs to elevate their services and reach their true potential by building modern digital products, dominating search and AI, and automating backend operations.
           </p>
         </div>
       </section>
