@@ -44,12 +44,15 @@ export default function Home() {
       {/* The three pillars */}
       <section className="bg-background px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-4">
-            Most agencies can't build. Most developers can't rank.
-          </h2>
-          <p className="text-[17px] text-secondary-foreground leading-relaxed mb-12 max-w-2xl">
-            Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
-          </p>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-start mb-12">
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground">
+              <span className="block">Most agencies can't build.</span>
+              <span className="block">Most developers can't rank.</span>
+            </h2>
+            <p className="text-[17px] text-secondary-foreground leading-relaxed md:pt-2">
+              Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4">
             {pillars.map((pillar, i) => {
