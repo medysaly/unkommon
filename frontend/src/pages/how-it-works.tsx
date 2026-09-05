@@ -12,88 +12,92 @@ const steps = [
   {
     num: "01",
     title: "Audit",
-    subtitle: "Free 30-minute architecture review",
+    subtitle: "Free 30-minute review",
     description:
-      "We audit your data landscape, current infrastructure, and workflow bottlenecks. What data do you have? Where are the manual steps? What does 'good' look like? We give you a clear engineering assessment.",
+      "We look at three things: how you show up in Google and in AI assistants, how fast inbound enquiries actually get answered, and where manual work is eating hours. You get a straight assessment, whether or not you work with us.",
   },
   {
     num: "02",
-    title: "Design",
-    subtitle: "System architecture tailored to your problem",
+    title: "Plan",
+    subtitle: "Fixed scope, fixed price",
     description:
-      "We define the system architecture: data pipelines, model selection, agent orchestration, integration points, and deployment strategy. No templates. A custom engineering blueprint.",
+      "We prioritise by what moves revenue, not by what is easiest to show on a report. You get a written scope, a price, and a timeline before anything starts. No hourly billing and no open-ended retainers.",
   },
   {
     num: "03",
     title: "Build",
-    subtitle: "Custom development on AWS",
+    subtitle: "Copy and code, same team",
     description:
-      "RAG knowledge base ingestion, LangGraph agent orchestration, API integrations, evaluation pipelines. Production code deployed on your private AWS infrastructure.",
+      "Content, structured data, site changes, and automation get built together rather than handed between vendors. Technical recommendations get implemented by the people who made them, which removes the slowest step in most engagements.",
   },
   {
     num: "04",
-    title: "Deploy",
-    subtitle: "Staged rollout in hybrid mode",
+    title: "Launch",
+    subtitle: "Measured from day one",
     description:
-      "The AI runs alongside your staff in a hybrid model until it hits 99% reliability. Your team stays in the loop, and the AI earns its place before it runs solo.",
+      "Tracking goes in before launch, not after, so the first month of data is usable. Where we deploy an agent, it runs alongside your team until it is handling calls correctly, and escalation paths are set before it takes a live call.",
   },
   {
     num: "05",
-    title: "Optimize",
-    subtitle: "Continuous monitoring and training",
+    title: "Report",
+    subtitle: "Numbers you can check",
     description:
-      "Continuous monitoring, agent training based on real interactions, and ongoing builds as your needs grow. You stay because of results, not a contract.",
+      "Monthly reporting on search rankings, AI citation rate against a fixed prompt set, response times, and conversions. If a retainer is not paying for itself, we would rather tell you than keep invoicing.",
   },
 ];
 
 const moat = [
   {
-    title: "Private Infrastructure",
-    subtitle: "Your Own AWS VPC",
+    title: "One Team, Both Halves",
+    subtitle: "Marketing and engineering",
     description:
-      "Every system runs on the client's own AWS VPC. Proprietary datasets, customer records, internal documents. None of it ever touches a public server.",
-    quote: "Our data never leaves our cloud.",
+      "Most SEO agencies cannot make code changes, and most development shops do not know what to change. We do both, so the recommendation and the implementation never get lost between two vendors pointing at each other.",
+    quote: "We build what we recommend.",
   },
   {
-    title: "State-Based Architecture",
-    subtitle: "LangGraph",
+    title: "Built To Be Read By Machines",
+    subtitle: "Structured data and rendering",
     description:
-      "We build using LangGraph, the production framework behind stateful AI systems at scale. These aren't chatbots that improvise. They're state machines that follow your business rules exactly.",
-    quote: "It can't go off-script. Ever.",
+      "GPTBot, ClaudeBot, and PerplexityBot fetch raw HTML and do not run JavaScript. We make sure your content exists in the HTML, your facts are marked up so they can be parsed, and the right crawlers can reach you.",
+    quote: "If they can't read it, they can't cite it.",
   },
   {
-    title: "RAG Knowledge Base",
-    subtitle: "Zero Hallucinations",
+    title: "Production, Not Pilots",
+    subtitle: "Monitoring and cost control",
     description:
-      "We ingest your specific business data into a private knowledge base. When a user asks a question, the AI pulls the answer from your documents. It never guesses.",
-    quote: "It won't make things up.",
+      "Around 88% of AI pilots never reach production. What kills them is integration, quality drift, missing monitoring, and unpredictable cost. We build for those from the start and stay accountable for uptime.",
+    quote: "A demo is not a deployment.",
   },
 ];
 
 const faqs = [
   {
     q: "How long does a typical project take?",
-    a: "2-8 weeks depending on scope. We go from audit to production deployment, not months of exploration. A focused RAG system can ship in 2-3 weeks. A multi-agent workflow with integrations is closer to 6-8.",
+    a: "A website build is usually 4 to 8 weeks. An AI receptionist or speed-to-lead setup is typically 2 to 4 weeks. SEO and AI visibility are ongoing, with technical fixes landing in the first few weeks and content compounding over three to six months.",
   },
   {
     q: "What does the free audit include?",
-    a: "A 30-minute call where we assess your data, infrastructure, and workflows to determine where AI fits and what the build looks like. You walk away with a clear picture of what's possible, what it takes, and whether it's worth doing, even if you don't work with us.",
+    a: "A 30-minute call covering how you appear in search and in AI assistants, how quickly enquiries get answered today, and where manual work is going. You walk away with a clear picture of what is worth fixing and what it takes, even if you do not work with us.",
   },
   {
-    q: "Do you work with our existing AWS infrastructure?",
-    a: "Yes. We deploy on your VPC, your accounts, your security policies. If you don't have AWS infrastructure yet, we set it up. Either way, you own everything we build.",
+    q: "Do we have to buy everything at once?",
+    a: "No, and most clients don't. People usually start with one thing, most often the website or the missed-call problem, and add the next once it is paying for itself. Each service works on its own.",
   },
   {
-    q: "What if we already tried an AI solution and it didn't work?",
-    a: "Most failed AI projects fail on architecture, not on the AI itself. Common issues: wrong model for the task, no evaluation framework, poor data pipeline, or a chatbot wrapper sold as a \"custom solution.\" We audit what went wrong and build it right.",
+    q: "Can you work with our existing website?",
+    a: "Usually yes. If the platform is sound we fix the rendering, structured data, and tracking rather than sell you a rebuild you do not need. We will tell you honestly which one your situation calls for.",
   },
   {
-    q: "Is my data secure?",
-    a: "Every system runs on your private AWS cloud. End-to-end encryption, isolated data environments, no public API calls with your data. Architecture is aligned with HIPAA and SOC 2 requirements. Your data is never used to train public models.",
+    q: "What if we already tried SEO or an AI tool and it didn't work?",
+    a: "That is a common starting point. SEO engagements usually stall because nobody could ship the technical fixes. AI projects usually stall on integration, quality at volume, or no clear owner. We audit what actually went wrong before proposing anything.",
+  },
+  {
+    q: "Is our data secure?",
+    a: "Systems we build run on your own AWS account where you want that, with encryption in transit and at rest, least-privilege access, and audit logging. Your data is not used to train public models. For healthcare we build on HIPAA-eligible AWS services with BAA-ready architecture.",
   },
   {
     q: "What does it cost?",
-    a: "Every project is scoped individually because pricing depends on the system: its complexity, integrations, data volume, and infrastructure needs. After the free 30-minute call, we'll give you a fixed scope and a fixed price before any work begins. No hourly billing, no surprise invoices.",
+    a: "It depends on scope, so we price each engagement individually. After the free call you get a fixed scope and a fixed price before any work begins. No hourly billing and no surprise invoices.",
   },
 ];
 

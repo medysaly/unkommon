@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "check": "tsc"
+    "check": "tsc",
+    "prerender": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

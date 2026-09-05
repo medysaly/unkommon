@@ -17,4 +17,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://unkommon.ai/sitemap.xml
+Sitemap: https://www.unkommon.ai/sitemap.xml

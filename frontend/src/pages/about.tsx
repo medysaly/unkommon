@@ -27,9 +27,10 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            Unkommon builds production AI systems for companies that want to save time, cut costs, and move faster.
-            From custom chatbots and voice agents to multi-agent workflows and fine-tuned models, we design, build,
-            and deploy AI that does real work. HIPAA-aware architecture built on HIPAA-eligible AWS services. BAA-ready for healthcare and regulated industries.
+            Unkommon builds the website, wins the search and AI visibility, answers every enquiry that comes in,
+            and automates the work behind it. Marketing and engineering in one team, so what gets recommended is
+            what gets shipped. HIPAA-aware architecture on HIPAA-eligible AWS services, BAA-ready for healthcare
+            and regulated industries.
           </motion.p>
         </div>
       </section>
@@ -76,14 +77,14 @@ export default function About() {
               <p className="text-[14px] text-white/60 mb-8">Founder & Lead Engineer</p>
               <div className="space-y-4 text-[15px] text-white/60 leading-relaxed">
                 <p>
-                  Unkommon was founded to fix a recurring problem: companies spending months with AI agencies
-                  and getting nothing that works in production. Chatbot demos that impressed in meetings but broke on
-                  real data. RAG systems that gave wrong answers. Agents that couldn't handle edge cases.
+                  Unkommon was founded to fix a split that costs businesses real money. The SEO agency writes a list
+                  of technical fixes it cannot implement. The development shop builds a fast site nobody can find.
+                  Each blames the other, and the work sits still for months.
                 </p>
                 <p>
-                  We build production AI systems end-to-end. Every RAG pipeline, every multi-agent workflow, every AWS
-                  deployment is designed, built, and shipped by engineers who write code, not account managers reselling
-                  other people's tools.
+                  We do both halves. The person writing your content and the person shipping the code work in the same
+                  room, so a recommendation becomes a deployment instead of a ticket. Everything is built and shipped
+                  by the people who proposed it, not account managers reselling other people's tools.
                 </p>
                 <p className="text-white/80">
                   Based in Stamford, CT. Working with clients across the US and internationally.

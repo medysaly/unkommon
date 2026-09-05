@@ -81,7 +81,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
   const createWelcomeMessage = (): Message => ({
     id: 'welcome',
     role: 'assistant',
-    content: "Hi! I'm the Unkommon AI assistant. How can I help you today?\n\n\u2022 Custom RAG Systems\n\u2022 AI Agent Development\n\u2022 ML Consulting & Integration\n\u2022 AI Infrastructure & Deployment\n\u2022 How our engineering process works",
+    content: "Hi! I'm the Unkommon AI assistant. How can I help you today?\n\n\u2022 Websites built to be found\n\u2022 SEO & AI search visibility\n\u2022 AI receptionist & speed to lead\n\u2022 Workflow automation\n\u2022 How we work and what it costs",
     timestamp: Date.now(),
   });
 

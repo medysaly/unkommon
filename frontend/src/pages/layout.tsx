@@ -1,4 +1,5 @@
 import { Link, useLocation } from "wouter";
+import { useSeo } from "@/lib/useSeo";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
@@ -7,6 +8,7 @@ import ChatWidget from "@/components/ChatWidget";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
+  useSeo();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [

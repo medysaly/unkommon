@@ -11,9 +11,10 @@ export default function Terms() {
           <section>
             <h2 className="text-lg font-medium text-foreground mb-3">1. Services</h2>
             <p>
-              Unkommon provides custom AI/ML engineering services including RAG system development,
-              AI agent development, ML consulting, and cloud infrastructure deployment.
-              All engagements are scoped individually after an initial consultation.
+              Unkommon provides web development, search engine optimization, AI search optimization,
+              local SEO, AI voice and chat agents, lead response automation, workflow automation,
+              and cloud infrastructure services. All engagements are scoped individually after an
+              initial consultation.
             </p>
           </section>
 

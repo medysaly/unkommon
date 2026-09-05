@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRoute, Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -16,21 +15,6 @@ export default function ServiceDetail() {
   const [, params] = useRoute<{ slug: string }>("/solutions/:slug");
   const slug = params?.slug ?? "";
   const service = getServiceBySlug(slug);
-
-  useEffect(() => {
-    if (!service) return;
-    const prevTitle = document.title;
-    const prevDesc = document
-      .querySelector('meta[name="description"]')
-      ?.getAttribute("content");
-    document.title = service.metaTitle;
-    const descTag = document.querySelector('meta[name="description"]');
-    if (descTag) descTag.setAttribute("content", service.metaDescription);
-    return () => {
-      document.title = prevTitle;
-      if (descTag && prevDesc) descTag.setAttribute("content", prevDesc);
-    };
-  }, [service]);
 
   if (!service) return <NotFound />;
 

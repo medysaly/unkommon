@@ -36,6 +36,14 @@ function Router() {
               <Switch>
                 <Route path="/" component={Home} />
                 <Route path="/solutions" component={Solutions} />
+
+                {/* Retired service slugs. Must precede /solutions/:slug so they win the match. */}
+                <Route path="/solutions/voice-ai">{() => <Redirect to="/solutions/ai-receptionist" />}</Route>
+                <Route path="/solutions/rag-systems">{() => <Redirect to="/solutions/workflow-automation" />}</Route>
+                <Route path="/solutions/ai-agents">{() => <Redirect to="/solutions/workflow-automation" />}</Route>
+                <Route path="/solutions/ml-consulting">{() => <Redirect to="/solutions" />}</Route>
+                <Route path="/solutions/fine-tuning">{() => <Redirect to="/solutions" />}</Route>
+
                 <Route path="/solutions/:slug" component={ServiceDetail} />
                 <Route path="/how-it-works" component={HowItWorks} />
                 <Route path="/about" component={About} />
@@ -46,9 +54,9 @@ function Router() {
 
                 {/* Legacy redirects */}
                 <Route path="/contact">{() => <Redirect to="/book-a-call" />}</Route>
-                <Route path="/ai-receptionist">{() => <Redirect to="/solutions" />}</Route>
-                <Route path="/speed-to-lead">{() => <Redirect to="/solutions" />}</Route>
-                <Route path="/ai-booking-system">{() => <Redirect to="/solutions" />}</Route>
+                <Route path="/ai-receptionist">{() => <Redirect to="/solutions/ai-receptionist" />}</Route>
+                <Route path="/speed-to-lead">{() => <Redirect to="/solutions/speed-to-lead" />}</Route>
+                <Route path="/ai-booking-system">{() => <Redirect to="/solutions/ai-receptionist" />}</Route>
                 <Route path="/agent-library">{() => <Redirect to="/solutions" />}</Route>
 
                 <Route component={NotFound} />
