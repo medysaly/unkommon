@@ -93,11 +93,11 @@ export default function Home() {
 
       {/* Why one team */}
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.04em] mb-6">
             Our Mission
           </h2>
-          <p className="text-[19px] md:text-[22px] text-white/70 leading-relaxed max-w-3xl">
+          <p className="text-[19px] md:text-[22px] text-white/70 leading-relaxed">
             To empower SMBs to elevate their services and reach their true potential by building modern digital products, dominating search and AI, and automating backend operations.
           </p>
         </div>
