@@ -12,7 +12,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Solutions", href: createPageUrl("Solutions") },
+    { name: "Services", href: createPageUrl("Solutions") },
+    { name: "Our Work", href: createPageUrl("OurWork") },
     { name: "How It Works", href: createPageUrl("HowItWorks") },
     { name: "About", href: createPageUrl("About") },
     { name: "Book a Call", href: createPageUrl("BookACall") },
@@ -124,13 +125,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Left Side - CTA */}
             <div>
               <p className="text-white/60 text-sm mb-2">Work with us</p>
-              <h3 className="text-2xl md:text-3xl font-normal tracking-tight leading-snug mb-8">
-                Start with a free, thirty minute
-                <br />
-                architecture review call.
+              <h3 className="text-2xl md:text-3xl font-normal tracking-tight leading-snug mb-8 max-w-md">
+                We build digital products, search visibility, and automations that scale your business.
               </h3>
               <CTAButton href={createPageUrl("BookACall")} variant="light">
-                Let's talk
+                Let's chat
               </CTAButton>
             </div>
 

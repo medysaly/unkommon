@@ -19,7 +19,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-4xl mb-8"
           >
-            We build AI that runs your business, not the other way around.
+            Unkommon is a growth agency built for modern SMBs.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,44 +27,49 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            Unkommon builds the website, wins the search and AI visibility, answers every enquiry that comes in,
-            and automates the work behind it. Marketing and engineering in one team, so what gets recommended is
-            what gets shipped. HIPAA-aware architecture on HIPAA-eligible AWS services, BAA-ready for healthcare
-            and regulated industries.
+            Web design, search visibility, AI optimization, and workflow automation, all under one roof.
+            We eliminate fragmented vendors to build digital products and systems that scale your business.
           </motion.p>
         </div>
       </section>
 
-      {/* What We're Not */}
+      {/* Why We're Different */}
       <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-10">
-            What we're not.
+            Why we're different.
           </h2>
-          <div className="space-y-5">
+          <div className="flex flex-col gap-8">
             {[
-              "Not a SaaS platform you subscribe to",
-              "Not a chatbot builder with a drag-and-drop interface",
-              "Not a template agency reselling other companies' tools",
-              "Not a $99/month solution competing on price",
-              "Not a vendor you replace after 6 months",
+              {
+                title: "Zero Silos",
+                body: "The designer shipping your site sits right next to the strategist driving your search visibility and AI automation.",
+              },
+              {
+                title: "Built for Humans & AI",
+                body: "We structure your digital presence so buyers convert, Google ranks you, and LLMs recommend you.",
+              },
+              {
+                title: "We Meet You Where You Are",
+                body: "Whether you're launching from scratch or scaling an established brand, we plug in at any stage.",
+              },
             ].map((item, i) => (
               <motion.div
-                key={i}
+                key={item.title}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="flex items-start gap-4 text-[17px] text-secondary-foreground"
+                className="flex items-start gap-4"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2.5 flex-shrink-0" />
-                <span>{item}</span>
+                <div>
+                  <h3 className="text-[18px] font-medium text-foreground mb-1">{item.title}</h3>
+                  <p className="text-[17px] text-secondary-foreground leading-relaxed">{item.body}</p>
+                </div>
               </motion.div>
             ))}
           </div>
-          <p className="mt-10 text-[18px] text-foreground font-medium max-w-xl leading-relaxed">
-            We're an engineering partner. The systems we build become infrastructure your business runs on.
-          </p>
         </div>
       </section>
 
@@ -133,10 +138,13 @@ export default function About() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Let's see where AI fits in your business.
+            Let's chat about how we can grow your business.
           </h2>
-          <CTAButton href={createPageUrl("BookACall")} variant="light" className="mt-4">
-            Book a free 30-minute call
+          <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
+            Grab a casual 30 minutes with us. No sales pitch, just a plain-English look at your site, search rankings, and manual friction points.
+          </p>
+          <CTAButton href={createPageUrl("BookACall")} variant="light">
+            Let's chat
           </CTAButton>
         </div>
       </section>

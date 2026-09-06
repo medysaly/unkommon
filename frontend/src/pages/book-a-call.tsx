@@ -16,7 +16,7 @@ export default function BookACall() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground mb-6"
           >
-            Let's see where AI fits in your business.
+            Let's chat about how we can grow your business.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function BookACall() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="text-[17px] text-muted-foreground max-w-lg mx-auto leading-relaxed"
           >
-            Book a free 30-minute call. We'll look at where AI can cut costs, save hours, or open new revenue in your business, no pitch, no obligation.
+            Grab a casual 30 minutes with us. No sales pitch, just a plain-English look at your site, search rankings, and manual friction points.
           </motion.p>
         </div>
       </section>

@@ -14,7 +14,7 @@ export function CTAButton({ href, children, variant = "dark", className }: CTABu
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-2 text-[14px] font-normal pl-5 pr-1.5 py-1.5 rounded-full transition-colors no-underline",
+        "inline-flex items-center justify-center gap-3 text-[14px] font-normal pl-8 pr-2 py-2 rounded-full transition-colors no-underline",
         variant === "dark"
           ? "bg-foreground text-white hover:bg-foreground/80"
           : "bg-white text-black hover:bg-gray-200",

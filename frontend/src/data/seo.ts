@@ -8,6 +8,8 @@ export interface RouteMeta {
   description: string;
   priority: string;
   changefreq: string;
+  /** Placeholder pages are served with robots noindex and kept out of the sitemap. */
+  noindex?: boolean;
 }
 
 /** Routes that aren't generated from service data. */
@@ -27,6 +29,14 @@ const staticRoutes: RouteMeta[] = [
       "Get found, get answered, get it running. Websites, SEO and AI search visibility, 24/7 call answering and lead response, and automation for the work behind it.",
     priority: "0.9",
     changefreq: "weekly",
+  },
+  {
+    path: "/our-work",
+    title: "Our Work | Unkommon",
+    description: "Case studies are on the way. In the meantime we're happy to walk you through recent projects on a call.",
+    priority: "0.5",
+    changefreq: "monthly",
+    noindex: true,
   },
   {
     path: "/how-it-works",

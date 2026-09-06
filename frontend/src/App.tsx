@@ -12,6 +12,7 @@ import ServiceDetail from "@/pages/service-detail";
 import HowItWorks from "@/pages/how-it-works";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
+import OurWork from "@/pages/our-work";
 import Sources from "@/pages/sources";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -45,6 +46,7 @@ function Router() {
                 <Route path="/solutions/fine-tuning">{() => <Redirect to="/solutions" />}</Route>
 
                 <Route path="/solutions/:slug" component={ServiceDetail} />
+                <Route path="/our-work" component={OurWork} />
                 <Route path="/how-it-works" component={HowItWorks} />
                 <Route path="/about" component={About} />
                 <Route path="/book-a-call" component={BookACall} />

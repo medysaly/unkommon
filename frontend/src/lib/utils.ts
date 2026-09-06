@@ -10,6 +10,7 @@ export function createPageUrl(pageName: string): string {
   const urlMap: Record<string, string> = {
     'Home': '/',
     'Solutions': '/solutions',
+    'OurWork': '/our-work',
     'HowItWorks': '/how-it-works',
     'About': '/about',
     'BookACall': '/book-a-call',

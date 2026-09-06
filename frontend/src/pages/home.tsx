@@ -44,14 +44,14 @@ export default function Home() {
       {/* The three pillars */}
       <section className="bg-background px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-start mb-12">
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground">
+          <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-6 md:gap-12 items-start mb-12">
+            <p className="text-[17px] text-secondary-foreground leading-relaxed md:pt-3 md:order-1">
+              Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
+            </p>
+            <h2 className="text-[clamp(1.875rem,3.4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground md:order-2">
               <span className="block">Most agencies can't build.</span>
               <span className="block">Most developers can't rank.</span>
             </h2>
-            <p className="text-[17px] text-secondary-foreground leading-relaxed md:pt-2">
-              Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 md:grid-rows-[auto_auto_1fr] gap-4">
@@ -66,10 +66,16 @@ export default function Home() {
                   transition={{ delay: i * 0.08 }}
                   className="text-left p-8 bg-white rounded-xl border border-border flex flex-col gap-y-3 md:grid md:row-span-3 md:grid-rows-subgrid md:gap-y-4"
                 >
-                  <div className="flex items-baseline gap-3">
+                  <Link
+                    href={`/solutions#${pillar.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="group flex items-baseline gap-3"
+                  >
                     <span className="text-[12px] font-mono text-muted-foreground tabular-nums">{pillar.number}</span>
-                    <h3 className="text-[20px] font-medium text-foreground">{pillar.name}</h3>
-                  </div>
+                    <h3 className="text-[20px] font-medium text-foreground group-hover:text-foreground/70 transition-colors">
+                      {pillar.name}
+                      <ArrowRight className="inline-block w-4 h-4 ml-1.5 -mt-0.5 opacity-30 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                    </h3>
+                  </Link>
                   <p className="text-[14px] text-secondary-foreground leading-relaxed">{pillar.promise}</p>
                   <ul className="flex flex-col gap-2">
                     {items.map((service) => (
@@ -107,13 +113,13 @@ export default function Home() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Find out where you're losing them.
+            Let's chat about taking your business to the next level.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Book a free 30-minute call. We'll look at how you show up in search and AI, how fast enquiries get answered, and where the manual work is going. No pitch, no obligation.
+            Grab a quick 30 minutes with our team. We'll explore where you're losing search traffic, how your site is converting, and what busywork a system should be doing for you.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
-            Book a free 30-minute call
+            Let's chat
           </CTAButton>
         </div>
       </section>

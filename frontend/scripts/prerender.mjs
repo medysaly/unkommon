@@ -134,6 +134,9 @@ function buildHtml(template, route, extras) {
     `<meta name="twitter:description" content="${esc(route.description)}" />`
   );
 
+  if (route.noindex) {
+    html = html.replace("</head>", '  <meta name="robots" content="noindex, follow">\n  </head>');
+  }
   if (extras?.schema) {
     const before = html;
     html = html.replace("</head>", `  ${extras.schema}\n  </head>`);
@@ -254,6 +257,17 @@ async function main() {
       </main>`,
   };
 
+  extras["/our-work"] = {
+    fallback: `
+      <header>
+        <h1>Our work is coming soon.</h1>
+        <p>We're putting together the case studies: what we built, what it changed, and the numbers behind it. In the meantime, we're happy to walk you through recent projects on a call.</p>
+      </header>
+      <main>
+        ${moreNav()}
+      </main>`,
+  };
+
   extras["/book-a-call"] = {
     fallback: `
       <header>
@@ -276,6 +290,7 @@ async function main() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
+  .filter((r) => !r.noindex)
   .map(
     (r) => `  <url>
     <loc>${ORIGIN}${r.path}</loc>

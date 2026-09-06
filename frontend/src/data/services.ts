@@ -55,7 +55,7 @@ export const services: Service[] = [
     slug: "web-development",
     pillar: "built",
     title: "A Site Built To Be Found",
-    subtitle: "Website Design & Development",
+    subtitle: "Website & Web App Design & Development",
     shortDescription: "Fast, conversion-focused websites that ship with structured data, server-rendered content, and tracking wired in from day one.",
     heroHeadline: "A website is no longer a brochure. It's an interface for machines.",
     heroSubhead: "We design and build sites that convert human visitors and get read correctly by search engines and AI assistants. Structured data, server-rendered content, and analytics are part of the build, not a later project.",
@@ -355,7 +355,7 @@ export const services: Service[] = [
     slug: "speed-to-lead",
     pillar: "run",
     title: "Reply Before They Move On",
-    subtitle: "Speed to Lead & Follow-Up",
+    subtitle: "Speed to Lead & Instant Follow-Up",
     shortDescription: "Automated first response, qualification, and follow-up across every channel a lead can arrive on, in seconds instead of days.",
     heroHeadline: "Response time decides more deals than price does.",
     heroSubhead: "Every form, call, chat, and message gets an immediate, relevant reply, then a follow-up sequence that keeps going until the lead responds or opts out.",
@@ -539,3 +539,87 @@ export function getServiceBySlug(slug: string): Service | undefined {
 export function getServicesByPillar(pillar: PillarId): Service[] {
   return services.filter(s => s.pillar === pillar);
 }
+
+
+/**
+ * What the Services page lists. Broader than `services` above, because not
+ * every offering has a detail page yet - entries without `href` render as
+ * plain text until one exists.
+ */
+export interface ServiceListing {
+  pillar: PillarId;
+  name: string;
+  blurb: string;
+  href?: string;
+}
+
+export const serviceListing: ServiceListing[] = [
+  {
+    pillar: "built",
+    name: "Website & Web App Design & Development",
+    blurb:
+      "Lightning-fast, modern web applications built on clean code. Engineered specifically for high conversion rates, technical search speed, and seamless API integrations.",
+    href: "/solutions/web-development",
+  },
+  {
+    pillar: "built",
+    name: "Mobile Application Development",
+    blurb:
+      "Scalable native and cross-platform iOS/Android apps designed around user retention, intuitive UI/UX, and long-term performance.",
+  },
+  {
+    pillar: "built",
+    name: "Technical Architecture & Infrastructure",
+    blurb:
+      "Custom database design, schema markup, and site structure optimized so human visitors, Google bots, and AI web scrapers index your core business data perfectly.",
+  },
+  {
+    pillar: "found",
+    name: "AI Search Optimization (GEO & AEO)",
+    blurb:
+      "Strategic Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) to ensure your brand is recommended, cited, and summarized on ChatGPT, Perplexity, and Google AI Overviews.",
+    href: "/solutions/ai-search-optimization",
+  },
+  {
+    pillar: "found",
+    name: "Search Engine Optimization (SEO)",
+    blurb:
+      "Full-funnel technical, programmatic, and content SEO designed to capture high-intent search traffic and systematically scale your organic revenue.",
+    href: "/solutions/seo",
+  },
+  {
+    pillar: "found",
+    name: "Local SEO & Google Business Profile",
+    blurb:
+      "Dominant map-pack positioning, local search optimization, and geo-targeted strategy that captures immediate local customer demand.",
+    href: "/solutions/local-seo",
+  },
+  {
+    pillar: "run",
+    name: "AI Receptionist & Voice Agents",
+    blurb:
+      "Human-like AI voice and chat receptionists trained on your internal data to answer inbound calls, triage customer questions, and handle bookings 24/7.",
+    href: "/solutions/ai-receptionist",
+  },
+  {
+    pillar: "run",
+    name: "Speed to Lead & Instant Follow-Up",
+    blurb:
+      "Automated lead-capture sequences that engage new prospects in seconds across SMS, email, or chat, turning cold inquiries into booked appointments instantly.",
+    href: "/solutions/speed-to-lead",
+  },
+  {
+    pillar: "run",
+    name: "Workflow & Back-Office Automation",
+    blurb:
+      "Custom end-to-end automations (Zapier, Make, API pipelines) that handle client onboarding, contract routing, invoicing, and busywork automatically.",
+    href: "/solutions/workflow-automation",
+  },
+  {
+    pillar: "run",
+    name: "AI Infrastructure & Integration",
+    blurb:
+      "Custom LLM deployments, fine-tuned AI workflows, and seamless integrations directly into your existing CRM and software stack.",
+    href: "/solutions/ai-infrastructure",
+  },
+];
