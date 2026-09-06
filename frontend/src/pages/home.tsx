@@ -67,7 +67,7 @@ export default function Home() {
                   className="text-left p-8 bg-white rounded-xl border border-border flex flex-col gap-y-3 md:grid md:row-span-3 md:grid-rows-subgrid md:gap-y-4"
                 >
                   <Link
-                    href={`/solutions#${pillar.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    href={`/services#${pillar.name.toLowerCase().replace(/\s+/g, "-")}`}
                     className="group flex items-baseline gap-3"
                   >
                     <span className="text-[12px] font-mono text-muted-foreground tabular-nums">{pillar.number}</span>
@@ -81,7 +81,7 @@ export default function Home() {
                     {items.map((service) => (
                       <li key={service.slug}>
                         <Link
-                          href={`/solutions/${service.slug}`}
+                          href={`/services/${service.slug}`}
                           className="group inline-flex items-center gap-1.5 text-[14px] text-foreground hover:text-foreground/70 transition-colors"
                         >
                           {service.subtitle}

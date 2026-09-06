@@ -23,7 +23,7 @@ const staticRoutes: RouteMeta[] = [
     changefreq: "weekly",
   },
   {
-    path: "/solutions",
+    path: "/services",
     title: "Services | Web Development, SEO & AI Automation | Unkommon",
     description:
       "Get found, get answered, get it running. Websites, SEO and AI search visibility, 24/7 call answering and lead response, and automation for the work behind it.",
@@ -89,7 +89,7 @@ const staticRoutes: RouteMeta[] = [
 export const routes: RouteMeta[] = [
   ...staticRoutes.slice(0, 2),
   ...services.map((s) => ({
-    path: `/solutions/${s.slug}`,
+    path: `/services/${s.slug}`,
     title: s.metaTitle,
     description: s.metaDescription,
     priority: "0.85",

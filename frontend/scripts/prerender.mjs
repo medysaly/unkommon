@@ -43,7 +43,7 @@ const esc = (s) =>
 const ul = (items) => `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
 
 const moreNav = (extra = []) => `<nav><h2>More</h2><ul>
-          ${["<li><a href=\"/solutions\">All services</a></li>", ...extra].join("\n          ")}
+          ${["<li><a href=\"/services\">All services</a></li>", ...extra].join("\n          ")}
           <li><a href="/how-it-works">How it works</a></li>
           <li><a href="/book-a-call">Book a free 30-minute call</a></li>
         </ul></nav>`;
@@ -78,7 +78,7 @@ function serviceSchema(s) {
       "@type": "Service",
       name: s.subtitle,
       alternateName: s.title,
-      url: `${ORIGIN}/solutions/${s.slug}`,
+      url: `${ORIGIN}/services/${s.slug}`,
       description: s.shortDescription,
       provider: { "@type": "Organization", name: "Unkommon", url: ORIGIN },
       areaServed: "Worldwide",
@@ -88,8 +88,8 @@ function serviceSchema(s) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: ORIGIN },
-        { "@type": "ListItem", position: 2, name: "Solutions", item: `${ORIGIN}/solutions` },
-        { "@type": "ListItem", position: 3, name: s.subtitle, item: `${ORIGIN}/solutions/${s.slug}` },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${ORIGIN}/services` },
+        { "@type": "ListItem", position: 3, name: s.subtitle, item: `${ORIGIN}/services/${s.slug}` },
       ],
     },
     {
@@ -188,7 +188,7 @@ async function main() {
   // Per-route fallback markup and schema. Homepage keeps what index.html ships.
   const extras = {};
 
-  extras["/solutions"] = {
+  extras["/services"] = {
     fallback: `
       <header>
         <h1>Get found. Get answered. Get it running.</h1>
@@ -202,7 +202,7 @@ async function main() {
             return `<section><h2>${esc(p.number)} ${esc(p.name)}</h2><p>${esc(p.promise)}</p><ul>${items
               .map(
                 (s) =>
-                  `<li><a href="/solutions/${s.slug}"><strong>${esc(s.subtitle)}</strong></a>: ${esc(s.shortDescription)}</li>`
+                  `<li><a href="/services/${s.slug}"><strong>${esc(s.subtitle)}</strong></a>: ${esc(s.shortDescription)}</li>`
               )
               .join("")}</ul></section>`;
           })
@@ -217,7 +217,7 @@ async function main() {
   };
 
   for (const s of services) {
-    extras[`/solutions/${s.slug}`] = { fallback: serviceFallback(s), schema: serviceSchema(s) };
+    extras[`/services/${s.slug}`] = { fallback: serviceFallback(s), schema: serviceSchema(s) };
   }
 
   extras["/how-it-works"] = {
@@ -316,7 +316,7 @@ ${pillars
     const items = services.filter((s) => s.pillar === p.id);
     if (!items.length) return "";
     return `### ${p.number} ${p.name}\n\n${p.promise}\n\n${items
-      .map((s) => `- [${s.subtitle}](${ORIGIN}/solutions/${s.slug}): ${s.shortDescription}`)
+      .map((s) => `- [${s.subtitle}](${ORIGIN}/services/${s.slug}): ${s.shortDescription}`)
       .join("\n")}`;
   })
   .filter(Boolean)

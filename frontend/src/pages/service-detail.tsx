@@ -12,7 +12,7 @@ import { getServiceBySlug } from "@/data/services";
 import NotFound from "@/pages/not-found";
 
 export default function ServiceDetail() {
-  const [, params] = useRoute<{ slug: string }>("/solutions/:slug");
+  const [, params] = useRoute<{ slug: string }>("/services/:slug");
   const slug = params?.slug ?? "";
   const service = getServiceBySlug(slug);
 
@@ -24,7 +24,7 @@ export default function ServiceDetail() {
       <section className="bg-background px-6 lg:px-10 pt-16 pb-20 md:pt-24 md:pb-24">
         <div className="max-w-[1400px] mx-auto">
           <Link
-            href="/solutions"
+            href="/services"
             className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowRight className="w-3.5 h-3.5 rotate-180" />

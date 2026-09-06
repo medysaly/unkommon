@@ -54,62 +54,186 @@ export const services: Service[] = [
   {
     slug: "web-development",
     pillar: "built",
-    title: "A Site Built To Be Found",
+    title: "Sites And Apps Built To Convert",
     subtitle: "Website & Web App Design & Development",
-    shortDescription: "Fast, conversion-focused websites that ship with structured data, server-rendered content, and tracking wired in from day one.",
-    heroHeadline: "A website is no longer a brochure. It's an interface for machines.",
-    heroSubhead: "We design and build sites that convert human visitors and get read correctly by search engines and AI assistants. Structured data, server-rendered content, and analytics are part of the build, not a later project.",
+    shortDescription: "Lightning-fast websites and web applications built on clean code, engineered for conversion, technical search speed, and seamless API integrations.",
+    heroHeadline: "Fast to use, fast to load, and readable by machines.",
+    heroSubhead: "We design and build marketing sites and full web applications on clean, maintainable code. Engineered for conversion rate, Core Web Vitals, and the API integrations your business actually runs on.",
     problemLabel: "The problem",
-    problem: "Most agency websites are built to look good in a design review and nothing else. The content loads in JavaScript, so AI crawlers see an empty page. There is no structured data, so nothing gets cited. Analytics were bolted on afterwards, so nobody can prove what the site does. Six months later you are paying a second vendor to retrofit all of it.",
-    solution: "We build the site and the machine-readable layer at the same time, because they are the same job. Content is server-rendered or pre-rendered so every crawler sees real HTML. Schema markup is generated from your actual content rather than hand-written once and forgotten. Analytics and conversion tracking are instrumented before launch, so the first month of data is usable.",
+    problem: "Most agency websites are built to look good in a design review and nothing else. The content loads in JavaScript, so AI crawlers see an empty page. There is no structured data, so nothing gets cited. Performance degrades the moment real content is added. And when you need the site to do something real, take a payment, sync to your CRM, gate a customer dashboard, the agency that built it cannot help, because they were never engineers.",
+    solution: "We build the marketing layer and the application layer with the same team and the same standards. Content is server-rendered or pre-rendered so every crawler sees real HTML. Performance budgets are set during the build, not measured after. Integrations with your CRM, payment provider, booking system, or internal tools are built as proper APIs with error handling, not fragile embeds.",
     capabilities: [
+      "Marketing sites and full web applications on one codebase and one stack",
       "Server-rendered or pre-rendered pages so AI crawlers see real content",
-      "Structured data generated from your content, not hand-maintained",
-      "Core Web Vitals budget set and enforced during the build",
-      "Conversion tracking and AI-referral segmentation instrumented pre-launch",
-      "CMS or headless setup so your team can publish without a developer",
+      "Core Web Vitals budget set and enforced during the build, not audited after",
+      "API integrations with CRM, payments, booking, and internal systems",
+      "Authentication, dashboards, and gated customer areas where you need them",
     ],
     deliverables: [
       "Custom design and front-end build, responsive and accessible",
       "Server-side rendering or static pre-rendering for every indexable route",
+      "Application features: authentication, user dashboards, forms, and workflows",
+      "API layer connecting the site to your CRM, payment, and booking systems",
       "Per-page titles, meta descriptions, canonical tags, and Open Graph images",
       "Schema.org markup appropriate to your business type, validated before launch",
-      "XML sitemap, robots.txt, and llms.txt configured for both search and AI crawlers",
       "Analytics with organic, AI-referral, and conversion tracking separated",
       "Hosting and deployment pipeline on AWS or Vercel, with a staging environment",
     ],
     techStack: [
-      "React, Next.js, or Astro depending on the content model",
-      "Tailwind CSS and a component library you own",
+      "React with Next.js, Astro, or Vite depending on the content and app model",
+      "TypeScript throughout, with Tailwind CSS and a component library you own",
+      "Node or Python APIs on AWS Lambda, with Postgres or DynamoDB",
       "Headless CMS (Sanity, Contentful, or Shopify for commerce)",
-      "AWS Amplify, CloudFront, or Vercel hosting",
-      "GA4 plus server-side event tracking",
-      "Automated Lighthouse and schema validation in CI",
+      "Stripe, Cal.com, HubSpot, and Salesforce integrations",
+      "Automated Lighthouse, type, and schema checks in CI",
     ],
     industries: [
       "Ecommerce brands that need catalog pages search and AI can both read",
       "Professional services replacing a site that generates no enquiries",
-      "Local businesses whose current site is invisible on mobile",
+      "SaaS and B2B companies needing a marketing site plus a product surface",
+      "Businesses whose site needs to transact, not just describe",
       "Companies rebuilding after an SEO migration went wrong",
-      "Anyone whose site was built by someone who has since disappeared",
     ],
-    outcome: "A site that loads fast, converts, and can actually be found by the systems people search with now.",
+    outcome: "A site or application that loads fast, converts, integrates with your stack, and can be found by the systems people search with now.",
     faqs: [
       {
         q: "Why does server rendering matter so much?",
         a: "GPTBot, ClaudeBot, and PerplexityBot fetch raw HTML and do not execute JavaScript. Googlebot does render, so a client-side site can rank in Google and still be completely invisible inside ChatGPT. If AI referrals matter to you, the content has to exist in the HTML."
       },
       {
+        q: "What counts as a web app rather than a website?",
+        a: "Roughly, anything with state that belongs to a user: logins, dashboards, saved data, payments, multi-step workflows, or an admin surface your team operates. We build both, and most projects need some of each rather than one or the other."
+      },
+      {
         q: "Can you work with our existing site instead of rebuilding?",
-        a: "Often, yes. If the platform is sound we will fix the rendering, structured data, and tracking rather than sell you a rebuild you don't need. We will tell you honestly which one your situation calls for."
+        a: "Often, yes. If the platform is sound we will fix the rendering, structured data, performance, and integrations rather than sell you a rebuild you don't need. We will tell you honestly which one your situation calls for."
       },
       {
         q: "How long does a build take?",
-        a: "Most sites ship in 4 to 8 weeks depending on page count and integrations. You get a fixed scope and a fixed price before we start."
+        a: "Marketing sites usually ship in 4 to 8 weeks. Applications depend entirely on scope, and we break them into milestones so you see working software early. You get a fixed scope and a fixed price before we start."
       },
     ],
-    metaTitle: "Website Design & Development | Unkommon",
-    metaDescription: "Conversion-focused websites built with server-rendered content, structured data, and tracking from day one. Readable by Google and by AI assistants.",
+    metaTitle: "Website & Web App Design & Development | Unkommon",
+    metaDescription: "Fast, conversion-focused websites and web applications on clean code. Server-rendered content, structured data, API integrations, and performance budgets.",
+  },
+  {
+    slug: "mobile-app-development",
+    pillar: "built",
+    title: "Apps People Keep Using",
+    subtitle: "Mobile Application Development",
+    shortDescription: "Scalable native and cross-platform iOS and Android apps designed around user retention, intuitive UI/UX, and long-term performance.",
+    heroHeadline: "Shipping the app is the easy part. Keeping people in it isn't.",
+    heroSubhead: "Native and cross-platform iOS and Android applications built around retention, not just feature lists. Designed to stay fast and maintainable long after launch.",
+    problemLabel: "The problem",
+    problem: "Most small business apps are built once, shipped, and then quietly abandoned. They are slow on mid-range Android devices, they break on the next OS release, onboarding loses most users in the first session, and nobody is measuring why. The build cost was visible; the cost of an app nobody opens is not.",
+    solution: "We build cross-platform apps where that is the right economics, and native where performance or platform APIs demand it. Onboarding, notifications, and the first-session experience are designed deliberately, because that is where retention is won or lost. Analytics and crash reporting are wired in before launch so you find out what is happening rather than guessing.",
+    capabilities: [
+      "Cross-platform iOS and Android from one codebase, or native where it's warranted",
+      "Onboarding and first-session flows designed around activation",
+      "Offline support, push notifications, and deep linking",
+      "Backend and API integration with your existing systems",
+      "App Store and Play Store submission, review handling, and release management",
+    ],
+    deliverables: [
+      "UI/UX design covering the full flow, not just headline screens",
+      "iOS and Android application builds, submitted and shipped to both stores",
+      "Backend APIs and authentication, or integration with what you already run",
+      "Push notifications, deep links, and offline behaviour where the app needs them",
+      "Analytics and crash reporting instrumented before launch",
+      "CI pipeline for builds and releases, plus a TestFlight or internal testing track",
+      "Handover documentation so a future team can pick the codebase up",
+    ],
+    techStack: [
+      "React Native or Expo for cross-platform builds",
+      "Swift and Kotlin where native performance or platform APIs are required",
+      "TypeScript across app and API code",
+      "Node or Python APIs on AWS, with Postgres or DynamoDB",
+      "Firebase or OneSignal for push, Sentry for crash reporting",
+      "Fastlane and GitHub Actions for build and release automation",
+    ],
+    industries: [
+      "Service businesses giving customers booking and account access",
+      "Ecommerce brands building a repeat-purchase channel",
+      "Clinics and practices handling appointments and patient communication",
+      "Field teams needing an operational tool that works offline",
+      "Companies with a working web product that now need a mobile surface",
+    ],
+    outcome: "An app that ships to both stores, holds up on real devices, and that people open again after the first week.",
+    faqs: [
+      {
+        q: "Cross-platform or native?",
+        a: "Cross-platform for most business applications: one codebase, roughly half the build and maintenance cost, and performance that is indistinguishable for the great majority of apps. Native when you need heavy graphics, deep hardware access, or platform features the moment they ship. We will tell you which one your app actually needs rather than defaulting."
+      },
+      {
+        q: "Do we need an app at all?",
+        a: "Often not. If your users would open it once a month, a fast mobile web experience serves them better and costs far less. Apps earn their place through frequency, notifications, offline use, or hardware access. We would rather say so up front than build you something that gets deleted."
+      },
+      {
+        q: "What happens after launch?",
+        a: "Apps need maintenance in a way websites do not. iOS and Android ship breaking changes annually, and store requirements shift. We offer a maintenance retainer covering OS updates, store compliance, and bug fixes, or we hand over a documented codebase if you have a team."
+      },
+    ],
+    metaTitle: "Mobile App Development, iOS & Android | Unkommon",
+    metaDescription: "Native and cross-platform iOS and Android apps built around retention, intuitive UI/UX, and long-term performance. Shipped to both stores with analytics wired in.",
+  },
+  {
+    slug: "technical-architecture",
+    pillar: "built",
+    title: "Structure Machines Can Read",
+    subtitle: "Technical Architecture & Infrastructure",
+    shortDescription: "Database design, schema markup, and site structure engineered so human visitors, Google, and AI crawlers all index your business data correctly.",
+    heroHeadline: "Your business data is only worth what machines can read of it.",
+    heroSubhead: "Database design, schema markup, and site architecture built so buyers, Googlebot, and AI crawlers all come away with an accurate picture of what you sell.",
+    problemLabel: "The problem",
+    problem: "Most sites store their real business information in ways nothing else can use. Product facts live in page copy rather than structured fields. Schema markup is hand-written once and drifts out of date. URL structure grew by accident. The result is a business that is genuinely good at what it does and completely illegible to the systems deciding who gets recommended.",
+    solution: "We treat the machine-readable layer as a first-class part of the build. Your core business data gets a proper model, schema is generated from that data rather than maintained by hand, and site structure follows the way people and crawlers actually navigate. It stays correct as the business changes, because it is generated rather than transcribed.",
+    capabilities: [
+      "Data modelling for products, services, locations, and content",
+      "Schema.org markup generated programmatically and validated in CI",
+      "Information architecture, URL structure, and internal linking",
+      "Rendering strategy so every crawler sees complete HTML",
+      "Crawler access, indexation control, and log-based verification",
+    ],
+    deliverables: [
+      "Database or content model designed around how the business actually works",
+      "Schema.org implementation generated from that model, validated automatically",
+      "Site architecture and URL structure with a redirect plan for anything moving",
+      "Server-side rendering or pre-rendering across every indexable route",
+      "robots.txt, llms.txt, sitemap generation, and canonical strategy",
+      "Log-file analysis confirming which crawlers reach which pages",
+      "CI checks so structured data cannot silently break on a future deploy",
+    ],
+    techStack: [
+      "Postgres, DynamoDB, or a headless CMS as the source of truth",
+      "Schema.org JSON-LD generated at build time",
+      "Next.js, Astro, or a custom pre-render step for rendering",
+      "AWS (Lambda, CloudFront, S3) or Vercel",
+      "Automated schema and Lighthouse validation in GitHub Actions",
+    ],
+    industries: [
+      "Ecommerce brands with large catalogs and inconsistent product data",
+      "Multi-location businesses managing structure across sites",
+      "Publishers and content sites with deep archives",
+      "Businesses replatforming or consolidating several sites into one",
+      "Any company whose product data lives only inside page copy",
+    ],
+    outcome: "A site whose structure and data stay accurate to search engines and AI systems as the business changes.",
+    faqs: [
+      {
+        q: "Isn't this just SEO?",
+        a: "It's the engineering half of it. An SEO consultant can tell you the schema is wrong or the canonicals are broken. This is the work of building a system where those things are generated correctly and cannot drift, which is a data and architecture problem rather than a content one."
+      },
+      {
+        q: "Why generate schema instead of writing it?",
+        a: "Hand-written schema is accurate on the day it ships and wrong within months, because prices, stock, hours, and services change and nobody updates the markup. AI systems increasingly cross-check structured data against page content, and stale markup is worse than none."
+      },
+      {
+        q: "Can you do this without rebuilding our site?",
+        a: "Usually. If the platform can render server-side and expose its data, we can add the model, the generated schema, and the architecture fixes on top. If it cannot render server-side at all, that constraint has to be addressed first, and we will say so."
+      },
+    ],
+    metaTitle: "Technical Architecture & Infrastructure | Unkommon",
+    metaDescription: "Database design, generated schema markup, and site architecture so buyers, Google, and AI crawlers all read your business data correctly.",
   },
 
   // ─────────────────────────── 02 · Get Found ───────────────────────────
@@ -559,67 +683,69 @@ export const serviceListing: ServiceListing[] = [
     name: "Website & Web App Design & Development",
     blurb:
       "Lightning-fast, modern web applications built on clean code. Engineered specifically for high conversion rates, technical search speed, and seamless API integrations.",
-    href: "/solutions/web-development",
+    href: "/services/web-development",
   },
   {
     pillar: "built",
     name: "Mobile Application Development",
     blurb:
       "Scalable native and cross-platform iOS/Android apps designed around user retention, intuitive UI/UX, and long-term performance.",
+    href: "/services/mobile-app-development",
   },
   {
     pillar: "built",
     name: "Technical Architecture & Infrastructure",
     blurb:
       "Custom database design, schema markup, and site structure optimized so human visitors, Google bots, and AI web scrapers index your core business data perfectly.",
+    href: "/services/technical-architecture",
   },
   {
     pillar: "found",
     name: "AI Search Optimization (GEO & AEO)",
     blurb:
       "Strategic Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) to ensure your brand is recommended, cited, and summarized on ChatGPT, Perplexity, and Google AI Overviews.",
-    href: "/solutions/ai-search-optimization",
+    href: "/services/ai-search-optimization",
   },
   {
     pillar: "found",
     name: "Search Engine Optimization (SEO)",
     blurb:
       "Full-funnel technical, programmatic, and content SEO designed to capture high-intent search traffic and systematically scale your organic revenue.",
-    href: "/solutions/seo",
+    href: "/services/seo",
   },
   {
     pillar: "found",
     name: "Local SEO & Google Business Profile",
     blurb:
       "Dominant map-pack positioning, local search optimization, and geo-targeted strategy that captures immediate local customer demand.",
-    href: "/solutions/local-seo",
+    href: "/services/local-seo",
   },
   {
     pillar: "run",
     name: "AI Receptionist & Voice Agents",
     blurb:
       "Human-like AI voice and chat receptionists trained on your internal data to answer inbound calls, triage customer questions, and handle bookings 24/7.",
-    href: "/solutions/ai-receptionist",
+    href: "/services/ai-receptionist",
   },
   {
     pillar: "run",
     name: "Speed to Lead & Instant Follow-Up",
     blurb:
       "Automated lead-capture sequences that engage new prospects in seconds across SMS, email, or chat, turning cold inquiries into booked appointments instantly.",
-    href: "/solutions/speed-to-lead",
+    href: "/services/speed-to-lead",
   },
   {
     pillar: "run",
     name: "Workflow & Back-Office Automation",
     blurb:
       "Custom end-to-end automations (Zapier, Make, API pipelines) that handle client onboarding, contract routing, invoicing, and busywork automatically.",
-    href: "/solutions/workflow-automation",
+    href: "/services/workflow-automation",
   },
   {
     pillar: "run",
     name: "AI Infrastructure & Integration",
     blurb:
       "Custom LLM deployments, fine-tuned AI workflows, and seamless integrations directly into your existing CRM and software stack.",
-    href: "/solutions/ai-infrastructure",
+    href: "/services/ai-infrastructure",
   },
 ];

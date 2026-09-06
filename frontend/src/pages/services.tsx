@@ -8,7 +8,7 @@ import { pillars, serviceListing } from "@/data/services";
 /** "Get Built" -> "get-built", so the homepage cards can deep-link here. */
 export const pillarAnchor = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
 
-export default function Solutions() {
+export default function Services() {
   return (
     <div>
       {/* Hero */}
