@@ -221,11 +221,15 @@ async function main() {
   extras["/about"] = {
     fallback: `
       <header>
-        <h1>About Unkommon</h1>
-        <p>We build the website, win the search and AI visibility, answer every enquiry, and automate the work behind it. Marketing and engineering in one team, so what gets recommended is what gets shipped.</p>
+        <h1>Unkommon is a growth agency built for modern SMBs.</h1>
+        <p>We help local businesses get found, get booked, and run leaner operations. That means a site that converts, search that compounds, and automation that answers leads and handles the busywork so you are not stuck doing it by hand.</p>
       </header>
       <main>
-        <section><h2>Why we exist</h2><p>Most SEO agencies cannot implement the technical fixes they recommend, and most development shops do not know what to change. Each blames the other, and the work sits still for months. We do both halves.</p></section>
+        <section><h2>Why we're different</h2><ul>
+          <li><strong>Zero silos.</strong> The designer shipping your site sits right next to the strategist driving your search visibility and AI automation.</li>
+          <li><strong>Built for humans and AI.</strong> We structure your digital presence so buyers convert, Google ranks you, and LLMs recommend you.</li>
+          <li><strong>We meet you where you are.</strong> Whether you're launching from scratch or scaling an established brand, we plug in at any stage.</li>
+        </ul></section>
         <section><h2>Where we are</h2><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>
         ${moreNav()}
       </main>`,
