@@ -39,14 +39,6 @@ const staticRoutes: RouteMeta[] = [
     noindex: true,
   },
   {
-    path: "/how-it-works",
-    title: "How We Work | Process, Timelines & Pricing | Unkommon",
-    description:
-      "Audit, plan, build, launch, report. Fixed scope and fixed price before work starts, with monthly reporting on rankings, AI citations, response times, and conversions.",
-    priority: "0.8",
-    changefreq: "monthly",
-  },
-  {
     path: "/about",
     title: "About Unkommon | Marketing And Engineering In One Team",
     description:

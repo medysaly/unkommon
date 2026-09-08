@@ -12,7 +12,7 @@ export function createPageUrl(pageName: string): string {
     'Services': '/services',
     'Solutions': '/services',
     'OurWork': '/our-work',
-    'HowItWorks': '/how-it-works',
+    'HowItWorks': '/services',
     'About': '/about',
     'BookACall': '/book-a-call',
     'Contact': '/book-a-call',

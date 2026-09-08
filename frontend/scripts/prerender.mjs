@@ -44,7 +44,6 @@ const ul = (items) => `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</u
 
 const moreNav = (extra = []) => `<nav><h2>More</h2><ul>
           ${["<li><a href=\"/services\">All services</a></li>", ...extra].join("\n          ")}
-          <li><a href="/how-it-works">How it works</a></li>
           <li><a href="/book-a-call">Book a free 30-minute call</a></li>
         </ul></nav>`;
 
@@ -209,7 +208,6 @@ async function main() {
           .filter(Boolean)
           .join("\n        ")}
         <nav><h2>More</h2><ul>
-          <li><a href="/how-it-works">How it works</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/book-a-call">Book a free 30-minute call</a></li>
         </ul></nav>
@@ -219,30 +217,6 @@ async function main() {
   for (const s of services) {
     extras[`/services/${s.slug}`] = { fallback: serviceFallback(s), schema: serviceSchema(s) };
   }
-
-  extras["/how-it-works"] = {
-    fallback: `
-      <header>
-        <h1>How we work</h1>
-        <p>Audit, plan, build, launch, report. Fixed scope and fixed price agreed before anything starts, with no hourly billing.</p>
-      </header>
-      <main>
-        <section><h2>Process</h2><ol>
-          <li><strong>Audit.</strong> A free 30-minute review of how you show up in Google and in AI assistants, how fast enquiries get answered, and where manual work is going.</li>
-          <li><strong>Plan.</strong> Written scope, price, and timeline before anything starts.</li>
-          <li><strong>Build.</strong> Copy and code built by the same team, so recommendations get implemented rather than handed over.</li>
-          <li><strong>Launch.</strong> Tracking instrumented before launch, so the first month of data is usable.</li>
-          <li><strong>Report.</strong> Monthly reporting on rankings, AI citation rate, response times, and conversions.</li>
-        </ol></section>
-        <section><h2>Timelines</h2><ul>
-          <li>Website build: typically 4 to 8 weeks</li>
-          <li>AI receptionist or speed to lead: typically 2 to 4 weeks</li>
-          <li>SEO and AI visibility: technical fixes in weeks, content compounding over three to six months</li>
-        </ul></section>
-        <section><h2>Pricing</h2><p>Every engagement is scoped individually. After the free 30-minute call you get a fixed scope and a fixed price before any work begins. No hourly billing and no surprise invoices.</p></section>
-        ${moreNav()}
-      </main>`,
-  };
 
   extras["/about"] = {
     fallback: `

@@ -94,7 +94,7 @@ export default function Services() {
                           className="border-t border-border first:border-t-0 py-6 first:pt-0"
                         >
                           {service.href ? (
-                            <Link href={service.href} className="group block">
+                            <Link href={service.href} className="group block -mx-4 px-4 py-2 -my-2 rounded-lg hover:bg-foreground/[0.04] transition-colors">
                               {body}
                             </Link>
                           ) : (

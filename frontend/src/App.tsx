@@ -9,7 +9,6 @@ import Layout from "@/pages/layout";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import ServiceDetail from "@/pages/service-detail";
-import HowItWorks from "@/pages/how-it-works";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
 import OurWork from "@/pages/our-work";
@@ -53,7 +52,6 @@ function Router() {
                   {(params) => <Redirect to={`/services/${params.slug}`} />}
                 </Route>
                 <Route path="/our-work" component={OurWork} />
-                <Route path="/how-it-works" component={HowItWorks} />
                 <Route path="/about" component={About} />
                 <Route path="/book-a-call" component={BookACall} />
                 <Route path="/sources" component={Sources} />
@@ -61,6 +59,7 @@ function Router() {
                 <Route path="/terms" component={Terms} />
 
                 {/* Legacy redirects */}
+                <Route path="/how-it-works">{() => <Redirect to="/services" />}</Route>
                 <Route path="/contact">{() => <Redirect to="/book-a-call" />}</Route>
                 <Route path="/ai-receptionist">{() => <Redirect to="/services/ai-receptionist" />}</Route>
                 <Route path="/speed-to-lead">{() => <Redirect to="/services/speed-to-lead" />}</Route>

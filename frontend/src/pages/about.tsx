@@ -27,8 +27,9 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            Web design, search visibility, AI optimization, and workflow automation, all under one roof.
-            We eliminate fragmented vendors to build digital products and systems that scale your business.
+            One team for design, engineering, search, and automation. Instead of managing four vendors who
+            each blame the other three, you work with people who build what they recommend and stay
+            accountable for whether it actually moves the number.
           </motion.p>
         </div>
       </section>

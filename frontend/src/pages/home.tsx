@@ -33,9 +33,13 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-3"
           >
             <CTAButton href={createPageUrl("BookACall")}>
-              Let's talk
+              Book a free audit
+            </CTAButton>
+            <CTAButton href={createPageUrl("Services")} variant="outline">
+              See what we do
             </CTAButton>
           </motion.div>
         </div>
@@ -54,6 +58,13 @@ export default function Home() {
             </p>
           </div>
 
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
+              Our Services
+            </span>
+            <span className="flex-1 h-px bg-border" aria-hidden="true" />
+          </div>
+
           <div className="grid md:grid-cols-3 md:grid-rows-[auto_auto_1fr] gap-4">
             {pillars.map((pillar, i) => {
               const items = services.filter((s) => s.pillar === pillar.id);
@@ -64,7 +75,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="text-left p-8 bg-white rounded-xl border border-border flex flex-col gap-y-3 md:grid md:row-span-3 md:grid-rows-subgrid md:gap-y-4"
+                  className="group/card text-left p-8 bg-white rounded-xl border border-border transition-[border-color,box-shadow] duration-200 hover:border-foreground/40 hover:shadow-lg flex flex-col gap-y-3 md:grid md:row-span-3 md:grid-rows-subgrid md:gap-y-4"
                 >
                   <Link
                     href={`/services#${pillar.name.toLowerCase().replace(/\s+/g, "-")}`}
@@ -82,7 +93,7 @@ export default function Home() {
                       <li key={service.slug}>
                         <Link
                           href={`/services/${service.slug}`}
-                          className="group inline-flex items-center gap-1.5 text-[14px] text-foreground hover:text-foreground/70 transition-colors"
+                          className="group -mx-2 px-2 py-1 rounded-md inline-flex items-center gap-1.5 text-[14px] text-foreground hover:bg-foreground/5 transition-colors"
                         >
                           {service.subtitle}
                           <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />

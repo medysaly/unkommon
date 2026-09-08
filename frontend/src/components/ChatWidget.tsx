@@ -178,7 +178,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
               transition={{ type: 'spring', stiffness: 200, damping: 25 }}
               className="w-[340px] max-w-full pointer-events-auto"
             >
-              <div className="relative bg-foreground rounded-full shadow-xl border border-foreground/80">
+              <div className="relative bg-white rounded-full shadow-xl border border-border">
                 <div className="flex items-center gap-2 px-4 py-2.5">
                   <input
                     type="text"
@@ -192,7 +192,7 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
                         handleSend();
                       }
                     }}
-                    className="flex-1 bg-transparent text-white placeholder-white/40 text-sm focus:outline-none"
+                    className="flex-1 bg-transparent text-foreground placeholder-muted-foreground text-sm focus:outline-none"
                     aria-label="Ask a question"
                   />
                   <button
@@ -203,10 +203,10 @@ export default function ChatWidget({ apiEndpoint }: ChatWidgetProps) {
                         handleSend();
                       }
                     }}
-                    className="w-7 h-7 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0"
+                    className="w-7 h-7 bg-foreground rounded-full flex items-center justify-center hover:bg-foreground/80 transition-colors flex-shrink-0"
                     aria-label="Send message"
                   >
-                    <ArrowRight className="w-3.5 h-3.5 text-foreground" />
+                    <ArrowRight className="w-3.5 h-3.5 text-white" />
                   </button>
                 </div>
               </div>
