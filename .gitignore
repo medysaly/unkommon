@@ -46,3 +46,6 @@ ENV/
 .claude/
 .venv/
 .pytest_cache/
+
+# Local AI assistant context (single copy lives at the project root, untracked)
+CLAUDE.md
