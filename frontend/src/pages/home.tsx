@@ -111,8 +111,8 @@ export default function Home() {
 
       {/* Why one team */}
       {/* Integrations */}
-      <section className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border">
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-10 md:gap-16 items-center">
+      <section id="integrations" className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border scroll-mt-20">
+        <div className="max-w-[1200px] mx-auto">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
@@ -129,7 +129,9 @@ export default function Home() {
             </p>
           </div>
 
-          <IntegrationsDiagram />
+          <div className="mt-10 md:mt-14">
+            <IntegrationsDiagram />
+          </div>
         </div>
       </section>
 
