@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
 import { pillars, services } from "@/data/services";
+import { IntegrationsDiagram } from "@/components/IntegrationsDiagram";
 
 export default function Home() {
   return (
@@ -109,6 +110,29 @@ export default function Home() {
       </section>
 
       {/* Why one team */}
+      {/* Integrations */}
+      <section className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border">
+        <div className="max-w-[1400px] mx-auto grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-10 md:gap-16 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                Integrations
+              </span>
+              <span className="flex-1 h-px bg-border" aria-hidden="true" />
+            </div>
+            <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.15] tracking-[-0.03em] text-foreground mb-4">
+              Wired into the tools you already use.
+            </h2>
+            <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-md">
+              We don't ask you to move off your stack. Bookings land on your calendar, leads land in your
+              CRM, and orders and invoices stay where your team already works.
+            </p>
+          </div>
+
+          <IntegrationsDiagram />
+        </div>
+      </section>
+
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.04em] mb-6">
