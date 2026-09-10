@@ -1,6 +1,7 @@
 # Unkommon
 
-Custom AI/ML engineering studio. Production-grade AI systems on AWS.
+Growth agency for small and mid-sized businesses. Websites and apps, search
+and AI-search visibility, and automation, built and operated by one team.
 
 ![React](https://img.shields.io/badge/React_18-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -8,14 +9,14 @@ Custom AI/ML engineering studio. Production-grade AI systems on AWS.
 ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazonwebservices&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**Live:** [unkommon.ai](https://unkommon.ai)
+**Live:** [www.unkommon.ai](https://www.unkommon.ai)
 
 ## Architecture
 
 ```
 Browser
   |
-  |-- React SPA (AWS Amplify)
+  |-- React SPA, prerendered per route (AWS Amplify)
   |     |-- AI Chatbot with tool-calling
   |     +-- Calendar booking integration
   |
@@ -50,6 +51,15 @@ graph LR
 
 **Intent classifier (Trie fast-path).** A Trie (prefix tree) runs before the Bedrock call and answers common FAQ questions from precomputed responses in O(m) time, where m is the number of words in the message. Only messages that do not match fall through to the language model, which cuts latency and per-token cost for common questions and keeps those answers deterministic.
 
+**Prerendered routes for AI crawlers.** Vite emits a single `index.html` for the
+SPA, so every URL would otherwise serve identical HTML: the same title, the same
+canonical, and the same content. Googlebot executes JavaScript and recovers;
+GPTBot, ClaudeBot and PerplexityBot do not, so to them every page would look like
+the homepage. A post-build step writes one HTML file per route with correct head
+tags, route-specific fallback content, and per-page JSON-LD, then regenerates
+`sitemap.xml` and `llms.txt`. It fails the build if a substitution does not
+match, so template changes surface as errors rather than silently wrong output.
+
 **Lead and appointment persistence.** Captured leads and booked appointments are stored in DynamoDB with Global Secondary Indexes for the access patterns the business needs: recent leads by date, appointments by customer, and appointments by date range.
 
 **Calendar Integration.** Google Calendar API with service account domain-wide delegation. Checks real-time availability, books appointments with conflict detection, generates Google Meet links, and sends branded HTML confirmation emails via Resend.
@@ -66,18 +76,20 @@ graph LR
 | Framer Motion | Google Calendar API | AWS Secrets Manager |
 | Radix UI / shadcn | Resend (email) | AWS Amplify (hosting) |
 | Wouter (routing) | boto3 / requests | pytest + GitHub Actions CI |
-| Three.js (globe) | | |
 
 ## Project Structure
 
 ```
 .
-├── frontend/                React SPA
+├── frontend/                React SPA, prerendered at build time
 │   ├── src/
-│   │   ├── components/      UI components (ChatWidget, HeroBackground, etc.)
-│   │   ├── pages/           Route pages (home, solutions, about, etc.)
+│   │   ├── components/      UI components (ChatWidget, CTAButton, diagrams)
+│   │   ├── pages/           Route pages (home, services, about, etc.)
+│   │   ├── data/            services.ts (catalogue), seo.ts (route metadata)
 │   │   ├── hooks/           Custom hooks
-│   │   └── lib/             Utilities and config
+│   │   └── lib/             Utilities, useSeo head manager
+│   ├── scripts/
+│   │   └── prerender.mjs    Post-build: per-route HTML, sitemap.xml, llms.txt
 │   ├── public/              Static assets
 │   └── package.json
 │
@@ -96,8 +108,7 @@ graph LR
 │   └── template.yaml        SAM infrastructure definition
 │
 ├── .github/workflows/       GitHub Actions CI (runs the chatbot tests)
-├── amplify.yml              Amplify build config + security headers
-├── CLAUDE.md                AI assistant project context
+├── amplify.yml              Amplify build config
 └── LICENSE
 ```
 
@@ -122,7 +133,12 @@ cd frontend
 cp .env.example .env       # Fill in your API URLs and keys
 npm install
 npm run dev                # Dev server on :3000
+npm run build              # vite build, then scripts/prerender.mjs
 ```
+
+`npm run build` runs the prerender step after Vite. Running `vite build` on its
+own produces a single `index.html` for every route, which breaks canonical tags
+and leaves AI crawlers seeing the homepage at every URL.
 
 ### Backend
 
@@ -151,7 +167,6 @@ This project implements defense-in-depth:
 - **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, and a hardened system prompt with anti-injection rules. The Trie fast-path also removes the model from FAQ traffic entirely.
 - **Input validation.** UUID format enforcement, email and date and phone regex validation, message length limits.
 - **CORS.** Dynamic origin matching for production domains, not wildcard.
-- **Headers.** HSTS, CSP, X-Frame-Options DENY, X-Content-Type-Options, Permissions-Policy, Referrer-Policy.
 - **Secrets.** AWS Secrets Manager for Google Calendar credentials, SAM NoEcho parameters for runtime secrets, no hardcoded secrets in the repository.
 - **Data.** DynamoDB parameterized queries, HTML escaping in email templates, 24 hour TTL on conversation data.
 
@@ -166,6 +181,12 @@ This project implements defense-in-depth:
 ## Roadmap
 
 Planned additions for the next iteration:
+
+- **Security headers.** `amplify.yml` defines HSTS, CSP, X-Frame-Options,
+  X-Content-Type-Options, Permissions-Policy and Referrer-Policy, but they are
+  not being applied to responses. `customHeaders` sits at the top level of a
+  monorepo-style config (`applications:` with `appRoot: frontend`), which is the
+  likely cause. Needs fixing so the policies actually take effect.
 
 - **CI/CD deploy pipeline.** Add a GitHub Actions deploy job using OpenID Connect federation to AWS, so a push deploys without static credentials (tests already run in CI).
 - **Analytics layer.** DynamoDB Streams to S3 in Parquet format with Athena queries for trend analysis on leads and appointments.
