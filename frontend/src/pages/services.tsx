@@ -113,7 +113,7 @@ export default function Services() {
       </section>
 
       {/* How the services compound */}
-      <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28 overflow-hidden">
+      <section id="service-system" className="bg-black text-white px-6 lg:px-10 py-20 md:py-28 overflow-hidden scroll-mt-20">
         <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[minmax(0,1fr)_auto] gap-12 xl:gap-16 items-center">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-6">

@@ -1,0 +1,32 @@
+/* A restrained material finish on the original monochrome orbit. */
+.minimal-orbit-ring {
+  border-top-color: rgb(255 255 255 / 25%);
+  border-bottom-color: rgb(255 255 255 / 9%);
+}
+
+.minimal-orbit-hub {
+  background: #0d0d0d;
+  border-top-color: #696969;
+  border-bottom-color: #252525;
+  box-shadow: inset 0 1px 2px #ffffff16, 0 3px 0 #151515, 0 4px 0 #ffffff14, 0 12px 24px #000;
+}
+
+.minimal-orbit-node:not(.is-selected) {
+  background: linear-gradient(155deg, #191919, #050505 75%);
+  border-top-color: #737373;
+  border-bottom-color: #333;
+  box-shadow: inset 0 1px 1px #ffffff12, 0 2px 0 #151515, 0 3px 0 #ffffff0a, 0 7px 12px #0008;
+}
+
+.minimal-service-orbit button:hover .minimal-orbit-node,
+.minimal-service-orbit button:focus-visible .minimal-orbit-node {
+  transform: translateY(-2px);
+  border-color: #aaa;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .minimal-service-orbit button:hover .minimal-orbit-node,
+  .minimal-service-orbit button:focus-visible .minimal-orbit-node {
+    transform: none;
+  }
+}

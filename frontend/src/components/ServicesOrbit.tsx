@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import "./services-orbit.css";
 import { pillars, services, type PillarId } from "@/data/services";
 
 /**
@@ -113,16 +114,15 @@ export function ServicesOrbit() {
   };
 
   const open = openSlug ? ORBIT.find((n) => n.slug === openSlug) ?? null : null;
-  const openService = open ? bySlug[open.slug] : null;
 
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto hidden lg:block"
+      className="minimal-service-orbit relative mx-auto hidden lg:block"
       style={{ width: RADIUS * 2 + 300, height: RADIUS * 2 + 130 }}
     >
       <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 minimal-orbit-ring"
         style={{ width: RADIUS * 2, height: RADIUS * 2 }}
         aria-hidden="true"
       />
@@ -143,7 +143,7 @@ export function ServicesOrbit() {
           open ? "opacity-0" : "opacity-100"
         }`}
       >
-        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-white/25 bg-black">
+        <div className="minimal-orbit-hub flex h-20 w-20 items-center justify-center rounded-full border border-white/25 bg-black">
           <img src="/new_logo.png" alt="Unkommon" className="h-8 w-8 object-contain" width={32} height={32} />
         </div>
       </div>
@@ -176,7 +176,7 @@ export function ServicesOrbit() {
               className="group flex flex-col items-center focus:outline-none"
             >
               <span
-                className={`flex items-center justify-center rounded-full border font-mono tabular-nums transition-all duration-300 group-focus-visible:ring-2 group-focus-visible:ring-white group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-black ${
+                className={`minimal-orbit-node ${isOpen ? "is-selected" : ""} flex items-center justify-center rounded-full border font-mono tabular-nums transition-all duration-300 group-focus-visible:ring-2 group-focus-visible:ring-white group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-black ${
                   isOpen
                     ? "h-14 w-14 border-white bg-white text-[13px] text-black shadow-[0_0_28px_rgba(255,255,255,0.35)]"
                     : related
@@ -190,7 +190,7 @@ export function ServicesOrbit() {
                 className={`mt-2 whitespace-nowrap transition-all duration-300 ${
                   isOpen
                     ? "text-[13px] font-medium text-white"
-                    : "text-[12px] text-white/60 group-hover:text-white"
+                    : "text-[12px] text-white/70 group-hover:text-white"
                 }`}
               >
                 {node.label}
