@@ -38,13 +38,21 @@ def check_prompt_injection(message):
     return False
 
 
-# Global hourly request budget (prevents multi-IP cost abuse)
-HOURLY_REQUEST_BUDGET = 200  # max total chatbot requests per hour across all users
+# Hourly request budget (blunts multi-IP cost abuse)
+#
+# The counter lives in module memory, so it is per Lambda execution environment,
+# not global: N warm containers allow up to N * HOURLY_REQUEST_BUDGET per hour.
+# It caps runaway spend from a single warm instance; it is not a hard account
+# ceiling. A shared counter would need DynamoDB or ElastiCache.
+HOURLY_REQUEST_BUDGET = 200  # max chatbot requests per hour, per instance
 _request_counter = {'count': 0, 'window_start': 0}
 
 
 def check_global_budget():
-    """Return True if within budget, False if hourly budget is exceeded."""
+    """Return True if within budget, False if the hourly budget is exceeded.
+
+    Per execution environment, not global - see the note on HOURLY_REQUEST_BUDGET.
+    """
     now = time.time()
     window = 3600  # 1 hour
     if now - _request_counter['window_start'] > window:

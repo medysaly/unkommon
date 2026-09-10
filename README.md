@@ -47,7 +47,7 @@ graph LR
 
 ## Features
 
-**AI Chatbot.** Conversational assistant powered by Claude on AWS Bedrock. Multi-turn conversations with DynamoDB persistence (24 hour TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and a global hourly request budget to cap Bedrock costs.
+**AI Chatbot.** Conversational assistant powered by Claude on AWS Bedrock. Multi-turn conversations with DynamoDB persistence (24 hour TTL) and tool-calling for calendar availability checks and appointment booking. Includes server-side prompt injection detection and an hourly request budget to cap Bedrock costs (per Lambda execution environment, since the counter is in memory).
 
 **Intent classifier (Trie fast-path).** A Trie (prefix tree) runs before the Bedrock call and answers common FAQ questions from precomputed responses in O(m) time, where m is the number of words in the message. Only messages that do not match fall through to the language model, which cuts latency and per-token cost for common questions and keeps those answers deterministic.
 
@@ -154,6 +154,7 @@ Required SAM parameters: `VapiWebhookSecret`, `ResendApiKey`, `LeadsNotification
 
 ```bash
 cd backend/chatbot
+pip install -r requirements-dev.txt   # pytest + pytest-mock, on top of runtime deps
 python -m pytest -q
 ```
 
@@ -161,12 +162,12 @@ python -m pytest -q
 
 This project implements defense-in-depth:
 
-- **Authentication.** HMAC signature verification on Vapi webhooks (fail-closed).
+- **Authentication.** Vapi webhooks carry a shared secret in `x-vapi-secret`, compared in constant time with `hmac.compare_digest` and fail-closed. Note this authenticates the caller; it is not a signature over the request body, so it does not attest body integrity.
 - **Least-privilege IAM.** Each Lambda is granted access only to the specific DynamoDB tables and services it needs, via per-table SAM policies, not blanket access.
-- **Rate limiting.** AWS WAFv2 per-IP rules (100 requests / 5 minutes global, 30 requests / 5 minutes on the chatbot endpoint), plus application-level booking rate limits and a global hourly request budget.
+- **Rate limiting.** AWS WAFv2 per-IP rules (100 requests / 5 minutes global, 30 requests / 5 minutes on the chatbot endpoint), plus application-level booking rate limits and an hourly request budget. The budget counter is held in module memory, so it applies per Lambda execution environment rather than globally.
 - **Injection defense.** Regex-based prompt injection detection before LLM invocation, server-side tool parameter validation independent of LLM output, and a hardened system prompt with anti-injection rules. The Trie fast-path also removes the model from FAQ traffic entirely.
 - **Input validation.** UUID format enforcement, email and date and phone regex validation, message length limits.
-- **CORS.** Dynamic origin matching for production domains, not wildcard.
+- **CORS.** Application responses echo only allowlisted production origins. API Gateway's preflight configuration still returns `AllowOrigin: '*'` for OPTIONS, so the restriction is enforced on the response, not the preflight.
 - **Secrets.** AWS Secrets Manager for Google Calendar credentials, SAM NoEcho parameters for runtime secrets, no hardcoded secrets in the repository.
 - **Data.** DynamoDB parameterized queries, HTML escaping in email templates, 24 hour TTL on conversation data.
 

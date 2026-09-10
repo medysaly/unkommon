@@ -154,7 +154,6 @@ Resources:
           - Effect: Allow
             Action:
               - bedrock:InvokeModel
-              - bedrock:InvokeModelWithResponseStream
             Resource:
               - !Sub 'arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-*'
               - 'arn:aws:bedrock:::foundation-model/anthropic.claude-*'
