@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { createPageUrl } from "@/lib/utils";
 import { pillars, serviceListing } from "@/data/services";
+import { ServicesOrbit } from "@/components/ServicesOrbit";
 
 /** "Get Built" -> "get-built", so the homepage cards can deep-link here. */
 export const pillarAnchor = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
@@ -108,6 +109,30 @@ export default function Services() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* How the services compound */}
+      <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[minmax(0,1fr)_auto] gap-12 xl:gap-16 items-center">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-white/50">
+                How it fits together
+              </span>
+              <span className="flex-1 h-px bg-white/15" aria-hidden="true" />
+            </div>
+            <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.15] tracking-[-0.03em] mb-4">
+              These aren't ten separate things to buy.
+            </h2>
+            <p className="text-[17px] text-white/60 leading-relaxed">
+              A site built right makes search cheaper. Search brings leads that speed-to-lead catches.
+              The receptionist feeds the CRM your automation runs on. Select any service to see what it
+              works with.
+            </p>
+          </div>
+
+          <ServicesOrbit />
         </div>
       </section>
 
