@@ -11,7 +11,6 @@ import Services from "@/pages/services";
 import ServiceDetail from "@/pages/service-detail";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
-import OurWork from "@/pages/our-work";
 import Sources from "@/pages/sources";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -51,7 +50,6 @@ function Router() {
                 <Route path="/solutions/:slug">
                   {(params) => <Redirect to={`/services/${params.slug}`} />}
                 </Route>
-                <Route path="/our-work" component={OurWork} />
                 <Route path="/about" component={About} />
                 <Route path="/book-a-call" component={BookACall} />
                 <Route path="/sources" component={Sources} />

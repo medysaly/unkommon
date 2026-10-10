@@ -31,14 +31,6 @@ const staticRoutes: RouteMeta[] = [
     changefreq: "weekly",
   },
   {
-    path: "/our-work",
-    title: "Our Work | Unkommon",
-    description: "Case studies are on the way. In the meantime we're happy to walk you through recent projects on a call.",
-    priority: "0.5",
-    changefreq: "monthly",
-    noindex: true,
-  },
-  {
     path: "/about",
     title: "About Unkommon | Systems And Automation",
     description:

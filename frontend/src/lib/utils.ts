@@ -11,7 +11,6 @@ export function createPageUrl(pageName: string): string {
     'Home': '/',
     'Services': '/services',
     'Solutions': '/services',
-    'OurWork': '/our-work',
     'HowItWorks': '/services',
     'About': '/about',
     'BookACall': '/book-a-call',

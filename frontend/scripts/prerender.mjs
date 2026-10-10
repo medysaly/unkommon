@@ -190,8 +190,8 @@ async function main() {
   extras["/services"] = {
     fallback: `
       <header>
-        <h1>Get found. Get answered. Get it running.</h1>
-        <p>We build the website, win the search and AI visibility, answer every enquiry that comes in, and automate the work behind it. One team instead of three vendors.</p>
+        <h1>The systems your business needs. The operations that keep it moving.</h1>
+        <p>We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.</p>
       </header>
       <main>
         ${pillars
@@ -221,27 +221,16 @@ async function main() {
   extras["/about"] = {
     fallback: `
       <header>
-        <h1>Unkommon is a growth agency built for modern SMBs.</h1>
-        <p>We help local businesses get found, get booked, and run leaner operations. That means a site that converts, search that compounds, and automation that answers leads and handles the busywork so you are not stuck doing it by hand.</p>
+        <h1>Unkommon builds the systems modern businesses run on.</h1>
+        <p>We build websites, apps, and digital tools, then connect and automate the work behind them. The result is a business that is easier to operate and ready to grow.</p>
       </header>
       <main>
-        <section><h2>Why we're different</h2><ul>
-          <li><strong>Zero silos.</strong> The designer shipping your site sits right next to the strategist driving your search visibility and AI automation.</li>
-          <li><strong>Built for humans and AI.</strong> We structure your digital presence so buyers convert, Google ranks you, and LLMs recommend you.</li>
-          <li><strong>We meet you where you are.</strong> Whether you're launching from scratch or scaling an established brand, we plug in at any stage.</li>
+        <section><h2>How we work</h2><ul>
+          <li><strong>One team.</strong> The people building your website or app also understand the systems and workflows it needs to connect to.</li>
+          <li><strong>Built around real work.</strong> We start with how your team and customers actually move through the business, then build what makes that work simpler.</li>
+          <li><strong>Built to keep moving.</strong> We leave you with clear, reliable systems that can grow and change with the business.</li>
         </ul></section>
         <section><h2>Where we are</h2><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>
-        ${moreNav()}
-      </main>`,
-  };
-
-  extras["/our-work"] = {
-    fallback: `
-      <header>
-        <h1>Our work is coming soon.</h1>
-        <p>We're putting together the case studies: what we built, what it changed, and the numbers behind it. In the meantime, we're happy to walk you through recent projects on a call.</p>
-      </header>
-      <main>
         ${moreNav()}
       </main>`,
   };
@@ -249,8 +238,8 @@ async function main() {
   extras["/book-a-call"] = {
     fallback: `
       <header>
-        <h1>Book a free 30-minute call</h1>
-        <p>We look at how you show up in search and in AI assistants, how fast inbound enquiries actually get answered, and where manual work is eating hours. No pitch and no obligation.</p>
+        <h1>Let’s make your business easier to run.</h1>
+        <p>Bring us the bottleneck, the messy handoff, or the system you wish you had. We’ll help you figure out what to build next.</p>
       </header>
       <main>
         <section><h2>Contact</h2><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>
@@ -283,9 +272,9 @@ ${routes
 
   const llms = `# Unkommon
 
-> Unkommon is a growth studio combining web development, SEO, and AI automation. We build websites that get found by search engines and AI assistants, answer every call and enquiry 24/7, and automate the operations behind them.
+> Unkommon builds websites and apps, connects the systems behind them, and automates the manual work that slows teams down.
 
-Marketing and engineering in one team. Most SEO agencies cannot implement the technical fixes they recommend, and most development shops do not know what to change. We do both halves, so a recommendation becomes a deployment instead of a ticket.
+We build the systems modern businesses run on: customer-facing digital products, the connections behind them, and practical automation for day-to-day operations.
 
 ## Services
 
@@ -300,21 +289,12 @@ ${pillars
   .filter(Boolean)
   .join("\n\n")}
 
-## Industries
-
-- Ecommerce and retail: catalog SEO, product schema, AI product discovery, customer support automation
-- Home services and trades: missed-call recovery, speed to lead, local SEO across a service radius
-- Dental, medical, and veterinary practices: intake, scheduling, no-show recovery, local visibility
-- Legal firms: client intake, document and records processing, city-level search visibility
-- B2B and professional services: AI search visibility, content built on buying intent, lead follow-up
-
 ## Process
 
-1. **Audit**: Free 30-minute review of search and AI visibility, response times, and manual work.
+1. **Talk**: Bring us the bottleneck, messy handoff, or system you wish you had.
 2. **Plan**: Fixed scope and fixed price before anything starts. No hourly billing.
-3. **Build**: Copy and code delivered by the same team.
-4. **Launch**: Tracking instrumented before launch, not after.
-5. **Report**: Monthly reporting on rankings, AI citation rate, response times, and conversions.
+3. **Build**: We design and build the product, integrations, or automation around how your business works.
+4. **Launch**: We test the important paths and hand over a system your team can use.
 
 ## Contact
 
