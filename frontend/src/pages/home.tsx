@@ -4,8 +4,23 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
-import { pillars, services } from "@/data/services";
+import { services } from "@/data/services";
 import { IntegrationsDiagram } from "@/components/IntegrationsDiagram";
+
+const homepagePillars = [
+  {
+    id: "built",
+    number: "01",
+    name: "Get Built",
+    promise: "Websites, apps, and digital tools built around what your business actually needs to do.",
+  },
+  {
+    id: "run",
+    number: "02",
+    name: "Get Running",
+    promise: "Connected systems and automation that take repetitive work off your team's plate.",
+  },
+] as const;
 
 export default function Home() {
   return (
@@ -46,16 +61,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The three pillars */}
+      {/* The two pillars */}
       <section className="bg-background px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-6 md:gap-12 items-start mb-12">
             <h2 className="text-[clamp(1.875rem,3.4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground">
-              <span className="block">Most agencies can't build.</span>
-              <span className="block">Most developers can't rank.</span>
+              <span className="block">The systems your business needs.</span>
+              <span className="block">The operations that keep it moving.</span>
             </h2>
             <p className="text-[17px] text-secondary-foreground leading-relaxed md:pt-3">
-              Marketing and engineering shouldn't be separate vendors. We put code, search visibility, and AI automation under one roof so you get a fast system that actually drives revenue.
+              We build the tools your team and customers rely on, then automate the repetitive work happening behind the scenes.
             </p>
           </div>
 
@@ -66,8 +81,8 @@ export default function Home() {
             <span className="flex-1 h-px bg-border" aria-hidden="true" />
           </div>
 
-          <div className="grid md:grid-cols-3 md:grid-rows-[auto_auto_1fr] gap-4">
-            {pillars.map((pillar, i) => {
+          <div className="grid md:grid-cols-2 md:grid-rows-[auto_auto_1fr] gap-4">
+            {homepagePillars.map((pillar, i) => {
               const items = services.filter((s) => s.pillar === pillar.id);
               return (
                 <motion.div
@@ -96,7 +111,7 @@ export default function Home() {
                           href={`/services/${service.slug}`}
                           className="group -mx-2 px-2 py-1 rounded-md inline-flex items-center gap-1.5 text-[14px] text-foreground hover:bg-foreground/5 transition-colors"
                         >
-                          {service.subtitle}
+                          {service.slug === "speed-to-lead" ? "Lead Response & Follow-Up" : service.subtitle}
                           <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                         </Link>
                       </li>
