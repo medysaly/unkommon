@@ -165,10 +165,10 @@ export default function Home() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Let's chat about taking your business to the next level.
+            Let's make your business easier to run.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Grab a quick 30 minutes with our team. We'll explore where you're losing search traffic, how your site is converting, and what busywork a system should be doing for you.
+            Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Let's chat
