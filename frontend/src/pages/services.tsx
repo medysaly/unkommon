@@ -33,7 +33,7 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-muted-foreground mb-10 max-w-2xl leading-relaxed"
           >
-            Whether you're building your first product from scratch or scaling an established business, we engineer the exact layer of tech, visibility, or automation you need right now.
+            Whether you're building your first product from scratch or improving the systems you already use, we build the tools and automation your business needs right now.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,12 +123,11 @@ export default function Services() {
               <span className="flex-1 h-px bg-white/15" aria-hidden="true" />
             </div>
             <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.15] tracking-[-0.03em] mb-4">
-              These aren't ten separate things to buy.
+              These aren't two separate things to buy.
             </h2>
             <p className="text-[17px] text-white/60 leading-relaxed">
-              A site built right makes search cheaper. Search brings leads that speed-to-lead catches.
-              The receptionist feeds the CRM your automation runs on. Select any service to see what it
-              works with.
+              The website or app gives your customers a clear way in. The systems behind it keep work
+              moving. The right automation connects them, so your team spends less time chasing handoffs.
             </p>
           </div>
 
@@ -140,8 +139,8 @@ export default function Services() {
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-[clamp(1.375rem,3.2vw,2.125rem)] font-normal leading-[1.3] tracking-[-0.02em] text-balance">
-            Most agencies build sites that nobody can find. Most marketers build traffic to sites that can't convert.{" "}
-            <span className="font-bold">We do both.</span>
+            Most businesses are held together by tools that do not talk to each other.{" "}
+            <span className="font-bold">We build the missing pieces and make the rest work together.</span>
           </p>
         </div>
       </section>
@@ -150,10 +149,10 @@ export default function Services() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Let's chat about how we can grow your business.
+            Let's make your business easier to run.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Grab 30 minutes with us. We'll take a look at your website and apps, see how you show up across Google and AI search, and spot the manual tasks slowing down your team.
+            Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Let's chat

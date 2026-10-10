@@ -12,19 +12,13 @@ export const pillars: Pillar[] = [
     id: "built",
     number: "01",
     name: "Get Built",
-    promise: "High-converting websites and apps, built so buyers, search engines, and AI assistants can all read them.",
-  },
-  {
-    id: "found",
-    number: "02",
-    name: "Get Found",
-    promise: "Rank across Google and AI search. Same discipline, two audiences, and both decide who gets shortlisted.",
+    promise: "Websites, apps, and digital tools built around what your business actually needs to do.",
   },
   {
     id: "run",
-    number: "03",
+    number: "02",
     name: "Get Running",
-    promise: "Answer every enquiry in seconds and turn manual workflows into automated systems, wired into the tools you already use.",
+    promise: "Connected systems and automation that take repetitive work off your team's plate.",
   },
 ];
 
@@ -49,7 +43,7 @@ export interface Service {
   metaDescription: string;
 }
 
-export const services: Service[] = [
+const allServices: Service[] = [
   // ─────────────────────────── 01 · Get Built ───────────────────────────
   {
     slug: "web-development",
@@ -656,6 +650,9 @@ export const services: Service[] = [
   },
 ];
 
+/** Services currently offered by Unkommon. Historical search-marketing entries remain private. */
+export const services = allServices.filter((service) => service.pillar !== "found");
+
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find(s => s.slug === slug);
 }
@@ -677,7 +674,7 @@ export interface ServiceListing {
   href?: string;
 }
 
-export const serviceListing: ServiceListing[] = [
+const allServiceListing: ServiceListing[] = [
   {
     pillar: "built",
     name: "Website & Web App Design & Development",
@@ -749,3 +746,6 @@ export const serviceListing: ServiceListing[] = [
     href: "/services/ai-infrastructure",
   },
 ];
+
+/** Public overview entries, aligned with the active service catalogue. */
+export const serviceListing = allServiceListing.filter((service) => service.pillar !== "found");

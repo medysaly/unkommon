@@ -16,17 +16,17 @@ export interface RouteMeta {
 const staticRoutes: RouteMeta[] = [
   {
     path: "/",
-    title: "Unkommon | Web Development, SEO & AI Automation",
+    title: "Unkommon | Websites, Apps & Automation",
     description:
-      "We build websites that get found by Google and by AI, answer every call and enquiry 24/7, and automate the work behind them. Web development, SEO, AI search optimization, and business automation.",
+      "We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.",
     priority: "1.0",
     changefreq: "weekly",
   },
   {
     path: "/services",
-    title: "Services | Web Development, SEO & AI Automation | Unkommon",
+    title: "Services | Digital Products & Automation | Unkommon",
     description:
-      "Get found, get answered, get it running. Websites, SEO and AI search visibility, 24/7 call answering and lead response, and automation for the work behind it.",
+      "Websites, apps, digital tools, and automation built around the way your business actually works.",
     priority: "0.9",
     changefreq: "weekly",
   },
@@ -40,9 +40,9 @@ const staticRoutes: RouteMeta[] = [
   },
   {
     path: "/about",
-    title: "About Unkommon | Marketing And Engineering In One Team",
+    title: "About Unkommon | Systems And Automation",
     description:
-      "Most SEO agencies cannot make code changes and most development shops do not know what to change. We do both halves, so the recommendation and the implementation never get lost between vendors.",
+      "Unkommon builds websites, apps, and digital tools, then connects and automates the work behind them.",
     priority: "0.7",
     changefreq: "monthly",
   },
@@ -50,7 +50,7 @@ const staticRoutes: RouteMeta[] = [
     path: "/book-a-call",
     title: "Book A Free 30-Minute Call | Unkommon",
     description:
-      "Book a free 30-minute call. We look at how you show up in search and AI, how fast enquiries get answered, and where manual work is going. No pitch, no obligation.",
+      "Book a free 30-minute call to talk through the bottleneck, handoff, or system your business needs next.",
     priority: "0.9",
     changefreq: "monthly",
   },
