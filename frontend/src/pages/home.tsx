@@ -54,9 +54,6 @@ export default function Home() {
             <CTAButton href={createPageUrl("BookACall")}>
               Book a free audit
             </CTAButton>
-            <CTAButton href={createPageUrl("Services")} variant="outline">
-              See what we do
-            </CTAButton>
           </motion.div>
         </div>
       </section>
