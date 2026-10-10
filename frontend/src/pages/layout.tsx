@@ -1,11 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { useSeo } from "@/lib/useSeo";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import { CTAButton } from "@/components/CTAButton";
 import ChatWidget from "@/components/ChatWidget";
-import { pillars, serviceListing } from "@/data/services";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -13,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Services", href: createPageUrl("Services"), dropdown: true },
+    { name: "Services", href: createPageUrl("Services") },
     { name: "About", href: createPageUrl("About") },
     { name: "Our Work", href: createPageUrl("OurWork") },
     { name: "Book a Call", href: createPageUrl("BookACall") },
@@ -21,17 +20,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const isActive = (href: string) =>
     href === createPageUrl("Services") ? location.startsWith("/services") : location === href;
-
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLDivElement>(null);
-
-  // Close the dropdown on route change and on Escape.
-  useEffect(() => setServicesOpen(false), [location]);
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setServicesOpen(false);
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -65,80 +53,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Desktop Navigation - Center */}
             <div className="hidden md:flex items-center gap-8">
-              {navigation.map((item) =>
-                item.dropdown ? (
-                  <div
-                    key={item.name}
-                    ref={servicesRef}
-                    className="relative"
-                    onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={() => setServicesOpen(false)}
+              {navigation.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <span
+                    className={`text-[14px] font-normal transition-colors cursor-pointer hover:text-foreground ${
+                      isActive(item.href) ? "text-foreground" : "text-muted-foreground"
+                    }`}
                   >
-                    <Link href={item.href}>
-                      <span
-                        className={`inline-flex items-center gap-1 text-[14px] font-normal transition-colors cursor-pointer hover:text-foreground ${
-                          isActive(item.href) ? "text-foreground" : "text-muted-foreground"
-                        }`}
-                        aria-expanded={servicesOpen}
-                        onFocus={() => setServicesOpen(true)}
-                      >
-                        {item.name}
-                        <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </Link>
-
-                    {servicesOpen && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 z-50">
-                        <div className="w-[720px] max-w-[90vw] bg-background border border-border rounded-xl shadow-lg p-6 grid grid-cols-3 gap-6">
-                          {pillars.map((pillar) => (
-                            <div key={pillar.id}>
-                              <div className="flex items-baseline gap-2 mb-3 pb-2 border-b border-border">
-                                <span className="text-[11px] font-mono text-muted-foreground tabular-nums">
-                                  {pillar.number}
-                                </span>
-                                <span className="text-[13px] font-medium text-foreground">{pillar.name}</span>
-                              </div>
-                              <ul className="flex flex-col gap-2">
-                                {serviceListing
-                                  .filter((sv) => sv.pillar === pillar.id)
-                                  .map((sv) => (
-                                    <li key={sv.name}>
-                                      {sv.href ? (
-                                        <Link
-                                          href={sv.href}
-                                          className="block text-[13px] leading-snug text-muted-foreground hover:text-foreground transition-colors"
-                                        >
-                                          {sv.name}
-                                        </Link>
-                                      ) : (
-                                        <span className="block text-[13px] leading-snug text-muted-foreground">
-                                          {sv.name}
-                                        </span>
-                                      )}
-                                    </li>
-                                  ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link key={item.name} href={item.href}>
-                    <span
-                      className={`text-[14px] font-normal transition-colors cursor-pointer hover:text-foreground ${
-                        isActive(item.href) ? "text-foreground" : "text-muted-foreground"
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                  </Link>
-                )
-              )}
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
             </div>
 
             {/* CTA Button */}
