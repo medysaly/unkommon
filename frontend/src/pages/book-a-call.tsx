@@ -16,7 +16,7 @@ export default function BookACall() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground mb-6"
           >
-            Let's chat about how we can grow your business.
+            Let's make your business easier to run.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function BookACall() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="text-[17px] text-muted-foreground max-w-lg mx-auto leading-relaxed"
           >
-            Grab a casual 30 minutes with us. No sales pitch, just a plain-English look at your site, search rankings, and manual friction points.
+            Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </motion.p>
         </div>
       </section>

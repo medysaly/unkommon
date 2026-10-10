@@ -156,7 +156,7 @@ export default function Home() {
             Our Mission
           </h2>
           <p className="text-[19px] md:text-[22px] text-white/70 leading-relaxed">
-            To empower SMBs to elevate their services and reach their true potential by building modern digital products, dominating search and AI, and automating backend operations.
+            To help small businesses run better by building modern digital products and automating the work behind them.
           </p>
         </div>
       </section>
