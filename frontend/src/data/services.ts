@@ -48,51 +48,49 @@ const allServices: Service[] = [
   {
     slug: "web-development",
     pillar: "built",
-    title: "Sites And Apps Built To Convert",
+    title: "Websites And Apps That Do The Work",
     subtitle: "Website & Web App Design & Development",
-    shortDescription: "Lightning-fast websites and web applications built on clean code, engineered for conversion, technical search speed, and seamless API integrations.",
-    heroHeadline: "Fast to use, fast to load, and readable by machines.",
-    heroSubhead: "We design and build marketing sites and full web applications on clean, maintainable code. Engineered for conversion rate, Core Web Vitals, and the API integrations your business actually runs on.",
+    shortDescription: "Websites and web applications built to answer questions, guide people to the next step, and connect to the systems behind your business.",
+    heroHeadline: "A website should do more than look good.",
+    heroSubhead: "It should answer questions, guide people to the right next step, and connect to the way your business actually runs. We build websites and apps that do the work.",
     problemLabel: "The problem",
-    problem: "Most agency websites are built to look good in a design review and nothing else. The content loads in JavaScript, so AI crawlers see an empty page. There is no structured data, so nothing gets cited. Performance degrades the moment real content is added. And when you need the site to do something real, take a payment, sync to your CRM, gate a customer dashboard, the agency that built it cannot help, because they were never engineers.",
-    solution: "We build the marketing layer and the application layer with the same team and the same standards. Content is server-rendered or pre-rendered so every crawler sees real HTML. Performance budgets are set during the build, not measured after. Integrations with your CRM, payment provider, booking system, or internal tools are built as proper APIs with error handling, not fragile embeds.",
+    problem: "Most websites are polished brochures. Someone visits, has a question, cannot find what they need, and leaves a message for your team to handle later. The site looks finished. The work starts after they leave it.",
+    solution: "We build the front end and the work behind it together. Forms go somewhere useful. Bookings reach the calendar. Customer information reaches the right system. If someone needs an account, a quote, a payment, or a next step, it is built into the experience.",
     capabilities: [
-      "Marketing sites and full web applications on one codebase and one stack",
-      "Server-rendered or pre-rendered pages so AI crawlers see real content",
-      "Core Web Vitals budget set and enforced during the build, not audited after",
-      "API integrations with CRM, payments, booking, and internal systems",
-      "Authentication, dashboards, and gated customer areas where you need them",
+      "Websites and web applications built for real use",
+      "Customer portals, dashboards, and account areas",
+      "Booking, payments, forms, and CRM connections",
+      "Internal tools that remove manual steps",
+      "Responsive design that works on every screen",
     ],
     deliverables: [
-      "Custom design and front-end build, responsive and accessible",
-      "Server-side rendering or static pre-rendering for every indexable route",
-      "Application features: authentication, user dashboards, forms, and workflows",
-      "API layer connecting the site to your CRM, payment, and booking systems",
-      "Per-page titles, meta descriptions, canonical tags, and Open Graph images",
-      "Schema.org markup appropriate to your business type, validated before launch",
-      "Analytics with organic, AI-referral, and conversion tracking separated",
-      "Hosting and deployment pipeline on AWS or Vercel, with a staging environment",
+      "A clear customer journey, from the first question to the next step",
+      "A responsive front end built in code you own",
+      "The integrations your business needs to function",
+      "Authentication, data, and workflows where needed",
+      "A staging environment and launch plan",
+      "Handover documentation for your team or the next one",
     ],
     techStack: [
-      "React with Next.js, Astro, or Vite depending on the content and app model",
+      "React with Next.js, Astro, or Vite depending on what the product needs",
       "TypeScript throughout, with Tailwind CSS and a component library you own",
       "Node or Python APIs on AWS Lambda, with Postgres or DynamoDB",
       "Headless CMS (Sanity, Contentful, or Shopify for commerce)",
       "Stripe, Cal.com, HubSpot, and Salesforce integrations",
-      "Automated Lighthouse, type, and schema checks in CI",
+      "Automated testing and type checks in CI",
     ],
     industries: [
-      "Ecommerce brands that need catalog pages search and AI can both read",
-      "Professional services replacing a site that generates no enquiries",
-      "SaaS and B2B companies needing a marketing site plus a product surface",
+      "Ecommerce businesses connecting a catalog, payments, and fulfilment",
+      "Professional services giving customers a clearer way to get started",
+      "SaaS and B2B companies building a product surface alongside their public site",
       "Businesses whose site needs to transact, not just describe",
-      "Companies rebuilding after an SEO migration went wrong",
+      "Teams replacing a site that no longer fits the way they work",
     ],
-    outcome: "A site or application that loads fast, converts, integrates with your stack, and can be found by the systems people search with now.",
+    outcome: "A website or application that earns its place in the business.",
     faqs: [
       {
-        q: "Why does server rendering matter so much?",
-        a: "GPTBot, ClaudeBot, and PerplexityBot fetch raw HTML and do not execute JavaScript. Googlebot does render, so a client-side site can rank in Google and still be completely invisible inside ChatGPT. If AI referrals matter to you, the content has to exist in the HTML."
+        q: "Why does performance matter?",
+        a: "Because people notice when a site is slow, awkward, or unreliable. We keep the build lean, test it on real screen sizes, and make sure the important actions work before anything goes live."
       },
       {
         q: "What counts as a web app rather than a website?",
@@ -100,15 +98,15 @@ const allServices: Service[] = [
       },
       {
         q: "Can you work with our existing site instead of rebuilding?",
-        a: "Often, yes. If the platform is sound we will fix the rendering, structured data, performance, and integrations rather than sell you a rebuild you don't need. We will tell you honestly which one your situation calls for."
+        a: "Often, yes. If the foundation is sound, we can improve the experience, add integrations, or build the missing parts without starting over. If a rebuild is the cleaner option, we will tell you why."
       },
       {
         q: "How long does a build take?",
-        a: "Marketing sites usually ship in 4 to 8 weeks. Applications depend entirely on scope, and we break them into milestones so you see working software early. You get a fixed scope and a fixed price before we start."
+        a: "A straightforward website normally ships in 4 to 8 weeks. Applications depend on scope, and we break larger work into milestones so you can see working software early. You get a fixed scope and a fixed price before we start."
       },
     ],
     metaTitle: "Website & Web App Design & Development | Unkommon",
-    metaDescription: "Fast, conversion-focused websites and web applications on clean code. Server-rendered content, structured data, API integrations, and performance budgets.",
+    metaDescription: "Websites and web applications that answer questions, guide people to the next step, and connect to the systems behind your business.",
   },
   {
     slug: "mobile-app-development",
@@ -679,7 +677,7 @@ const allServiceListing: ServiceListing[] = [
     pillar: "built",
     name: "Website & Web App Design & Development",
     blurb:
-      "Lightning-fast, modern web applications built on clean code. Engineered specifically for high conversion rates, technical search speed, and seamless API integrations.",
+      "Custom websites and web applications that answer questions, guide people to the next step, and connect to the systems behind your business.",
     href: "/services/web-development",
   },
   {
@@ -693,7 +691,7 @@ const allServiceListing: ServiceListing[] = [
     pillar: "built",
     name: "Technical Architecture & Infrastructure",
     blurb:
-      "Custom database design, schema markup, and site structure optimized so human visitors, Google bots, and AI web scrapers index your core business data perfectly.",
+      "The data, integrations, and infrastructure that keep your digital tools dependable as the business changes.",
     href: "/services/technical-architecture",
   },
   {
