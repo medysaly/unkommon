@@ -20,7 +20,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-[clamp(2.5rem,7vw,5.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-[900px] mb-8"
           >
-            Modernizing how businesses market, build, and operate.
+            Modernizing how businesses build and operate.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.22 }}
             className="text-[17px] text-muted-foreground leading-relaxed max-w-2xl mb-10"
           >
-            We build high-converting websites and apps, drive rank across Google and AI search, and deploy smart automations to turn manual workflows into instant, automated systems.
+            We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
