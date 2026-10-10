@@ -19,7 +19,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-4xl mb-8"
           >
-            Unkommon is a growth agency built for modern SMBs.
+            Unkommon builds the systems modern businesses run on.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,9 +27,8 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            We help local businesses get found, get booked, and run leaner operations. That means a site
-            that converts, search that compounds, and automation that answers leads and handles the
-            busywork so you are not stuck doing it by hand.
+            We build websites, apps, and digital tools, then connect and automate the work behind them.
+            The result is a business that is easier to operate and ready to grow.
           </motion.p>
         </div>
       </section>
@@ -43,16 +42,16 @@ export default function About() {
           <div className="flex flex-col gap-8">
             {[
               {
-                title: "Zero Silos",
-                body: "The designer shipping your site sits right next to the strategist driving your search visibility and AI automation.",
+                title: "One Team",
+                body: "The people designing your product understand the systems and workflows behind it. Nothing gets handed off between separate vendors.",
               },
               {
-                title: "Built for Humans & AI",
-                body: "We structure your digital presence so buyers convert, Google ranks you, and LLMs recommend you.",
+                title: "Built Around Real Work",
+                body: "We do not start with a stack or a template. We start with how your customers and team actually work, then build what fits.",
               },
               {
-                title: "We Meet You Where You Are",
-                body: "Whether you're launching from scratch or scaling an established brand, we plug in at any stage.",
+                title: "Built to Keep Moving",
+                body: "A launch is the beginning, not the finish line. We build systems that can grow, connect, and adapt as your business changes.",
               },
             ].map((item, i) => (
               <motion.div
@@ -93,10 +92,10 @@ export default function About() {
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-normal leading-[1.1] tracking-[-0.04em] mb-6">
-            Let's chat about how we can grow your business.
+            Let's make your business easier to run.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Grab a casual 30 minutes with us. No sales pitch, just a plain-English look at your site, search rankings, and manual friction points.
+            Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
             Let's chat
