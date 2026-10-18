@@ -18,7 +18,7 @@ const staticRoutes: RouteMeta[] = [
     path: "/",
     title: "Unkommon | Websites, Apps & Automation",
     description:
-      "We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.",
+      "We build AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep your business moving.",
     priority: "1.0",
     changefreq: "weekly",
   },

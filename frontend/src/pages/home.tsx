@@ -43,7 +43,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.22 }}
             className="text-[17px] text-muted-foreground leading-relaxed max-w-2xl mb-10"
           >
-            We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.
+            We build AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep your business moving.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

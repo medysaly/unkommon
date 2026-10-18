@@ -191,7 +191,7 @@ async function main() {
     fallback: `
       <header>
         <h1>The systems your business needs. The operations that keep it moving.</h1>
-        <p>We build websites and apps, connect the systems behind them, and automate the manual work that slows your team down.</p>
+        <p>We build AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep your business moving.</p>
       </header>
       <main>
         ${pillars
@@ -272,7 +272,7 @@ ${routes
 
   const llms = `# Unkommon
 
-> Unkommon builds websites and apps, connects the systems behind them, and automates the manual work that slows teams down.
+> Unkommon builds AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep businesses moving.
 
 We build the systems modern businesses run on: customer-facing digital products, the connections behind them, and practical automation for day-to-day operations.
 
