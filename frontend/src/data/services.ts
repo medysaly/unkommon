@@ -49,7 +49,7 @@ const allServices: Service[] = [
     slug: "web-development",
     pillar: "built",
     title: "Websites And Apps That Do The Work",
-    subtitle: "Website & Web App Design & Development",
+    subtitle: "Web & AI Products",
     shortDescription: "Websites and web applications built to answer questions, guide people to the next step, and connect to the systems behind your business.",
     heroHeadline: "A website should do more than look good.",
     heroSubhead: "It should answer questions, guide people to the right next step, and connect to the way your business actually runs. We build websites and apps that do the work.",
@@ -112,7 +112,7 @@ const allServices: Service[] = [
     slug: "mobile-app-development",
     pillar: "built",
     title: "Apps People Keep Using",
-    subtitle: "Mobile Application Development",
+    subtitle: "Mobile & Connected Experiences",
     shortDescription: "Scalable native and cross-platform iOS and Android apps designed around user retention, intuitive UI/UX, and long-term performance.",
     heroHeadline: "Shipping the app is the easy part. Keeping people in it isn't.",
     heroSubhead: "Native and cross-platform iOS and Android applications built around retention, not just feature lists. Designed to stay fast and maintainable long after launch.",
@@ -172,7 +172,7 @@ const allServices: Service[] = [
     slug: "technical-architecture",
     pillar: "built",
     title: "The Systems Behind The System",
-    subtitle: "Technical Architecture & Infrastructure",
+    subtitle: "Data, Systems & Infrastructure",
     shortDescription: "The data, integrations, and infrastructure that keep your digital tools dependable as the business changes.",
     heroHeadline: "The part customers do not see. The part everything depends on.",
     heroSubhead: "Behind every useful website, app, or automation is a system that keeps the data moving, the tools connected, and the team out of the weeds.",
@@ -673,21 +673,27 @@ export interface ServiceListing {
 const allServiceListing: ServiceListing[] = [
   {
     pillar: "built",
-    name: "Website & Web App Design & Development",
+    name: "Web & AI Products",
     blurb:
       "Custom websites and web applications that answer questions, guide people to the next step, and connect to the systems behind your business.",
     href: "/services/web-development",
   },
   {
     pillar: "built",
-    name: "Mobile Application Development",
+    name: "Commerce Platforms & Shopify",
+    blurb:
+      "Shopify stores and commerce systems connected to the tools that keep orders, customers, and operations moving.",
+  },
+  {
+    pillar: "built",
+    name: "Mobile & Connected Experiences",
     blurb:
       "Scalable native and cross-platform iOS/Android apps designed around user retention, intuitive UI/UX, and long-term performance.",
     href: "/services/mobile-app-development",
   },
   {
     pillar: "built",
-    name: "Technical Architecture & Infrastructure",
+    name: "Data, Systems & Infrastructure",
     blurb:
       "The data, integrations, and infrastructure that keep your digital tools dependable as the business changes.",
     href: "/services/technical-architecture",

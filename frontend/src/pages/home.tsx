@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
-import { services } from "@/data/services";
+import { serviceListing } from "@/data/services";
 import { IntegrationsDiagram } from "@/components/IntegrationsDiagram";
 
 const homepagePillars = [
@@ -80,7 +80,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 md:grid-rows-[auto_auto_1fr] gap-4">
             {homepagePillars.map((pillar, i) => {
-              const items = services.filter((s) => s.pillar === pillar.id);
+              const items = serviceListing.filter((s) => s.pillar === pillar.id);
               return (
                 <motion.div
                   key={pillar.id}
@@ -103,14 +103,18 @@ export default function Home() {
                   <p className="text-[14px] text-secondary-foreground leading-relaxed">{pillar.promise}</p>
                   <ul className="flex flex-col gap-2">
                     {items.map((service) => (
-                      <li key={service.slug}>
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="group -mx-2 px-2 py-1 rounded-md inline-flex items-center gap-1.5 text-[14px] text-foreground hover:bg-foreground/5 transition-colors"
-                        >
-                          {service.subtitle}
-                          <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                        </Link>
+                      <li key={service.name}>
+                        {service.href ? (
+                          <Link
+                            href={service.href}
+                            className="group -mx-2 px-2 py-1 rounded-md inline-flex items-center gap-1.5 text-[14px] text-foreground hover:bg-foreground/5 transition-colors"
+                          >
+                            {service.name}
+                            <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                          </Link>
+                        ) : (
+                          <span className="px-2 py-1 inline-flex text-[14px] text-foreground">{service.name}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
