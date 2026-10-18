@@ -108,7 +108,7 @@ export default function Home() {
                           href={`/services/${service.slug}`}
                           className="group -mx-2 px-2 py-1 rounded-md inline-flex items-center gap-1.5 text-[14px] text-foreground hover:bg-foreground/5 transition-colors"
                         >
-                          {service.slug === "speed-to-lead" ? "Lead Response & Follow-Up" : service.subtitle}
+                          {service.subtitle}
                           <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                         </Link>
                       </li>

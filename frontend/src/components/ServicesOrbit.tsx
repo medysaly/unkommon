@@ -32,13 +32,13 @@ const ORBIT: OrbitNode[] = [
     related: ["web-development", "ai-infrastructure"] },
   { slug: "technical-architecture", label: "Architecture", pillar: "built",
     related: ["web-development", "ai-infrastructure"] },
-  { slug: "ai-receptionist", label: "AI Receptionist", pillar: "run",
+  { slug: "ai-receptionist", label: "AI Agents", pillar: "run",
     related: ["speed-to-lead", "workflow-automation"] },
-  { slug: "speed-to-lead", label: "Lead Response", pillar: "run",
+  { slug: "speed-to-lead", label: "AI Lead Response", pillar: "run",
     related: ["ai-receptionist", "workflow-automation"] },
-  { slug: "workflow-automation", label: "Automation", pillar: "run",
+  { slug: "workflow-automation", label: "Agentic Workflows", pillar: "run",
     related: ["speed-to-lead", "ai-infrastructure"] },
-  { slug: "ai-infrastructure", label: "AI Infrastructure", pillar: "run",
+  { slug: "ai-infrastructure", label: "AI Systems", pillar: "run",
     related: ["workflow-automation", "mobile-app-development"] },
 ];
 

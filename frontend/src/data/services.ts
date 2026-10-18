@@ -409,11 +409,11 @@ const allServices: Service[] = [
   {
     slug: "ai-receptionist",
     pillar: "run",
-    title: "Answer Every Call, 24/7",
-    subtitle: "AI Receptionist & Voice Agents",
+    title: "AI Agents That Answer And Act",
+    subtitle: "AI Agents & Voice Automation",
     shortDescription: "AI voice and chat agents that answer the phone, qualify the caller, and book the appointment on your real calendar.",
     heroHeadline: "The call you miss is the customer your competitor gets.",
-    heroSubhead: "An AI receptionist that answers on the first ring, at any hour, knows your business, qualifies the caller, and books straight into your calendar. Escalates to a human when it should.",
+    heroSubhead: "AI agents that answer on the first ring, at any hour, know your business, qualify the caller, and book straight into your calendar. They bring in a person when they should.",
     problemLabel: "The problem",
     problem: "Around 27% of calls to home services businesses go unanswered, and 78% of homeowners hire whoever responds first. The same pattern holds in clinics, legal intake, and retail: the enquiry arrives after hours or during a busy stretch, goes to voicemail, and is gone. Hiring a receptionist costs roughly $36,000 a year and still does not cover nights or weekends.",
     solution: "We build a voice and chat agent grounded in your actual business information, connected to your calendar and CRM, deployed on the phone number you already use. It answers immediately, handles the common questions accurately, qualifies against criteria you set, books real appointments with conflict checking, and hands off to a person with full context when the situation calls for it.",
@@ -462,14 +462,14 @@ const allServices: Service[] = [
         a: "Reported deployments run around 62% below the cost of a full-time receptionist, and cover hours a single hire never could. We quote a fixed setup fee plus a monthly licence, and you will know both before you commit."
       },
     ],
-    metaTitle: "AI Receptionist & Voice Agents | Unkommon",
+    metaTitle: "AI Agents & Voice Automation | Unkommon",
     metaDescription: "AI voice agents that answer every call 24/7, qualify callers, and book real appointments on your calendar. Escalates to a human with full context.",
   },
   {
     slug: "speed-to-lead",
     pillar: "run",
     title: "Every Enquiry Gets A Next Step",
-    subtitle: "Lead Response & Follow-Up",
+    subtitle: "AI Lead Response & Follow-Up",
     shortDescription: "A dependable system for responding to new enquiries, sending the next step, and keeping every handoff from falling through the cracks.",
     heroHeadline: "When someone reaches out, the next step should not depend on who sees it first.",
     heroSubhead: "Every form, call, chat, and message gets a timely reply, the right context, and a clear route to the person or system that should handle it.",
@@ -521,7 +521,7 @@ const allServices: Service[] = [
         a: "You define the handoff rules. The system can send the right person a summary, create a task, schedule a callback, or escalate based on urgency. The next step is clear before anyone opens an inbox."
       },
     ],
-    metaTitle: "Lead Response & Follow-Up | Unkommon",
+    metaTitle: "AI Lead Response & Follow-Up | Unkommon",
     metaDescription: "A dependable system for responding to new enquiries, sending the next step, and keeping every handoff from falling through the cracks.",
   },
 
@@ -530,7 +530,7 @@ const allServices: Service[] = [
     slug: "workflow-automation",
     pillar: "run",
     title: "Stop Paying People To Copy And Paste",
-    subtitle: "Workflow & Back-Office Automation",
+    subtitle: "Agentic Workflow Automation",
     shortDescription: "Automation for the repetitive work behind the business: data entry, document processing, catalog updates, reporting, and system sync.",
     heroHeadline: "The work nobody should be doing by hand.",
     heroSubhead: "We automate the repetitive middle of your operation, the copying between systems, the document processing, the reporting nobody has time to run, and connect the tools that were never designed to talk to each other.",
@@ -582,14 +582,14 @@ const allServices: Service[] = [
         a: "We start with hours multiplied by frequency multiplied by error rate. Some manual work should stay manual because the volume never justifies the build. We will tell you when that is the case rather than sell you a project."
       },
     ],
-    metaTitle: "Workflow & Back-Office Automation | Unkommon",
+    metaTitle: "Agentic Workflow Automation | Unkommon",
     metaDescription: "Automate data entry, document processing, catalog updates, and reporting. Custom integrations between the tools you already use, built to run in production.",
   },
   {
     slug: "ai-infrastructure",
     pillar: "run",
     title: "Get It Into Production And Keep It There",
-    subtitle: "AI Infrastructure & Integration",
+    subtitle: "AI Systems & Integrations",
     shortDescription: "Deployment, monitoring, cost control, and integration for AI systems that need to run reliably rather than demo well.",
     heroHeadline: "The pilot worked. That was never the hard part.",
     heroSubhead: "Around 88% of AI pilots never reach production. We build the infrastructure, monitoring, and cost controls that decide whether yours does, whether we built the system or someone else did.",
@@ -641,7 +641,7 @@ const allServices: Service[] = [
         a: "It depends entirely on the starting point. Common wins are prompt caching, routing simple requests to smaller models, and batching. We quantify the specific opportunity in the audit rather than quoting a percentage before we have looked."
       },
     ],
-    metaTitle: "AI Infrastructure & Integration on AWS | Unkommon",
+    metaTitle: "AI Systems & Integrations | Unkommon",
     metaDescription: "Get AI systems into production and keep them there. AWS deployment, infrastructure as code, monitoring, cost control, and integration. Including systems you didn't build.",
   },
 ];
@@ -715,28 +715,28 @@ const allServiceListing: ServiceListing[] = [
   },
   {
     pillar: "run",
-    name: "AI Receptionist & Voice Agents",
+    name: "AI Agents & Voice Automation",
     blurb:
       "Human-like AI voice and chat receptionists trained on your internal data to answer inbound calls, triage customer questions, and handle bookings 24/7.",
     href: "/services/ai-receptionist",
   },
   {
     pillar: "run",
-    name: "Speed to Lead & Instant Follow-Up",
+    name: "AI Lead Response & Follow-Up",
     blurb:
       "Automated lead-capture sequences that engage new prospects in seconds across SMS, email, or chat, turning cold inquiries into booked appointments instantly.",
     href: "/services/speed-to-lead",
   },
   {
     pillar: "run",
-    name: "Workflow & Back-Office Automation",
+    name: "Agentic Workflow Automation",
     blurb:
       "Custom end-to-end automations (Zapier, Make, API pipelines) that handle client onboarding, contract routing, invoicing, and busywork automatically.",
     href: "/services/workflow-automation",
   },
   {
     pillar: "run",
-    name: "AI Infrastructure & Integration",
+    name: "AI Systems & Integrations",
     blurb:
       "Custom LLM deployments, fine-tuned AI workflows, and seamless integrations directly into your existing CRM and software stack.",
     href: "/services/ai-infrastructure",

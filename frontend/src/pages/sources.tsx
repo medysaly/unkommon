@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Sources() {
   const [selectedSource, setSelectedSource] = useState<Source | null>(null);
   const groupedSources = {
-    'Lead Response & Follow-Up': sources.filter(s =>
+    'AI Lead Response & Follow-Up': sources.filter(s =>
       s.id.includes('lead') || s.id.includes('velocify') || s.id.includes('insidesales')
     ),
     'AI Cost Savings & ROI': sources.filter(s =>
