@@ -120,19 +120,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Footer */}
       <footer className="bg-black text-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Left Side - CTA */}
-            <div>
-              <p className="text-white/60 text-sm mb-2">Work with us</p>
-              <h3 className="text-2xl md:text-3xl font-normal tracking-tight leading-snug mb-8 max-w-md">
-                We build digital products, connect the systems behind them, and automate the work that slows your business down.
-              </h3>
-              <CTAButton href={createPageUrl("BookACall")} variant="light">
-                Book a free 30-minute call
-              </CTAButton>
-            </div>
-
-            {/* Right Side - Links */}
+          <div className="max-w-lg">
+            {/* Footer links */}
             <div className="grid grid-cols-2 gap-8">
               <div>
                 <h4 className="text-[11px] font-medium uppercase tracking-[0.15em] text-white/60 mb-4">
