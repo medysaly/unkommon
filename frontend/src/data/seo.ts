@@ -47,13 +47,6 @@ const staticRoutes: RouteMeta[] = [
     changefreq: "monthly",
   },
   {
-    path: "/sources",
-    title: "Sources & Citations | Unkommon",
-    description: "References and citations for the statistics used across the Unkommon website.",
-    priority: "0.4",
-    changefreq: "monthly",
-  },
-  {
     path: "/privacy",
     title: "Privacy Policy | Unkommon",
     description: "How Unkommon collects, uses, and protects your information.",

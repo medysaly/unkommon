@@ -189,13 +189,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/sources">
-                      <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
-                        Sources
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/privacy">
                       <span className="text-[14px] text-white/80 hover:text-white transition-colors cursor-pointer">
                         Privacy Policy

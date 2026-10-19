@@ -11,7 +11,6 @@ import Services from "@/pages/services";
 import ServiceDetail from "@/pages/service-detail";
 import About from "@/pages/about";
 import BookACall from "@/pages/book-a-call";
-import Sources from "@/pages/sources";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
@@ -55,7 +54,6 @@ function Router() {
                 </Route>
                 <Route path="/about" component={About} />
                 <Route path="/book-a-call" component={BookACall} />
-                <Route path="/sources" component={Sources} />
                 <Route path="/privacy" component={Privacy} />
                 <Route path="/terms" component={Terms} />
 
