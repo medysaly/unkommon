@@ -41,21 +41,37 @@ export default function About() {
 
       {/* Founder-led delivery */}
       <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-10">
-            Founder-led delivery
-          </h2>
-          <div className="space-y-6 text-[17px] text-secondary-foreground leading-relaxed">
-            <p>
-              Mehdi leads each project, bringing together software development, cloud architecture and
-              AI engineering. Clients work directly with him to define requirements, make technical
-              decisions and carry the project through implementation and handover.
-            </p>
-            <p>
-              His qualifications include a degree in Computer Science and AWS certifications in
-              Solutions Architecture and Cloud Practitioner.
-            </p>
+        <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
+          <div>
+            <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-8">
+              Founder-led delivery
+            </h2>
+            <div className="space-y-6 text-[17px] text-secondary-foreground leading-relaxed">
+              <p>
+                Mehdi leads each project, bringing together software development, cloud architecture and
+                AI engineering. Clients work directly with him to define requirements, make technical
+                decisions and carry the project through implementation and handover.
+              </p>
+              <p>
+                His qualifications include a degree in Computer Science and AWS certifications in
+                Solutions Architecture and Cloud Practitioner.
+              </p>
+            </div>
           </div>
+          <figure className="w-full max-w-md mx-auto">
+            <img
+              src="/mehdi-salhi.jpg"
+              alt="Mehdi Salhi, founder of Unkommon"
+              width={1264}
+              height={1568}
+              loading="lazy"
+              decoding="async"
+              className="block w-full h-auto rounded-2xl"
+            />
+            <figcaption className="mt-4 text-[14px] text-secondary-foreground">
+              Mehdi Salhi <span className="text-muted-foreground">· Founder, Unkommon</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
