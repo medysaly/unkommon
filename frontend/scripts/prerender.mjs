@@ -223,7 +223,7 @@ async function main() {
       <header>
         <h1>About Unkommon</h1>
         <p>Unkommon is a technology studio founded by Mehdi Salhi, a computer science graduate and AWS-certified AI engineer based in Stamford, Connecticut.</p>
-        <p>We design and develop digital products, custom software and AI-powered systems. Our work spans websites and applications, internal business tools, systems integration and workflow automation. Each engagement is shaped around the client’s business requirements and existing technology.</p>
+        <p>We design and develop digital products, custom software and AI-powered systems. Our work spans modern websites and applications, internal business tools, systems integration and workflow automation. Each engagement is shaped around the client’s business requirements and existing technology.</p>
       </header>
       <main>
         <section><h2>Founder-led delivery</h2>

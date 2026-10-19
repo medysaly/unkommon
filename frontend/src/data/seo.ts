@@ -16,7 +16,7 @@ export interface RouteMeta {
 const staticRoutes: RouteMeta[] = [
   {
     path: "/",
-    title: "Unkommon | Websites, Apps & Automation",
+    title: "Unkommon | Modern Websites, Apps & Automation",
     description:
       "We build AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep your business moving.",
     priority: "1.0",
@@ -26,7 +26,7 @@ const staticRoutes: RouteMeta[] = [
     path: "/services",
     title: "Services | Digital Products & Automation | Unkommon",
     description:
-      "Websites, apps, digital tools, and automation built around the way your business actually works.",
+      "Modern websites, apps, digital tools, and automation built around the way your business actually works.",
     priority: "0.9",
     changefreq: "weekly",
   },
@@ -56,7 +56,7 @@ const staticRoutes: RouteMeta[] = [
   {
     path: "/terms",
     title: "Terms of Service | Unkommon",
-    description: "Terms governing the use of Unkommon's website and services.",
+    description: "Terms governing the use of Unkommon's modern website and services.",
     priority: "0.3",
     changefreq: "yearly",
   },

@@ -21,7 +21,7 @@ export default function Privacy() {
             <h2 className="text-lg font-medium text-foreground mb-3">2. How We Use Your Information</h2>
             <p>
               Your information is used to respond to inquiries, schedule consultations, deliver engineering services,
-              and improve our website. We do not sell your personal data to third parties. Ever.
+              and improve our modern website. We do not sell your personal data to third parties. Ever.
             </p>
           </section>
 
@@ -37,7 +37,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-lg font-medium text-foreground mb-3">4. AI Chatbot</h2>
             <p>
-              Our website chatbot is powered by AWS Bedrock. Conversations are stored temporarily (24-hour TTL)
+              Our modern website chatbot is powered by AWS Bedrock. Conversations are stored temporarily (24-hour TTL)
               to maintain context during your session. Chat data is not used to train any AI models.
             </p>
           </section>

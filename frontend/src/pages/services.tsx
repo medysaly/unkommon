@@ -128,7 +128,7 @@ export default function Services() {
               These aren't two separate things to buy.
             </h2>
             <p className="text-[17px] text-white/60 leading-relaxed">
-              The website or app gives your customers a clear way in. The systems behind it keep work
+              The modern website or app gives your customers a clear way in. The systems behind it keep work
               moving. The right automation connects them, so your team spends less time chasing handoffs.
             </p>
           </div>

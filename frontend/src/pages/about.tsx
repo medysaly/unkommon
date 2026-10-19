@@ -32,7 +32,7 @@ export default function About() {
           </motion.p>
           <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl mt-6">
             We design and develop digital products, custom software and AI-powered systems. Our work
-            spans websites and applications, internal business tools, systems integration and workflow
+            spans modern websites and applications, internal business tools, systems integration and workflow
             automation. Each engagement is shaped around the client’s business requirements and
             existing technology.
           </p>

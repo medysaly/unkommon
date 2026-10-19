@@ -12,7 +12,7 @@ export const pillars: Pillar[] = [
     id: "built",
     number: "01",
     name: "AI & Software Development",
-    promise: "Websites, applications, and AI-powered tools built around your business.",
+    promise: "Modern websites, applications, and AI-powered tools built around your business.",
   },
   {
     id: "run",
@@ -47,21 +47,21 @@ export const services: Service[] = [
   {
     "slug": "web-development",
     "pillar": "built",
-    "title": "Custom Websites & Web Applications",
-    "subtitle": "Custom Websites & Web Applications",
-    "shortDescription": "Business websites and custom web applications, from customer-facing experiences to full-featured platforms.",
+    "title": "Custom Modern Websites & Web Applications",
+    "subtitle": "Custom Modern Websites & Web Applications",
+    "shortDescription": "Modern websites and custom web applications, from customer-facing experiences to full-featured platforms.",
     "heroHeadline": "Software built around your business.",
-    "heroSubhead": "Business websites and custom web applications, from customer-facing experiences to full-featured platforms.",
+    "heroSubhead": "Modern websites and custom web applications, from customer-facing experiences to full-featured platforms.",
     "problemLabel": "The problem",
-    "problem": "A website or application becomes harder to use when it no longer fits the way your customers or team work.",
+    "problem": "A modern website or application becomes harder to use when it no longer fits the way your customers or team work.",
     "solution": "We design and build the experience around the tasks people need to complete, then connect it to the data and tools behind the business.",
     "capabilities": [
-      "Business websites and custom web applications",
+      "Modern websites and custom web applications",
       "Booking, payments, forms, and account areas",
       "Responsive interfaces and connections to your existing systems"
     ],
     "deliverables": [
-      "A working website or application in code you own",
+      "A working modern website or application in code you own",
       "Tested customer journeys and a launch plan",
       "Documentation and handover for your team"
     ],
@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Businesses building a new customer experience",
       "Teams replacing a site or platform they have outgrown"
     ],
-    "outcome": "A website or application that supports the way your business works.",
+    "outcome": "A modern website or application that supports the way your business works.",
     "faqs": [
       {
         "q": "Can you work with our existing systems?",
@@ -85,8 +85,8 @@ export const services: Service[] = [
         "a": "Bring us the process or product you want to improve. We will work through the requirements with you and agree the scope before building."
       }
     ],
-    "metaTitle": "Custom Websites & Web Applications | Unkommon",
-    "metaDescription": "Business websites and custom web applications, from customer-facing experiences to full-featured platforms."
+    "metaTitle": "Custom Modern Websites & Web Applications | Unkommon",
+    "metaDescription": "Modern websites and custom web applications, from customer-facing experiences to full-featured platforms."
   },
   {
     "slug": "ai-powered-applications",

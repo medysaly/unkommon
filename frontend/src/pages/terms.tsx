@@ -11,7 +11,7 @@ export default function Terms() {
           <section>
             <h2 className="text-lg font-medium text-foreground mb-3">1. Services</h2>
             <p>
-              Unkommon provides website and application development, AI voice and chat agents, lead
+              Unkommon provides modern website and application development, AI voice and chat agents, lead
               response and follow-up systems, workflow automation, and cloud infrastructure services.
               All engagements are scoped individually after an initial consultation.
             </p>
@@ -45,9 +45,9 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-lg font-medium text-foreground mb-3">5. Website Use</h2>
+            <h2 className="text-lg font-medium text-foreground mb-3">5. Modern Website Use</h2>
             <p>
-              This website is provided for informational purposes. The AI chatbot on this site is a
+              This modern website is provided for informational purposes. The AI chatbot on this site is a
               demonstration of our engineering capabilities and provides general information about our services.
               It does not constitute professional advice.
             </p>
