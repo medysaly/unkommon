@@ -57,6 +57,25 @@ def test_built_trie_answers_real_faqs():
     assert trie.match("hello there") is None
 
 
+def test_exact_faq_match_accepts_case_and_punctuation():
+    trie = build_intent_trie()
+    assert "modern websites" in trie.match("What services do you offer?", exact=True)
+
+
+def test_exact_faq_match_preserves_project_qualifiers():
+    trie = build_intent_trie()
+    assert trie.match("what do you do for customer portals", exact=True) is None
+    assert trie.match("how much does it cost to connect our CRM", exact=True) is None
+
+
+def test_exact_match_does_not_return_a_shorter_prefix():
+    trie = IntentTrie()
+    trie.insert("what do you do", "General services")
+    trie.insert("what do you do for healthcare", "Healthcare services")
+    assert trie.match("what do you do for", exact=True) is None
+    assert trie.match("what do you do for healthcare", exact=True) == "Healthcare services"
+
+
 
 
 

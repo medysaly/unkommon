@@ -66,9 +66,10 @@ class IntentTrie:
             node = node.children[token]
         node.response = response
 
-    def match(self, message):
+    def match(self, message, *, exact=False):
         """Return the answer for the longest known pattern the message starts
-        with, or None if nothing matches.
+        with, or None if nothing matches. With exact=True, require the entire
+        normalized message to match so a canned FAQ cannot swallow a qualifier.
 
         Walks the message token by token. Each time we land on a node that ends
         a known pattern, we remember its response, then keep going so a longer,
@@ -84,8 +85,10 @@ class IntentTrie:
                 if node.response is not None:
                     last_match = node.response
             else:
+                if exact:
+                    return None
                 break
-        return last_match
+        return node.response if exact else last_match
 
 
 # FAQ patterns grouped by intent. Each answer matches Riley's house style:
@@ -95,8 +98,8 @@ class IntentTrie:
 FAQ_INTENTS = [
     {
         "answer": (
-            "Unkommon is based in Stamford, Connecticut, and we work with "
-            "clients remotely across the US."
+            "We're based in Stamford, Connecticut, and work with clients "
+            "locally and remotely."
         ),
         "patterns": [
             "where are you based",
@@ -109,8 +112,9 @@ FAQ_INTENTS = [
     },
     {
         "answer": (
-            "You can reach us at contact@unkommon.ai, and you can also call "
-            "(203) 680-9629 to hear one of our production AI agents live."
+            "You can email contact@unkommon.ai or call +1 (203) 680-9629. "
+            "If you'd like to talk through a project, you can book a free "
+            "30-minute call at https://www.unkommon.ai/book-a-call."
         ),
         "patterns": [
             "how do i contact you",
@@ -123,9 +127,10 @@ FAQ_INTENTS = [
     },
     {
         "answer": (
-            "Unkommon is a custom AI and ML engineering studio. We build "
-            "custom RAG systems, AI agents, ML consulting and integration, "
-            "and AI infrastructure and deployment on AWS."
+            "We build modern websites, custom software, AI applications, "
+            "internal tools, customer portals, and cloud backends. We also "
+            "automate workflows, document and email processing, and connect "
+            "business systems, including CRM tools and AI assistants."
         ),
         "patterns": [
             "what services do you offer",
@@ -138,9 +143,9 @@ FAQ_INTENTS = [
     },
     {
         "answer": (
-            "Pricing depends on the complexity of your project, so we scope it "
-            "during a free 30-minute call rather than quoting a "
-            "flat number. Want me to help you set one up?"
+            "Pricing depends on what you need built and which systems are "
+            "involved. Scope and pricing are agreed before work starts. "
+            "What are you looking to build or improve?"
         ),
         "patterns": [
             "how much does it cost",

@@ -175,6 +175,48 @@ def test_faq_message_skips_bedrock(
     mock_save_conversation_history.assert_called_once()
 
 
+def test_qualified_faq_reaches_model_with_full_question(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+):
+    mock_invoke_chat_model.return_value = {
+        'stop_reason': 'end_turn',
+        'content': [{'type': 'text', 'text': 'A portal could give customers access to their documents.'}],
+    }
+    question = "what do you do for customer portals"
+
+    result = chat_service.process_chat_message(question, "qualified-faq")
+
+    assert result == 'A portal could give customers access to their documents.'
+    mock_invoke_chat_model.assert_called_once()
+    request = mock_invoke_chat_model.call_args.args[0]
+    assert request['messages'][0] == {'role': 'user', 'content': question}
+
+
+def test_followup_faq_reaches_model_with_prior_context(
+    mock_invoke_chat_model,
+    mock_get_conversation_history,
+    mock_save_conversation_history,
+):
+    history = [
+        {'role': 'user', 'content': 'We need a portal connected to our existing CRM.'},
+        {'role': 'assistant', 'content': 'What would customers need to do inside it?'},
+    ]
+    mock_get_conversation_history.return_value = history.copy()
+    mock_invoke_chat_model.return_value = {
+        'stop_reason': 'end_turn',
+        'content': [{'type': 'text', 'text': 'The portal scope and CRM connections determine the price.'}],
+    }
+
+    result = chat_service.process_chat_message('how much does it cost', 'followup-faq')
+
+    assert result == 'The portal scope and CRM connections determine the price.'
+    mock_invoke_chat_model.assert_called_once()
+    request = mock_invoke_chat_model.call_args.args[0]
+    assert request['messages'][:2] == history
+
+
 
 def test_lead_message_is_saved(
     mock_invoke_chat_model,

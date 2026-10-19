@@ -14,7 +14,7 @@ TOOLS = [
 
     {
         "name": "check_availability",
-        "description": "Check available appointment slots for a specific date. Use this when someone wants to book a call or see when you're available.",
+        "description": "Check available free 30-minute call slots for a date in Eastern Time (America/New_York). Use only when the visitor asks about availability or wants to arrange a call. Returned HH:MM times are the available slots for that date; do not invent alternatives.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -28,12 +28,12 @@ TOOLS = [
     },
     {
         "name": "book_appointment",
-        "description": "Book a free 30-minute call. Use this after getting the customer's name, email, phone, and preferred time.",
+        "description": "Create one free 30-minute call booking. Use only after checking availability, collecting the visitor's full name, email, and phone, and receiving explicit confirmation of the chosen date, time in Eastern Time, and contact details. Do not retry an uncertain booking automatically. Only report the booking as confirmed if the result says success.",
         "input_schema": {
             "type": "object",
             "properties": {
                 "date": {"type": "string", "description": "Date in YYYY-MM-DD format"},
-                "time": {"type": "string", "description": "Time in HH:MM format (24-hour)"},
+                "time": {"type": "string", "description": "An available slot returned by check_availability for the selected date, in HH:MM format (24-hour), Eastern Time (America/New_York)"},
                 "name": {"type": "string", "description": "Customer's full name"},
                 "email": {"type": "string", "description": "Customer's email address"},
                 "phone": {"type": "string", "description": "Customer's phone number"}

@@ -195,11 +195,10 @@ def process_chat_message(user_message, conversation_id):
     messages = get_conversation_history(conversation_id)
     messages.append({"role": "user", "content": user_message})
 
-    # FAQ fast path: if the message matches a known intent, answer it from the
-    # Trie and skip the Bedrock call entirely. We still persist the turn and run
-    # lead capture, so conversation state and sales notifications are unchanged.
+    # Only short, standalone opening FAQs use fixed answers. Follow-ups and
+    # qualified questions need the model to account for the conversation.
 
-    faq_response = _intent_trie.match(user_message)
+    faq_response = _intent_trie.match(user_message, exact=True) if len(messages) == 1 else None
     if faq_response is not None:
         messages.append({"role": "assistant", "content": faq_response})
         save_conversation_history(conversation_id, messages)
