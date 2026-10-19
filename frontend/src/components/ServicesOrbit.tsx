@@ -8,7 +8,7 @@ import { pillars, services, type PillarId } from "@/data/services";
  * Orbital view of the service catalogue.
  *
  * The point is the `related` field: it shows the services compound rather than
- * being ten separate things to buy. Selecting a node swings it to the top of
+ * being separate things to buy. Selecting a node swings it to the top of
  * the ring and hangs its card below, inside the circle, so the card is always
  * fully on screen no matter where the node was when it was clicked.
  *
@@ -26,20 +26,22 @@ interface OrbitNode {
 }
 
 const ORBIT: OrbitNode[] = [
-  { slug: "web-development", label: "Web & App Build", pillar: "built",
+  { slug: "web-development", label: "Web Applications", pillar: "built",
     related: ["technical-architecture", "workflow-automation"] },
-  { slug: "mobile-app-development", label: "Mobile Apps", pillar: "built",
-    related: ["web-development", "ai-infrastructure"] },
-  { slug: "technical-architecture", label: "Architecture", pillar: "built",
-    related: ["web-development", "ai-infrastructure"] },
-  { slug: "ai-receptionist", label: "AI Agents", pillar: "run",
-    related: ["speed-to-lead", "workflow-automation"] },
-  { slug: "speed-to-lead", label: "AI Lead Response", pillar: "run",
+  { slug: "ai-powered-applications", label: "AI Applications", pillar: "built",
+    related: ["web-development", "technical-architecture"] },
+  { slug: "internal-tools-customer-portals", label: "Tools & Portals", pillar: "built",
+    related: ["crm-system-integrations", "workflow-automation"] },
+  { slug: "technical-architecture", label: "Cloud & Backends", pillar: "built",
+    related: ["web-development", "ai-powered-applications"] },
+  { slug: "ai-receptionist", label: "Assistants & Voice", pillar: "run",
+    related: ["crm-system-integrations", "workflow-automation"] },
+  { slug: "document-email-automation", label: "Documents & Email", pillar: "run",
     related: ["ai-receptionist", "workflow-automation"] },
-  { slug: "workflow-automation", label: "Agentic Workflows", pillar: "run",
-    related: ["speed-to-lead", "ai-infrastructure"] },
-  { slug: "ai-infrastructure", label: "AI Systems", pillar: "run",
-    related: ["workflow-automation", "mobile-app-development"] },
+  { slug: "workflow-automation", label: "Workflow Automation", pillar: "run",
+    related: ["document-email-automation", "crm-system-integrations"] },
+  { slug: "crm-system-integrations", label: "CRM & Integrations", pillar: "run",
+    related: ["workflow-automation", "internal-tools-customer-portals"] },
 ];
 
 const RADIUS = 210;

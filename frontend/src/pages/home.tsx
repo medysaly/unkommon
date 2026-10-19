@@ -4,23 +4,8 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
-import { serviceListing } from "@/data/services";
+import { pillars, serviceListing } from "@/data/services";
 import { IntegrationsDiagram } from "@/components/IntegrationsDiagram";
-
-const homepagePillars = [
-  {
-    id: "built",
-    number: "01",
-    name: "Get Built",
-    promise: "Websites, apps, and digital tools built around what your business actually needs to do.",
-  },
-  {
-    id: "run",
-    number: "02",
-    name: "Get Running",
-    promise: "Connected systems and automation that take repetitive work off your team's plate.",
-  },
-] as const;
 
 export default function Home() {
   return (
@@ -79,7 +64,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 md:grid-rows-[auto_auto_1fr] gap-4">
-            {homepagePillars.map((pillar, i) => {
+            {pillars.map((pillar, i) => {
               const items = serviceListing.filter((s) => s.pillar === pillar.id);
               return (
                 <motion.div

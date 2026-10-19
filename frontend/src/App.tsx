@@ -37,9 +37,12 @@ function Router() {
                 <Route path="/services" component={Services} />
 
                 {/* Retired service slugs. Must precede /services/:slug so they win the match. */}
+                <Route path="/services/mobile-app-development">{() => <Redirect to="/services/web-development" />}</Route>
+                <Route path="/services/speed-to-lead">{() => <Redirect to="/services/crm-system-integrations" />}</Route>
+                <Route path="/services/ai-infrastructure">{() => <Redirect to="/services/technical-architecture" />}</Route>
                 <Route path="/services/voice-ai">{() => <Redirect to="/services/ai-receptionist" />}</Route>
-                <Route path="/services/rag-systems">{() => <Redirect to="/services/workflow-automation" />}</Route>
-                <Route path="/services/ai-agents">{() => <Redirect to="/services/workflow-automation" />}</Route>
+                <Route path="/services/rag-systems">{() => <Redirect to="/services/ai-powered-applications" />}</Route>
+                <Route path="/services/ai-agents">{() => <Redirect to="/services/ai-receptionist" />}</Route>
                 <Route path="/services/ml-consulting">{() => <Redirect to="/services" />}</Route>
                 <Route path="/services/fine-tuning">{() => <Redirect to="/services" />}</Route>
 
@@ -60,7 +63,7 @@ function Router() {
                 <Route path="/how-it-works">{() => <Redirect to="/services" />}</Route>
                 <Route path="/contact">{() => <Redirect to="/book-a-call" />}</Route>
                 <Route path="/ai-receptionist">{() => <Redirect to="/services/ai-receptionist" />}</Route>
-                <Route path="/speed-to-lead">{() => <Redirect to="/services/speed-to-lead" />}</Route>
+                <Route path="/speed-to-lead">{() => <Redirect to="/services/crm-system-integrations" />}</Route>
                 <Route path="/ai-booking-system">{() => <Redirect to="/services/ai-receptionist" />}</Route>
                 <Route path="/agent-library">{() => <Redirect to="/services" />}</Route>
 

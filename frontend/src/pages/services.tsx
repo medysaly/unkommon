@@ -6,7 +6,7 @@ import { createPageUrl } from "@/lib/utils";
 import { pillars, serviceListing } from "@/data/services";
 import { ServicesOrbit } from "@/components/ServicesOrbit";
 
-/** "Get Built" -> "get-built", so the homepage cards can deep-link here. */
+/** Use the same section anchors as the homepage cards. */
 export const pillarAnchor = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
 
 export default function Services() {
@@ -54,6 +54,7 @@ export default function Services() {
 
             return (
               <div key={pillar.id} id={pillarAnchor(pillar.name)} className="scroll-mt-24">
+                <span id={pillar.id === "built" ? "get-built" : "get-running"} className="scroll-mt-24" aria-hidden="true" />
                 <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-6 md:gap-16">
                   {/* Pillar header */}
                   <div className="md:sticky md:top-24 md:self-start">

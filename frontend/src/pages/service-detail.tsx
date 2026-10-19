@@ -28,7 +28,7 @@ export default function ServiceDetail() {
             className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-            All Solutions
+            All Services
           </Link>
           <p className="text-[12px] text-muted-foreground uppercase tracking-wider mb-4">
             {service.subtitle}
