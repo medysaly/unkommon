@@ -2,7 +2,7 @@
 
 These define the tools that Claude can call during a conversation:
 - check_availability: query open appointment slots for a given date
-- book_appointment: book a 30-minute consultation
+- book_appointment: book a free 30-minute call
 
 The schemas follow the Anthropic Tool Use format using JSON Schema for the
 input specs. Keeping them in their own file makes it easy to add or modify
@@ -28,7 +28,7 @@ TOOLS = [
     },
     {
         "name": "book_appointment",
-        "description": "Book a 30-minute consultation appointment. Use this after getting the customer's name, email, phone, and preferred time.",
+        "description": "Book a free 30-minute call. Use this after getting the customer's name, email, phone, and preferred time.",
         "input_schema": {
             "type": "object",
             "properties": {

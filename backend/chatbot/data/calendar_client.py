@@ -26,7 +26,7 @@ def check_availability(date_str):
     return response.json().get("availableSlots", [])
 
 def book_appointment(booking_data):
-    """Book a 30-minute consultation appointment.
+    """Book a free 30-minute call.
 
     booking_data is a dict with keys: date, time, name, email, phone.
     Returns the parsed response dict from the calendar_api.

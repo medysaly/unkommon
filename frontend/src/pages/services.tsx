@@ -40,7 +40,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
           >
-            <CTAButton href={createPageUrl("BookACall")}>Let's chat</CTAButton>
+            <CTAButton href={createPageUrl("BookACall")}>Book a free 30-minute call</CTAButton>
           </motion.div>
         </div>
       </section>
@@ -157,7 +157,7 @@ export default function Services() {
             Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
-            Let's chat
+            Book a free 30-minute call
           </CTAButton>
         </div>
       </section>

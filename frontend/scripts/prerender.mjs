@@ -238,8 +238,9 @@ async function main() {
   extras["/book-a-call"] = {
     fallback: `
       <header>
-        <h1>Let’s make your business easier to run.</h1>
-        <p>Bring us the bottleneck, the messy handoff, or the system you wish you had. We’ll help you figure out what to build next.</p>
+        <h1>Book a free 30-minute call.</h1>
+        <p>Tell us what you want to build or improve. We’ll talk through what you need and agree on a useful next step.</p>
+        <p>Your confirmation will include a Cal Video link to join the call.</p>
       </header>
       <main>
         <section><h2>Contact</h2><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>

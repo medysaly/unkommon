@@ -68,7 +68,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* CTA Button */}
             <div className="hidden md:block">
               <CTAButton href={createPageUrl("BookACall")}>
-                Let's talk
+                Book a free 30-minute call
               </CTAButton>
             </div>
 
@@ -105,7 +105,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 ))}
                 <div className="mt-2" onClick={() => setMobileMenuOpen(false)}>
                   <CTAButton href={createPageUrl("BookACall")}>
-                    Let's talk
+                    Book a free 30-minute call
                   </CTAButton>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 We build digital products, connect the systems behind them, and automate the work that slows your business down.
               </h3>
               <CTAButton href={createPageUrl("BookACall")} variant="light">
-                Let's chat
+                Book a free 30-minute call
               </CTAButton>
             </div>
 

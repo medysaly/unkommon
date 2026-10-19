@@ -16,7 +16,7 @@ export default function BookACall() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground mb-6"
           >
-            Let's make your business easier to run.
+            Book a free 30-minute call.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function BookACall() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="text-[17px] text-muted-foreground max-w-lg mx-auto leading-relaxed"
           >
-            Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
+            Tell us what you want to build or improve. We’ll talk through what you need and agree on a useful next step.
           </motion.p>
         </div>
       </section>
@@ -53,12 +53,12 @@ export default function BookACall() {
                 background: 'transparent',
                 borderRadius: '16px',
               }}
-              title="Book a 30-minute call with Unkommon"
+              title="Book a free 30-minute call with Unkommon"
               onLoad={() => setIframeLoaded(true)}
             />
           </div>
           <p className="text-[13px] text-muted-foreground text-center mt-6 max-w-xl mx-auto leading-relaxed">
-            You'll get a calendar invite with a Zoom link and a short pre-call questionnaire so we can hit the ground running.
+            Your confirmation will include a Cal Video link to join the call.
           </p>
         </div>
       </section>

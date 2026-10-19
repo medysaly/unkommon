@@ -206,7 +206,7 @@ export default function ServiceDetail() {
             See where this fits in your business.
           </h2>
           <p className="text-[17px] text-white/60 leading-relaxed mb-10 max-w-xl mx-auto">
-            Book a free 30-minute call. We'll look at where this could cut costs, save hours, or open new revenue, no pitch, no obligation.
+            Tell us what you want to build or improve. We’ll talk through what you need and agree on a useful next step.
           </p>
           <CTAButton href="/book-a-call" variant="light">
             Book a free 30-minute call

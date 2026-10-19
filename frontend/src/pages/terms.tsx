@@ -5,7 +5,7 @@ export default function Terms() {
         <h1 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-8">
           Terms of Service
         </h1>
-        <p className="text-[13px] text-muted-foreground mb-10">Last updated: April 2026</p>
+        <p className="text-[13px] text-muted-foreground mb-10">Last updated: October 19, 2026</p>
 
         <div className="space-y-8 text-[15px] text-secondary-foreground leading-relaxed">
           <section>
@@ -20,7 +20,7 @@ export default function Terms() {
           <section>
             <h2 className="text-lg font-medium text-foreground mb-3">2. Engagement Structure</h2>
             <p>
-              Each project begins with a free 30-minute architecture review. If we proceed,
+              Each project begins with a free 30-minute call. If we proceed,
               you receive a fixed-scope proposal with clear deliverables and pricing before any work begins.
               There are no surprise invoices or hourly billing.
             </p>

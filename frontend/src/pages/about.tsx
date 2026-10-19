@@ -98,7 +98,7 @@ export default function About() {
             Bring us the bottleneck, the messy handoff, or the system you wish you had. We'll help you figure out what to build next.
           </p>
           <CTAButton href={createPageUrl("BookACall")} variant="light">
-            Let's chat
+            Book a free 30-minute call
           </CTAButton>
         </div>
       </section>

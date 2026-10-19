@@ -139,7 +139,7 @@ FAQ_INTENTS = [
     {
         "answer": (
             "Pricing depends on the complexity of your project, so we scope it "
-            "during a free 30-minute architecture review rather than quoting a "
+            "during a free 30-minute call rather than quoting a "
             "flat number. Want me to help you set one up?"
         ),
         "patterns": [

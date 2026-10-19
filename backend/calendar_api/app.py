@@ -226,7 +226,7 @@ def send_confirmation_email(name, email, date_str, time_str, meet_link=''):
                 You're all set, {safe_first_name}!
             </h2>
             <p style="margin:0; color:#6b7280; font-size:15px; line-height:1.6;">
-                Your 30-minute Efficiency Audit has been booked.<br>
+                Your free 30-minute call has been booked.<br>
                 Here are your appointment details.
             </p>
         </td></tr>
@@ -294,13 +294,13 @@ def send_confirmation_email(name, email, date_str, time_str, meet_link=''):
             <h3 style="margin:0 0 12px; font-size:15px; font-weight:700; color:#111;">What to expect</h3>
             <table cellpadding="0" cellspacing="0" style="width:100%;">
                 <tr><td style="padding:6px 0; color:#4b5563; font-size:14px; line-height:1.6;">
-                    <span style="color:#000; font-weight:600;">1.</span> We'll review your current workflows and bottlenecks
+                    <span style="color:#000; font-weight:600;">1.</span> Tell us what you want to build or improve
                 </td></tr>
                 <tr><td style="padding:6px 0; color:#4b5563; font-size:14px; line-height:1.6;">
-                    <span style="color:#000; font-weight:600;">2.</span> Identify where AI agents can save you time and money
+                    <span style="color:#000; font-weight:600;">2.</span> Talk through what your business needs
                 </td></tr>
                 <tr><td style="padding:6px 0; color:#4b5563; font-size:14px; line-height:1.6;">
-                    <span style="color:#000; font-weight:600;">3.</span> Get a custom plan tailored to your business
+                    <span style="color:#000; font-weight:600;">3.</span> Agree on a useful next step
                 </td></tr>
             </table>
         </td></tr>
@@ -333,23 +333,23 @@ def send_confirmation_email(name, email, date_str, time_str, meet_link=''):
     meet_line = f"\nJoin the call: {meet_link}" if meet_link else ""
     plain_text = (
         f"Hi {first_name},\n\n"
-        f"Your 30-minute Efficiency Audit is confirmed!\n\n"
+        f"Your free 30-minute call is confirmed!\n\n"
         f"Date: {date_formatted}\n"
         f"Time: {time_formatted} ET\n"
         f"Duration: 30 minutes\n"
         f"{meet_line}\n\n"
         f"What to expect:\n"
-        f"1. We'll review your current workflows and bottlenecks\n"
-        f"2. Identify where AI agents can save you time and money\n"
-        f"3. Get a custom plan tailored to your business\n\n"
+        f"1. Tell us what you want to build or improve\n"
+        f"2. Talk through what your business needs\n"
+        f"3. Agree on a useful next step\n\n"
         f"Need to reschedule? Reply to this email.\n\n"
-        f"— The Unkommon Team\n"
+        f"The Unkommon Team\n"
         f"unkommon.ai | contact@unkommon.ai | (203) 680-9629"
     )
 
     send_email(
         email,
-        'Your Efficiency Audit is Confirmed',
+        'Your Free 30-Minute Call Is Confirmed',
         plain_text,
         html=html,
     )
@@ -373,8 +373,8 @@ def book_appointment(date_str, time_str, name, email, phone):
         raise ValueError(f"Time slot {time_str} on {date_str} is not available. Available slots: {', '.join(available_slots) if available_slots else 'none'}")
 
     event = {
-        'summary': f'Unkommon Efficiency Audit - {name}',
-        'description': f'30-Minute Efficiency Audit\n\nName: {name}\nEmail: {email}\nPhone: {phone}\n\nBooked via AI assistant',
+        'summary': f'Unkommon Free 30-Minute Call - {name}',
+        'description': f'Free 30-Minute Call\n\nName: {name}\nEmail: {email}\nPhone: {phone}\n\nBooked via AI assistant',
         'start': {
             'dateTime': start_datetime.isoformat(),
             'timeZone': 'America/New_York',
