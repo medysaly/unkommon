@@ -55,6 +55,7 @@ export default function Services() {
             return (
               <div key={pillar.id} id={pillarAnchor(pillar.name)} className="scroll-mt-24">
                 <span id={pillar.id === "built" ? "get-built" : "get-running"} className="scroll-mt-24" aria-hidden="true" />
+                <span id={pillar.id === "built" ? "build-your-software" : "automate-your-operations"} className="scroll-mt-24" aria-hidden="true" />
                 <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-6 md:gap-16">
                   {/* Pillar header */}
                   <div className="md:sticky md:top-24 md:self-start">

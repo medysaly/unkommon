@@ -11,14 +11,14 @@ export const pillars: Pillar[] = [
   {
     id: "built",
     number: "01",
-    name: "Build Your Software",
-    promise: "Websites, applications, and business tools built around how your business works.",
+    name: "AI & Software Development",
+    promise: "Websites, applications, and AI-powered tools built around your business.",
   },
   {
     id: "run",
     number: "02",
-    name: "Automate Your Operations",
-    promise: "Connect your systems, process information, and reduce repetitive work, with AI where it makes sense.",
+    name: "AI & Business Automation",
+    promise: "AI assistants, connected systems, and automated workflows that take repetitive work off your team’s plate.",
   },
 ];
 
@@ -223,8 +223,8 @@ export const services: Service[] = [
   {
     "slug": "workflow-automation",
     "pillar": "run",
-    "title": "Business Workflow Automation",
-    "subtitle": "Business Workflow Automation",
+    "title": "AI Workflow Automation",
+    "subtitle": "AI Workflow Automation",
     "shortDescription": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools.",
     "heroHeadline": "Keep the work moving.",
     "heroSubhead": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools.",
@@ -261,7 +261,7 @@ export const services: Service[] = [
         "a": "Bring us the process or product you want to improve. We will work through the requirements with you and agree the scope before building."
       }
     ],
-    "metaTitle": "Business Workflow Automation | Unkommon",
+    "metaTitle": "AI Workflow Automation | Unkommon",
     "metaDescription": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools."
   },
   {
