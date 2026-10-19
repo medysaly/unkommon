@@ -227,7 +227,7 @@ async function main() {
       </header>
       <main>
         <section><h2>Founder-led delivery</h2>
-          <figure><img src="/mehdi-salhi.jpg" alt="Mehdi Salhi, founder of Unkommon" width="1264" height="1568" loading="lazy"><figcaption>Mehdi Salhi · Founder, Unkommon</figcaption></figure>
+          <figure><img src="/mehdi-salhi.jpg" alt="Mehdi Salhi, founder of Unkommon" width="1264" height="1568" loading="lazy"><figcaption><a href="https://www.linkedin.com/in/mehdi-salhi-work/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Salhi on LinkedIn (opens in a new tab)">Mehdi Salhi</a> · Founder, Unkommon</figcaption></figure>
           <p>Mehdi leads each project, bringing together software development, cloud architecture and AI engineering. Clients work directly with him to define requirements, make technical decisions and carry the project through implementation and handover.</p>
           <p>His qualifications include a degree in Computer Science and AWS certifications in Solutions Architecture and Cloud Practitioner.</p>
         </section>

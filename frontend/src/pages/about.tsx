@@ -69,7 +69,16 @@ export default function About() {
               className="block w-full h-auto rounded-2xl"
             />
             <figcaption className="mt-4 text-[14px] text-secondary-foreground">
-              Mehdi Salhi <span className="text-muted-foreground">· Founder, Unkommon</span>
+              <a
+                href="https://www.linkedin.com/in/mehdi-salhi-work/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Mehdi Salhi on LinkedIn (opens in a new tab)"
+                className="underline underline-offset-4 hover:text-foreground transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                Mehdi Salhi
+              </a>{" "}
+              <span className="text-muted-foreground">· Founder, Unkommon</span>
             </figcaption>
           </figure>
         </div>
