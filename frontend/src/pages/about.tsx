@@ -19,7 +19,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[1] tracking-[-0.05em] text-foreground max-w-4xl mb-8"
           >
-            Unkommon builds the systems modern businesses run on.
+            About Unkommon
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,48 +27,34 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl"
           >
-            We build websites, apps, and digital tools, then connect and automate the work behind them.
-            The result is a business that is easier to operate and ready to grow.
+            Unkommon is a technology studio founded by Mehdi Salhi, a computer science graduate and
+            AWS-certified AI engineer based in Stamford, Connecticut.
           </motion.p>
+          <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-2xl mt-6">
+            We design and develop digital products, custom software and AI-powered systems. Our work
+            spans websites and applications, internal business tools, systems integration and workflow
+            automation. Each engagement is shaped around the client’s business requirements and
+            existing technology.
+          </p>
         </div>
       </section>
 
-      {/* Why We're Different */}
+      {/* Founder-led delivery */}
       <section className="bg-border px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-10">
-            Why we're different.
+            Founder-led delivery
           </h2>
-          <div className="flex flex-col gap-8">
-            {[
-              {
-                title: "One Team",
-                body: "The people designing your product understand the systems and workflows behind it. Nothing gets handed off between separate vendors.",
-              },
-              {
-                title: "Built Around Real Work",
-                body: "We do not start with a stack or a template. We start with how your customers and team actually work, then build what fits.",
-              },
-              {
-                title: "Built to Keep Moving",
-                body: "A launch is the beginning, not the finish line. We build systems that can grow, connect, and adapt as your business changes.",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="flex items-start gap-4"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2.5 flex-shrink-0" />
-                <div>
-                  <h3 className="text-[18px] font-medium text-foreground mb-1">{item.title}</h3>
-                  <p className="text-[17px] text-secondary-foreground leading-relaxed">{item.body}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="space-y-6 text-[17px] text-secondary-foreground leading-relaxed">
+            <p>
+              Mehdi leads each project, bringing together software development, cloud architecture and
+              AI engineering. Clients work directly with him to define requirements, make technical
+              decisions and carry the project through implementation and handover.
+            </p>
+            <p>
+              His qualifications include a degree in Computer Science and AWS certifications in
+              Solutions Architecture and Cloud Practitioner.
+            </p>
           </div>
         </div>
       </section>
@@ -83,7 +69,7 @@ export default function About() {
             </h2>
           </div>
           <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-xl mx-auto">
-            US-based. Available for remote engagements worldwide.
+            Serving clients locally and remotely.
           </p>
         </div>
       </section>

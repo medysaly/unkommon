@@ -221,16 +221,16 @@ async function main() {
   extras["/about"] = {
     fallback: `
       <header>
-        <h1>Unkommon builds the systems modern businesses run on.</h1>
-        <p>We build websites, apps, and digital tools, then connect and automate the work behind them. The result is a business that is easier to operate and ready to grow.</p>
+        <h1>About Unkommon</h1>
+        <p>Unkommon is a technology studio founded by Mehdi Salhi, a computer science graduate and AWS-certified AI engineer based in Stamford, Connecticut.</p>
+        <p>We design and develop digital products, custom software and AI-powered systems. Our work spans websites and applications, internal business tools, systems integration and workflow automation. Each engagement is shaped around the client’s business requirements and existing technology.</p>
       </header>
       <main>
-        <section><h2>How we work</h2><ul>
-          <li><strong>One team.</strong> The people building your website or app also understand the systems and workflows it needs to connect to.</li>
-          <li><strong>Built around real work.</strong> We start with how your team and customers actually move through the business, then build what makes that work simpler.</li>
-          <li><strong>Built to keep moving.</strong> We leave you with clear, reliable systems that can grow and change with the business.</li>
-        </ul></section>
-        <section><h2>Where we are</h2><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>
+        <section><h2>Founder-led delivery</h2>
+          <p>Mehdi leads each project, bringing together software development, cloud architecture and AI engineering. Clients work directly with him to define requirements, make technical decisions and carry the project through implementation and handover.</p>
+          <p>His qualifications include a degree in Computer Science and AWS certifications in Solutions Architecture and Cloud Practitioner.</p>
+        </section>
+        <section><h2>Based in Stamford, CT.</h2><p>Serving clients locally and remotely.</p><address>Unkommon<br>Stamford, CT, USA<br><a href="mailto:contact@unkommon.ai">contact@unkommon.ai</a><br><a href="tel:+12036809629">+1 (203) 680-9629</a></address></section>
         ${moreNav()}
       </main>`,
   };

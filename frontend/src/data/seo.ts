@@ -32,9 +32,9 @@ const staticRoutes: RouteMeta[] = [
   },
   {
     path: "/about",
-    title: "About Unkommon | Systems And Automation",
+    title: "About Unkommon | Founded by Mehdi Salhi",
     description:
-      "Unkommon builds websites, apps, and digital tools, then connects and automates the work behind them.",
+      "Meet Mehdi Salhi, founder of Unkommon, a technology studio in Stamford, Connecticut building custom software, AI-powered systems and business automation.",
     priority: "0.7",
     changefreq: "monthly",
   },
