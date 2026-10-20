@@ -101,6 +101,19 @@
 .ink-network-tool[aria-pressed="true"] { transform: translate(-50%, calc(-50% - 5px)); color: #24252b; border-color: #9d9fac; box-shadow: 0 3px 0 #dadce5, 0 4px 0 #b4b7c4, 0 16px 20px #24263518; }
 .ink-footnote { font: 10px/1.7 var(--font-mono); color: #8b8c95; margin-top: 24px; }
 .ink-services button:focus-visible, .ink-services a:focus-visible { outline: 2px solid #34343d; outline-offset: 5px; border-radius: 3px; }
+@keyframes ink-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+.ink-stack, .ink-workflow-paper, .ink-network-hub {
+  animation: ink-float 5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.ink-workflow-paper { animation-delay: -1.6s; }
+.ink-network-hub { animation-delay: -3.2s; }
+.ink-bento[data-running="true"] .ink-stack,
+.ink-bento[data-running="true"] .ink-workflow-paper,
+.ink-bento[data-running="true"] .ink-network-hub { animation-play-state: running; }
 @media (max-width: 767px) {
   .ink-heading { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
   .ink-heading-side { max-width: 350px; }

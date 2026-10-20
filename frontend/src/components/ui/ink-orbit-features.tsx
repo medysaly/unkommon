@@ -39,12 +39,10 @@ export default function InkOrbitFeatures() {
   const visible = useInView(sectionRef, { amount: 0.15 });
   const reduced = useReducedMotion();
   const [paused, setPaused] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
   const [product, setProduct] = useState(0);
   const [step, setStep] = useState(0);
   const [tool, setTool] = useState(0);
-  const running = visible && reduced === false && !paused && !hovered && !focused;
+  const running = visible && reduced === false && !paused;
   const currentProduct = products[product];
   const currentStep = steps[step];
   const StepVisualIcon = currentStep.iconVisual;
@@ -52,6 +50,7 @@ export default function InkOrbitFeatures() {
   useEffect(() => {
     if (!running) return;
     const timer = window.setInterval(() => {
+      setProduct((current) => (current + 1) % products.length);
       setStep((current) => (current + 1) % steps.length);
       setTool((current) => (current + 1) % tools.length);
     }, 3200);
@@ -77,10 +76,7 @@ export default function InkOrbitFeatures() {
           </div>
         </header>
 
-        <div className="ink-bento" data-running={running}
-          onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}
-          onFocusCapture={() => setFocused(true)}
-          onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
+        <div className="ink-bento" data-running={running}>
           <article className="ink-frame ink-product-card">
             <Brackets />
             <div className="ink-product-copy">
@@ -113,7 +109,7 @@ export default function InkOrbitFeatures() {
                   </div>
                 </div>
               </div>
-              <div className="ink-product-caption" aria-live="polite" aria-atomic="true"><strong>{currentProduct.heading}</strong><p>{currentProduct.description}</p></div>
+              <div className="ink-product-caption"><strong>{currentProduct.heading}</strong><p>{currentProduct.description}</p></div>
             </div>
           </article>
 
@@ -129,7 +125,7 @@ export default function InkOrbitFeatures() {
               <div className="ink-workflow-steps" aria-label="Explore a sample workflow">
                 {steps.map((item, index) => {
                   const Icon = item.icon;
-                  return <button type="button" key={item.name} aria-pressed={step === index} onClick={() => { setStep(index); setPaused(true); }}>
+                  return <button type="button" key={item.name} aria-pressed={step === index} onClick={() => setStep(index)}>
                     <span><Icon size={19} strokeWidth={1.5} aria-hidden="true" /></span><small>{item.name}</small>
                   </button>;
                 })}
@@ -162,7 +158,7 @@ export default function InkOrbitFeatures() {
                 <div className="ink-network-hub" aria-hidden="true"><img src="/new_logo.png" alt="" width={32} height={32} /><span>UNKOMMON</span></div>
                 {tools.map((item, index) => {
                   const Icon = item.icon;
-                  return <button type="button" key={item.name} className="ink-network-tool" style={{ left: `${item.x}%`, top: `${item.y}%` }} aria-pressed={tool === index} onClick={() => { setTool(index); setPaused(true); }}>
+                  return <button type="button" key={item.name} className="ink-network-tool" style={{ left: `${item.x}%`, top: `${item.y}%` }} aria-pressed={tool === index} onClick={() => setTool(index)}>
                     <Icon size={20} strokeWidth={1.4} aria-hidden="true" /><span>{item.name}</span>
                   </button>;
                 })}
