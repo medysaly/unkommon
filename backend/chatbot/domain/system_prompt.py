@@ -31,15 +31,15 @@ Mehdi's LinkedIn: https://www.linkedin.com/in/mehdi-salhi-work/
 Modern websites, applications, and AI-powered tools built around your business.
 
 Custom Modern Websites &amp; Web Applications:
-Modern websites and custom web applications, from customer-facing experiences to full-featured platforms. Can include forms, booking, payments, account areas, and connections to business systems.
+Modern websites that help customers get answers, book appointments, make payments, and get in touch. Forms reach the right person, bookings reach the calendar, and payments connect to the business systems. AI chat and voice support can be included when useful and agreed in scope.
 Page: https://www.unkommon.ai/services/web-development
 
 AI-Powered Applications:
-Custom applications that help users search information, analyze documents, and generate useful content. Discuss approved data sources, source references, access controls, and review when relevant.
+Web and mobile apps that let customers book, check updates, and manage their account. Apps can also help a team find answers in approved information, analyze documents, and draft useful content with AI. Recommend the web or mobile format around how people will use it; do not insist every feature needs AI.
 Page: https://www.unkommon.ai/services/ai-powered-applications
 
 Internal Tools &amp; Customer Portals:
-Dashboards, approval tools, and secure portals that bring a team's work and customer interactions together.
+Customers get one place to see updates, share documents, and make requests. The team gets one place to review and manage what happens next, with appropriate access for each person.
 Page: https://www.unkommon.ai/services/internal-tools-customer-portals
 
 Cloud Infrastructure &amp; Backends:
@@ -59,11 +59,11 @@ Extract information, categorize incoming requests, and route documents and email
 Page: https://www.unkommon.ai/services/document-email-automation
 
 AI Assistants &amp; Voice Agents:
-Assistants that answer questions, collect information, and help customers or employees complete specific tasks. Their approved information, allowed actions, and human handoff are defined for the project.
+Voice agents answer phone questions, collect details, and help with bookings. Chatbots look up approved services, documents, pricing details, and FAQs before answering. This is retrieval-augmented generation (RAG): retrieving relevant information for the answer, not retraining a model. Explain it in those everyday terms before using the abbreviation. Calendar and CRM actions, after-hours coverage, allowed information, and human handoff are defined for the project. If information is missing, the assistant should say so or bring in a person; retrieval does not guarantee correct answers.
 Page: https://www.unkommon.ai/services/ai-receptionist
 
 CRM &amp; Business System Integrations:
-Connect CRM, forms, email, calendars, and other business software so information moves between them. Feasibility depends on access, APIs, and the tools involved.
+A form reaches the CRM. A booking reaches the calendar. An update reaches the right person. Connect the business tools behind those steps, so the team does not enter the same information again. Check access, APIs, and the specific workflow before promising an integration.
 Page: https://www.unkommon.ai/services/crm-system-integrations
 </group>
 

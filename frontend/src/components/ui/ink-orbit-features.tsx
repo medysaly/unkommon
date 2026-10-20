@@ -8,8 +8,8 @@ import {
 import "./ink-orbit-features.css";
 
 const products = [
-  { name: "Modern website", icon: Code2, heading: "A clear way to get started.", description: "Help customers find what they need, book, pay, or get in touch.", href: "/services/web-development" },
-  { name: "AI application", icon: Sparkles, heading: "Your information. More useful.", description: "Help people search approved information, analyze documents, and create useful content.", href: "/services/ai-powered-applications" },
+  { name: "Modern website", icon: Code2, heading: "Your modern website, doing more.", description: "Answer questions, take bookings, accept payments, and connect the next step to your business tools.", href: "/services/web-development" },
+  { name: "AI application", icon: Sparkles, heading: "The next step, in their hands.", description: "Give customers booking, account access, and updates. Give your team AI that can find useful answers.", href: "/services/ai-powered-applications" },
   { name: "Customer portal", icon: LayoutDashboard, heading: "One place for the next step.", description: "Give customers a secure place for documents, requests, and updates.", href: "/services/internal-tools-customer-portals" },
 ];
 

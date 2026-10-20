@@ -130,7 +130,7 @@ FAQ_INTENTS = [
             "We build modern websites, custom software, AI applications, "
             "internal tools, customer portals, and cloud backends. We also "
             "automate workflows, document and email processing, and connect "
-            "business systems, including CRM tools and AI assistants."
+            "business systems, including CRM tools, chatbots, and voice agents."
         ),
         "patterns": [
             "what services do you offer",
