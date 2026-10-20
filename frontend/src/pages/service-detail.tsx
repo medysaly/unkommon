@@ -87,6 +87,29 @@ export default function ServiceDetail() {
         </div>
       </section>
 
+      {service.featuredUseCase && (
+        <section aria-labelledby="featured-use-case" className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border">
+          <div className="max-w-[1400px] mx-auto">
+            <p className="text-[12px] text-muted-foreground uppercase tracking-wider mb-4">Featured use case</p>
+            <h2 id="featured-use-case" className="text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.04em] text-foreground mb-6 max-w-3xl">
+              {service.featuredUseCase.title}
+            </h2>
+            <p className="text-xl text-foreground mb-4 max-w-3xl">{service.featuredUseCase.headline}</p>
+            <p className="text-[16px] text-secondary-foreground leading-relaxed max-w-3xl mb-10">{service.featuredUseCase.description}</p>
+            <ol className="grid md:grid-cols-2 gap-6">
+              {service.featuredUseCase.steps.map((step, index) => (
+                <li key={step.title} className="p-6 md:p-8 bg-background rounded-xl border border-border">
+                  <p aria-hidden="true" className="text-[12px] text-muted-foreground mb-4">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="text-xl font-medium text-foreground mb-3">{step.title}</h3>
+                  <p className="text-[15px] text-secondary-foreground leading-relaxed">{step.description}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="text-[13px] text-muted-foreground leading-relaxed mt-6 max-w-3xl">{service.featuredUseCase.note}</p>
+          </div>
+        </section>
+      )}
+
       {/* Capabilities */}
       <section className="bg-background px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-[1400px] mx-auto">

@@ -38,6 +38,13 @@ export interface Service {
   techStack: string[];
   industries: string[];
   outcome: string;
+  featuredUseCase?: {
+    title: string;
+    headline: string;
+    description: string;
+    steps: { title: string; description: string }[];
+    note: string;
+  };
   faqs: { q: string; a: string }[];
   metaTitle: string;
   metaDescription: string;
@@ -340,6 +347,30 @@ export const services: Service[] = [
       "Businesses coordinating processes across several tools"
     ],
     "outcome": "Less time gathering information and moving tasks between tools, with your team in control of the decisions that need them.",
+    "featuredUseCase": {
+      "title": "Automated Estimates & Proposals",
+      "headline": "Less time preparing quotes. A clearer next step for customers.",
+      "description": "Someone submits project details through your modern website. The system calculates a preliminary estimate using your pricing rules, prepares a proposal for review, and sends the approved version to the customer. Built around how your contracting, HVAC, roofing, or landscaping business prices its work.",
+      "steps": [
+        {
+          "title": "Project intake & scope collection",
+          "description": "Collect project details, dimensions, photos, and service requirements through your modern website, and flag missing information before preparing an estimate."
+        },
+        {
+          "title": "Rule-based estimates",
+          "description": "Calculate preliminary costs using your approved material prices, labour rates, minimum charges, and service area. AI can help interpret the request, but the numbers come from your pricing rules."
+        },
+        {
+          "title": "Branded proposals & approval",
+          "description": "Prepare a formatted proposal for your team to review, with assumptions, exclusions, and any details that need an inspection."
+        },
+        {
+          "title": "Delivery & follow-up",
+          "description": "Send approved proposals or secure proposal links by email, SMS, or WhatsApp, subject to consent and platform setup, and record the next step in your CRM."
+        }
+      ],
+      "note": "An example of what we can build, not a claim of past client results. Preliminary estimates are not final quotes. Some jobs need a site visit or technical assessment before a price can be confirmed. Messaging delivery times and won jobs are not guaranteed."
+    },
     "faqs": [
       {
         "q": "What is an agentic workflow?",
