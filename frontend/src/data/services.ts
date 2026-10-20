@@ -483,6 +483,7 @@ export const services: Service[] = [
       "Chatbots grounded in your services, pricing information, documents, and FAQs",
       "Retrieval-augmented generation (RAG) to find relevant information before answering",
       "Calendar and CRM connections for the agreed tasks",
+      "Approved customer actions through controlled APIs, with identity checks and confirmations",
       "Human handoffs with the conversation and useful details"
     ],
     "deliverables": [
@@ -502,6 +503,30 @@ export const services: Service[] = [
       "Teams providing internal information and task support"
     ],
     "outcome": "Customers have a way to get help when your team is unavailable, and your team gets the context when they need to step in.",
+    "featuredUseCase": {
+      "title": "Customer Support That Takes Action",
+      "headline": "Help customers get things done, not just find the FAQ.",
+      "description": "We connect AI assistants to your business systems so customers can check an order, request a return, manage a subscription, or reschedule an appointment, within the permissions and rules you define.",
+      "steps": [
+        {
+          "title": "Connected customer actions",
+          "description": "Let customers complete approved tasks through chat or voice, with identity checks, clear confirmations, and approval steps where needed. Actions use narrowly permitted APIs, not unrestricted access to your database."
+        },
+        {
+          "title": "A useful handoff to your team",
+          "description": "Pass along the conversation, relevant account details the receiving team is allowed to see, actions already attempted, and what still needs resolving, so customers do not have to start again."
+        },
+        {
+          "title": "Clear limits & action records",
+          "description": "Define what the assistant can change, what requires approval, and what must go to a person. Keep a record of actions and their outcomes, and confirm success only when the connected system reports it."
+        },
+        {
+          "title": "A clear route to a person",
+          "description": "Customers can ask for human help directly. Repeated failures, unsupported requests, and sensitive cases also trigger escalation. If nobody is available, create a follow-up request through the agreed support system instead of promising a live transfer."
+        }
+      ],
+      "note": "An example of what we can build, not a claim of past client results. Available actions depend on your systems, access permissions, and policies. Reading an order status and issuing a refund need different controls. Human availability and correct sentiment detection are not guaranteed."
+    },
     "faqs": [
       {
         "q": "How does the chatbot know about our business?",
@@ -518,6 +543,14 @@ export const services: Service[] = [
       {
         "q": "Will customers know they are speaking to AI?",
         "a": "The assistant should be clear about what it is. We design the conversation around being helpful and make it clear how someone can reach a person."
+      },
+      {
+        "q": "Can it change orders, subscriptions, or appointments?",
+        "a": "Where your systems support the action and you explicitly permit it. We scope identity checks, allowed changes, customer confirmations, and staff approvals around each task. Sensitive actions do not get the same permissions as reading a status, and the assistant should not report a change as complete unless the connected system confirms it."
+      },
+      {
+        "q": "Does it wait until a customer sounds frustrated to offer a person?",
+        "a": "No. Customers can ask directly, and repeated failures, unsupported requests, or sensitive cases can also trigger a handoff. Sentiment can be an additional signal, not the only route to help. When no one is available, the agreed fallback can capture a follow-up request without promising an immediate response."
       }
     ],
     "metaTitle": "AI Assistants & Voice Agents | Unkommon",
