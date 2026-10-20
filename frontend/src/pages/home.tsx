@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
 import { pillars, serviceListing } from "@/data/services";
-import { IntegrationsDiagram } from "@/components/IntegrationsDiagram";
+import InkOrbitFeatures from "@/components/ui/ink-orbit-features";
 
 export default function Home() {
   return (
@@ -110,31 +110,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why one team */}
-      {/* Integrations */}
-      <section id="integrations" className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border scroll-mt-20">
-        <div className="max-w-[1200px] mx-auto">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
-                Integrations
-              </span>
-              <span className="flex-1 h-px bg-border" aria-hidden="true" />
-            </div>
-            <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-normal leading-[1.15] tracking-[-0.03em] text-foreground mb-4">
-              Wired into the tools you already use.
-            </h2>
-            <p className="text-[17px] text-secondary-foreground leading-relaxed max-w-md">
-              We don't ask you to move off your stack. Bookings land on your calendar, leads land in your
-              CRM, and orders and invoices stay where your team already works.
-            </p>
-          </div>
-
-          <div className="mt-10 md:mt-14">
-            <IntegrationsDiagram />
-          </div>
-        </div>
-      </section>
+      <InkOrbitFeatures />
 
       <section className="bg-black text-white px-6 lg:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
