@@ -72,6 +72,9 @@
 .ink-card-copy .ink-eyebrow { margin-bottom: 12px; }
 .ink-card-copy h3 { font-size: 24px; }
 .ink-card-copy .ink-service-link { margin-top: auto; padding-top: 23px; }
+.ink-service-links { display: flex; flex-direction: column; gap: 9px; margin-top: auto; padding-top: 23px; }
+.ink-card-copy .ink-service-links .ink-service-link { margin-top: 0; padding-top: 0; }
+.ink-paper-title { display: block; font-size: 10px; line-height: 1.4; font-weight: 500; margin-top: 6px; }
 .ink-workflow-paper { position: relative; display: flex; align-items: center; gap: 17px; padding: 18px; width: 240px; height: 100px; margin: 22px auto 20px; border: 1px solid #d6d7df; border-radius: 5px; transform: perspective(650px) rotateX(23deg) rotateZ(-7deg); background: #fff; box-shadow: 0 4px 0 #e1e2e9, 0 5px 0 #c7c9d3, 0 17px 30px #28293616; }
 .ink-paper-icon { color: #666973; border: 1px solid #e3e4e9; padding: 12px; border-radius: 5px; background: #f9f9fc; }
 .ink-workflow-paper small { font: 7px/1 var(--font-mono); color: #90929d; }
@@ -87,7 +90,7 @@
 .ink-step-detail { position: relative; padding: 17px 28px 23px; min-height: 90px; }
 .ink-step-detail strong { font-size: 11px; font-weight: 500; }
 .ink-step-detail p { color: #7a7c87; font-size: 11px; line-height: 1.6; margin-top: 5px; }
-.ink-network { position: relative; width: 100%; height: 220px; margin-top: 4px; }
+.ink-network { position: relative; width: 100%; height: 280px; margin-top: 14px; }
 .ink-network > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ink-wire { stroke: #c5c7d1; stroke-width: 1.2; transition: stroke .3s; }
 .ink-wire-active { stroke: #3f414c; stroke-width: 1.6; }

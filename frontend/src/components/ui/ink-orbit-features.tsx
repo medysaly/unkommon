@@ -3,28 +3,30 @@ import { useInView, useReducedMotion } from "framer-motion";
 import { Link } from "wouter";
 import {
   ArrowRight, CalendarDays, Check, Code2, CreditCard, FileText,
-  LayoutDashboard, Mail, Pause, Play, Sparkles, Users,
+  LayoutDashboard, Mail, Pause, Play, Search, Server, ShieldCheck, Sparkles, Users,
 } from "lucide-react";
 import "./ink-orbit-features.css";
 
 const products = [
   { name: "Modern website", icon: Code2, heading: "Your modern website, doing more.", description: "Answer questions, take bookings, accept payments, and connect the next step to your business tools.", href: "/services/web-development" },
-  { name: "AI application", icon: Sparkles, heading: "The next step, in their hands.", description: "Give customers booking, account access, and updates. Give your team AI that can find useful answers.", href: "/services/ai-powered-applications" },
+  { name: "Application", icon: Sparkles, heading: "The next step, in their hands.", description: "Give customers booking, account access, and updates in an application built around the task.", href: "/services/ai-powered-applications" },
   { name: "Customer portal", icon: LayoutDashboard, heading: "One place for the next step.", description: "Give customers a secure place for documents, requests, and updates.", href: "/services/internal-tools-customer-portals" },
 ];
 
 const steps = [
-  { name: "Receive", icon: Mail, title: "Start with an incoming request", detail: "A form, document, or email starts the workflow." },
-  { name: "Read", icon: Sparkles, title: "Pick out the useful information", detail: "AI can extract details and categorize the request." },
-  { name: "Review", icon: Users, title: "Keep a person in the loop", detail: "Anything uncertain or consequential goes to your team for review." },
-  { name: "Route", icon: ArrowRight, title: "Give the work a next step", detail: "Send approved information to the right person or business system." },
+  { name: "Find", icon: Search, title: "Find information you can check", detail: "Retrieve relevant business knowledge, with links to approved sources.", label: "SOURCE FOUND", status: "Check the source", visual: "Source document", iconVisual: FileText },
+  { name: "Prepare", icon: Sparkles, title: "Prepare the next action", detail: "Use the request and relevant information to propose an allowed action.", label: "PROPOSED ACTION", status: "Not submitted", visual: "Change appointment", iconVisual: CalendarDays },
+  { name: "Review", icon: Users, title: "Keep the right checks in place", detail: "Check permissions and request customer confirmation or staff approval where needed.", label: "REVIEW CHECKPOINT", status: "Approval required", visual: "Review proposed change", iconVisual: ShieldCheck },
+  { name: "Complete", icon: Check, title: "Confirm what actually happened", detail: "Report completion only after the connected system confirms it. Otherwise, flag it for help.", label: "SYSTEM CONFIRMED", status: "Action recorded", visual: "Appointment updated", iconVisual: Check },
 ];
 
 const tools = [
-  { name: "CRM", icon: Users, x: 19, y: 25, path: "M 250 115 H 160 V 55 H 95", detail: "Keep customer details and the work around them connected." },
-  { name: "Calendar", icon: CalendarDays, x: 81, y: 25, path: "M 250 115 H 340 V 55 H 405", detail: "Connect booking and scheduling to the way your team works." },
-  { name: "Payments", icon: CreditCard, x: 19, y: 79, path: "M 250 115 H 160 V 174 H 95", detail: "Use a payment event to start the next step in a workflow." },
-  { name: "Email", icon: Mail, x: 81, y: 79, path: "M 250 115 H 340 V 174 H 405", detail: "Move useful information between your inbox and your other tools." },
+  { name: "CRM", icon: Users, x: 18, y: 25, path: "M 250 146 H 160 V 70 H 90", detail: "Keep customer details and the work around them connected." },
+  { name: "Calendar", icon: CalendarDays, x: 82, y: 25, path: "M 250 146 H 340 V 70 H 410", detail: "Connect booking and scheduling to the way your team works." },
+  { name: "Payments", icon: CreditCard, x: 18, y: 75, path: "M 250 146 H 160 V 210 H 90", detail: "Use a payment event to start the next step in a workflow." },
+  { name: "Email", icon: Mail, x: 82, y: 75, path: "M 250 146 H 340 V 210 H 410", detail: "Move useful information between your inbox and your other tools." },
+  { name: "Backend", icon: Server, x: 50, y: 12, path: "M 250 146 V 34", detail: "APIs, databases, access controls, and monitoring support the software people use." },
+  { name: "Private AI", icon: ShieldCheck, x: 50, y: 88, path: "M 250 146 V 246", detail: "Deploy suitable models in a controlled environment, with agreed access and operating procedures." },
 ];
 
 function Brackets() {
@@ -44,6 +46,8 @@ export default function InkOrbitFeatures() {
   const [tool, setTool] = useState(0);
   const running = visible && reduced === false && !paused && !hovered && !focused;
   const currentProduct = products[product];
+  const currentStep = steps[step];
+  const StepVisualIcon = currentStep.iconVisual;
 
   useEffect(() => {
     if (!running) return;
@@ -81,8 +85,8 @@ export default function InkOrbitFeatures() {
             <Brackets />
             <div className="ink-product-copy">
               <p className="ink-eyebrow">01 / Software that fits</p>
-              <h3>Built for the work you do.</h3>
-              <p>Modern websites, AI applications, and customer portals. Built around what people need to get done.</p>
+              <h3>Software built around your business.</h3>
+              <p>Modern websites, applications, and customer portals that help people book, buy, manage their account, and get things done.</p>
               <div className="ink-product-options" aria-label="Explore software examples">
                 {products.map((item, index) => {
                   const Icon = item.icon;
@@ -103,7 +107,7 @@ export default function InkOrbitFeatures() {
                     <div className="ink-window-bar"><span><i /><i /><i /></span><small>{currentProduct.name}</small><img src="/new_logo.png" alt="" width={14} height={14} /></div>
                     <div className={`ink-window-content ink-window-${product}`}>
                       {product === 0 ? <><div className="ink-mini-eyebrow">YOUR BUSINESS</div><strong>A better way<br />to get started.</strong><div className="ink-mini-line" /><span className="ink-mini-button">Book a time <ArrowRight size={9} /></span><div className="ink-mini-blocks"><i /><i /><i /></div></> :
-                        product === 1 ? <><div className="ink-mini-search"><Sparkles size={13} />Ask your information</div><div className="ink-mini-answer"><span>ANSWER WITH CONTEXT</span><i /><i /><i /><small><FileText size={10} /> View source document</small></div></> :
+                        product === 1 ? <><div className="ink-mini-portal"><CalendarDays size={14} /><span>Your account</span></div>{["Bookings", "Payments", "Updates"].map((label) => <div className="ink-mini-row" key={label}><LayoutDashboard size={11} />{label}<ArrowRight size={10} /></div>)}</> :
                         <><div className="ink-mini-portal"><LayoutDashboard size={14} /><span>Your workspace</span></div>{["Documents", "Requests", "Updates"].map((label) => <div className="ink-mini-row" key={label}><FileText size={11} />{label}<ArrowRight size={10} /></div>)}</>}
                     </div>
                   </div>
@@ -116,11 +120,11 @@ export default function InkOrbitFeatures() {
           <article className="ink-frame ink-small-card">
             <Brackets />
             <div className="ink-card-visual ink-workflow-visual">
-              <span className="ink-scene-note">Example / incoming request</span>
+              <span className="ink-scene-note">Example / find, review, act</span>
               <div className="ink-workflow-paper" aria-hidden="true">
-                <div className="ink-paper-icon"><FileText size={22} strokeWidth={1.3} /></div>
-                <div><small>REQUEST DETAILS</small><i /><i /><i /></div>
-                <span className="ink-paper-review"><Check size={11} /> Review before routing</span>
+                <div className="ink-paper-icon"><StepVisualIcon size={22} strokeWidth={1.3} /></div>
+                <div><small>{currentStep.label}</small><strong className="ink-paper-title">{currentStep.visual}</strong><i /><i /></div>
+                <span className="ink-paper-review"><ShieldCheck size={11} />{currentStep.status}</span>
               </div>
               <div className="ink-workflow-steps" aria-label="Explore a sample workflow">
                 {steps.map((item, index) => {
@@ -133,10 +137,14 @@ export default function InkOrbitFeatures() {
               <div className="ink-step-detail"><strong>{steps[step].title}</strong><p>{steps[step].detail}</p></div>
             </div>
             <div className="ink-card-copy">
-              <p className="ink-eyebrow">02 / Less manual work</p>
-              <h3>Give the routine a route.</h3>
-              <p>Turn incoming documents and emails into useful information, with a clear path for review and the next step.</p>
-              <Link href="/services/document-email-automation" className="ink-service-link">Document &amp; email automation <ArrowRight size={14} aria-hidden="true" /></Link>
+              <p className="ink-eyebrow">02 / Knowledge into action</p>
+              <h3>AI that finds answers and takes action.</h3>
+              <p>Search your business knowledge, handle customer requests, and move work forward through connected tools, with clear permissions and human review.</p>
+              <div className="ink-service-links">
+                <Link href="/services/rag-systems" className="ink-service-link">Knowledge search &amp; RAG <ArrowRight size={14} aria-hidden="true" /></Link>
+                <Link href="/services/workflow-automation" className="ink-service-link">AI agents &amp; workflows <ArrowRight size={14} aria-hidden="true" /></Link>
+                <Link href="/services/ai-receptionist" className="ink-service-link">Assistants &amp; voice agents <ArrowRight size={14} aria-hidden="true" /></Link>
+              </div>
             </div>
           </article>
 
@@ -145,7 +153,7 @@ export default function InkOrbitFeatures() {
             <div className="ink-card-visual ink-systems-visual">
               <span className="ink-scene-note">Your tools / connected by design</span>
               <div className="ink-network" aria-label="Explore business system connections">
-                <svg viewBox="0 0 500 220" preserveAspectRatio="none" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 500 280" preserveAspectRatio="none" fill="none" aria-hidden="true">
                   {tools.map((item, index) => <g key={item.name}>
                     <path d={item.path} className={tool === index ? "ink-wire ink-wire-active" : "ink-wire"} />
                     {running && tool === index && <circle r="3" fill="#1b1b1d"><animateMotion dur="2s" repeatCount="indefinite" path={item.path} /></circle>}
@@ -163,9 +171,12 @@ export default function InkOrbitFeatures() {
             </div>
             <div className="ink-card-copy">
               <p className="ink-eyebrow">03 / Connected operations</p>
-              <h3>Your tools, on speaking terms.</h3>
-              <p>Connect the systems you already use, so information reaches the right place without another copy and paste.</p>
-              <Link href="/services/crm-system-integrations" className="ink-service-link">CRM &amp; business integrations <ArrowRight size={14} aria-hidden="true" /></Link>
+              <h3>Connected systems. A dependable foundation.</h3>
+              <p>Bring your tools together and build the infrastructure behind them, including private AI deployment where you need more control.</p>
+              <div className="ink-service-links">
+                <Link href="/services/crm-system-integrations" className="ink-service-link">CRM &amp; business integrations <ArrowRight size={14} aria-hidden="true" /></Link>
+                <Link href="/services/technical-architecture" className="ink-service-link">Cloud infrastructure &amp; private AI <ArrowRight size={14} aria-hidden="true" /></Link>
+              </div>
             </div>
           </article>
         </div>
