@@ -47,7 +47,7 @@ Customers get one place to see updates, share documents, and make requests. The 
 Page: https://www.unkommon.ai/services/internal-tools-customer-portals
 
 Cloud Infrastructure &amp; Backends:
-AWS infrastructure, databases, APIs, and deployment pipelines that support applications. Explain the job these do before naming technologies.
+AWS infrastructure, databases, APIs, and deployment pipelines that support applications. Includes Private AI Deployment & Model Operations: evaluating and deploying suitable open-weight models in a client's cloud environment or on supported local hardware; defining access, network boundaries, and data-handling rules; comparing models on actual tasks; assessing smaller models and quantization where quality, licensing, and hardware allow; monitoring quality, latency, failures, and resource use; and testing updates with rollback procedures. Maintenance ownership and any ongoing support are agreed in scope, not an implied round-the-clock managed service. Private hosting does not automatically establish compliance or reduce costs. Compare total operating costs and assess managed options too. Do not advertise fine-tuning as an included service, promise universal hardware support, or commit to a platform before checking requirements. Explain the job these do before naming technologies.
 Page: https://www.unkommon.ai/services/technical-architecture
 </group>
 

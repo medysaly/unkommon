@@ -272,21 +272,24 @@ export const services: Service[] = [
     "pillar": "built",
     "title": "Cloud Infrastructure & Backends",
     "subtitle": "Cloud Infrastructure & Backends",
-    "shortDescription": "AWS infrastructure, databases, APIs, and deployment pipelines that support your applications.",
+    "shortDescription": "Cloud infrastructure, databases, APIs, and deployment pipelines, with private AI deployment and model operations where your business needs them.",
     "heroHeadline": "The foundation your software depends on.",
-    "heroSubhead": "AWS infrastructure, databases, APIs, and deployment pipelines that support your applications.",
+    "heroSubhead": "We build the backends and cloud infrastructure your applications run on, including private AI deployment when you need more control over where models run and how information is handled.",
     "problemLabel": "The problem",
     "problem": "An application needs more than a working interface. Data, access, deployment, and monitoring all need clear ownership.",
     "solution": "We build the backend and cloud foundation around what your application needs, with documented deployment and recovery procedures.",
     "capabilities": [
       "Backend APIs and database design",
       "AWS infrastructure and access controls",
-      "Deployment pipelines, monitoring, and alerts"
+      "Deployment pipelines, monitoring, and alerts",
+      "Private AI deployment in your cloud environment or on supported local hardware",
+      "Model evaluation, resource monitoring, and tested updates with rollback procedures"
     ],
     "deliverables": [
       "Backend services and infrastructure configuration",
       "A deployment pipeline and monitoring",
-      "Runbooks and handover documentation"
+      "Runbooks and handover documentation",
+      "For private AI projects, agreed model configuration, access boundaries, evaluation checks, and operating procedures"
     ],
     "techStack": [
       "AWS infrastructure",
@@ -298,6 +301,30 @@ export const services: Service[] = [
       "Teams improving an existing backend"
     ],
     "outcome": "A dependable foundation for running and maintaining your software.",
+    "featuredUseCase": {
+      "title": "Private AI Deployment & Model Operations",
+      "headline": "More control over where your AI runs and how your data is handled.",
+      "description": "We help you evaluate, deploy, and operate AI models in your own cloud environment or on supported local hardware, based on your data requirements, workload, and budget.",
+      "steps": [
+        {
+          "title": "Private model deployment",
+          "description": "Run suitable open-weight models in a controlled environment, with defined access, network boundaries, and data-handling rules. Hosting and hardware are selected around the workload."
+        },
+        {
+          "title": "Model selection & optimization",
+          "description": "Compare models on your actual tasks. Evaluate smaller models and quantization where they can reduce resource requirements without unacceptable quality loss, subject to model licensing and hardware support."
+        },
+        {
+          "title": "Monitoring & tested updates",
+          "description": "Track response quality, failures, latency, and resource usage. Test model and configuration updates before release, with a documented way to roll back changes."
+        },
+        {
+          "title": "Operating procedures & handover",
+          "description": "Document deployment, access, recovery, and maintenance responsibilities. Agree who handles updates and incidents, and any ongoing support, as part of the project scope."
+        }
+      ],
+      "note": "Private hosting is not an automatic compliance guarantee or a promise of lower costs. We assess data handling and total operating costs, including hardware, maintenance, and engineering, before recommending a deployment approach."
+    },
     "faqs": [
       {
         "q": "Can you work with our existing systems?",
@@ -309,7 +336,7 @@ export const services: Service[] = [
       }
     ],
     "metaTitle": "Cloud Infrastructure & Backends | Unkommon",
-    "metaDescription": "AWS infrastructure, databases, APIs, and deployment pipelines that support your applications."
+    "metaDescription": "Cloud backends, databases, APIs, and deployment pipelines, plus private AI deployment, model evaluation, monitoring, and tested updates."
   },
   {
     "slug": "workflow-automation",
