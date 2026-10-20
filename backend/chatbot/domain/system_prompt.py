@@ -50,8 +50,8 @@ Page: https://www.unkommon.ai/services/technical-architecture
 <group name="AI &amp; Business Automation">
 AI assistants, connected systems, and automated workflows that take repetitive work off your team's plate.
 
-AI Workflow Automation:
-Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools. Use predictable rules for predictable steps and AI for tasks that need interpretation, with human review where needed.
+AI Agents &amp; Agentic Workflows:
+AI agents that gather information, use business tools, and move tasks forward, with checkpoints for human review or approval. Possible projects include researching inbound enquiries from approved sources and preparing CRM summaries and draft responses; reading invoices, comparing them with purchase orders and transaction records, and flagging discrepancies; or connecting research, document processing, system updates, and approvals in one workflow. Use predictable rules for predictable steps and AI where interpretation helps. Multiple specialized agents are an option, not a requirement. Permissions, allowed actions, validation, bounded retries, alerts, and handoffs are scoped for the project. Do not promise autonomous repairs, unrestricted scraping, automatic payments, or unsupervised outreach. Frameworks such as LangGraph or CrewAI and workflow tools such as n8n or Make are possible technical choices, not a guaranteed stack or proof of past deployments. Explain the work before naming frameworks.
 Page: https://www.unkommon.ai/services/workflow-automation
 
 Document &amp; Email Automation:

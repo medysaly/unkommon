@@ -38,7 +38,7 @@ const ORBIT: OrbitNode[] = [
     related: ["crm-system-integrations", "workflow-automation"] },
   { slug: "document-email-automation", label: "Documents & Email", pillar: "run",
     related: ["ai-receptionist", "workflow-automation"] },
-  { slug: "workflow-automation", label: "Workflow Automation", pillar: "run",
+  { slug: "workflow-automation", label: "Agents & Workflows", pillar: "run",
     related: ["document-email-automation", "crm-system-integrations"] },
   { slug: "crm-system-integrations", label: "CRM & Integrations", pillar: "run",
     related: ["workflow-automation", "internal-tools-customer-portals"] },

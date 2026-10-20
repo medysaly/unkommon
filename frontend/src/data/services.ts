@@ -240,46 +240,63 @@ export const services: Service[] = [
   {
     "slug": "workflow-automation",
     "pillar": "run",
-    "title": "AI Workflow Automation",
-    "subtitle": "AI Workflow Automation",
-    "shortDescription": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools.",
-    "heroHeadline": "Keep the work moving.",
-    "heroSubhead": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools.",
+    "title": "AI Agents & Agentic Workflows",
+    "subtitle": "AI Agents & Agentic Workflows",
+    "shortDescription": "AI agents that gather information, use your business tools, and move tasks forward, with checkpoints for your team to review or approve.",
+    "heroHeadline": "Some work needs more than a trigger and an action.",
+    "heroSubhead": "We build AI agents that gather information, use your business tools, and move tasks forward, with checkpoints where your team needs to review or approve.",
     "problemLabel": "The problem",
-    "problem": "Routine work stalls when it relies on someone remembering to copy information, send a notification, or chase an approval.",
-    "solution": "We map your process and automate the steps that can run reliably, with review and exception handling where people need to stay involved.",
+    "problem": "An enquiry needs research before anyone can respond. An invoice needs checking against other records. A request passes through several tools before someone can approve it. Your team ends up gathering the information and moving each step along by hand.",
+    "solution": "We map the work, connect the tools, and define what an agent is allowed to do. Predictable steps use rules. AI handles the parts that need interpretation. Specialized agents can share the work when that helps, with validation, approval checkpoints, and a clear route to a person when something needs attention.",
     "capabilities": [
-      "Task routing and approval flows",
-      "Notifications and handoffs between teams",
-      "Scheduled and event-triggered business processes"
+      "Inbound enquiry research and qualification using approved sources, with CRM summaries and draft responses for review",
+      "Invoice processing and reconciliation against purchase orders and transaction records, with discrepancies flagged for review",
+      "Multi-step operations connecting research, document processing, system updates, and approvals",
+      "Specialized agents working together where the task benefits from them",
+      "Error recovery and human handoffs through validation, retries, and alerts"
     ],
     "deliverables": [
-      "Working automations connected to your tools",
-      "Error handling, retries, and alerts",
-      "Process documentation and handover"
+      "A working agent or workflow connected to the agreed tools and information sources",
+      "Documented permissions, allowed actions, and approval checkpoints",
+      "Validation, bounded retries, failure alerts, and recovery steps",
+      "Testing with representative tasks and failure scenarios",
+      "Process documentation and handover for your team"
     ],
     "techStack": [
-      "Workflow orchestration tools",
+      "Agent orchestration frameworks such as LangGraph or CrewAI, where appropriate",
+      "Workflow tools such as n8n or Make, where appropriate",
       "Business software APIs",
       "Custom code where the process needs it"
     ],
     "industries": [
-      "Teams managing recurring administrative work",
+      "Teams researching incoming enquiries or processing invoices",
       "Businesses coordinating processes across several tools"
     ],
-    "outcome": "Fewer repetitive steps and clearer handoffs.",
+    "outcome": "Less time gathering information and moving tasks between tools, with your team in control of the decisions that need them.",
     "faqs": [
       {
-        "q": "Can you work with our existing systems?",
-        "a": "We start by understanding what you already use and what needs to change. The scope covers the tools, data, and connections required for the agreed work."
+        "q": "What is an agentic workflow?",
+        "a": "It is a process where an AI agent can interpret information, choose from allowed actions, and use connected tools to move a task forward. We define its permissions, checks, and approval points around the work it needs to do."
       },
       {
-        "q": "How do we get started?",
-        "a": "Bring us the process or product you want to improve. We will work through the requirements with you and agree the scope before building."
+        "q": "Does every workflow need multiple agents?",
+        "a": "No. A standard automation or a single agent may be enough. We use multiple agents when separating the work makes the process easier to manage, test, or review, not simply to add complexity."
+      },
+      {
+        "q": "Can an agent approve payments or send messages on its own?",
+        "a": "Only within explicitly agreed permissions. Invoice discrepancies, payments, and customer communications can be held for human review. We define what can run automatically and what needs approval before building."
+      },
+      {
+        "q": "Will the workflow fix itself if something breaks?",
+        "a": "We build in validation, retries, and alerts to handle recoverable failures. Unexpected changes to an API or data format may still need someone to investigate and update the connection. We do not promise autonomous repairs."
+      },
+      {
+        "q": "Can you work with our existing systems?",
+        "a": "We check your tools, access permissions, information sources, and available APIs before confirming the scope. Research uses approved sources and permitted access, rather than assuming every platform can be scraped."
       }
     ],
-    "metaTitle": "AI Workflow Automation | Unkommon",
-    "metaDescription": "Automate repetitive tasks, approvals, notifications, and handoffs between teams and tools."
+    "metaTitle": "AI Agents & Agentic Workflows | Unkommon",
+    "metaDescription": "AI agents for enquiry research, invoice reconciliation, and multi-step operations, connected to your business tools with human review and error recovery."
   },
   {
     "slug": "document-email-automation",
