@@ -150,6 +150,73 @@ export const services: Service[] = [
     "metaDescription": "Web and mobile apps for booking, account access, and updates, with AI for finding answers, working with documents, and helping people complete tasks."
   },
   {
+    "slug": "rag-systems",
+    "pillar": "built",
+    "title": "AI Knowledge Search & RAG Systems",
+    "subtitle": "AI Knowledge Search & RAG Systems",
+    "shortDescription": "Connect your documents and business knowledge in one searchable interface, with answers linked to their sources and access shaped around your team's permissions.",
+    "heroHeadline": "Your team shouldn’t have to search five places for one answer.",
+    "heroSubhead": "We connect your documents and business knowledge in one searchable interface, so people can ask a question, find relevant information, and check the sources behind the answer.",
+    "problemLabel": "The problem",
+    "problem": "The answer is somewhere in a PDF, an internal wiki, a shared drive, or a conversation. Finding it means opening several tools, checking which version is current, and asking someone who may already have answered the same question.",
+    "solution": "We connect approved information sources and build a search experience around how your team works. Retrieval-augmented generation, or RAG, finds relevant material and gives the AI that context before it answers. People can follow source references, check the original information, and see when the system does not have enough evidence to help.",
+    "capabilities": [
+      "Cross-platform knowledge search across approved PDFs, internal wikis, Google Drive files, and Slack conversations, subject to supported access",
+      "Internal knowledge assistants for policies, procedures, product details, and project information",
+      "Contract and document review support that finds clauses, compares documents with an approved playbook, and flags differences for qualified reviewers",
+      "Source-linked answers so people can check the supporting documents",
+      "Permission-aware retrieval, with agreed rules for hosting, retention, and keeping information current"
+    ],
+    "deliverables": [
+      "A searchable interface connected to the agreed information sources",
+      "Document ingestion, indexing, and update processes",
+      "User authentication and retrieval access controls for the agreed permissions model",
+      "Source references and handling for questions without sufficient evidence",
+      "Evaluation with representative questions, source checks, and access-control tests",
+      "Documentation covering information sources, access, retention, and maintenance"
+    ],
+    "techStack": [
+      "Document parsing, indexing, and supported source connectors",
+      "Keyword and vector search, with reranking where useful",
+      "Language models grounded in retrieved information",
+      "Authentication, access filtering, and retrieval evaluation"
+    ],
+    "industries": [
+      "Teams with knowledge spread across documents and business tools",
+      "Businesses answering recurring internal questions",
+      "Teams reviewing documents against established company playbooks"
+    ],
+    "outcome": "Less searching between tools, with relevant information and the sources needed to check it in one place.",
+    "faqs": [
+      {
+        "q": "What does RAG mean?",
+        "a": "Retrieval-augmented generation means the system looks up relevant information from approved sources before generating an answer. It is a way to ground answers in your business information, not a process for retraining the model."
+      },
+      {
+        "q": "Can it search our shared drives, Slack, and internal wiki?",
+        "a": "We check the specific platforms, available APIs, file formats, and access permissions before confirming the connections. The scope also defines which sources are included and how changes and deletions reach the search system."
+      },
+      {
+        "q": "Will everyone be able to see every document?",
+        "a": "No. We design retrieval around the agreed access model, so searches and answers only use information the person is permitted to access. Source permissions must be mapped and enforced, and we test those boundaries rather than relying on instructions to the AI alone."
+      },
+      {
+        "q": "Do citations guarantee an answer is correct?",
+        "a": "No. Citations let people check the supporting material, but retrieval and generated answers can still miss context or make mistakes. We evaluate representative questions and build in a clear response when there is not enough evidence. Important decisions still need appropriate review."
+      },
+      {
+        "q": "Can this replace legal review or a compliance audit?",
+        "a": "No. It can help find clauses, compare documents with an approved company playbook, and flag differences for qualified reviewers. It does not establish legal compliance or replace professional judgment."
+      },
+      {
+        "q": "Is the system private?",
+        "a": "Hosting, model providers, data retention, and access controls are agreed for the project. We explain where information is processed and stored before choosing an approach, rather than promising that every setup has the same privacy properties."
+      }
+    ],
+    "metaTitle": "AI Knowledge Search & RAG Systems | Unkommon",
+    "metaDescription": "Search business documents and connected knowledge sources with AI, source-linked answers, permission-aware access, and document review support."
+  },
+  {
     "slug": "internal-tools-customer-portals",
     "pillar": "built",
     "title": "Internal Tools & Customer Portals",

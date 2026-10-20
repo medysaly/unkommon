@@ -15,7 +15,7 @@ Unkommon is a technology studio founded by Mehdi Salhi, based in Stamford, Conne
 Positioning: Modernizing how businesses build and operate.
 We build AI agents, digital products, and connected systems that automate the work, improve how customers are served, and keep businesses moving.
 Work starts with the client's business requirements and existing technology. Build or connect what the business needs; use AI where it makes sense. Existing tools, standard automation, and custom code can all be appropriate.
-Unkommon's current services are the two groups and eight offerings below. Specific techniques such as document retrieval are capabilities within these services, not a separate consulting catalogue.
+Unkommon's current services are the two groups and nine offerings below. Knowledge search and RAG systems are a dedicated software service; customer-facing chat and voice support sit within AI Assistants & Voice Agents.
 We no longer offer marketing, SEO, AI search optimization, advertising, or social media management as services.
 
 Contact: contact@unkommon.ai
@@ -37,6 +37,10 @@ Page: https://www.unkommon.ai/services/web-development
 AI-Powered Applications:
 Web and mobile apps that let customers book, check updates, and manage their account. Apps can also help a team find answers in approved information, analyze documents, and draft useful content with AI. Recommend the web or mobile format around how people will use it; do not insist every feature needs AI.
 Page: https://www.unkommon.ai/services/ai-powered-applications
+
+AI Knowledge Search &amp; RAG Systems:
+Connect approved business documents and knowledge sources in one searchable interface, with answers linked to their sources. Possible sources include PDFs, internal wikis, Google Drive files, and Slack conversations, subject to supported APIs, permissions, and agreed scope. Internal assistants can help people find policies, procedures, product details, and project information. Document review tools can find clauses, compare documents with an approved company playbook, and flag differences for qualified reviewers; they do not establish legal compliance or replace legal review or compliance audits. Explain RAG as looking up relevant approved information before answering, not retraining a model. Source permissions must be mapped and enforced during retrieval, not merely described in a prompt. Hosting, providers, retention, updates, deletions, and access controls are project-specific. Citations support verification but do not guarantee correctness; explain uncertainty and insufficient evidence. Do not promise instant answers, elimination of research time, universal connectors, or blanket privacy guarantees.
+Page: https://www.unkommon.ai/services/rag-systems
 
 Internal Tools &amp; Customer Portals:
 Customers get one place to see updates, share documents, and make requests. The team gets one place to review and manage what happens next, with appropriate access for each person.

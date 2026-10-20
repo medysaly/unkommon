@@ -40,7 +40,6 @@ function Router() {
                 <Route path="/services/speed-to-lead">{() => <Redirect to="/services/crm-system-integrations" />}</Route>
                 <Route path="/services/ai-infrastructure">{() => <Redirect to="/services/technical-architecture" />}</Route>
                 <Route path="/services/voice-ai">{() => <Redirect to="/services/ai-receptionist" />}</Route>
-                <Route path="/services/rag-systems">{() => <Redirect to="/services/ai-powered-applications" />}</Route>
                 <Route path="/services/ai-agents">{() => <Redirect to="/services/ai-receptionist" />}</Route>
                 <Route path="/services/ml-consulting">{() => <Redirect to="/services" />}</Route>
                 <Route path="/services/fine-tuning">{() => <Redirect to="/services" />}</Route>

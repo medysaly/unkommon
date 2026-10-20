@@ -30,6 +30,8 @@ const ORBIT: OrbitNode[] = [
     related: ["technical-architecture", "workflow-automation"] },
   { slug: "ai-powered-applications", label: "AI Applications", pillar: "built",
     related: ["web-development", "technical-architecture"] },
+  { slug: "rag-systems", label: "Knowledge & RAG", pillar: "built",
+    related: ["ai-powered-applications", "internal-tools-customer-portals"] },
   { slug: "internal-tools-customer-portals", label: "Tools & Portals", pillar: "built",
     related: ["crm-system-integrations", "workflow-automation"] },
   { slug: "technical-architecture", label: "Cloud & Backends", pillar: "built",
