@@ -156,6 +156,9 @@ function buildHtml(template, route, extras) {
   if (extras?.fallback) {
     html = replaceFallback(html, extras.fallback, route.path);
   }
+  if (extras?.homeFaqFallback) {
+    rep(/<!-- homepage-faq -->/, extras.homeFaqFallback);
+  }
   return html;
 }
 
@@ -192,12 +195,19 @@ async function main() {
   }
   const template = await readFile(templatePath, "utf8");
   const { services, pillars } = await loadTs("src/data/services.ts", "services");
+  const { homeFaqs } = await loadTs("src/data/home-faqs.ts", "home-faqs");
   const seo = await loadTs("src/data/seo.ts", "seo");
   const { routes } = seo;
   ORIGIN = seo.ORIGIN;
 
   // Per-route fallback markup and schema. Homepage keeps what index.html ships.
   const extras = {};
+  extras["/"] = {
+    homeFaqFallback: `<section aria-labelledby="home-faq-heading"><h2 id="home-faq-heading">Before we get started.</h2>
+      <p>A few things you might be wondering about working with us.</p>
+      ${homeFaqs.map((faq) => `<h3>${esc(faq.q)}</h3><p>${esc(faq.a)}</p>`).join("\n")}
+      <p><a href="/book-a-call">Book a free 30-minute call</a></p></section>`,
+  };
 
   extras["/services"] = {
     fallback: `
@@ -306,9 +316,13 @@ ${pillars
 ## Process
 
 1. **Talk**: Bring us the bottleneck, messy handoff, or system you wish you had.
-2. **Plan**: Fixed scope and fixed price before anything starts. No hourly billing.
+2. **Plan**: Agree on scope, deliverables, and pricing before work begins.
 3. **Build**: We design and build the product, integrations, or automation around how your business works.
 4. **Launch**: We test the important paths and hand over a system your team can use.
+
+## Frequently asked
+
+${homeFaqs.map((faq) => `### ${faq.q}\n\n${faq.a}`).join("\n\n")}
 
 ## Contact
 

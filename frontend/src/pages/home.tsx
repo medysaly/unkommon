@@ -1,4 +1,5 @@
 import { createPageUrl } from "@/lib/utils";
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
@@ -6,6 +7,8 @@ import { CTAButton } from "@/components/CTAButton";
 import { HeroBackground } from "@/components/HeroBackground";
 import { pillars, serviceListing } from "@/data/services";
 import InkOrbitFeatures from "@/components/ui/ink-orbit-features";
+
+const HomeFAQ = lazy(() => import("@/components/HomeFAQ").then((module) => ({ default: module.HomeFAQ })));
 
 export default function Home() {
   return (
@@ -122,6 +125,10 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <Suspense fallback={<section className="bg-white px-6 lg:px-10 py-20 md:py-28 min-h-[650px]"><h2 className="max-w-[1200px] mx-auto text-3xl">Before we get started.</h2></section>}>
+        <HomeFAQ />
+      </Suspense>
 
       {/* CTA */}
       <section className="bg-foreground text-white px-6 lg:px-10 py-24 md:py-32">
