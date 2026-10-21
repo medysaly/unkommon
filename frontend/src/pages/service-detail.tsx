@@ -1,4 +1,5 @@
 import { useRoute, Link } from "wouter";
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import {
@@ -10,6 +11,8 @@ import {
 import { CTAButton } from "@/components/CTAButton";
 import { getServiceBySlug } from "@/data/services";
 import NotFound from "@/pages/not-found";
+
+const DocumentIntake = lazy(() => import("@/components/ui/document-intake").then((module) => ({ default: module.DocumentIntake })));
 
 export default function ServiceDetail() {
   const [, params] = useRoute<{ slug: string }>("/services/:slug");
@@ -86,6 +89,12 @@ export default function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      {service.intakeExample && (
+        <Suspense fallback={<section className="px-6 lg:px-10 py-20 md:py-28 bg-background min-h-[600px]"><div className="max-w-[1200px] mx-auto"><h2 className="text-3xl mb-6">{service.intakeExample.headline}</h2><p>{service.intakeExample.description}</p></div></section>}>
+          <DocumentIntake example={service.intakeExample} />
+        </Suspense>
+      )}
 
       {service.featuredUseCase && (
         <section aria-labelledby="featured-use-case" className="bg-white px-6 lg:px-10 py-20 md:py-28 border-t border-border">

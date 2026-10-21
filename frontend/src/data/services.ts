@@ -38,6 +38,12 @@ export interface Service {
   techStack: string[];
   industries: string[];
   outcome: string;
+  intakeExample?: {
+    headline: string;
+    description: string;
+    inputs: { title: string; action: string; detail: string }[];
+    note: string;
+  };
   featuredUseCase?: {
     title: string;
     headline: string;
@@ -430,6 +436,17 @@ export const services: Service[] = [
     "subtitle": "Document & Email Automation",
     "shortDescription": "Extract information, categorize incoming requests, and route documents and emails for review or processing.",
     "heroHeadline": "Turn incoming information into the next step.",
+    "intakeExample": {
+      "headline": "Different inputs. One clear way forward.",
+      "description": "Bring incoming documents, emails, and requests into a workflow that extracts the useful information and sends it where it needs to go.",
+      "inputs": [
+        { "title": "Invoice", "action": "Extract details", "detail": "Pick out supplier details, line items, and totals, with checks for missing or uncertain information." },
+        { "title": "Customer email", "action": "Identify the request", "detail": "Identify what the customer needs and prepare the request for the right team." },
+        { "title": "Contract", "action": "Route for review", "detail": "Send the document and relevant details to the appropriate reviewer, without treating automated processing as legal approval." },
+        { "title": "Form submission", "action": "Update the right system", "detail": "Validate the submitted details and send approved information to the connected business tool." }
+      ],
+      "note": "Illustrative workflow, not a live document upload. Information sources, validation, review steps, and system access are agreed for each project."
+    },
     "heroSubhead": "Extract information, categorize incoming requests, and route documents and emails for review or processing.",
     "problemLabel": "The problem",
     "problem": "Reading every incoming email or document, entering its details, and forwarding it to the right person takes time and makes requests easy to miss.",

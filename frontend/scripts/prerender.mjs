@@ -57,6 +57,10 @@ function serviceFallback(s) {
       <main>
         <section><h2>${esc(s.problemLabel)}</h2><p>${esc(s.problem)}</p></section>
         <section><h2>What we do about it</h2><p>${esc(s.solution)}</p></section>
+        ${s.intakeExample ? `<section><h2>${esc(s.intakeExample.headline)}</h2>
+          <p>${esc(s.intakeExample.description)}</p>
+          <ul>${s.intakeExample.inputs.map((input) => `<li><h3>${esc(input.title)}: ${esc(input.action)}</h3><p>${esc(input.detail)}</p></li>`).join("")}</ul>
+          <p>${esc(s.intakeExample.note)}</p></section>` : ""}
         ${s.featuredUseCase ? `<section aria-labelledby="featured-use-case">
           <p>Featured use case</p>
           <h2 id="featured-use-case">${esc(s.featuredUseCase.title)}</h2>
