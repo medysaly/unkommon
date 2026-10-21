@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useSeo } from "@/lib/useSeo";
-import { Menu, X } from "lucide-react";
+import { Instagram, Linkedin, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { createPageUrl } from "@/lib/utils";
 import { CTAButton } from "@/components/CTAButton";
@@ -133,8 +133,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       href="https://www.linkedin.com/company/unkommon-ai"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-2.5 text-[14px] text-white/80 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
+                      <Linkedin size={16} strokeWidth={1.5} aria-hidden="true" className="shrink-0" />
                       LinkedIn
                     </a>
                   </li>
@@ -143,16 +144,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       href="https://www.instagram.com/unkommon.ai/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-2.5 text-[14px] text-white/80 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
+                      <Instagram size={16} strokeWidth={1.5} aria-hidden="true" className="shrink-0" />
                       Instagram
                     </a>
                   </li>
                   <li>
                     <a
                       href="mailto:contact@unkommon.ai"
-                      className="text-[14px] text-white/80 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-2.5 text-[14px] text-white/80 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
+                      <Mail size={16} strokeWidth={1.5} aria-hidden="true" className="shrink-0" />
                       Email
                     </a>
                   </li>
