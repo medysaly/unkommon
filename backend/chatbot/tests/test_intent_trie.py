@@ -76,6 +76,20 @@ def test_exact_match_does_not_return_a_shorter_prefix():
     assert trie.match("what do you do for healthcare", exact=True) == "Healthcare services"
 
 
+def test_service_summary_covers_knowledge_search_and_private_ai():
+    answer = build_intent_trie().match("What can you help us build?", exact=True)
+    for capability in ("knowledge search", "AI agents", "private AI deployment", "model operations"):
+        assert capability in answer
+
+
+def test_pricing_summary_explains_separate_running_costs():
+    answer = build_intent_trie().match("How much does a project cost?", exact=True)
+    assert "before work starts" in answer
+    assert "Hosting, software subscriptions, and any ongoing support" in answer
+    assert "discussed separately" in answer
+    assert build_intent_trie().match("How much does a project cost for our CRM?", exact=True) is None
+
+
 
 
 

@@ -127,10 +127,12 @@ FAQ_INTENTS = [
     },
     {
         "answer": (
-            "We build modern websites, custom software, AI applications, "
-            "internal tools, customer portals, and cloud backends. We also "
-            "automate workflows, document and email processing, and connect "
-            "business systems, including CRM tools, chatbots, and voice agents."
+            "We build modern websites, AI applications, internal tools, "
+            "customer portals, and knowledge search with answers grounded in "
+            "your documents. We also build AI agents, chatbots, voice agents, "
+            "document and email automation, and business system integrations. "
+            "Cloud backends, private AI deployment, and model operations "
+            "support the systems behind them."
         ),
         "patterns": [
             "what services do you offer",
@@ -139,13 +141,15 @@ FAQ_INTENTS = [
             "what do you do",
             "what can you do",
             "tell me about your services",
+            "what can you help us build",
         ],
     },
     {
         "answer": (
             "Pricing depends on what you need built and which systems are "
             "involved. Scope and pricing are agreed before work starts. "
-            "What are you looking to build or improve?"
+            "Hosting, software subscriptions, and any ongoing support "
+            "are discussed separately."
         ),
         "patterns": [
             "how much does it cost",
@@ -154,6 +158,7 @@ FAQ_INTENTS = [
             "what are your prices",
             "what is the price",
             "how much is it",
+            "how much does a project cost",
         ],
     },
 ]
