@@ -10,17 +10,18 @@ Table schema:
 """
 
 import boto3
+import os
 from datetime import datetime
 
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
-conversations_table = dynamodb.Table('unkommon-conversations')
+conversations_table = dynamodb.Table(os.environ.get('CONVERSATIONS_TABLE_NAME', 'unkommon-conversations'))
 
 def get_conversation_history(conversation_id):
     """Retrieve conversation history from DynamoDB"""
     try:
-        response = conversations_table.get_item(Key={'conversationId': conversation_id})
+        response = conversations_table.get_item(Key={'conversationId': conversation_id}, ConsistentRead=True)
         item = response.get('Item')
         if item:
             return item.get('messages', [])

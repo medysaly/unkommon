@@ -79,11 +79,9 @@ def test_process_chat_message_handles_tool_call(
     mock_check_availability.assert_called_once_with('2026-06-15')
 
 
-def test_execute_tool_enforces_booking_limit(mock_book_appointment):
-    """Second booking attempt in the same conversation is blocked before any API call."""
-    # ARRANGE: simulate a previous successful booking for this conversation
+def test_execute_tool_cannot_submit_a_booking(mock_book_appointment):
+    """Even a model that ignores policy has no calendar-write tool."""
     conversation_id = "33333333-3333-3333-3333-333333333333"
-    chat_service._conversation_bookings[conversation_id] = 1
 
     booking_input = {
         'date': '2026-06-15',
@@ -97,7 +95,7 @@ def test_execute_tool_enforces_booking_limit(mock_book_appointment):
     result = chat_service.execute_tool('book_appointment', booking_input, conversation_id)
 
     # ASSERT
-    assert 'already have an appointment booked' in result
+    assert 'model cannot submit a booking' in result['error']
     mock_book_appointment.assert_not_called()
 
 
@@ -120,16 +118,16 @@ def test_notify_chatbot_lead_dedupes_per_conversation(mock_send_lead_email, mock
 def test_validate_tool_params_rejects_invalid_email():
     """Booking with a malformed email is rejected before any tool runs."""
     invalid_input = {
-        'date': '2026-06-15',
+        'date': '2099-06-15',
         'time': '10:00',
         'name': 'Jane Doe',
         'email': 'not-a-real-email',
         'phone': '203-555-1212',
     }
 
-    result = chat_service.validate_tool_params('book_appointment', invalid_input)
+    result = chat_service.validate_tool_params('prepare_booking', invalid_input)
 
-    assert result == 'Invalid email address.'
+    assert result == 'A valid email address is required.'
 
 def test_non_faq_message_uses_bedrock(
     mock_invoke_chat_model,
@@ -243,7 +241,7 @@ def test_lead_message_is_saved(
     assert mock_save_lead.call_args.kwargs['email'] == 'jane@example.com'
 
 
-def test_successful_booking_is_saved(
+def test_model_booking_attempt_is_rejected(
     mock_invoke_chat_model,
     mock_get_conversation_history,
     mock_save_conversation_history,
@@ -272,7 +270,7 @@ def test_successful_booking_is_saved(
         },
         {
             'stop_reason': 'end_turn',
-            'content': [{'type': 'text', 'text': 'You are booked.'}],
+            'content': [{'type': 'text', 'text': 'Nothing was booked. Please review the details first.'}],
         },
     ]
     mock_book_appointment.return_value = {'success': True, 'emailSent': True}
@@ -283,6 +281,5 @@ def test_successful_booking_is_saved(
         conversation_id="88888888-8888-8888-8888-888888888888",
     )
 
-    # ASSERT: the appointment was saved, with the booked date
-    mock_save_appointment.assert_called_once()
-    assert mock_save_appointment.call_args.kwargs['date'] == '2026-06-20'
+    mock_save_appointment.assert_not_called()
+    mock_book_appointment.assert_not_called()

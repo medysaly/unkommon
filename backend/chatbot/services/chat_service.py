@@ -12,6 +12,7 @@ The handler layer is the only thing that calls this service. The service
 does not know about HTTP, CORS, or AWS Lambda event shapes.
 """
 
+import json
 import re
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -19,21 +20,13 @@ from zoneinfo import ZoneInfo
 from domain.system_prompt import SYSTEM_PROMPT
 from domain.tools import TOOLS
 from domain.intent_trie import build_intent_trie
+from domain.response_format import format_response
 from data.conversations_repo import get_conversation_history, save_conversation_history
 from data.bedrock_client import invoke_chat_model
-from data.calendar_client import check_availability, book_appointment
-from data.email_client import send_lead_email
-from data.calendar_client import check_availability, book_appointment
+from data.calendar_client import check_availability
 from data.email_client import send_lead_email
 from data.leads_repo import save_lead
-from data.appointments_repo import save_appointment
-
-
-
-
-# Track bookings per conversation to prevent abuse via chatbot
-_conversation_bookings = {}  # conversation_id -> count
-MAX_BOOKINGS_PER_CONVERSATION = 1
+from services import booking_flow
 
 # Build the FAQ intent Trie once per warm Lambda instance, reused across requests
 _intent_trie  = build_intent_trie()
@@ -44,80 +37,45 @@ _notified_conversations = set()
 
 def validate_tool_params(tool_name, tool_input):
     """Validate tool parameters server-side, independent of LLM output."""
+    if not isinstance(tool_input, dict):
+        return "Tool input must be an object."
+    if tool_name == "prepare_booking":
+        return booking_flow.validate_booking(tool_input)
+    if tool_name != "check_availability":
+        return "Unsupported tool. The model cannot submit a booking."
     if tool_name == "check_availability":
         date = tool_input.get('date', '')
-        if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
+        if not isinstance(date, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date):
             return "Invalid date format. Use YYYY-MM-DD."
         try:
             datetime.strptime(date, '%Y-%m-%d')
         except ValueError:
             return "Invalid date."
-    elif tool_name == "book_appointment":
-        date = tool_input.get('date', '')
-        time_val = tool_input.get('time', '')
-        email = tool_input.get('email', '')
-        name = tool_input.get('name', '')
-        phone = tool_input.get('phone', '')
-        if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
-            return "Invalid date format."
-        if not re.match(r'^\d{2}:\d{2}$', time_val):
-            return "Invalid time format."
-        if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
-            return "Invalid email address."
-        if not name.strip() or len(name) > 100:
-            return "Name is required and must be under 100 characters."
-        # Sanitize phone to digits and formatting chars only
-        tool_input['phone'] = re.sub(r'[^\d+\-() ]', '', phone)[:20]
-        tool_input['name'] = name.strip()[:100]
     return None
 
 
 def execute_tool(tool_name, tool_input, conversation_id=None):
-    """Execute a tool call from the LLM. Returns a string result for the LLM."""
+    """Execute an allowed read/preparation tool and return a structured result."""
     print(f"Tool called: {tool_name}")
 
     # Server-side parameter validation (independent of LLM)
     validation_error = validate_tool_params(tool_name, tool_input)
     if validation_error:
-        return validation_error
+        return {"error": validation_error}
 
     try:
         if tool_name == "check_availability":
             print(f"Checking availability for date: {tool_input['date']}")
             slots = check_availability(tool_input['date'])
-            if slots:
-                return f"Available times on {tool_input['date']}: {', '.join(slots)}"
-            return f"No available slots on {tool_input['date']}"
+            return {"date": tool_input['date'], "timezone": "America/New_York", "availableSlots": slots}
 
-        elif tool_name == "book_appointment":
-            # Enforce one booking per conversation to prevent abuse
-            if conversation_id:
-                count = _conversation_bookings.get(conversation_id, 0)
-                if count >= MAX_BOOKINGS_PER_CONVERSATION:
-                    return "You already have an appointment booked. If you need to reschedule, please contact us at contact@unkommon.ai."
-            print(f"Booking appointment")
-            data = book_appointment(tool_input)
-            if data.get("success"):
-                # Track successful booking
-                if conversation_id:
-                    _conversation_bookings[conversation_id] = _conversation_bookings.get(conversation_id, 0) + 1
-                # Persist the appointment to DynamoDB for querying and auditing,
-                # in addition to creating it in Google Calendar.
-                save_appointment(
-                    name=tool_input['name'],
-                    email=tool_input['email'],
-                    phone=tool_input.get('phone', ''),
-                    date=tool_input['date'],
-                    time=tool_input['time'],
-                    conversation_id=conversation_id or 'unknown',
-                    source="chatbot",
-                )   
-                email_status = "Confirmation email sent." if data.get("emailSent") else "Note: confirmation email could not be sent."
-                return f"Appointment booked successfully for {tool_input['name']} on {tool_input['date']} at {tool_input['time']}. {email_status}"
-            return f"Failed to book: {data.get('error', 'Unknown error')}"
+        elif tool_name == "prepare_booking":
+            if not conversation_id:
+                return {"error": "A conversation is required to prepare booking details."}
+            return booking_flow.prepare_booking(conversation_id, tool_input)
 
     except Exception:
-        return "The calendar service is temporarily unavailable. Please try again."
+        return {"error": "The calendar service is temporarily unavailable. No booking was submitted."}
 
 
 def format_phone(phone):
@@ -195,6 +153,14 @@ def process_chat_message(user_message, conversation_id):
     messages = get_conversation_history(conversation_id)
     messages.append({"role": "user", "content": user_message})
 
+    # Confirmation never passes through the LLM. The server binds the user's
+    # exact code to persisted details and atomically claims the one allowed write.
+    confirmation_response = booking_flow.handle_confirmation(conversation_id, user_message)
+    if confirmation_response is not None:
+        messages.append({"role": "assistant", "content": confirmation_response})
+        save_conversation_history(conversation_id, messages)
+        return confirmation_response
+
     # Only short, standalone opening FAQs use fixed answers. Follow-ups and
     # qualified questions need the model to account for the conversation.
 
@@ -234,7 +200,7 @@ def process_chat_message(user_message, conversation_id):
         ],
         "messages": messages,
         "tools": TOOLS,
-        "temperature": 0.7
+        "temperature": 0.4
     }
 
     # Tool-calling loop: keep going until Claude returns a final text response
@@ -253,6 +219,7 @@ def process_chat_message(user_message, conversation_id):
             messages.append({"role": "assistant", "content": assistant_content})
 
             tool_results = []
+            confirmation_recap = None
             for block in assistant_content:
                 if block.get('type') == 'tool_use':
                     tool_name = block['name']
@@ -260,24 +227,35 @@ def process_chat_message(user_message, conversation_id):
                     tool_id = block['id']
 
                     result = execute_tool(tool_name, tool_input, conversation_id)
+                    if result.get("confirmation"):
+                        confirmation_recap = result["confirmation"]
 
                     tool_results.append({
                         "type": "tool_result",
                         "tool_use_id": tool_id,
-                        "content": result
+                        "content": json.dumps(result),
+                        "is_error": bool(result.get("error")),
                     })
 
             messages.append({"role": "user", "content": tool_results})
+            if confirmation_recap:
+                ai_response = confirmation_recap
+                messages.append({"role": "assistant", "content": ai_response})
+                break
             request_body["messages"] = messages
 
         else:
             # Claude gave a final response (end_turn). Extract the text.
             for block in response_body['content']:
                 if block.get('type') == 'text':
-                    ai_response = block['text']
+                    ai_response = format_response(block['text'])
                     break
             messages.append({"role": "assistant", "content": ai_response})
             break
+
+    if not ai_response:
+        ai_response = "I couldn't complete that request. Nothing is confirmed. Please try a simpler question or use https://www.unkommon.ai/book-a-call."
+        messages.append({"role": "assistant", "content": ai_response})
 
     # Save conversation history back to DynamoDB
     save_conversation_history(conversation_id, messages)

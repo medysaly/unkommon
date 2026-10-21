@@ -2,7 +2,7 @@
 
 These define the tools that Claude can call during a conversation:
 - check_availability: query open appointment slots for a given date
-- book_appointment: book a free 30-minute call
+- prepare_booking: prepare a server-owned confirmation, without booking
 
 The schemas follow the Anthropic Tool Use format using JSON Schema for the
 input specs. Keeping them in their own file makes it easy to add or modify
@@ -27,8 +27,8 @@ TOOLS = [
         }
     },
     {
-        "name": "book_appointment",
-        "description": "Create one free 30-minute call booking. Use only after checking availability, collecting the visitor's full name, email, and phone, and receiving explicit confirmation of the chosen date, time in Eastern Time, and contact details. Do not retry an uncertain booking automatically. Only report the booking as confirmed if the result says success.",
+        "name": "prepare_booking",
+        "description": "Prepare a free 30-minute call for the visitor to review. This does NOT create an appointment. Use only when the visitor wants to book and has supplied their full name, email, phone, and a selected available date and time. The server verifies the details and returns an exact recap and confirmation code; the visitor must confirm that code in a later message. Do not invent contact details or claim that preparation means the call is booked.",
         "input_schema": {
             "type": "object",
             "properties": {

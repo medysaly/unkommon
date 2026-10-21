@@ -26,16 +26,13 @@ from services import chat_service
 def reset_module_state():
     """Reset chat_service's module-level state between tests.
 
-    chat_service holds two in-memory state containers:
-    - _conversation_bookings: dict tracking bookings per conversation
-    - _notified_conversations: set of conversation IDs already notified
+    Booking state is persisted separately; only lead-notification state is local.
 
     Without resetting between tests, state from one test would leak into
     the next, causing flaky and order-dependent results.
 
     autouse=True means pytest runs this for every test automatically.
     """
-    chat_service._conversation_bookings.clear()
     chat_service._notified_conversations.clear()
     yield  # the test runs here; nothing to clean up after
 
@@ -67,13 +64,15 @@ def mock_save_conversation_history(mocker):
 @pytest.fixture
 def mock_check_availability(mocker):
     """Replace the calendar API availability check with a mock."""
-    return mocker.patch('services.chat_service.check_availability')
+    mock = mocker.patch('services.chat_service.check_availability')
+    mocker.patch('services.booking_flow.check_availability', mock)
+    return mock
 
 
 @pytest.fixture
 def mock_book_appointment(mocker):
     """Replace the calendar API booking with a mock."""
-    return mocker.patch('services.chat_service.book_appointment')
+    return mocker.patch('services.booking_flow.book_appointment')
 
 
 @pytest.fixture
@@ -94,4 +93,40 @@ def mock_save_lead(mocker):
 @pytest.fixture
 def mock_save_appointment(mocker):
     """Replace the appointments-table write with a no-op mock."""
-    return mocker.patch('services.chat_service.save_appointment')
+    return mocker.patch('services.booking_flow.save_appointment')
+
+
+@pytest.fixture(autouse=True)
+def booking_store(mocker):
+    """Persistent-store contract fake, shared across simulated cold starts."""
+    from copy import deepcopy
+    store = {}
+
+    def get(cid):
+        return deepcopy(store.get(cid))
+
+    def pending(cid, item, previous=None):
+        current = store.get(cid)
+        if current and (not previous or current['intentId'] != previous['intentId'] or current['status'] not in ('pending', 'cancelled')):
+            return False
+        store[cid] = dict(deepcopy(item), status='pending')
+        return True
+
+    def transition(cid, intent_id, expected, status, response=None):
+        current = store.get(cid)
+        if not current or current['intentId'] != intent_id or current['status'] != expected:
+            return False
+        current['status'] = status
+        if response is not None:
+            current['response'] = response
+        if status in ('processing', 'uncertain', 'booked'):
+            current.pop('ttl', None)
+        if status in ('uncertain', 'booked'):
+            for key in ('booking', 'recap', 'token'):
+                current.pop(key, None)
+        return True
+
+    mocker.patch('services.booking_flow.get_booking_state', side_effect=get)
+    mocker.patch('services.booking_flow.save_pending_booking', side_effect=pending)
+    mocker.patch('services.booking_flow.transition_booking', side_effect=transition)
+    return store
